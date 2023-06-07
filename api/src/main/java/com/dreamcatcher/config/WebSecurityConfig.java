@@ -25,16 +25,25 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/inject", "/registration").permitAll()
+                .requestMatchers("/", "/inject", "/registration", "/swagger-ui").permitAll()
+                .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("users/**")
+                .requestMatchers("users/**", "/wishes/**")
                 .authenticated()
                 .and()
                 .formLogin()
                 .and()
                 .build();
     }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/api/v1/auth/**",
+            "/v3/api-docs/**",
+            "/v3/api-docs.yaml",
+            "swagger-ui/**",
+            "swagger-ui.html"
+    };
 
     @Bean
     public UserDetailsService userDetailsService() {

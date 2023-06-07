@@ -27,14 +27,14 @@ const persistConfig = {
   storage,
   whitelist: [
     'basket',
-    // 'products', // don't save products state in local storage
+    // 'wishes', // don't save wishes state in local storage
   ],
   // blacklist: ['interval'],
 };
 
 const rootReducer = combineReducers({
   control: controlsSlice,
-  products: wishesSlice,
+  wishes: wishesSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

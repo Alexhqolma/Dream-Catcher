@@ -17,5 +17,4 @@ public class UserRequestDto {
             = "Password must be between 6 and 20 characters")
     private String password;
     private String role;
-    private List<Long> wishesId;
 }

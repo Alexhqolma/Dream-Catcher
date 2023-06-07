@@ -17,6 +17,12 @@ public class Wish {
     private String text;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "taken_user_id")
+    private User takenUser;
     @ManyToMany
     private List<Message> messages;
 }

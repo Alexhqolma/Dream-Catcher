@@ -1,7 +1,8 @@
 package com.dreamcatcher.model;
 
 public enum Status {
-    WAITING,
-    PROCESS,
+    PENDING,
+    POSTED,
+    TAKEN,
     FINISHED
 }

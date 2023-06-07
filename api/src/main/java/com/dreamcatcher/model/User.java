@@ -21,6 +21,4 @@ public class User {
     private String name;
     private String password;
     private String role;
-    @OneToMany
-    private List<Wish> wishes;
 }

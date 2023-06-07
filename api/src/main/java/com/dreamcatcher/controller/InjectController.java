@@ -4,11 +4,13 @@ import com.dreamcatcher.model.User;
 import com.dreamcatcher.model.Wish;
 import com.dreamcatcher.service.UserService;
 import com.dreamcatcher.service.WishService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Injection", description = "Injection of basic info - Ignore this API")
 @RestController
 @RequestMapping("/inject")
 @AllArgsConstructor

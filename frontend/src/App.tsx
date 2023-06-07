@@ -1,21 +1,25 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css'
-import { PageNotFound } from './components/pageNotFoun/PageNotFoun';
-import { Home } from './components/home/Home';
-import { MyWishes } from './components/myWishes/MyWishes';
-import { WishItem } from './components/wishItem/WishItem';
-import { Wishes } from './components/wishes/Wishes';
-import { Header } from './components/header/Header';
+import { BrowserRouter } from "react-router-dom";
+
+import { PageNotFound } from './pages/pageNotFound';
+import { HomePage } from './pages/homepage';
+import { MyWishes } from './components/myWishes';
+import { WishItem } from './components/wishItem';
+import { Wishes } from './components/wishes';
+import { Header } from './components/header';
+
+import './App.css';
 
 export const App: React.FC = () => {
 
   return (
-    <>
+    <BrowserRouter>
       <Header />
+
       <div>
         <Routes>
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/wishes">
             <Route index element={<Wishes />} />
@@ -24,6 +28,6 @@ export const App: React.FC = () => {
           <Route path="/myAccount" element={<MyWishes />} />
         </Routes>
       </div>
-    </>
+    </BrowserRouter>
   );
 }

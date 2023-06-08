@@ -1,10 +1,11 @@
 import React from "react";
 
-export const MyDreams: React.FC = () => {
+export const LoginPage: React.FC = () => {
   return (
     <>
       <div className="container">
-        <h1>MyDreams</h1>
+        <h1>LoginPage</h1>
+
       </div>
     </>
   );

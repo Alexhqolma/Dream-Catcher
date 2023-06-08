@@ -30,7 +30,7 @@ const persistConfig = {
     'basket',
     // 'dreams', // don't save dreams state in local storage
   ],
-  // blacklist: ['interval'],
+  blacklist: ['user'],
 };
 
 const rootReducer = combineReducers({

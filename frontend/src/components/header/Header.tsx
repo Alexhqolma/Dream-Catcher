@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.scss';
 import logo from '../../assets/images/logo.png';
 import { routes } from '../../routes/routerConfig';
+import { useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../store/features/user/userSlice';
 
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
+  const isAuth = Boolean(useAppSelector(selectUser));
   
+  useEffect(() => {
+    console.log('render header');
+  }, [isAuth]);
+
   return (
     <header className="header">
       <Link to="/" className="header__logo-link">
@@ -32,24 +39,32 @@ export const Header: React.FC = () => {
             </NavLink>
           </li>
 
-          <li className="nav__item">
-            <NavLink to={login.path} className="nav__link">
-              Login
-            </NavLink>
-          </li>
+          {!isAuth && (
+            <li className="nav__item">
+              <NavLink to={login.path} className="nav__link">
+                Login
+              </NavLink>
+            </li>
 
-          <li className="nav__item">
-            <NavLink to={registration.path} className="nav__link">
-              Registration
-            </NavLink>
-          </li>
+          )}
+
+          {!isAuth && (
+            <li className="nav__item">
+              <NavLink to={registration.path} className="nav__link">
+                Registration
+              </NavLink>
+            </li>
+          )}
+
           
           
-          <li className="nav__item">
-            <NavLink to={user.path.parent} className="nav__link">
-              My Dreams
-            </NavLink>
-          </li>
+          {isAuth && (
+            <li className="nav__item">
+              <NavLink to={user.path.parent} className="nav__link">
+                My Dreams
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

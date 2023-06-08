@@ -1,6 +1,9 @@
 export type Dream = {
-  id: number;
+  id: string;
   title: string;
-  userId: number;
+  body: string;
+  userId: string;
+  executantId: string | null;
   completed: boolean;
+  createAt: string,
 };

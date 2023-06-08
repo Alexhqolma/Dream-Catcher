@@ -5,7 +5,6 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Perform login logic here
     console.log('Username:', username);
     console.log('Password:', password);
     setUsername('');

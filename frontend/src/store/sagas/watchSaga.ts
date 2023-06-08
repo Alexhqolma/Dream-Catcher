@@ -1,13 +1,15 @@
 import { takeEvery } from 'redux-saga/effects';
-import { getDreamsSaga } from './getDreamsSaga';
-import { getUserSaga } from './getUserSaga';
+import { getMockUsersSaga } from './getMockUsersSaga';
 import { sagaActions } from './sagaActions';
+import { getMockDreamsSaga } from './getMockDreamsSaga';
 
 export function* watchSaga() {
   // eslint-disable-next-line no-console
   console.log('watchSaga');
 
-  yield getDreamsSaga();
 
-  yield takeEvery(sagaActions.FETCH_USER, getUserSaga);
+  yield getMockUsersSaga();
+  yield getMockDreamsSaga();
+
+  yield takeEvery(sagaActions.FETCH_USER, getMockUsersSaga);
 }

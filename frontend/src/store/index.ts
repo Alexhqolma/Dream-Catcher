@@ -20,6 +20,7 @@ import rootSaga from './sagas/root';
 import controlsSlice from './features/controls/controlsSlice';
 import dreamsSlice from './features/dreams/dreamsSlice';
 import userSlice from './features/user/userSlice';
+import mockUsersSlice from './features/mock/mockSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -30,13 +31,14 @@ const persistConfig = {
     'basket',
     // 'dreams', // don't save dreams state in local storage
   ],
-  // blacklist: ['interval'],
+  blacklist: ['user'],
 };
 
 const rootReducer = combineReducers({
   control: controlsSlice,
   dreams: dreamsSlice,
   user: userSlice,
+  mock: mockUsersSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

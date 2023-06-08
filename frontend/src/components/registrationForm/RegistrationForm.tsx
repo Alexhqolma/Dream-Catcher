@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import './RegistrationForm.scss';
 import { client } from '../../api/axiosClient';
+import { useAppDispatch } from '../../store/hooks';
+import { loadUser } from '../../store/sagas/sagaActions';
 
 type FormValues = {
   name: string;
@@ -32,11 +34,19 @@ const validationSchema = Yup.object({
 });
 
 export const RegistrationForm: React.FC = () => {
-  const [isSubmited, setIsSubmited] = useState(false);
+  const dispatch = useAppDispatch();
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
+  
+  useEffect(() => {
+    console.log('dispatch(loadUser());');
+
+    dispatch(loadUser());
+  }, []);
+
   const onSubmit = async (values: FormValues) => {
-    setIsSubmited(true);
+    setIsSubmitted(true);
 
     try {
       await client.post(
@@ -59,7 +69,7 @@ export const RegistrationForm: React.FC = () => {
   return (
     <form className='regForm' onSubmit={formik.handleSubmit}>
       <div>
-        {isSubmited ? (
+        {isSubmitted ? (
           <div className="regMessage">
             <div className="regTitle">Registration succesfull!</div>
             <TaskAltIcon />

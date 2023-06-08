@@ -19,6 +19,7 @@ import storage from 'redux-persist/lib/storage';
 import rootSaga from './sagas/root';
 import controlsSlice from './features/controls/controlsSlice';
 import dreamsSlice from './features/dreams/dreamsSlice';
+import userSlice from './features/user/userSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -35,6 +36,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   control: controlsSlice,
   dreams: dreamsSlice,
+  user: userSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

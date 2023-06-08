@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { NotFoundPage } from '../pages';
-
 import { routes } from './routerConfig';
 
 const { home, login, registration, dream, dreams, user } = routes;

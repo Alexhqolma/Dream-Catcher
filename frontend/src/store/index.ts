@@ -20,6 +20,7 @@ import rootSaga from './sagas/root';
 import controlsSlice from './features/controls/controlsSlice';
 import dreamsSlice from './features/dreams/dreamsSlice';
 import userSlice from './features/user/userSlice';
+import mockUsersSlice from './features/mock/mockSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   control: controlsSlice,
   dreams: dreamsSlice,
   user: userSlice,
+  mock: mockUsersSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

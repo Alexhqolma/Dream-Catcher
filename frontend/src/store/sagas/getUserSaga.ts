@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { put, delay } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import {
   setError,
   setUser,
@@ -8,13 +8,13 @@ import {
 import { getFirstUser } from '../../api/user';
 import { User } from '../../types/User';
 
-export function* getUserSaga() {
+export function* getUsersSaga() {
   // eslint-disable-next-line no-console
   
   yield put(setStatus('loading'));
   
   try {
-    console.log('getUserSaga');
+    console.log('getUsersSaga');
     const response: User = yield getFirstUser();
 
     // eslint-disable-next-line no-console

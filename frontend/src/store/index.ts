@@ -17,8 +17,8 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import storage from 'redux-persist/lib/storage';
 import rootSaga from './sagas/root';
-import controlsSlice from './features/Controls/controlsSlice';
-import wishesSlice from './features/Wishes/wishesSlice';
+import controlsSlice from './features/controls/controlsSlice';
+import dreamsSlice from './features/dreams/dreamsSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -27,14 +27,14 @@ const persistConfig = {
   storage,
   whitelist: [
     'basket',
-    // 'wishes', // don't save wishes state in local storage
+    // 'dreams', // don't save dreams state in local storage
   ],
   // blacklist: ['interval'],
 };
 
 const rootReducer = combineReducers({
   control: controlsSlice,
-  wishes: wishesSlice,
+  dreams: dreamsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -24,14 +24,14 @@ export const Header: React.FC = memo(() => {
           </li>
 
           <li className="nav__item">
-            <NavLink to="/wishes" className="nav__link">
-              Wishes
+            <NavLink to="/dreams" className="nav__link">
+              Dreams
             </NavLink>
           </li>
           
           <li className="nav__item">
-            <NavLink to="/myWishes" className="nav__link">
-              My Wishes
+            <NavLink to="/myDreams" className="nav__link">
+              My Dreams
             </NavLink>
           </li>
         </ul>

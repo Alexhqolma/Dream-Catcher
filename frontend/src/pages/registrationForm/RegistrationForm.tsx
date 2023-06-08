@@ -47,7 +47,7 @@ export const RegistrationForm: React.FC = () => {
       console.error('Error registering user:', error);
     }
     setTimeout(() => {
-      navigate('/wishes');
+      navigate('/dreams');
     }, 2000);
   };
 
@@ -121,7 +121,7 @@ export const RegistrationForm: React.FC = () => {
               <button
                 type="submit"
                 onClick={() => {
-                  // navigate('/wishes');
+                  // navigate('/dreams');
                 }}
               >
                 Submit

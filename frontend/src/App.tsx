@@ -4,9 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import { PageNotFound } from './pages/pageNotFound';
 import { RegistrationForm } from './pages/registrationForm';
 import { HomePage } from './pages/homepage';
-import { MyWishes } from './components/myWishes';
-import { WishItem } from './components/wishItem';
-import { Wishes } from './components/wishes';
+import { MyDreams } from './components/myDreams';
+import { DreamItem } from './components/dreamItem';
+import { Dreams } from './components/dreams';
 import { Header } from './components/header';
 
 import './App.scss';
@@ -23,11 +23,11 @@ export const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/register" element={<RegistrationForm />} />
-          <Route path="/wishes">
-            <Route index element={<Wishes />} />
-            <Route path=":slug" element={<WishItem />} />
+          <Route path="/dreams">
+            <Route index element={<Dreams />} />
+            <Route path=":slug" element={<DreamItem />} />
           </Route>
-          <Route path="/myAccount" element={<MyWishes />} />
+          <Route path="/myAccount" element={<MyDreams />} />
         </Routes>
       </div>
     </BrowserRouter>

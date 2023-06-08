@@ -1,12 +1,12 @@
 // create saga actions ONLY
 export const sagaActions = {
-  FETCH_WISHES_DATA: 'saga/FETCH_WISHES_DATA',
+  FETCH_DREAMS_DATA: 'saga/FETCH_DREAMS_DATA',
 };
 
 const sagaActionsCreator = {
-  loadWishes: () => ({ type: sagaActions.FETCH_WISHES_DATA }),
+  loadDreams: () => ({ type: sagaActions.FETCH_DREAMS_DATA }),
 };
 
 export const {
-  loadWishes,
+  loadDreams,
 } = sagaActionsCreator;

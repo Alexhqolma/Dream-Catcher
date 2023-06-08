@@ -2,13 +2,14 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { BrowserRouter } from "react-router-dom";
 
 import { PageNotFound } from './pages/pageNotFound';
+import { RegistrationForm } from './pages/registrationForm';
 import { HomePage } from './pages/homepage';
 import { MyWishes } from './components/myWishes';
 import { WishItem } from './components/wishItem';
 import { Wishes } from './components/wishes';
 import { Header } from './components/header';
 
-import './App.css';
+import './App.scss';
 
 export const App: React.FC = () => {
 
@@ -21,9 +22,10 @@ export const App: React.FC = () => {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/register" element={<RegistrationForm />} />
           <Route path="/wishes">
             <Route index element={<Wishes />} />
-            <Route path=":phoneSlug" element={<WishItem />} />
+            <Route path=":slug" element={<WishItem />} />
           </Route>
           <Route path="/myAccount" element={<MyWishes />} />
         </Routes>

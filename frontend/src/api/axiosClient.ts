@@ -6,9 +6,7 @@ const instance = axios.create({
   baseURL,
 });
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type FetchData = {
-};
+type FetchData = object;
 
 export const client = {
   async get<T>(url: string) {

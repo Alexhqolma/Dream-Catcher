@@ -39,13 +39,13 @@ const wishesSlice = createSlice({
 
 export default wishesSlice.reducer;
 export const {
-  setWishes: setWishes,
+  setWishes,
   setStatus,
   setError,
   resetState,
 } = wishesSlice.actions;
 
-export const selectProducts = (state: RootState) => state.products.storage;
-export const selectProductsStatusLoading
-= (state: RootState) => state.products.statusLoading;
-export const selectProductsError = (state: RootState) => state.products.error;
+export const selectWishes = (state: RootState) => state.wishes.storage;
+export const selectWishesStatusLoading
+= (state: RootState) => state.wishes.statusLoading;
+export const selectWishesError = (state: RootState) => state.wishes.error;

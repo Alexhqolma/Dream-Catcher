@@ -28,6 +28,12 @@ export const Header: React.FC = memo(() => {
               Wishes
             </NavLink>
           </li>
+          
+          <li className="nav__item">
+            <NavLink to="/myWishes" className="nav__link">
+              My Wishes
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>

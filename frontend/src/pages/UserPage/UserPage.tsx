@@ -1,6 +1,6 @@
 import React from "react";
 
-export const UserPage: React.FC = () => {
+const UserPage: React.FC = () => {
   return (
     <>
       <div className="container">
@@ -10,3 +10,5 @@ export const UserPage: React.FC = () => {
     </>
   );
 }
+
+export default UserPage;

@@ -4,9 +4,11 @@ export const DreamPage: React.FC = () => {
   return (
     <>
       <div className="container">
-        <h1>DreamPage</h1>
+        <h1>Page</h1>
 
       </div>
     </>
   );
 }
+
+export default DreamPage;

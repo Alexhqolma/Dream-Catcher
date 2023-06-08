@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const DreamsPage: React.FC = () => {
+const DreamsPage: React.FC = () => {
   return (
     <>
       <div className="container">
@@ -14,3 +14,5 @@ export const DreamsPage: React.FC = () => {
     </>
   );
 }
+
+export default DreamsPage;

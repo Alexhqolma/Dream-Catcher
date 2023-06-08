@@ -1,7 +1,7 @@
 import React from "react";
 import { RegistrationForm } from "../../components/registrationForm";
 
-export const RegistrationPage: React.FC = () => {
+const RegistrationPage: React.FC = () => {
   return (
     <>
       <div className="container">
@@ -12,3 +12,5 @@ export const RegistrationPage: React.FC = () => {
     </>
   );
 }
+
+export default RegistrationPage;

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LoginPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
     <>
       <div className="container">
@@ -10,3 +10,5 @@ export const LoginPage: React.FC = () => {
     </>
   );
 }
+
+export default LoginPage;

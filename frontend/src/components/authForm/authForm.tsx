@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/features/user/userSlice';
 
-const AuthForm = () => {
+const LoginPopup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
-    setUsername('');
-    setPassword('');
+    dispatch(setUser({ username, password }));
   };
 
   return (
@@ -26,9 +27,11 @@ const AuthForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Log in</button>
+      <button onClick={handleLogin}>
+        Log in
+      </button>
     </div>
   );
 };
 
-export default AuthForm;
+export default LoginPopup;

@@ -4,9 +4,9 @@ import './Header.scss';
 import logo from '../../assets/images/logo.png';
 import { routes } from '../../routes/routerConfig';
 
-const { home, dreams, login, registration, user } = routes;
 
 export const Header: React.FC = () => {
+  const { home, dreams, login, registration, user } = routes;
   
   return (
     <header className="header">

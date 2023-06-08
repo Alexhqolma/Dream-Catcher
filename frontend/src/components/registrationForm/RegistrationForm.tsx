@@ -71,7 +71,7 @@ export const RegistrationForm: React.FC = () => {
       <div>
         {isSubmitted ? (
           <div className="regMessage">
-            <div className="regTitle">Registration succesfull!</div>
+            <div className="regTitle">Registration successful!</div>
             <TaskAltIcon />
           </div>
         ) : (

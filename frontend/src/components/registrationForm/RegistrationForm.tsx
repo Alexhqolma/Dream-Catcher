@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import './RegistrationForm.scss';
-import { client } from '../../api/axiosClient';
 import { useAppDispatch } from '../../store/hooks';
-import { loadUser } from '../../store/sagas/sagaActions';
+import { postUser } from '../../store/sagas/sagaActions';
 
 type FormValues = {
   name: string;
@@ -38,27 +37,17 @@ export const RegistrationForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  
-  useEffect(() => {
-    console.log('dispatch(loadUser());');
-
-    dispatch(loadUser());
-  }, []);
-
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);
 
-    try {
-      await client.post(
-        'users/register',
-        { name: values.name, password: values.password }
-      );
-    } catch (error) {
-      console.error('Error registering user:', error);
-    }
+    dispatch(postUser(
+      'users/registration',
+      { name: values.name, password: values.password }
+      ));
+
     setTimeout(() => {
       navigate('/dreams');
-    }, 2000);
+    }, 1000);
   };
 
   const formik = useFormik({
@@ -68,7 +57,7 @@ export const RegistrationForm: React.FC = () => {
   });
   return (
     <form className='regForm' onSubmit={formik.handleSubmit}>
-      <div>
+      <div className='regForm__wrapper'>
         {isSubmitted ? (
           <div className="regMessage">
             <div className="regTitle">Registration successful!</div>
@@ -76,7 +65,7 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="form-control">
+              <div className="regForm__control">
               <label htmlFor="name">
                 Name
                 <input
@@ -92,7 +81,7 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
-            <div className="form-control">
+              <div className="regForm__control">
               <label htmlFor="password">
                 Password
                 <input
@@ -108,7 +97,7 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
-            <div className="form-control">
+              <div className="regForm__control">
               <label htmlFor="confirmPassword">
                 Confirm Password
                 <input
@@ -130,9 +119,6 @@ export const RegistrationForm: React.FC = () => {
               </button>
               <button
                 type="submit"
-                onClick={() => {
-                  // navigate('/dreams');
-                }}
               >
                 Submit
               </button>

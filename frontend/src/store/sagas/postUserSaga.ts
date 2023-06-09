@@ -4,15 +4,16 @@ import { User } from '../../types/User';
 import { setError, setStatus, setUser } from '../features/user/userSlice';
 // import { postUser } from '../../api/user';
 
-export function* postUserSaga(user: Omit<User, 'userId'>) {
+export function* postUserSaga(action : {
+    type: string;
+    payload: Omit<User, 'userId'>
+  }) {
   // eslint-disable-next-line no-console
   
   yield put(setStatus('loading'));
   
-  
-
   try {
-    console.log('postUserSaga');
+    console.log('postUserSaga', action.payload);
     // const response: User = yield postUser(user);
 
     // eslint-disable-next-line no-console
@@ -21,7 +22,7 @@ export function* postUserSaga(user: Omit<User, 'userId'>) {
     // yield put(setUser(response));
 
     yield put(setUser({
-      ...user,
+      ...action.payload,
       userId: 'random id',
     }));
   } catch (error: unknown) {

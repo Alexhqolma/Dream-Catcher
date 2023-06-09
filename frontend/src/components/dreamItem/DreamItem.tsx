@@ -5,4 +5,5 @@ export const DreamItem: React.FC = () => {
     <div className='container'>
       Dream
     </div>
-  )};
+  );
+};

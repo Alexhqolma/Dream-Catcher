@@ -12,7 +12,7 @@ const sagaActionsCreator = {
   loadDreams: () => ({ type: sagaActions.FETCH_DREAMS_DATA }),
   loadUser: () => ({ type: sagaActions.FETCH_USER }),
   loadMockUsers: () => ({ type: sagaActions.FETCH_MOCK_USERS }),
-  postUser: (url: string, user: Omit<User, 'userId'> ) => ({ type: sagaActions.POST_USER, payload: url, user }),
+  postUser: (user: Omit<User, 'userId'>) => ({ type: sagaActions.POST_USER, payload: user }),
 };
 
 export const {

@@ -1,15 +1,17 @@
 import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
 import { User } from '../../types/User';
+import { setStatus } from '../features/user/userSlice';
+import { postUser } from '../../api/user';
 
-export function* postUserSaga() {
+export function* postUserSaga(user: Omit<User, 'userId'>) {
   // eslint-disable-next-line no-console
   
-  yield post(setStatus('loading'));
+  yield put(setStatus('loading'));
   
   try {
     console.log('postUserSaga');
-    const response: User = yield getFirstUser();
+    const response: User = yield postUser(user);
 
     // eslint-disable-next-line no-console
     console.log(response);

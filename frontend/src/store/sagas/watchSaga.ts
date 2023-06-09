@@ -12,4 +12,5 @@ export function* watchSaga() {
   yield getMockDreamsSaga();
 
   yield takeEvery(sagaActions.FETCH_USER, getMockUsersSaga);
+  yield takeEvery(sagaActions.POST_USER, getMockUsersSaga);
 }

@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/features/user/userSlice';
+// import { useDispatch } from 'react-redux';
+// import { getUser } from '../../store/features/user/userSlice';
 
-const LoginPopup = () => {
+export const LoginPopup: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleLogin = () => {
-    dispatch(setUser({ username, password }));
+  //   dispatch(getUser({ username, password }));
   };
 
   return (
@@ -33,5 +33,3 @@ const LoginPopup = () => {
     </div>
   );
 };
-
-export default LoginPopup;

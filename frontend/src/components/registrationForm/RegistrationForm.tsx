@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './RegistrationForm.scss';
 import { useAppDispatch } from '../../store/hooks';
 import { postUser } from '../../store/sagas/sagaActions';
+import { routes } from '../../routes/routerConfig';
 
 type FormValues = {
   name: string;
@@ -43,7 +44,7 @@ export const RegistrationForm: React.FC = () => {
     dispatch(postUser({ name: values.name, password: values.password }));
 
     setTimeout(() => {
-      navigate('/dreams');
+      navigate(routes.user.path.userId);
     }, 1000);
   };
 

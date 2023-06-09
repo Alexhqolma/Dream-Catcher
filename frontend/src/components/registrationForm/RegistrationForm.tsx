@@ -15,9 +15,9 @@ type FormValues = {
 };
 
 const initialValues = {
-  name: '',
-  password: '',
-  confirmPassword: ''
+  name: 'Mr. Jones',
+  password: '123qweASD',
+  confirmPassword: '123qweASD',
 };
 
 const validationSchema = Yup.object({

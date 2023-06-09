@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../..';
 import { User } from '../../../types/User';
 import { Dream } from '../../../types/Dream';
+import { MockPhoto } from '../../../types/MockPhoto';
 
 export interface mockState {
   users: User[];
   dreams: Dream[];
+  photos: MockPhoto[];
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
@@ -13,6 +15,7 @@ export interface mockState {
 const initialState: mockState = {
   users: [],
   dreams: [],
+  photos: [],
   statusLoading: 'idle',
   error: null,
 };
@@ -28,7 +31,11 @@ const mockSlice = createSlice({
       state.dreams = action.payload.map(e => ({
         ...e,
         executantId: null,
+        photo: state.photos[e.id],
       }));
+    },
+    setMockPhotos: (state, action: PayloadAction<any[]>) => {
+      state.photos = action.payload.map(e => e.download_url );
     },
     setStatus: (
       state: mockState,

@@ -6,4 +6,5 @@ export type Dream = {
   executantId: string | null;
   completed: boolean;
   createAt: string,
+  photo: string | null,
 };

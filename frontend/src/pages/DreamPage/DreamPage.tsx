@@ -1,5 +1,5 @@
 import React from "react";
-import { DreamItem } from "../../components/DreamItem";
+import { DreamItem } from "../../components/dreamItem/big";
 
 export const DreamPage: React.FC = () => {
   return (

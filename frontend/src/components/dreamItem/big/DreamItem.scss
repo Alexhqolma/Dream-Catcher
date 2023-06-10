@@ -1,0 +1,51 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+
+.dream {
+  padding: 20px;
+  height: 100%;
+  text-align: center;
+  background-color: $lightPrimary;
+  border: 1px solid $rows;
+  border-radius: 5px;
+  margin-bottom: $space_l;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  &__photo {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    color: $primary;
+    font-size: $font_size_xl;
+    margin-bottom:   $space_m;
+  }
+
+  &__body {
+    font-size: $font_size_l;
+    margin-bottom:   $space_m;
+  }
+
+  &__created-at {
+    color: $secondary;
+    font-size: 14px;
+    margin-bottom: $space_m;
+  }
+
+  &__button {
+    background-color: $darkPrimary;
+    color: $white;
+    padding:   $space_m 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

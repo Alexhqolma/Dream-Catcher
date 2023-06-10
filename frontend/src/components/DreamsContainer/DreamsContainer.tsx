@@ -18,21 +18,22 @@ export const DreamsContainer: React.FC = () => {
 
   return (
     <div className="container">
-      <label htmlFor="DreamsPerPage" className="select-dreams__label">Dreams per page</label>
-      <span> </span>
-      <select
-        value={countDreams}
-        className="select-dreams"
-        name="DreamsPerPage" 
-        id="DreamsPerPage"
-        onChange={(e) => setCountDreams(+e.target.value)}  
-      >
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="12">12</option>
-        <option value="16">16</option>
-        <option value={dreams.length}>all</option>
-      </select>
+      <label htmlFor="DreamsPerPage" className="select-dreams__label">
+        Dreams per page&nbsp;
+        <select
+          value={countDreams}
+          className="select-for-dreams-container"
+          name="DreamsPerPage" 
+          id="DreamsPerPage"
+          onChange={(e) => setCountDreams(+e.target.value)}  
+        >
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
+          <option value={dreams.length}>all</option>
+        </select>
+      </label>
 
       <ul className="dreams-container">
         {dreams.length && dreamsCut.length && dreamsCut.map(d => (

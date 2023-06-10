@@ -16,11 +16,13 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream }) => {
         src={dream?.photo || undefined} 
         alt="photo" 
       />
-      <h4 className="dream-card__title">{dream.title}</h4>
-      <p className="dream-card__body">{dream.body}</p>
 
-      <Link to={`/dream/${dream.id}`} className='dream-card__button' >Details</Link>
+      <div className="dream-card__content">
+        <h4 className="dream-card__title">{dream.title}</h4>
+        <p className="dream-card__body">{dream.body}</p>
 
+        <Link to={`/dream/${dream.id}`} className='dream-card__button' >Details</Link>
+      </div>
     </div>
   );
 };

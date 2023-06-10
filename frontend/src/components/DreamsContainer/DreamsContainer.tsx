@@ -2,9 +2,11 @@ import React, { useMemo, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
-import './DreamsContainer.scss';
 import { Dream } from "../../types/Dream";
 import { DreamCard } from "../DreamItem/DreamCard";
+import { DreamItemBig } from "../DreamItem/big";
+import { DreamItemSmall } from "../DreamItem/small/DreamItemSmall";
+import './DreamsContainer.scss';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
@@ -34,6 +36,18 @@ export const DreamsContainer: React.FC = () => {
       <ul className="dreams-container">
         {dreams.length && dreamsCut && dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d}/></li>
+        ))}
+      </ul>
+
+      <ul className="dreams-container">
+        {dreams.length && dreamsCut && dreamsCut.map(d => (
+          <li key={d.id}><DreamItemBig dream={d}/></li>
+        ))}
+      </ul>
+
+      <ul className="dreams-container">
+        {dreams.length && dreamsCut && dreamsCut.map(d => (
+          <li key={d.id}><DreamItemSmall dream={d}/></li>
         ))}
       </ul>
     </div>

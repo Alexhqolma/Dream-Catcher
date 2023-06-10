@@ -1,33 +1,45 @@
-import './DreamItem.scss';
-// import { Dream } from '../../types/Dream';
+import { Dream } from '../../../types/Dream';
 
-// type Props = {
-//   dream: Dream;
-// };
+import './DreamItemSmall.scss';
 
-const dream = {
-  id: 1,
-  title: 'title',
-  body: 'body',
-  userId: 1,
-  executantId: 1,
-  completed: false,
-  createAt: '2021-10-10',
-  photo: 'https://images.unsplash.com/photo-1633830007417-8b0b0b0b0b0b?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&ixlib=rb-1.2.1&w=1000&q=80',
-}
+type DreamItemProps = {
+  dream: Dream;
+};
 
-export const DreamItem: React.FC = () => {
+// const dream = {
+//   id: 1,
+//   title: 'title',
+//   body: 'body',
+//   userId: 1,
+//   executantId: 1,
+//   completed: false,
+//   createAt: '2021-10-10',
+//   photo: 'https://images.unsplash.com/photo-1633830007417-8b0b0b0b0b0b?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&ixlib=rb-1.2.1&w=1000&q=80',
+// }
 
-  const {
-    id,
-    title,
-    body,
-    userId,
-    executantId,
-    completed,
-    createAt,
-    photo,
-  } = dream;
+export const DreamItemSmall: React.FC<DreamItemProps> = ({
+    dream: { 
+      id,
+      title,
+      body,
+      userId,
+      handler,
+      status,
+      // createAt,
+      photo,
+    }
+  }) => {
+
+  // const {
+  //   id,
+  //   title,
+  //   body,
+  //   userId,
+  //   executantId,
+  //   completed,
+  //   createAt,
+  //   photo,
+  // } = dream;
 
   const handleFulfill = () => {
     // dispatch(FulfillDream(id));
@@ -51,12 +63,12 @@ export const DreamItem: React.FC = () => {
 
         <div className="card__container">
           <p className="card__specs__text">completed</p>
-          <p className="card__specs__value">{completed}</p>
+          <p className="card__specs__value">{status}</p>
         </div>
 
         <div className="card__container">
           <p className="card__specs__text">createAt</p>
-          <p className="card__specs__value">{createAt}</p>
+          <p className="card__specs__value">{'createAt'}</p>
         </div>
 
         <div className="card__container">
@@ -71,11 +83,11 @@ export const DreamItem: React.FC = () => {
 
         <div className="card__container">
           <p className="card__specs__text">executantId</p>
-          <p className="card__specs__value">{executantId}</p>
+          <p className="card__specs__value">{handler}</p>
         </div>
 
         <div className="card__container">
-         <img src={photo} alt="dream" className="card__specs__img" />
+         <img src={photo || ''} alt="dream" className="card__specs__img" />
         </div>
 
       </div>

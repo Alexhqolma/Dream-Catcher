@@ -6,17 +6,6 @@ type DreamItemProps = {
   dream: Dream;
 };
 
-// const dream = {
-//   id: 1,
-//   title: 'title',
-//   body: 'body',
-//   userId: 1,
-//   executantId: 1,
-//   completed: false,
-//   createAt: '2021-10-10',
-//   photo: 'https://images.unsplash.com/photo-1633830007417-8b0b0b0b0b0b?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fGVufDB8fHx8&ixlib=rb-1.2.1&w=1000&q=80',
-// }
-
 export const DreamItemSmall: React.FC<DreamItemProps> = ({
     dream: { 
       id,
@@ -29,17 +18,6 @@ export const DreamItemSmall: React.FC<DreamItemProps> = ({
       photo,
     }
   }) => {
-
-  // const {
-  //   id,
-  //   title,
-  //   body,
-  //   userId,
-  //   executantId,
-  //   completed,
-  //   createAt,
-  //   photo,
-  // } = dream;
 
   const handleFulfill = () => {
     // dispatch(FulfillDream(id));

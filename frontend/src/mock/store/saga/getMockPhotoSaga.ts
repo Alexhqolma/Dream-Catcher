@@ -4,8 +4,6 @@ import { setError, setMockPhotos, setStatus } from '../features/mock/mockSlice';
 import { getPhotos } from '../../api/mockPhoto';
 
 export function* getMockPhotoSaga() {
-  // eslint-disable-next-line no-console
-  
   yield put(setStatus('loading'));
   
   try {

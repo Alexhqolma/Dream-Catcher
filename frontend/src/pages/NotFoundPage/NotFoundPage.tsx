@@ -1,5 +1,5 @@
+import notFoundImage from '../../assets/images/notFound.png';
 import './NotFoundPage.scss';
-import notFoundImage from '../../assets//images/notFound.png';
 
 const NotFoundPage = () => (
   <div className="wrapper">

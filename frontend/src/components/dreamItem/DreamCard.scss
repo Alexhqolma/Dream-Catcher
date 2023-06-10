@@ -13,7 +13,7 @@
   border: 1px solid $lightSecondary;
     &:hover {
       box-shadow: 0 0 1rem $primary;
-     
+      user-select: none;
       cursor: pointer;
     }
 

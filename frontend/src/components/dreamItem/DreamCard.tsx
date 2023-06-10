@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Dream } from '../../types/Dream';
 
 import './DreamCard.scss';
-import { Link } from 'react-router-dom';
 
 interface DreamItemProps {
   dream: Dream;

@@ -1,9 +1,9 @@
 @import '../../styles/utils/variables';
 
 .select-for-dreams-container {
-  padding: 2px;
+  padding: 0.3rem;
   border-color: $primary;
-  border-radius: 8px;
+  border-radius: $border_radius_s;
   background-color: $lightPrimary;
   cursor: pointer;
   margin-bottom: $space_m;
@@ -22,5 +22,5 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 2rem;
 }

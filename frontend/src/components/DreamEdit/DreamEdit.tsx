@@ -1,31 +1,17 @@
-import React, { useState } from 'react';
-import { Dream } from '../../types/Dream';
+import { useState } from "react";
+import { Dream } from "../../types/Dream";
 
-import './dreamEdit.scss';
+type DreamEditProps = {
+  dream?: Dream;
+};
 
-interface DreamItemProps {
-  dream: Dream;
-}
+export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [updatedDream, setUpdatedDream] = useState(dream);
 
-export const DreamEdit: React.FC<DreamItemProps> = ({ dream }) => {
-return (
-  <div className="dream">
-    <div className="dream__container">
-      <img
-        src={dream?.photo || '/'}
-        alt="Dream Photo"
-        className="dream__photo" />
-      <h2 className="dream__title">{dream.title}</h2>
-      <p className="dream__body">{dream?.body}</p>
-      <button className="dream__button">
-        Fulfill Dream
-      </button>
-    </div>
-  </div>
-);
-}
-
-  const [updatedDream, setUpdatedDream] = useState<Dream>(dream);
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -35,36 +21,39 @@ return (
     }));
   };
 
-  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
-    setUpdatedDream((prevDream) => ({
-      ...prevDream,
-      [name]: value,
-    }));
+  const handleSave = () => {
+    setEditMode(false);
   };
 
-  const handleSave = () => {
-    onSave(updatedDream);
-  };
+  if (!editMode) {
+    return (
+      <div className="edit-card">
+        <h2>{dream?.title}</h2>
+        <p>{dream?.body}</p>
+
+        <button onClick={toggleEditMode}>Edit</button>
+      </div>
+    );
+  }
 
   return (
-    <div className="edit-card">
-      <input
-        type="text"
-        name="title"
-        value={updatedDream.title}
-        onChange={handleInputChange}
-        placeholder="Title"
-      />
-      <textarea
-        name="body"
-        value={updatedDream.body}
-        onChange={handleTextareaChange}
-        placeholder="Dream description"
-      />
-      {/* Add additional input fields for other dream properties as needed */}
+    {dream && (
+      <div className="edit-card">
+        <input
+          type="text"
+          name="title"
+          value={updatedDream?.title}
+          onChange={handleInputChange}
+          placeholder="Title"
+        />
+        <textarea
+          name="body"
+          value={updatedDream?.body}
+          onChange={handleInputChange}
+          placeholder="Dream description"
+        />
 
-      <button onClick={handleSave}>Save</button>
-    </div>
+        <button onClick={handleSave}>Save</button>
+      </div>)}
   );
 };

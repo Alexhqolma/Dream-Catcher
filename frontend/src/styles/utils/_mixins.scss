@@ -16,12 +16,6 @@
   }
 }
 
-@mixin onMobile {
-  @media (max-width: 639px) {
-    @content;
-  }
-}
-
 @mixin mainWrapper {
   max-width: 1200px;
   min-width: 320px;

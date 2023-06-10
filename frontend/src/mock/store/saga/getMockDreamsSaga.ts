@@ -1,26 +1,27 @@
 import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
+
 import {
   setError,
-  setMockUsers,
+  setMockDreams,
   setStatus,
 } from '../features/mock/mockSlice';
-import { getAllUsers } from '../../api/user';
-import { User } from '../../types/User';
+import { Dream } from '../../../types/Dream';
+import { getAllDreams } from '../../../api/dreams';
 
-export function* getMockUsersSaga() {
+export function* getMockDreamsSaga() {
   // eslint-disable-next-line no-console
   
   yield put(setStatus('loading'));
   
   try {
     console.log('getUsersSaga');
-    const response: User[] = yield getAllUsers();
+    const response: Dream[] = yield getAllDreams();
 
     // eslint-disable-next-line no-console
     console.log(response);
 
-    yield put(setMockUsers(response));
+    yield put(setMockDreams(response));
   } catch (error: unknown) {
     yield put(setError((error as AxiosError).message));
   } finally {

@@ -3,8 +3,16 @@ export type Dream = {
   title: string;
   body: string;
   userId: string;
-  executantId: string | null;
-  completed: boolean;
-  createAt: string,
+  handler: string | null;
+  status: boolean;
+  messages: Message[],
   photo: string | null,
 };
+
+
+type Message = {
+  id: string,
+  title: string,
+  body: string,
+  userId: string
+}

@@ -1,8 +1,9 @@
+import { mockState } from './../../../../store/features/mock/mockSlice';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../..';
-import { User } from '../../../types/User';
-import { Dream } from '../../../types/Dream';
-import { MockPhoto } from '../../../types/MockPhoto';
+import { RootState } from '../../../../store';
+import { User } from '../../../../types/User';
+import { Dream } from '../../../../types/Dream';
+import { MockPhoto } from '../../../../types/MockPhoto';
 
 export interface mockState {
   users: User[];
@@ -16,6 +17,7 @@ const initialState: mockState = {
   users: [],
   dreams: [],
   photos: [],
+  mockData: [],
   statusLoading: 'idle',
   error: null,
 };
@@ -31,11 +33,16 @@ const mockSlice = createSlice({
       state.dreams = action.payload.map(e => ({
         ...e,
         executantId: null,
-        photo: state.photos[e.id],
+        photo: '',
       }));
     },
-    setMockPhotos: (state, action: PayloadAction<any[]>) => {
+    setMockPhotos: (state, action: PayloadAction<{download_url: string}[]>) => {
       state.photos = action.payload.map(e => e.download_url );
+    },
+    setMockData: (state, action: PayloadAction<Dream[]>) => {
+      console.log('setMockData');
+
+      state.mockData = action.payload;
     },
     setStatus: (
       state: mockState,
@@ -57,6 +64,8 @@ export default mockSlice.reducer;
 export const {
   setMockUsers,
   setMockDreams,
+  setMockPhotos,
+  setMockData,
   setStatus,
   setError,
   resetState,
@@ -64,6 +73,7 @@ export const {
 
 export const selectMockUsers = (state: RootState) => state.mock.users;
 export const selectMockDreams = (state: RootState) => state.mock.dreams;
+export const selectMockPhotos = (state: RootState) => state.mock.photos;
 export const selectMockUsersStatusLoading
 = (state: RootState) => state.mock.statusLoading;
 export const selectMockUsersError = (state: RootState) => state.mock.error;

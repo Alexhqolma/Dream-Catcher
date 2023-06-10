@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const baseURL = 'https://picsum.photos/v2/list?page=2&limit=100';
 
 const instance = axios.create({
   baseURL,
@@ -12,6 +12,7 @@ export const client = {
   async get<T>(url: string) {
     const response = await instance.get<T>(url);
 
+    // eslint-disable-next-line no-console
     console.log('get', baseURL + url);
 
     return response.data;

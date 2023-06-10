@@ -1,5 +1,5 @@
-@import '../../../styles/utils/mixins';
-@import '../../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
 
 .dream {
   padding: 20px;
@@ -26,12 +26,12 @@
   &__title {
     color: $primary;
     font-size: $font_size_xl;
-    margin-bottom:   $space_m;
+    margin-bottom: $space_m;
   }
 
   &__body {
     font-size: $font_size_l;
-    margin-bottom:   $space_m;
+    margin-bottom: $space_m;
   }
 
   &__created-at {
@@ -43,7 +43,7 @@
   &__button {
     background-color: $darkPrimary;
     color: $white;
-    padding:   $space_m 20px;
+    padding: $space_m 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;

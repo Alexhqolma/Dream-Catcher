@@ -1,6 +1,5 @@
 import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
-import { User } from '../../../types/User';
 import { setError, setMockPhotos, setStatus } from '../features/mock/mockSlice';
 import { getPhotos } from '../../api/mockPhoto';
 
@@ -10,11 +9,7 @@ export function* getMockPhotoSaga() {
   yield put(setStatus('loading'));
   
   try {
-    console.log('getMockPhotoSaga');
-    const response: User[] = yield getPhotos();
-
-    // eslint-disable-next-line no-console
-    console.log(response);
+    const response: any[] = yield getPhotos();
 
     yield put(setMockPhotos(response));
   } catch (error: unknown) {

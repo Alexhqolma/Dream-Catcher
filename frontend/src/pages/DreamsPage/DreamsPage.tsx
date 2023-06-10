@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { DreamsContainer } from "../../components/DreamsContainer";
 
 const DreamsPage: React.FC = () => {
   return (
@@ -7,9 +7,7 @@ const DreamsPage: React.FC = () => {
       <div className="container">
         <h1>DreamsPage</h1>
 
-        <NavLink to="/dream/testId" className="nav__link">
-          Test Dream
-        </NavLink>
+        <DreamsContainer />
       </div>
     </>
   );

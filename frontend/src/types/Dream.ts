@@ -1,3 +1,5 @@
+import { Message } from "./Message";
+
 export type Dream = {
   id: string;
   title: string;
@@ -9,10 +11,3 @@ export type Dream = {
   photo: string | null,
 };
 
-
-type Message = {
-  id: string,
-  title: string,
-  body: string,
-  userId: string
-}

@@ -1,19 +1,19 @@
-import { mockState } from './../../../../store/features/mock/mockSlice';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../../store';
 import { User } from '../../../../types/User';
 import { Dream } from '../../../../types/Dream';
 import { MockPhoto } from '../../../../types/MockPhoto';
 
-export interface mockState {
+export interface MockState {
   users: User[];
   dreams: Dream[];
-  photos: MockPhoto[];
+  photos: string[];
+  mockData: Dream[];
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
 
-const initialState: mockState = {
+const initialState: MockState = {
   users: [],
   dreams: [],
   photos: [],
@@ -26,31 +26,29 @@ const mockSlice = createSlice({
   name: 'mock',
   initialState,
   reducers: {
-    setMockUsers: (state: mockState, action: PayloadAction<User[]>) => {
+    setMockUsers: (state: MockState, action: PayloadAction<User[]>) => {
       state.users = action.payload;
     },
-    setMockDreams: (state: mockState, action: PayloadAction<Dream[]>) => {
+    setMockDreams: (state: MockState, action: PayloadAction<Dream[]>) => {
       state.dreams = action.payload.map(e => ({
         ...e,
         executantId: null,
         photo: '',
       }));
     },
-    setMockPhotos: (state, action: PayloadAction<{download_url: string}[]>) => {
+    setMockPhotos: (state, action: PayloadAction<MockPhoto[]>) => {
       state.photos = action.payload.map(e => e.download_url );
     },
     setMockData: (state, action: PayloadAction<Dream[]>) => {
-      console.log('setMockData');
-
       state.mockData = action.payload;
     },
     setStatus: (
-      state: mockState,
+      state: MockState,
       action: PayloadAction<'idle' | 'loading' | 'failed'>,
     ) => {
       state.statusLoading = action.payload;
     },
-    setError: (state: mockState, action: PayloadAction<string>) => {
+    setError: (state: MockState, action: PayloadAction<string>) => {
       state.error = action.payload;
       state.statusLoading = 'failed';
     },
@@ -74,6 +72,7 @@ export const {
 export const selectMockUsers = (state: RootState) => state.mock.users;
 export const selectMockDreams = (state: RootState) => state.mock.dreams;
 export const selectMockPhotos = (state: RootState) => state.mock.photos;
+export const selectMockData = (state: RootState) => state.mock.mockData;
 export const selectMockUsersStatusLoading
 = (state: RootState) => state.mock.statusLoading;
 export const selectMockUsersError = (state: RootState) => state.mock.error;

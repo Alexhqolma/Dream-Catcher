@@ -1,1 +1,1 @@
-export * from './DreamItem';
+export * from './DreamCard';

@@ -40,9 +40,6 @@ export const RegistrationForm: React.FC = () => {
 
   const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);
-
-    console.log('onSubmit');
-
     dispatch(postUser({ name: values.name, password: values.password }));
 
     setTimeout(() => {

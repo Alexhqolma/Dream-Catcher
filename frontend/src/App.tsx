@@ -5,7 +5,7 @@ import { selectUser } from './store/features/user/userSlice';
 
 import './App.scss';
 import { useEffect } from 'react';
-import { selectMockDreams, selectMockPhotos, selectMockUsers, setMockData } from './mock/store/features/mock/mockSlice';
+import { selectMockData, selectMockDreams, selectMockPhotos, selectMockUsers, setMockData } from './mock/store/features/mock/mockSlice';
 import { Dream } from './types/Dream';
 
 export const App: React.FC = () => {
@@ -14,26 +14,31 @@ export const App: React.FC = () => {
   const users = useAppSelector(selectMockUsers);
   const dreams = useAppSelector(selectMockDreams);
   const photos = useAppSelector(selectMockPhotos);
+  const mockData = useAppSelector(selectMockData);
+  
+  useEffect(() => {
+    console.log('App', mockData);
+  }, [mockData])
 
-useEffect(() => {
-  if (users && dreams && photos) {
-    const data: Dream[] = [];
+  useEffect(() => {
+    if (users && dreams && photos) {
+      const data: Dream[] = [];
 
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        id: String(i),
-        title: dreams[i]?.title,
-        body: dreams[i]?.body,
-        status: false,
-        messages: [],
-        userId: users[i]?.id,
-        handler: null,
-        photo: photos[i],
-      });
+      for (let i = 0; i < 100; i++) {
+        data.push({
+          id: String(i),
+          title: dreams[i]?.title,
+          body: dreams[i]?.body,
+          status: false,
+          messages: [],
+          userId: users[i]?.userId,
+          handler: null,
+          photo: photos[i],
+        });
+      }
+
+      dispatch(setMockData(data));
     }
-
-    dispatch(setMockData(data));
-  }
   }, [dispatch, users, dreams, photos])
 
   return (

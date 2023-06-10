@@ -10,11 +10,7 @@ export function* getMockUsersSaga() {
   yield put(setStatus('loading'));
   
   try {
-    console.log('getUsersSaga');
     const response: User[] = yield getAllUsers();
-
-    // eslint-disable-next-line no-console
-    console.log(response);
 
     yield put(setMockUsers(response));
   } catch (error: unknown) {

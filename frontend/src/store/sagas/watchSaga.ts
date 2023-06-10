@@ -6,7 +6,6 @@ import { getMockUsersSaga } from '../../mock/store/saga/getMockUsersSaga';
 import { getMockPhotoSaga } from '../../mock/store/saga/getMockPhotoSaga';
 
 export function* watchSaga() {
-  // eslint-disable-next-line no-console
   console.log('watchSaga');
 
   yield getMockUsersSaga();

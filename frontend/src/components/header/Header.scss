@@ -1,3 +1,5 @@
+@import '../../styles/utils/variables';
+
 .header {
   display: flex;
   align-items: center;
@@ -12,7 +14,7 @@
   height: 48px;
   padding: 13px 0px 13px 16px;
 
-  background: white;
+  background-color: $primary;
   box-shadow: 0px 1px 0px grey;
 
     &__logo {

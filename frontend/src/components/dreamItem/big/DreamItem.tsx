@@ -4,7 +4,7 @@ import './DreamItem.scss';
 const dream = {
   id: 1,
   title: 'title',
-  body: 'lore ipsum dolor sit amet, consectetur adconsectetur adi lorem ipsun piscingconsectetur adi lorem ipsun piscingconsectetur adi lorem ipsun piscingconsectetur adi lorem ipsun piscingconsectetur adi lorem ipsun piscingi lorem ipsun piscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  body: 'lore ipsum dolor sitrem ipsun piscingconsectetur adi lorem ipsun piscingconsectetur adi lorem ipsun piscingi lorem ipsun piscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   executantId: 1,
   completed: false,
   createAt: '2021-10-10',

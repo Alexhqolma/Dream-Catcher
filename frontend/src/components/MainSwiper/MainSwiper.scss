@@ -1,0 +1,94 @@
+@import '../../styles/utils/variables';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  height: 48px;
+  padding: 13px 0px 13px 16px;
+
+  background-color: $primary;
+  box-shadow: 0px 1px 0px grey;
+
+    &__logo {
+      position: absolute;
+      top: 3px;
+      width: 35px;
+    }
+
+  &__menu {
+    height: 48px;
+    width: 48px;
+    padding: 16px;
+    background: grey;
+    box-shadow: -1px 0px 0px grey;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__menu {
+    display: block;
+  }
+}
+
+.nav {
+  &__list {
+    margin: 0 1em 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+}
+
+.active {
+  position: relative;
+  color: #3f653f;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 1.5px;
+    opacity: 0.5;
+
+    background-color: #3f653f;
+  }
+}
+
+.login-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-popup-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.close-button {
+  margin-top: 10px;
+}

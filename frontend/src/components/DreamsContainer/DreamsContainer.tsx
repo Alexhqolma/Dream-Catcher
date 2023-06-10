@@ -3,7 +3,7 @@ import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
 import './DreamsContainer.scss';
-import { DreamCard } from "../DreamItem/DreamCard";
+import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
 
 export const DreamsContainer: React.FC = () => {

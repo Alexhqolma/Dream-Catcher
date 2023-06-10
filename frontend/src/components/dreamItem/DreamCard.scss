@@ -25,11 +25,11 @@
     margin-bottom: $space-l;
     text-align: center;
     overflow: hidden;
-      text-overflow: ellipsis;
+    white-space: normal;
+    text-overflow: ellipsis;
       display: -webkit-box !important;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-      white-space: normal;
   }
 
   &__img {

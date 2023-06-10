@@ -1,5 +1,7 @@
 .dreams-container {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  justify-content: space-between;
+  row-gap: 20px;
 }

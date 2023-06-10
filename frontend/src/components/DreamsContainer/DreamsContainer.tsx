@@ -3,14 +3,14 @@ import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
 import './DreamsContainer.scss';
-import { DreamCard } from "../DreamItem";
+import { DreamCard } from "../dreamItem/DreamCard";
 import { Dream } from "../../types/Dream";
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
   const [countDreams, setCountDreams] = useState(8);
 
-  const dreamsCut:Dream[] = useMemo(() => {
+  const dreamsCut: Dream[] = useMemo(() => {
     return dreams.slice(0, countDreams);
   }, [countDreams, dreams]);
 

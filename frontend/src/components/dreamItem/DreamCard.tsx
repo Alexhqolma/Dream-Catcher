@@ -19,7 +19,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream }) => {
       />
       <p className="dream-card__body">{dream.body}</p>
 
-      <Link to={`/dream/${dream.id}`}>Details</Link>
+      <Link to={`/dream/${dream.id}`} className='dream-card__button' >Details</Link>
 
     </div>
   );

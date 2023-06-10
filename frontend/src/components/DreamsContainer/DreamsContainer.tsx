@@ -3,12 +3,8 @@ import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
 import './DreamsContainer.scss';
-import { DreamCard } from "../dreamItem/DreamCard";
-import { Dream } from "../../types/Dream";
 import { DreamCard } from "../DreamItem/DreamCard";
-import { DreamItemBig } from "../DreamItem/big";
-import { DreamItemSmall } from "../DreamItem/small/DreamItemSmall";
-import './DreamsContainer.scss';
+import { Dream } from "../../types/Dream";
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
@@ -22,10 +18,13 @@ export const DreamsContainer: React.FC = () => {
 
   return (
     <div className="container">
+      <label htmlFor="DreamsPerPage" className="select-dreams__label">Dreams per page</label>
+      <span> </span>
       <select
         value={countDreams}
-        name="" 
-        id=""
+        className="select-dreams"
+        name="DreamsPerPage" 
+        id="DreamsPerPage"
         onChange={(e) => setCountDreams(+e.target.value)}  
       >
         <option value="4">4</option>
@@ -38,18 +37,6 @@ export const DreamsContainer: React.FC = () => {
       <ul className="dreams-container">
         {dreams.length && dreamsCut && dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d}/></li>
-        ))}
-      </ul>
-
-      <ul className="dreams-container">
-        {dreams.length && dreamsCut && dreamsCut.map(d => (
-          <li key={d.id}><DreamItemBig dream={d}/></li>
-        ))}
-      </ul>
-
-      <ul className="dreams-container">
-        {dreams.length && dreamsCut && dreamsCut.map(d => (
-          <li key={d.id}><DreamItemSmall dream={d}/></li>
         ))}
       </ul>
     </div>

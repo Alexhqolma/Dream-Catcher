@@ -1,7 +1,27 @@
+@import '../../styles/utils/variables';
+
 .dreams-container {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   row-gap: 20px;
+}
+
+.select-dreams {
+  padding: 2px;
+  border-color: $primary;
+  border-radius: 8px;
+  background-color: $lightPrimary;
+  cursor: pointer;
+  margin-bottom: $space_m;
+
+  &__label {
+    font-size: $font_size_l;
+    color: $darkPrimary;
+  }
+}
+
+.select-dreams:hover {
+  background-color: $primary;
 }

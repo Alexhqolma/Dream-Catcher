@@ -35,7 +35,7 @@ export const DreamsContainer: React.FC = () => {
       </select>
 
       <ul className="dreams-container">
-        {dreams.length && dreamsCut && dreamsCut.map(d => (
+        {dreams.length && dreamsCut.length && dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d}/></li>
         ))}
       </ul>

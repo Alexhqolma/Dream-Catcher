@@ -4,8 +4,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(4, 1fr);
-  // justify-content: space-between;
-  row-gap: 20px;
+  gap: 20px;
 }
 
 .select-dreams {

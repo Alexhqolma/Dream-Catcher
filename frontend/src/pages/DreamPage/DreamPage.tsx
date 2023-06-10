@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { DreamItem } from "../../components/dreamItem/big";
+// import { DreamItem } from "../../components/dreamItem/big";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";

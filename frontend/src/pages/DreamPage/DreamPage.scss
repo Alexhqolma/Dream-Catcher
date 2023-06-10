@@ -1,19 +1,79 @@
-.dreamPage {
-  padding: 1rem;
+@import '../../styles//utils/variables';
 
-  & > * {
-    margin-bottom: 1rem;
+.dream-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  max-width: 300px;
+  height: 450px;
+  padding: 20px;
+  border: 1px solid $lightSecondary;
+
+  &:hover {
+    box-shadow: 0 0 10px $primary;
+
+    cursor: pointer;
   }
 
   &__title {
-    
+    font-weight: bold;
+    line-height: $font-size-xl;
+    font-size: $font-size-l;
+    margin-bottom: $space-l;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
   }
 
   &__img {
     width: 100%;
+    max-height: 15rem;
+    object-fit: cover;
+    margin-bottom: $space-l;
   }
 
-  &__body {
+  &__body-text {
+    display: block;
+    font-size: $font-size-m;
+    margin-bottom: $space-m;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
 
+  &__button {
+    position: absolute;
+    bottom: 20px;
+    width: 60px;
+    height: 20px;
+    color: $darkPrimary;
+    text-align: center;
+    border-radius: 4px;
+    background-color: $lightSecondary;
+    font-size: $font-size-m;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $primary;
+    }
+
+    &:visited {
+      color: $darkPrimary;
+    }
   }
 }

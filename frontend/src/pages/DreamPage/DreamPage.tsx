@@ -24,7 +24,7 @@ export const DreamPage: React.FC = () => {
       <h2 className="dreamPage__title">{dream?.title}</h2>
       <img
         className="dreamPage__img"
-        src={dream?.photo ? dream.photo : undefined}
+        src={dream?.photo || undefined}
         alt="" 
       />
 

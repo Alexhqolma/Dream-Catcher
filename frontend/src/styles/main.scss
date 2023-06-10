@@ -1,3 +1,41 @@
 @import "./utils/normalize.scss";
 @import "./utils/mixins";
 @import "./utils/variables";
+
+.container {
+  padding: 0 1rem;
+
+  @include onTablet {
+    padding: 0 2rem;
+  }
+
+  @include onLaptop {
+    padding: 0 2rem;
+  }
+
+  @include onDesktop {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.grid {
+  display: block;
+
+  @include onTablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @include onLaptop {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @include onDesktop {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;    
+  }
+}

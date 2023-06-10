@@ -15,7 +15,7 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setUpdatedDream((prevDream) => ({
+    setUpdatedDream((prevDream?) => ({
       ...prevDream,
       [name]: value,
     }));
@@ -37,7 +37,6 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
   }
 
   return (
-    {dream && (
       <div className="edit-card">
         <input
           type="text"
@@ -49,11 +48,10 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
         <textarea
           name="body"
           value={updatedDream?.body}
-          onChange={handleInputChange}
+          onChange={dream && handleInputChange}
           placeholder="Dream description"
         />
 
         <button onClick={handleSave}>Save</button>
       </div>)}
-  );
-};
+

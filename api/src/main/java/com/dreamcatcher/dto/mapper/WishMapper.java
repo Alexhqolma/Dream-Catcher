@@ -18,7 +18,21 @@ public class WishMapper {
         wish.setStatus(dto.getStatus());
         wish.setText(dto.getText());
         wish.setUser(userService.findById(dto.getUserId()));
-        wish.setTakenUser(userService.findById(dto.getTakenUserId()));
+        //wish.setTakenUser(userService.findById(dto.getTakenUserId()));
+        /*wish.setMessages(dto.getMessagesId()
+                .stream()
+                .map(twitService::findById)
+                .collect(Collectors.toList()));*/
+        return wish;
+    }
+
+    public Wish toModel(WishResponseDto dto) {
+        Wish wish = new Wish();
+        wish.setName(dto.getName());
+        wish.setStatus(dto.getStatus());
+        wish.setText(dto.getText());
+        wish.setUser(userService.findById(dto.getUserId()));
+        //wish.setTakenUser(userService.findById(dto.getTakenUserId()));
         /*wish.setMessages(dto.getMessagesId()
                 .stream()
                 .map(twitService::findById)

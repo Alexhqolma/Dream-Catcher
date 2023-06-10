@@ -1,5 +1,6 @@
 package com.dreamcatcher.service.impl;
 
+import com.dreamcatcher.dto.mapper.WishMapper;
 import com.dreamcatcher.exception.DreamCatcherException;
 import com.dreamcatcher.model.Status;
 import com.dreamcatcher.model.User;
@@ -8,14 +9,18 @@ import com.dreamcatcher.repository.UserRepository;
 import com.dreamcatcher.repository.WishRepository;
 import com.dreamcatcher.service.WishService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class WishServiceImpl implements WishService {
     private final WishRepository wishRepository;
     private final UserRepository userRepository;
+    private final WishMapper wishMapper;
 
     @Override
     public Wish create(Wish wish) {
@@ -36,8 +41,11 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
-    public List<Wish> findAll() {
-        return wishRepository.findAll();
+    public List<Wish> findAll(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Wish> list = wishRepository.findAll(pageRequest);
+        return list.stream().map(wishMapper::toDto).toList()
+                .stream().map(wishMapper::toModel).collect(Collectors.toList());
     }
 
     @Override

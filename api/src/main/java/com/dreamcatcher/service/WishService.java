@@ -12,7 +12,7 @@ public interface WishService {
 
     Wish findById(Long id);
 
-    List<Wish> findAll();
+    List<Wish> findAll(int page, int size);
 
     List<Wish> findAllByUser(User user);
 

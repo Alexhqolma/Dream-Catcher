@@ -36,8 +36,9 @@ public class WishController {
 
     @Tag(name = "Find all Wishes", description = "Get all wishes from db")
     @GetMapping
-    public List<WishResponseDto> findAllWishes() {
-        return wishService.findAll()
+    public List<WishResponseDto> findAllWishes(@RequestParam(value = "page", defaultValue = "0") int page,
+                                               @RequestParam(value = "size", defaultValue = "10") int size) {
+        return wishService.findAll(page, size)
                 .stream()
                 .map(wishMapper::toDto)
                 .collect(Collectors.toList());

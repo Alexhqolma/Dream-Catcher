@@ -25,7 +25,8 @@ html {
   font-family: 'Mont_Regular', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;  color: $darkPrimary;
+  font-size: 14px;  
+  color: $darkPrimary;
   background-color: $lightPrimary;
 }
 
@@ -44,8 +45,8 @@ li {
 }
 
 main {
-  width: 90%;
-  margin: 30px auto 0;
+  width: 100%;
+  margin: 0 auto;
 }
 
 li {

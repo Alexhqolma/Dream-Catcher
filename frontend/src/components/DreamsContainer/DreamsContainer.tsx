@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
-
-import './DreamsContainer.scss';
 import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
+
+import './DreamsContainer.scss';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
@@ -35,7 +35,7 @@ export const DreamsContainer: React.FC = () => {
         </select>
       </label>
 
-      <ul className="dreams-container">
+      <ul className="dreams-container grid">
         {dreams.length && dreamsCut.length && dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d}/></li>
         ))}

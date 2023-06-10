@@ -1,12 +1,18 @@
+import { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Layout } from './components/Layout';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { selectUser } from './store/features/user/userSlice';
+import { 
+  selectMockData,
+  selectMockDreams,
+  selectMockPhotos,
+  selectMockUsers,
+  setMockData
+} from './mock/store/features/mock/mockSlice';
+import { Dream } from './types/Dream';
 
 import './App.scss';
-import { useEffect } from 'react';
-import { selectMockData, selectMockDreams, selectMockPhotos, selectMockUsers, setMockData } from './mock/store/features/mock/mockSlice';
-import { Dream } from './types/Dream';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import './NotFoundPage.scss';
 import notFoundImage from '../../assets//images/notFound.png';
 
-export const NotFoundPage = () => (
+const NotFoundPage = () => (
   <div className="wrapper">
     <div className="not-found">
       <img src={notFoundImage} alt="page not found" className="not-found__image" />
@@ -16,3 +16,5 @@ export const NotFoundPage = () => (
     </div>
   </div>
 );
+
+export default NotFoundPage;

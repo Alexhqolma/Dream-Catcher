@@ -11,12 +11,12 @@ interface DreamItemProps {
 export const DreamCard: React.FC<DreamItemProps> = ({ dream }) => {
   return (
     <div className="dream-card">
-      <h4 className="dream-card__title">{dream.title}</h4>
       <img
         className="dream-card__img" 
         src={dream?.photo || undefined} 
         alt="photo" 
       />
+      <h4 className="dream-card__title">{dream.title}</h4>
       <p className="dream-card__body">{dream.body}</p>
 
       <Link to={`/dream/${dream.id}`} className='dream-card__button' >Details</Link>

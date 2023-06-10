@@ -28,8 +28,9 @@ export const DreamsContainer: React.FC = () => {
         <option value="8">8</option>
         <option value="12">12</option>
         <option value="16">16</option>
+        <option value={dreams.length}>all</option>
       </select>
-      
+
       <ul className="dreams-container">
         {dreams.length && dreamsCut && dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d}/></li>

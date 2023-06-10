@@ -1,13 +1,9 @@
 import React from "react";
+import { DreamItem } from "../../components/DreamItem";
 
 export const DreamPage: React.FC = () => {
   return (
-    <>
-      <div className="container">
-        <h1>Current Dream Page</h1>
-
-      </div>
-    </>
+    <DreamItem />
   );
 }
 

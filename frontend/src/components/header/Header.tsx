@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './Header.scss';
-import logo from '../../assets/images/big_logo.png';
-import { routes } from '../../routes/routerConfig';
-import { useAppSelector } from '../../store/hooks';
-import { selectUser } from '../../store/features/user/userSlice';
-import AuthForm from '../authForm/authForm';
-
-
+import "./Header.scss";
+import logo from "../../assets/images/big_logo.png";
+import { routes } from "../../routes/routerConfig";
+import { useAppSelector } from "../../store/hooks";
+import { selectUser } from "../../store/features/user/userSlice";
+import { LoginPopup } from "../loginPopup"
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
@@ -59,17 +57,17 @@ export const Header: React.FC = () => {
             </li>
           )}
 
-            {showLoginPopup && (
-              <div className="login-popup-overlay">
-                <div className="login-popup-container">
-                  <AuthForm />
-                  <button className="close-button" onClick={handleCloseLoginPopup}>
-                    Close
-                  </button>
-                </div>
+          {showLoginPopup && (
+            <div className="login-popup-overlay">
+              <div className="login-popup-container">
+                <LoginPopup />
+                <button className="close-button" onClick={handleCloseLoginPopup}>
+                  Close
+                </button>
               </div>
-            )}
-          
+            </div>
+          )}
+
 
           {!isAuth && (
             <li className="nav__item">

@@ -5,6 +5,7 @@ import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
 import './DreamPage.scss';
 import { DreamEdit } from "../../components/DreamEdit";
+import { DreamCard } from "../../components/DreamCard/DreamCard";
 
 export const DreamPage: React.FC = () => {
   const { dreamId } = useParams();
@@ -16,8 +17,17 @@ export const DreamPage: React.FC = () => {
 
   console.log('dream', dream);
 
+  if (!dream) {
+    return <h1>This Card is not found</h1>
+  }
+
   return (
-    <DreamEdit dream={dream} />
+    <div>
+      <DreamCard dream={dream}/>
+
+      <DreamEdit dream={dream} />
+    </div>
+
   );
 }
 

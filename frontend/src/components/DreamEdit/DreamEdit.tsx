@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dream } from "../../types/Dream";
 
 type DreamEditProps = {
-  dream?: Dream;
+  dream: Dream;
 };
 
 export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
@@ -13,9 +13,10 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
     setEditMode(!editMode);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    setUpdatedDream((prevDream?) => ({
+
+    setUpdatedDream((prevDream) => ({
       ...prevDream,
       [name]: value,
     }));
@@ -48,7 +49,7 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
         <textarea
           name="body"
           value={updatedDream?.body}
-          onChange={dream && handleInputChange}
+          onChange={handleInputChange}
           placeholder="Dream description"
         />
 

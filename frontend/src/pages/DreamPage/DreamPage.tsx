@@ -1,21 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
-import './DreamPage.scss';
 import { DreamEdit } from "../../components/DreamEdit";
-import { DreamCard } from "../../components/DreamCard/DreamCard";
+import { selectUser } from "../../store/features/user/userSlice";
+
+import './DreamPage.scss';
 
 export const DreamPage: React.FC = () => {
   const { dreamId } = useParams();
   const dreams = useAppSelector(selectMockData);
+  const authUser = useAppSelector(selectUser);
+  const [editMode, setEditMode] = useState(false);
 
   const dream = useMemo(() => {
     return dreams.find(d => d.id === dreamId);
   }, [dreamId, dreams]);
 
-  console.log('dream', dream);
+  const isOwner = authUser?.userId === dream?.userId;
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
 
   if (!dream) {
     return <h1>This Card is not found</h1>
@@ -23,9 +30,15 @@ export const DreamPage: React.FC = () => {
 
   return (
     <div>
-      <DreamCard dream={dream}/>
+      <img src={dream.photo || undefined} alt="" />
+      <h2>{dream.title}</h2>
+      <p>{dream.body}</p>
+      <p>{dream.status ? 'completed' : 'not completed'}</p>
+      <p>{dream.userId}</p>
 
-      <DreamEdit dream={dream} />
+      {isOwner && (<button onClick={toggleEditMode}>Edit</button>)}
+
+      {isOwner && editMode && <DreamEdit dream={dream} />}
     </div>
 
   );

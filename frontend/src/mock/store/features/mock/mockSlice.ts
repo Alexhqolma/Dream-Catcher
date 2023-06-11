@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../../store';
-import { User } from '../../../../types/User';
+import { MockUser, User } from '../../../../types/User';
 import { Dream } from '../../../../types/Dream';
 import { MockPhoto } from '../../../../types/MockPhoto';
 
 export interface MockState {
-  users: User[];
+  users: MockUser[];
   dreams: Dream[];
   photos: string[];
   mockData: Dream[];
@@ -26,7 +26,7 @@ const mockSlice = createSlice({
   name: 'mock',
   initialState,
   reducers: {
-    setMockUsers: (state: MockState, action: PayloadAction<User[]>) => {
+    setMockUsers: (state: MockState, action: PayloadAction<MockUser[]>) => {
       state.users = action.payload;
     },
     setMockDreams: (state: MockState, action: PayloadAction<Dream[]>) => {

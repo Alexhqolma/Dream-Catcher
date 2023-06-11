@@ -27,9 +27,9 @@ export const App: React.FC = () => {
   }, [mockData])
 
   useEffect(() => {
-    if (users && dreams && photos) {
+    if (users.length && dreams && photos) {
       const data: Dream[] = [];
-
+      
       for (let i = 0; i < 100; i++) {
         data.push({
           id: String(i),
@@ -37,7 +37,7 @@ export const App: React.FC = () => {
           body: dreams[i]?.body,
           status: false,
           messages: [],
-          userId: users[i]?.userId,
+          userId: String(users[Math.round(10 * Math.random())]?.id),
           handler: null,
           photo: photos[i],
         });

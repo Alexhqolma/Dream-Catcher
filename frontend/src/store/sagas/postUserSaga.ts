@@ -16,7 +16,7 @@ export function* postUserSaga(action : {
 
     yield put(setUser({
       ...action.payload,
-      userId: 'random id',
+      userId: '7',
     }));
   } catch (error: unknown) {
     yield put(setError((error as AxiosError).message));

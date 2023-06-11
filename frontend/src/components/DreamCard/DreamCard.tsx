@@ -18,6 +18,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream }) => {
       />
 
       <div className="dream-card__content">
+        <h4>{dream.userId}</h4>
         <h4 className="dream-card__title">{dream.title}</h4>
         <p className="dream-card__body">{dream.body}</p>
 

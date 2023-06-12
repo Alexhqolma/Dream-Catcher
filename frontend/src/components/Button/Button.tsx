@@ -10,6 +10,11 @@ type ButtonProps = {
 
 export const Button: React.FC<ButtonProps> = ({ link, title}) => {
   return (
-    { link? && <Link to = { link } className = 'button' > { title }</Link> }
+    <>
+      {link
+        ? <Link to={link} className='button'>{title}</Link>
+        : <button className='button'>{title}</button>
+      }
+    </>
   )
 }

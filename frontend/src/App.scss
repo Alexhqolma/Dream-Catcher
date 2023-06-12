@@ -1,1 +1,8 @@
 @import "./styles/main.scss";
+
+.App {
+  &__greetings {
+    text-align: center;
+    margin: 1rem;
+  }
+}

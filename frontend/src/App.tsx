@@ -50,7 +50,7 @@ export const App: React.FC = () => {
   return (
     <div>
       <Header />
-      {user && <h1>{`Hello, ${user.name}!`}</h1>}
+      {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 
       <main>
         <Layout />

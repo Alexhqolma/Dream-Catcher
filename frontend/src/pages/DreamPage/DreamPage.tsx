@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
@@ -13,6 +13,10 @@ export const DreamPage: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
   const authUser = useAppSelector(selectUser);
   const [editMode, setEditMode] = useState(false);
+
+  // useEffect(() => {
+  //  fetch dream by dreamID
+  // }, [])
 
   const dream = useMemo(() => {
     return dreams.find(d => d.id === dreamId);

@@ -2,7 +2,7 @@
 
 .main-swiper {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 15rem);
   background-color: #fff;
 }
 
@@ -14,6 +14,6 @@
 
 .main-slide img {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 15rem);
   object-fit: cover; 
 }

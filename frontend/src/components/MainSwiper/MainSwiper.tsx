@@ -12,20 +12,24 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+const swiperSettings = {
+  spaceBetween: 0,
+  slidesPerView: 1,
+  autoplay: { 
+    delay: 400,
+    stopOnLastSlide: true,
+  },
+  onSlideChange: () => console.log('slide change'),
+  onSwiper: (swiper: any) => console.log(swiper),
+};
+
 export const MainSwiper: React.FC = () => {
   const dreams = useAppSelector(selectMockData).slice(0, 4);
 
   return (
     <Swiper
+      {...swiperSettings}
       className="main-swiper"
-      spaceBetween={0}
-      slidesPerView={1}
-      autoplay={{ 
-        delay: 400,
-        stopOnLastSlide: true,
-      }}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {dreams.map(dream => (
         <SwiperSlide

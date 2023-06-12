@@ -1,15 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { DreamsContainer } from "../../components/DreamsContainer";
+import './DreamsPage.scss';
 
 const DreamsPage: React.FC = () => {
   return (
     <>
       <div className="container">
-        <h1>DreamsPage</h1>
-
-        <NavLink to="/dream/testId" className="nav__link">
-          Test Dream
-        </NavLink>
+        <h1 className="container__title">Dreams</h1>
+        <DreamsContainer />
       </div>
     </>
   );

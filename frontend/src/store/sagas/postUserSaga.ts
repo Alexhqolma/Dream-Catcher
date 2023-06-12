@@ -8,22 +8,15 @@ export function* postUserSaga(action : {
     type: string;
     payload: Omit<User, 'userId'>
   }) {
-  // eslint-disable-next-line no-console
-  
   yield put(setStatus('loading'));
   
   try {
-    console.log('postUserSaga', action.payload);
     // const response: User = yield postUser(user);
-
-    // eslint-disable-next-line no-console
-    // console.log(response);
-
     // yield put(setUser(response));
 
     yield put(setUser({
       ...action.payload,
-      userId: 'random id',
+      userId: '7',
     }));
   } catch (error: unknown) {
     yield put(setError((error as AxiosError).message));

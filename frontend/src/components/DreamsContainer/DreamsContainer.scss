@@ -1,0 +1,23 @@
+@import '../../styles/utils/variables';
+
+.select-for-dreams-container {
+  padding: 0.3rem;
+  border-color: $primary;
+  border-radius: $border_radius_s;
+  background-color: $lightPrimary;
+  cursor: pointer;
+  margin-bottom: $space_m;
+
+  &__label {
+    font-size: $font_size_l;
+    color: $darkPrimary;
+  }
+}
+
+.select-for-dreams-container:hover {
+  background-color: $primary;
+}
+
+.dreams-container {
+
+}

@@ -1,11 +1,10 @@
 import React from "react";
+import { MainSwiper } from "../../components/MainSwiper";
 
 const HomePage: React.FC = () => {
   return (
     <>
-      <div className="container">
-        <h1>Home</h1>
-      </div>
+      <MainSwiper />
     </>
   );
 }

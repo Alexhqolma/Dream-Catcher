@@ -1,9 +1,46 @@
-import React from "react";
-import { DreamItem } from "../../components/DreamItem";
+import React, { useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks";
+import { selectMockData } from "../../mock/store/features/mock/mockSlice";
+
+import { DreamEdit } from "../../components/DreamEdit";
+import { selectUser } from "../../store/features/user/userSlice";
+
+import './DreamPage.scss';
 
 export const DreamPage: React.FC = () => {
+  const { dreamId } = useParams();
+  const dreams = useAppSelector(selectMockData);
+  const authUser = useAppSelector(selectUser);
+  const [editMode, setEditMode] = useState(false);
+
+  const dream = useMemo(() => {
+    return dreams.find(d => d.id === dreamId);
+  }, [dreamId, dreams]);
+
+  const isOwner = authUser?.userId === dream?.userId;
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
+
+  if (!dream) {
+    return <h1>This Card is not found</h1>
+  }
+
   return (
-    <DreamItem />
+    <div>
+      <img src={dream.photo || undefined} alt="" />
+      <h2>{dream.title}</h2>
+      <p>{dream.body}</p>
+      <p>{dream.status ? 'completed' : 'not completed'}</p>
+      <p>{dream.userId}</p>
+
+      {isOwner && (<button onClick={toggleEditMode}>Edit</button>)}
+
+      {isOwner && editMode && <DreamEdit dream={dream} />}
+    </div>
+
   );
 }
 

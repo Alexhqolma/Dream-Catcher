@@ -2,11 +2,13 @@ package com.dreamcatcher.service;
 
 import com.dreamcatcher.model.User;
 import com.dreamcatcher.model.Wish;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface WishService {
-    Wish create(Wish wish);
+    Wish create(Wish wish, MultipartFile file);
 
     Wish update(Long id, Wish wish);
 

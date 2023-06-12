@@ -2,6 +2,8 @@ package com.dreamcatcher.dto.response;
 
 import com.dreamcatcher.model.Status;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -13,4 +15,6 @@ public class WishResponseDto {
     private Long userId;
     private Long takenUserId;
     private List<Long> messagesId;
+    private LocalDateTime creationDate;
+    private String fileName;
 }

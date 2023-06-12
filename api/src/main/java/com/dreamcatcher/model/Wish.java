@@ -3,6 +3,8 @@ package com.dreamcatcher.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -23,6 +25,8 @@ public class Wish {
     @ManyToOne
     @JoinColumn(name = "taken_user_id")
     private User takenUser;
-    @ManyToMany
+    @OneToMany
     private List<Message> messages;
+    private LocalDateTime creationDate;
+    private String fileName;
 }

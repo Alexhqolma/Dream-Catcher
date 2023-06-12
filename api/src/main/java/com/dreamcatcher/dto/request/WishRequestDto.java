@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -20,4 +21,6 @@ public class WishRequestDto {
     private Long userId;
     private Long takenUserId;
     private List<Long> messagesId;
+    private LocalDateTime creationDate;
+    private String fileName;
 }

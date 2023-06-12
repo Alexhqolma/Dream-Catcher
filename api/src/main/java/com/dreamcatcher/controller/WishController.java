@@ -10,6 +10,7 @@ import com.dreamcatcher.service.WishService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +25,10 @@ public class WishController {
 
     @Tag(name = "Create Wish", description = "Create new wish")
     @PostMapping("/create")
-    public WishResponseDto create(@RequestBody WishRequestDto wishRequestDto) {
-        return wishMapper.toDto(wishService.create(wishMapper.toModel(wishRequestDto)));
+    public WishResponseDto create(@RequestBody WishRequestDto wishRequestDto,
+                                  @RequestParam("file") MultipartFile file) {
+        Wish wish = wishMapper.toModel(wishRequestDto);
+        return wishMapper.toDto(wishService.create(wish, file));
     }
 
     @Tag(name = "Find Wish", description = "Get wish by wishId")

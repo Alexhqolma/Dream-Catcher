@@ -2,9 +2,9 @@
 
 .select-for-dreams-container {
   padding: 0.3rem;
-  border-color: $primary;
+  border-color: $white;
   border-radius: $border_radius_s;
-  background-color: $lightPrimary;
+  background-color: $white;
   cursor: pointer;
   margin-bottom: $space_m;
 
@@ -15,7 +15,7 @@
 }
 
 .select-for-dreams-container:hover {
-  background-color: $primary;
+  background-color: $white;
 }
 
 .dreams-container {

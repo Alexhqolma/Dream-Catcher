@@ -15,8 +15,8 @@ export const DreamPage: React.FC = () => {
   const [editMode, setEditMode] = useState(false);
 
   // useEffect(() => {
-  //  fetch dream by dreamID
-  // }, [])
+  //  fetch dream by dreamId
+  // }, [dreamId])
 
   const dream = useMemo(() => {
     return dreams.find(d => d.id === dreamId);

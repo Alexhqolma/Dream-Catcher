@@ -31,7 +31,7 @@
     border: none;
     border-radius: 8px;
 
-    font-family: 'Mont-SemiBold';
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -44,7 +44,7 @@
 
     &:active {
       background-color: $white;
-      color: $primary;
+      color: $white;
       border: 1px solid $secondary;
       box-shadow: none;
     }

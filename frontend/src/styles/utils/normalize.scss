@@ -2,19 +2,15 @@
 @import "./variables";
 
 @font-face {
-  font-family: Mont_Regular;
-  src: url('/Mont-Regular.otf');
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 }
 
 @font-face {
-  font-family: Mont_Bold;
+  font-family: 'Lato',sans-serif;
   font-weight: bold;
   src: url('/Mont-Bold.otf');
-}
-
-@font-face {
-  font-family: Mont_SemiBold;
-  src: url('/Mont-SemiBold.otf');
 }
 
 * {
@@ -22,12 +18,11 @@
 }
 
 html {
-  font-family: 'Mont_Regular', sans-serif;
+  font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;  
   color: $darkPrimary;
-  background-color: $lightPrimary;
 }
 
 body,
@@ -55,10 +50,6 @@ li {
 
 a {
   text-decoration: none;
-
-  &:visited {
-    color: inherit;
-  }
 }
 
 button {
@@ -70,17 +61,12 @@ button {
 }
 
 @font-face {
-  font-family: Mont_Regular;
+  font-family: Lato;
   src: url('/Mont-Regular.otf');
 }
 
 @font-face {
-  font-family: Mont_Bold;
+  font-family: Lato;
   font-weight: bold;
   src: url('/Mont-Bold.otf');
-}
-
-@font-face {
-  font-family: Mont_SemiBold;
-  src: url('/Mont-SemiBold.otf');
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Dream } from '../../types/Dream';
+import { Button } from '../Button';
 
 import './DreamCard.scss';
 
@@ -21,8 +21,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream }) => {
         <h4>{dream.userId}</h4>
         <h4 className="dream-card__title">{dream.title}</h4>
         <p className="dream-card__body">{dream.body}</p>
-
-        <Link to={`/dream/${dream.id}`} className='dream-card__button' >Details</Link>
+        <Button link={`/dream/${dream.id}`} title='Details'/>
       </div>
     </div>
   );

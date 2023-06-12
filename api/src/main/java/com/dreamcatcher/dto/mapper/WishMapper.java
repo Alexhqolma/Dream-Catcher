@@ -21,10 +21,8 @@ public class WishMapper {
         if (dto.getTakenUserId() != null) {
             wish.setTakenUser(userService.findById(dto.getTakenUserId()));
         }
-        /*wish.setMessages(dto.getMessagesId()
-                .stream()
-                .map(twitService::findById)
-                .collect(Collectors.toList()));*/
+        wish.setCreationDate(dto.getCreationDate());
+        wish.setFileName(dto.getFileName());
         return wish;
     }
 
@@ -37,10 +35,8 @@ public class WishMapper {
         if (dto.getTakenUserId() != null) {
             wish.setTakenUser(userService.findById(dto.getTakenUserId()));
         }
-        /*wish.setMessages(dto.getMessagesId()
-                .stream()
-                .map(twitService::findById)
-                .collect(Collectors.toList()));*/
+        wish.setCreationDate(dto.getCreationDate());
+        wish.setFileName(dto.getFileName());
         return wish;
     }
 
@@ -54,10 +50,8 @@ public class WishMapper {
         if (wish.getTakenUser() != null) {
             dto.setTakenUserId(wish.getTakenUser().getId());
         }
-        /*userResponseDto.setTwitIds(user.getTwits()
-                .stream()
-                .map(Twit::getId)
-                .collect(Collectors.toList()));*/
+        dto.setCreationDate(wish.getCreationDate());
+        dto.setFileName(wish.getFileName());
         return dto;
     }
 }

@@ -8,7 +8,6 @@ import com.dreamcatcher.model.Wish;
 import com.dreamcatcher.repository.UserRepository;
 import com.dreamcatcher.repository.WishRepository;
 import com.dreamcatcher.service.WishService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,13 +22,20 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class WishServiceImpl implements WishService {
     private final WishRepository wishRepository;
     private final UserRepository userRepository;
     private final WishMapper wishMapper;
     @Value("${upload.path}")
     private String uploadPath;
+
+    public WishServiceImpl(WishRepository wishRepository,
+                           UserRepository userRepository,
+                           WishMapper wishMapper) {
+        this.wishRepository = wishRepository;
+        this.userRepository = userRepository;
+        this.wishMapper = wishMapper;
+    }
 
     @Override
     public Wish create(Wish wish, MultipartFile file) {

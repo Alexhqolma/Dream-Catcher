@@ -10,4 +10,5 @@ public class MessageResponseDto {
     private String text;
     private Long userId;
     private LocalDateTime creationDate;
+    private Long wishId;
 }

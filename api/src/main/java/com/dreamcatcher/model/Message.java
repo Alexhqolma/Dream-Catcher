@@ -18,4 +18,6 @@ public class Message {
     @ManyToOne
     private User user;
     private LocalDateTime creationDate;
+    @ManyToOne
+    private Wish wish;
 }

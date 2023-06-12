@@ -25,8 +25,6 @@ public class Wish {
     @ManyToOne
     @JoinColumn(name = "taken_user_id")
     private User takenUser;
-    @OneToMany
-    private List<Message> messages;
     private LocalDateTime creationDate;
     private String fileName;
 }

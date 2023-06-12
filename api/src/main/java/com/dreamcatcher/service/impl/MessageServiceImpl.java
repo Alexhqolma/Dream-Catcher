@@ -3,11 +3,11 @@ package com.dreamcatcher.service.impl;
 import com.dreamcatcher.exception.DreamCatcherException;
 import com.dreamcatcher.model.Message;
 import com.dreamcatcher.model.User;
+import com.dreamcatcher.model.Wish;
 import com.dreamcatcher.repository.MessageRepository;
 import com.dreamcatcher.service.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,6 +36,11 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findAllByUser(User user) {
         return messageRepository.findAllByUser(user);
+    }
+
+    @Override
+    public List<Message> findAllByWish(Wish wish) {
+        return messageRepository.findAllByWish(wish);
     }
 
     @Override

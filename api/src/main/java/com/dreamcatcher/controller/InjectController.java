@@ -3,6 +3,7 @@ package com.dreamcatcher.controller;
 import com.dreamcatcher.model.Message;
 import com.dreamcatcher.model.User;
 import com.dreamcatcher.model.Wish;
+import com.dreamcatcher.service.MessageService;
 import com.dreamcatcher.service.UserService;
 import com.dreamcatcher.service.WishService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,6 +22,7 @@ import java.util.List;
 public class InjectController {
     private final UserService userService;
     private final WishService wishService;
+    private final MessageService messageService;
 
     @GetMapping
     public String injection() {
@@ -58,21 +60,20 @@ public class InjectController {
         Message message = new Message();
         message.setText("First message");
         message.setUser(user);
+        message.setWish(wish2);
+        messageService.create(message);
 
         Message message2 = new Message();
         message2.setText("Second message");
         message2.setUser(user2);
+        message2.setWish(wish2);
+        messageService.create(message2);
 
         Message message3 = new Message();
         message3.setText("Third message");
         message3.setUser(user);
-
-        List<Message> messages = new ArrayList<>();
-        messages.add(message);
-        messages.add(message2);
-        messages.add(message3);
-        wish.setMessages(messages);
-        wishService.update(wish.getId(), wish);
+        message3.setWish(wish2);
+        messageService.create(message3);
 
         return "Ok!";
     }

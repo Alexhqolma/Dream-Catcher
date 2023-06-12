@@ -20,7 +20,6 @@ public class WishRequestDto {
     private Status status;
     private Long userId;
     private Long takenUserId;
-    private List<Long> messagesId;
     private LocalDateTime creationDate;
     private String fileName;
 }

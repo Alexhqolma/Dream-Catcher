@@ -20,7 +20,7 @@ export const MainSwiper: React.FC = () => {
     slidesToScroll: 1,
     // adaptiveHeight: true,
     // pauseOnDotsHover: true,
-    // autoplay: true,
+    autoplay: true,
     // customPaging: () => (
     //   <div
     //     className="slick-dot"

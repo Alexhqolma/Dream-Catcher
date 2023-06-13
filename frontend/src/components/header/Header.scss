@@ -16,9 +16,9 @@
 
 
     &__logo {
-      position: absolute;
-      top: 3px;
-      width: 35px;
+      margin: 0 auto;
+      width: 10rem;
+
     }
 
   &__menu {
@@ -82,16 +82,7 @@
 }
 
 .login-popup-container {
-  width: 400px;
-  display: grid;
-  grid-template: column;
-  justify-content: space-between;
-  gap: 20px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
-
-  .login-popup Button {
-    width: 50%;
-  }
 }

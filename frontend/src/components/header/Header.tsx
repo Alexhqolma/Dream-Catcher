@@ -6,7 +6,6 @@ import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
-import { Button } from '../Button';
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
@@ -76,9 +75,7 @@ export const Header: React.FC = () => {
             <div className="login-popup-overlay">
               <div className="login-popup-container" ref={popupRef}>
                 <LoginPopup />
-                <div onClick={handleCloseLoginPopup}>
-                  <Button title="Close" />
-                </div>
+                <a onClick={handleCloseLoginPopup}>Close</a>
               </div>
             </div>
           )}

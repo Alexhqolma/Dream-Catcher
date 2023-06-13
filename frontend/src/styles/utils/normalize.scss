@@ -2,20 +2,6 @@
 @import "./variables";
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;0,700;1,900&display=swap');
 
-
-@font-face {
-  font-family: 'Lato', sans-serif;
-  // font-weight: normal;
-  // src: url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-  // src: url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;0,700;1,900&display=swap');
-}
-
-// @font-face {
-//   font-family: 'Lato',sans-serif;
-//   font-weight: bold;
-//   src: url('/Mont-Bold.otf');
-// }
-
 * {
   box-sizing: border-box;
 }
@@ -53,15 +39,4 @@ li {
 
 a {
   text-decoration: none;
-}
-
-@font-face {
-  font-family: Lato;
-  src: url('/Mont-Regular.otf');
-}
-
-@font-face {
-  font-family: Lato;
-  font-weight: bold;
-  src: url('/Mont-Bold.otf');
 }

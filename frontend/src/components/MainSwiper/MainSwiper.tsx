@@ -16,7 +16,7 @@ export const MainSwiper: React.FC = () => {
     dots: false,
     delay: 1000,
     infinite: true,
-    speed: 3000,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     // adaptiveHeight: true,

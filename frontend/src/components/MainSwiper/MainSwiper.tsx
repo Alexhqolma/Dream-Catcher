@@ -18,8 +18,13 @@ export const MainSwiper: React.FC = () => {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+<<<<<<< HEAD
     adaptiveHeight: true,
     pauseOnDotsHover: true,
+=======
+    // adaptiveHeight: true,
+    // pauseOnDotsHover: true,
+>>>>>>> 04e37deb884c9958275e6bc2773a2d8a3c231898
     autoplay: true,
     // customPaging: () => (
     //   <div

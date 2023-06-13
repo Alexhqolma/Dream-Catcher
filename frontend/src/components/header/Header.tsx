@@ -9,6 +9,7 @@ import { LoginPopup } from "../loginPopup"
 import logo from "../../assets/images/big_logo.png";
 
 import "./Header.scss";
+import { Button } from '../Button';
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
@@ -93,7 +94,7 @@ export const Header: React.FC = () => {
 
           {isAuth && (
             <li className="nav__item">
-              <NavLink to={user.path.parent} className="nav__link">
+              <NavLink to={user.path.userId} className="nav__link">
                 My Dreams
               </NavLink>
             </li>
@@ -104,6 +105,10 @@ export const Header: React.FC = () => {
               <BsBox2Heart />
             </NavLink>
           </li>
+
+          <Button link={'link'}>
+            <h2>asdasdasdasda</h2>
+          </Button>
         </ul>
       </nav>
     </header>

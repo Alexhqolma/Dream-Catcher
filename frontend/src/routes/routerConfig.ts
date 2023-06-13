@@ -44,7 +44,7 @@ export const routes = {
 
   user: {
     path: {
-      parent: '',
+      parent: '/user',
       userId: '/user/:userId',
     },
     name: 'UserPage',

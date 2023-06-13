@@ -38,9 +38,20 @@
     line-height: $font-size-m;
 
     &:hover {
+<<<<<<< HEAD
       text-decoration: underline;
     }
   } 
+=======
+        a {
+          color: $lightPrimary;
+          ;
+        }
+      }
+  }
+
+  
+>>>>>>> 180a6da54e757842ad47f57d600ce0f1bcc1fc1e
 }
 
 .login-popup-overlay {

@@ -1,6 +1,7 @@
 import { MouseEventHandler, useRef, useState } from "react";
 import { submitForm } from "../../services/fileUploader";
 import { useImagesDispatch } from "../../context/ImageContext";
+import { Button } from "../Button";
 
 export const ImageUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -26,13 +27,13 @@ export const ImageUploader = () => {
           multiple
           onChange={(e: any) => setSelectedFiles(e.target.files)}
         />
-        <button
+        <div
           onClick={() => {
             fileInputRef.current?.click();
           }}
         >
-          Select file
-        </button>{" "}
+          <Button title="Select file" />
+        </div>{" "}
         {selectedFiles && Array.from(selectedFiles).map((file, i) => (
           <li key={i}>
             {file.name} - {file.type}
@@ -41,7 +42,7 @@ export const ImageUploader = () => {
       </section>
       <section>
         <button disabled={selectedFiles === null} onClick={formSubmitHandler}>
-          Submit
+          <Button title="Upload" />
         </button>
       </section>
     </>

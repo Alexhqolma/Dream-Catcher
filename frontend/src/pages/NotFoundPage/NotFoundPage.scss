@@ -26,12 +26,12 @@
     width: 200px;
     height: 40px;
 
-    background-color: $primary;
+    background-color: $whiteSecondary;
 
     border: none;
     border-radius: 8px;
 
-    font-family: 'Mont-SemiBold';
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -39,13 +39,14 @@
     color: $white;
 
     &:hover {
-      box-shadow: 0px 3px 13px rgba(23, 32, 49, 0.4);
+      // box-shadow: 0px 3px 6px rgba(23, 32, 49, 0.2); // correct style
+      border: 1px solid red;
     }
 
     &:active {
       background-color: $white;
-      color: $primary;
-      border: 1px solid $secondary;
+      color: $white;
+      border: 1px solid $whiteSecondary;
       box-shadow: none;
     }
   }

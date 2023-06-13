@@ -5,7 +5,7 @@
   padding: 20px;
   height: 100%;
   text-align: center;
-  background-color: $lightPrimary;
+  background-color: $lightSecondary;
   border: 1px solid $rows;
   border-radius: 5px;
   margin-bottom: $space_l;
@@ -24,7 +24,7 @@
   }
 
   &__title {
-    color: $primary;
+    color: $white;
     font-size: $font_size_xl;
     margin-bottom: $space_m;
   }
@@ -38,14 +38,5 @@
     color: $secondary;
     font-size: 14px;
     margin-bottom: $space_m;
-  }
-
-  &__button {
-    background-color: $darkPrimary;
-    color: $white;
-    padding: $space_m 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
   }
 }

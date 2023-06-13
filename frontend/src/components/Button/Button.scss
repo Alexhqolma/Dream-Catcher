@@ -1,0 +1,25 @@
+@import '../../styles/utils/variables';
+
+.button {
+  // position: absolute;
+  // bottom: 20px;
+  display: block;
+  width: 185px;
+  height: 20px;
+  color: $white;
+  text-align: center;
+  border-radius: $border_radius_s;
+  background-color: $lightSecondary;
+  font-size: $font-size-m;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: $lightSecondary;
+    background-color: $white;
+    border: 1px solid $lightSecondary;
+  }
+}

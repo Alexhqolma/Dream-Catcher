@@ -21,11 +21,13 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
       { 'dream-card--homepage': page === routes.home.name }
     )}>
       <div className="dream-card__description">
-        <img
-          className="dream-card__img" 
-          src={dream?.photo || undefined} 
-          alt="photo" 
-        />
+        <div className="dream-card__img">
+          <img
+             
+            src={dream?.photo || undefined} 
+            alt="photo" 
+          />
+        </div>
 
         <div className='dream-card__content'>
           <h4>{dream.userId}</h4>

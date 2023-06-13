@@ -1,24 +1,16 @@
 @import '../../styles/utils/variables';
 
 .header {
+  height: 15rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  // position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-
-  height: 15rem;
+  justify-content: center;
+  flex-direction: column;
   background-color: $white;
-
 
     &__logo {
       margin: 0 auto;
       width: 10rem;
-
     }
 
   &__menu {
@@ -52,7 +44,7 @@
 
 .active {
   position: relative;
-  color: #3f653f;
+  color: $darkPrimary;
   
   &::after {
     content: "";
@@ -64,8 +56,6 @@
     width: 100%;
     border-radius: 1.5px;
     opacity: 0.5;
-
-    background-color: #3f653f;
   }
 }
 
@@ -82,7 +72,7 @@
 }
 
 .login-popup-container {
-  background-color: #fff;
+  background-color: $white;
   padding: 20px;
   border-radius: 4px;
 }

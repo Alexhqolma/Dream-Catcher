@@ -37,7 +37,7 @@ export const DreamsContainer: React.FC = () => {
 
       <ul className="dreams-container grid">
         {dreams.length && dreamsCut.length && dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d}/></li>
+          <li key={d.id}><DreamCard dream={d} page={""}/></li>
         ))}
       </ul>
     </div>

@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import "./Header.scss";
-import logo from "../../assets/images/big_logo.png";
+
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
+import logo from "../../assets/images/big_logo.png";
+
+import "./Header.scss";
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;

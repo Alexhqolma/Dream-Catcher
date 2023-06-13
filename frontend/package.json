@@ -42,6 +42,7 @@
     "@types/node": "^12.20.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-slick": "^0.23.10",
     "@types/swiper": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",

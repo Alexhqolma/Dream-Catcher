@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Slider from 'react-slick';
 import { useAppSelector } from '../../store/hooks';
 import { selectMockData } from '../../mock/store/features/mock/mockSlice';
 import { Dream } from '../../types/Dream';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import "./MainSwiper.scss";
 import 'swiper/css';
@@ -22,30 +24,69 @@ const swiperSettings = {
   onSwiper: (swiper: any) => console.log(swiper),
 };
 
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+
+// export const MainSwiper: React.FC = () => {
+//   const dreams = useAppSelector(selectMockData).slice(0, 4);
+
+//   return (
+//     <>
+//       <Swiper
+//         {...swiperSettings}
+//         className="main-swiper"
+//       >
+//         {dreams.map(dream => (
+//           <SwiperSlide
+//             key={dream.id}
+//           >
+//             <MainSLide dream={dream} />
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </>
+//   );
+// };
+
+
 export const MainSwiper: React.FC = () => {
   const dreams = useAppSelector(selectMockData).slice(0, 4);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // adaptiveHeight: true,
+    pauseOnDotsHover: true,
+    autoplay: true,
+    // customPaging: () => (
+    //   <div
+    //     className="slick-dot"
+    //     style={{
+    //       width: '14px',
+    //       height: '4px',
+    //       marginTop: 18,
+    //       marginRight: 14,
+    //     }}
+    //   />
+    // ),
+  };
+
   return (
-    <>
-      <Swiper
-        {...swiperSettings}
-        className="main-swiper"
-      >
-        {dreams.map(dream => (
-          <SwiperSlide
-            key={dream.id}
-          >
-            <MainSLide dream={dream} />
-          </SwiperSlide>
+    <div className="slider-wrapper">
+      <Slider {...settings} className="slider">
+        {dreams.map((dream) => (
+          <MainSLide key={dream.id} dream={dream} />
         ))}
-      </Swiper>
-      <div className="swiper-pagination"></div>
-
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
-
-      <div className="swiper-scrollbar"></div>
-    </>
+      </Slider>
+    </div>
   );
 };
 
@@ -59,9 +100,9 @@ const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
   }, [dream]);
 
   return (
-    <div className='main-slide'>
+    <div className="slider__banner">
       {dream && (
-        <img src={dream.photo || undefined} alt="" />
+        <img className="slider__main-img" src={dream.photo || undefined} alt="" />
       )}
     </div>
   )

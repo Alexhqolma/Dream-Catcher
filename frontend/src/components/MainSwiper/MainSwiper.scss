@@ -1,9 +1,9 @@
 @import '../../styles/utils/variables';
 
-.main-swiper {
+.slider-wrapper {
   width: 100vw;
   height: calc(100vh - 15rem);
-  background-color: #fff;
+  // background-color: #fff;
 }
 
 .swiper-wrapper {
@@ -12,7 +12,7 @@
 .swiper-slide {
 }
 
-.main-slide img {
+.slider__main-img {
   width: 100vw;
   height: calc(100vh - 15rem);
   object-fit: cover; 

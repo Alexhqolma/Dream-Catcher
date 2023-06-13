@@ -37,8 +37,11 @@
     transition: all 0.3s ease-in-out;
 
     &:hover {
-      text-decoration: underline;
-    }
+        a {
+          color: $lightPrimary;
+          ;
+        }
+      }
   }
 
   

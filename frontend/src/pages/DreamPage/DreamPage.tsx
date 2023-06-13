@@ -5,6 +5,7 @@ import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 
 import { DreamEdit } from "../../components/DreamEdit";
 import { selectUser } from "../../store/features/user/userSlice";
+import { Button } from "../../components/Button";
 
 import './DreamPage.scss';
 
@@ -40,7 +41,9 @@ export const DreamPage: React.FC = () => {
       <p>{dream.status ? 'completed' : 'not completed'}</p>
       <p>{dream.userId}</p>
 
-      {isOwner && (<button onClick={toggleEditMode}>Edit</button>)}
+      {isOwner && (<div onClick={toggleEditMode}>
+        <Button title='Edit' />
+      </div>)}
 
       {isOwner && editMode && <DreamEdit dream={dream} />}
     </div>

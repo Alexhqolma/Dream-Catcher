@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import "./Header.scss";
 import logo from "../../assets/images/big_logo.png";
@@ -6,16 +6,31 @@ import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
+import { Button } from '../Button';
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-
+  const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     console.log('render header');
   }, [isAuth]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        setShowLoginPopup(false);
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleOpenLoginPopup = () => {
     setShowLoginPopup(true);
@@ -59,15 +74,14 @@ export const Header: React.FC = () => {
 
           {showLoginPopup && (
             <div className="login-popup-overlay">
-              <div className="login-popup-container">
+              <div className="login-popup-container" ref={popupRef}>
                 <LoginPopup />
-                <button className="close-button" onClick={handleCloseLoginPopup}>
-                  Close
-                </button>
+                <div onClick={handleCloseLoginPopup}>
+                  <Button title="Close" />
+                </div>
               </div>
             </div>
           )}
-
 
           {!isAuth && (
             <li className="nav__item">
@@ -76,8 +90,6 @@ export const Header: React.FC = () => {
               </NavLink>
             </li>
           )}
-
-
 
           {isAuth && (
             <li className="nav__item">

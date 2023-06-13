@@ -28,6 +28,7 @@ public class WishMapper {
 
     public Wish toModel(WishResponseDto dto) {
         Wish wish = new Wish();
+        wish.setId(dto.getId());
         wish.setName(dto.getName());
         wish.setStatus(dto.getStatus());
         wish.setText(dto.getText());

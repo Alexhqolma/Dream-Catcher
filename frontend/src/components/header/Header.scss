@@ -44,6 +44,14 @@
       }
   }
 
+  &__favorites-icon {
+    a {
+        &:visited {
+          color: $darkPrimary;
+        }
+      }
+  }
+
   
 }
 

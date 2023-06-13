@@ -14,10 +14,25 @@
   }
 
   &__img {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
     width: 100%;
-    height: 20rem;
+    overflow: hidden;
+  }
+
+  &__img::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &__img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    // margin-bottom: $space-l;
+    object-position: center;
   }
   
   &__title {

@@ -12,13 +12,29 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
     console.log('render slide');
   }, [dream]);
 
+  const styleTitle = {
+    top: `calc(${Math.random() * 10}% + 10%)`,
+  };
+  
+  const styleBody = {
+    bottom: `calc(${Math.random() * 20}% + 10%)`,
+  }; 
+
   return (
     <div className="slider__banner">
       {dream && (
         <>
           <img className="slider__main-img" src={dream.photo || undefined} alt="" />
-          <div className='slider__main-title'><h1>{dream.title}</h1></div>
-          <div className='slider__main-body'>
+          <div
+            className='slider__main-title'
+            style={styleTitle}
+          >
+            <h1>{dream.title}</h1>
+          </div>
+          <div 
+            className='slider__main-body'
+            style={styleBody}
+          >
             <p>{dream.body}&nbsp;</p>
             <Link to={`/dream/${dream.id}`}>details...</Link>
           </div>

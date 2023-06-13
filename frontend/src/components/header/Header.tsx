@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { BsBox2Heart } from 'react-icons/bs';
 
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
@@ -97,6 +98,12 @@ export const Header: React.FC = () => {
               </NavLink>
             </li>
           )}
+
+          <li className="nav__item nav__favorites-icon">
+            <Link to={routes.favorites.path}>
+              <BsBox2Heart />
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

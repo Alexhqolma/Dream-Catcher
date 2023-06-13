@@ -7,6 +7,7 @@ import {
   DreamsPage,
   DreamPage,
   UserPage,
+  FavoritesPage,
 } from '../pages';
 
 export const routes = {
@@ -48,5 +49,11 @@ export const routes = {
     },
     name: 'UserPage',
     element: UserPage,
+  },
+
+  favorites: {
+    path: '/favorites',
+    name: 'FavoritesPage',
+    element: FavoritesPage,
   },
 };

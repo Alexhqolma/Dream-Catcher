@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { BsBox2Heart } from 'react-icons/bs';
 
 import { routes } from "../../routes/routerConfig";
@@ -44,13 +44,13 @@ export const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo-link">
+      <NavLink to="/" className="header__logo-link">
         <img
           className="header__logo"
           src={logo}
           alt="NiceGadgets logo"
         />
-      </Link>
+      </NavLink>
 
       <nav className="nav">
         <ul className="nav__list">
@@ -100,9 +100,9 @@ export const Header: React.FC = () => {
           )}
 
           <li className="nav__item nav__favorites-icon">
-            <Link to={routes.favorites.path}>
+            <NavLink to={routes.favorites.path}>
               <BsBox2Heart />
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

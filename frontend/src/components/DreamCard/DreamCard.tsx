@@ -23,7 +23,6 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
       <div className="dream-card__description">
         <div className="dream-card__img">
           <img
-             
             src={dream?.photo || undefined} 
             alt="photo" 
           />

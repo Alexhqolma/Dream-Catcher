@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import "./Header.scss";
+import { BsBox2Heart } from 'react-icons/bs';
 import logo from "../../assets/images/big_logo.png";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
+
+import "./Header.scss";
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;
@@ -95,6 +97,9 @@ export const Header: React.FC = () => {
               </NavLink>
             </li>
           )}
+          <li className="nav__item nav__favorites-icon">
+            <BsBox2Heart className="nav__icon" />
+          </li>
         </ul>
       </nav>
     </header>

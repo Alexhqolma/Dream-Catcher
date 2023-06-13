@@ -1,7 +1,8 @@
 import React, { MouseEventHandler } from "react";
 import { NavLink, To } from "react-router-dom";
 
-import './Button.scss';
+// import './Button.scss';
+import classNames from "classnames";
 
 // button - title, onClick, children 
 // link - to, title, children
@@ -14,14 +15,22 @@ type ButtonProps = {
   children?: React.ReactNode;
   to?: To;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 };
 
-export const Button: React.FC<ButtonProps> = ({ title, children, href, to, onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ 
+  title,
+  children,
+  href,
+  to,
+  onClick = () => console.warn('no OnClick function'),
+  className,
+ }) => {
 
   if (href) {
     return (
       <a
-        className="button button--external-link"
+        className={classNames("button', 'button--external-link", className)}
         href={href}
       >
         {title}
@@ -33,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({ title, children, href, to, onCli
   if (to) {
     return (
       <NavLink
-        className="button button--navLink"
+        className={classNames("button', 'button--navLink", className)}
         to={to}
       >
         {title}
@@ -44,7 +53,7 @@ export const Button: React.FC<ButtonProps> = ({ title, children, href, to, onCli
 
   return (
     <button 
-      className='button button--regular'
+      className={classNames('button', 'button--regular', className)}
       onClick={onClick}
     >
       {title}

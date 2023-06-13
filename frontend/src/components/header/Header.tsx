@@ -105,10 +105,6 @@ export const Header: React.FC = () => {
               <BsBox2Heart />
             </NavLink>
           </li>
-
-          <Button link={'link'}>
-            <h2>asdasdasdasda</h2>
-          </Button>
         </ul>
       </nav>
     </header>

@@ -1,4 +1,4 @@
-@import '../../styles/utils/variables';
+@import '../../styles/utils/variables.scss';
 
 .header {
   height: 15rem;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   // flex-direction: column;
   background-color: $white;
-  padding: 1rem 5rem;
+  padding: 1rem 2rem 1rem 5rem;
   box-sizing: border-box;
 
     &__logo {
@@ -32,9 +32,10 @@
   &__item {
     display: inline-block;
     padding: 0.5em 1em;
-    border-radius: 4px;
+    border-radius: $border_radius_s;
     background-color: $white;
     transition: all 0.3s ease-in-out;
+    line-height: $font-size-m;
 
     &:hover {
         a {

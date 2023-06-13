@@ -15,12 +15,12 @@ export const MainSwiper: React.FC = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 2000,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // adaptiveHeight: true,
-    // pauseOnDotsHover: true,
-    // autoplay: true,
+    adaptiveHeight: true,
+    pauseOnDotsHover: true,
+    autoplay: true,
     // customPaging: () => (
     //   <div
     //     className="slick-dot"

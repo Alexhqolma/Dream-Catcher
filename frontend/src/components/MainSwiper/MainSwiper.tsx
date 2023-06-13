@@ -58,7 +58,7 @@ export const MainSwiper: React.FC = () => {
   const dreams = useAppSelector(selectMockData).slice(0, 4);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,

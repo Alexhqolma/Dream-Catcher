@@ -6,7 +6,7 @@ const DreamsPage: React.FC = () => {
   return (
     <>
       <div className="container">
-        <h1 className="container__title">Dreams</h1>
+        <h1 className="container__title title">Dreams</h1>
         <DreamsContainer />
       </div>
     </>

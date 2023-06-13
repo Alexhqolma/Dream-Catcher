@@ -14,6 +14,8 @@ import { Dream } from './types/Dream';
 
 import './App.scss';
 
+console.log(window.innerWidth);
+
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);

@@ -10,8 +10,13 @@ html {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;  
+  font-size: $font_size_m;  
   color: $darkPrimary;
+  width: 100%;
+}
+
+body {
+  width: 100%;
 }
 
 body,

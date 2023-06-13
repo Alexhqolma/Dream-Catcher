@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routerConfig';
 import { NotFoundPage } from '../pages';
 
-const { home, login, registration, dream, dreams, user } = routes;
+const { home, login, registration, dream, dreams, user, favorites } = routes;
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +53,12 @@ export const router = createBrowserRouter([
             errorElement: <>Error on `${user.path.userId}`</>,
           }
         ],
+      },
+      {
+        path: favorites.path,
+        element: <favorites.element />,
+        id: favorites.name,
+        errorElement: <>Error on `${favorites.path}`</>,
       },
     ],
   },

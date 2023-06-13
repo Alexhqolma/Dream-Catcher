@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { BsBox2Heart } from 'react-icons/bs';
-import logo from "../../assets/images/big_logo.png";
+
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
+import logo from "../../assets/images/big_logo.png";
 
 import "./Header.scss";
 
@@ -43,13 +44,13 @@ export const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo-link">
+      <NavLink to="/" className="header__logo-link">
         <img
           className="header__logo"
           src={logo}
           alt="NiceGadgets logo"
         />
-      </Link>
+      </NavLink>
 
       <nav className="nav">
         <ul className="nav__list">
@@ -97,8 +98,11 @@ export const Header: React.FC = () => {
               </NavLink>
             </li>
           )}
+
           <li className="nav__item nav__favorites-icon">
-            <BsBox2Heart className="nav__icon" />
+            <NavLink to={routes.favorites.path}>
+              <BsBox2Heart />
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -4,13 +4,15 @@
   height: 15rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  // flex-direction: column;
   background-color: $white;
+  padding: 1rem 5rem;
+  box-sizing: border-box;
 
     &__logo {
       margin: 0 auto;
-      width: 10rem;
+      width: 7rem;
     }
 
   &__menu {

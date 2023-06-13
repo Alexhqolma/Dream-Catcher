@@ -26,7 +26,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
         <>
           <img className="slider__main-img" src={dream.photo || undefined} alt="" />
           <div
-            className='slider__main-title'
+            className='slider__main-title title'
             style={styleTitle}
           >
             <h1>{dream.title}</h1>

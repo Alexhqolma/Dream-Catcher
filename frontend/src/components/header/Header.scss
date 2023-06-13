@@ -82,11 +82,16 @@
 }
 
 .login-popup-container {
+  width: 400px;
+  display: grid;
+  grid-template: column;
+  justify-content: space-between;
+  gap: 20px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
-}
 
-.close-button {
-  margin-top: 10px;
+  .login-popup Button {
+    width: 50%;
+  }
 }

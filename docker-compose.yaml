@@ -20,7 +20,8 @@ services:
     depends_on:
       - postgres
     image: postgres/dream-catcher-postgres-app
-    build: api
+    build:
+      context: ./api
     env_file: .env
     ports:
       - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"

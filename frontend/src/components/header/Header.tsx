@@ -15,6 +15,7 @@ export const Header: React.FC = () => {
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     console.log('render header');
@@ -99,7 +100,10 @@ export const Header: React.FC = () => {
 
           {isAuth && (
             <li className="nav__item">
-              <NavLink to={user.path.userId} className="nav__link">
+              <NavLink
+                to={`${routes.user.path.parent}/${userId}`}
+                className="nav__link"
+              >
                 My Dreams
               </NavLink>
             </li>

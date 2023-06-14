@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Button } from '../Button';
 // import { useDispatch } from 'react-redux';
 // import { getUser } from '../../store/features/user/userSlice';
 
@@ -28,9 +27,9 @@ export const LoginPopup: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <div onClick={handleLogin}>
-        <Button title='Log in'/>
-      </div>
+      <a onClick={handleLogin}>
+        Log in
+      </a>
     </div>
   );
 };

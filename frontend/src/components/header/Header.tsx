@@ -1,18 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import "./Header.scss";
-import logo from "../../assets/images/big_logo.png";
+import { NavLink } from 'react-router-dom';
+import { BsBox2Heart } from 'react-icons/bs';
+
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../loginPopup"
-import { Button } from '../Button';
+import logo from "../../assets/images/big_logo.png";
+
+import "./Header.scss";
 
 export const Header: React.FC = () => {
-  const { home, dreams, login, registration, user } = routes;
+  const { home, dreams, login, registration, user, favorites } = routes;
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     console.log('render header');
@@ -42,13 +45,16 @@ export const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo-link">
+      <NavLink
+        to="/" 
+        className="header__logo-link" 
+      >
         <img
           className="header__logo"
           src={logo}
           alt="NiceGadgets logo"
         />
-      </Link>
+      </NavLink>
 
       <nav className="nav">
         <ul className="nav__list">
@@ -72,17 +78,6 @@ export const Header: React.FC = () => {
             </li>
           )}
 
-          {showLoginPopup && (
-            <div className="login-popup-overlay">
-              <div className="login-popup-container" ref={popupRef}>
-                <LoginPopup />
-                <div onClick={handleCloseLoginPopup}>
-                  <Button title="Close" />
-                </div>
-              </div>
-            </div>
-          )}
-
           {!isAuth && (
             <li className="nav__item">
               <NavLink to={registration.path} className="nav__link">
@@ -93,13 +88,31 @@ export const Header: React.FC = () => {
 
           {isAuth && (
             <li className="nav__item">
-              <NavLink to={user.path.parent} className="nav__link">
+              <NavLink
+                to={`${user.path.parent}/${userId}`}
+                className="nav__link"
+              >
                 My Dreams
               </NavLink>
             </li>
           )}
+
+          <li className="nav__item nav__favorites-icon">
+            <NavLink to={favorites.path}>
+              <BsBox2Heart />
+            </NavLink>
+          </li>
         </ul>
       </nav>
+      
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup-container" ref={popupRef}>
+            <LoginPopup />
+            <a onClick={handleCloseLoginPopup}>Close</a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

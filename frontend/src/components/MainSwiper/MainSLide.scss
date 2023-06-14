@@ -1,0 +1,52 @@
+@import '../../styles/utils/variables';
+
+.slider__banner {
+  position: relative;
+  height: calc(100vh - 15rem);
+  overflow: hidden; 
+}
+
+.slider__main-img {
+  width: 100vw;
+  height: calc(100vh - 15rem);
+  object-fit: cover;
+}
+
+.slider__main-title {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 100%;
+  text-align: left;
+  font-size: $font_size_xl;
+  color: $lightSecondary;
+  background-color: $bgrOpacity;
+  padding: 2rem 5rem;
+}
+
+.slider__main-title h1 {
+  width: 50rem;
+}
+
+.slider__main-body {
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  text-align: left;
+  font-size: $space_l;
+  color: $white;
+  background-color: $lightSecondary;
+  padding: 2rem 5rem;
+}
+
+.slider__main-body p {
+  width: 30rem;
+  margin-bottom: 0.5rem;
+}
+
+.slider__main-body a {
+  display: inline;
+  color: $white;
+  font-size: $font_size_m;
+
+}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Header } from './components/Header';
+import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
+import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { selectUser } from './store/features/user/userSlice';
 import { 
@@ -57,6 +58,7 @@ export const App: React.FC = () => {
       <main>
         <Layout />
       </main>
+      <Footer />
     </div>
   );
 }

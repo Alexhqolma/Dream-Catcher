@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from "react";
 import { NavLink, To } from "react-router-dom";
 import classNames from "classnames";
 
-// import './Button.scss';
+import './Button.scss';
 
 // button - title, onClick, children 
 // link - to, title, children
@@ -30,10 +30,9 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <a
-        className={classNames("button', 'button--external-link", className)}
+        className={classNames("button' , 'button__link")}
         href={href}
       >
-        {title}
         {children}
       </a>
     )
@@ -42,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (to) {
     return (
       <NavLink
-        className={classNames("button', 'button--navLink", className)}
+        className={classNames("button', 'button__navLink", className)}
         to={to}
       >
         {title}
@@ -53,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button 
-      className={classNames('button', 'button--regular', className)}
+      className={classNames('button', 'button__regular', className)}
       onClick={onClick}
     >
       {title}

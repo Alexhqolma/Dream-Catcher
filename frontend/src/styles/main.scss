@@ -26,17 +26,20 @@
   @include onTablet {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    row-gap: 6rem;
+    column-gap: 2rem;
   }
 
   @include onLaptop {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    row-gap: 6rem;
+    column-gap: 2rem;
   }
 
   @include onDesktop {
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;    
+    row-gap: 6rem;
+    column-gap: 2rem;
   }
 }

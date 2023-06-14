@@ -33,11 +33,11 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
           <h4 className="dream-card__title">{dream.title}</h4>
           <p className="dream-card__body">{dream.body}</p>
           <Button 
-            to={`/dream/${dream.id}`} 
+            href={`/dream/${dream.id}`} 
           >
             <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
           </Button>
-          <h4>{dream.userId}</h4>
+          <h4 className='dream-card__date-created'>{dream.userId}</h4>
         </div>
       </div>
 

@@ -8,7 +8,8 @@ import classNames from "classnames";
 // link - to, title, children
 // a href mailto call - href, title, children
 
-type ButtonProps = {
+
+interface ButtonProps {
   href?: string;
   link?: string;
   title?: string;
@@ -16,7 +17,7 @@ type ButtonProps = {
   to?: To;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-};
+}
 
 export const Button: React.FC<ButtonProps> = ({ 
   title,

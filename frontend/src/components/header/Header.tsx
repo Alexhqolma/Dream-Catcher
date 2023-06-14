@@ -9,7 +9,6 @@ import { LoginPopup } from "../loginPopup"
 import logo from "../../assets/images/big_logo.png";
 
 import "./Header.scss";
-import { Button } from '../Button';
 
 export const Header: React.FC = () => {
   const { home, dreams, login, registration, user } = routes;

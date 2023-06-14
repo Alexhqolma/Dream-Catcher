@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import './RegistrationForm.scss';
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectUser } from '../../store/features/user/userSlice';
 import { postUser } from '../../store/sagas/sagaActions';
 import { routes } from '../../routes/routerConfig';
-import { selectUser } from '../../store/features/user/userSlice';
+
+import './RegistrationForm.scss';
 
 type FormValues = {
   name: string;

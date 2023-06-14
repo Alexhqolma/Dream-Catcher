@@ -28,11 +28,11 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
           />
         </div>
 
-        <div className='dream-card__content'>
-          <h4>{dream.userId}</h4>
+        <div>
           <h4 className="dream-card__title">{dream.title}</h4>
           <p className="dream-card__body">{dream.body}</p>
-          <Button link={`/dream/${dream.id}`} title='Details'/>
+          <Button link={`/dream/${dream.id}`} title='Details &nbsp; &nbsp; &nbsp; >'/>
+          <h4>{dream.userId}</h4>
         </div>
       </div>
 

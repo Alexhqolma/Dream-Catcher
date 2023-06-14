@@ -11,7 +11,7 @@ import logo from "../../assets/images/big_logo.png";
 import "./Header.scss";
 
 export const Header: React.FC = () => {
-  const { home, dreams, login, registration, user } = routes;
+  const { home, dreams, login, registration, user, favorites } = routes;
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -43,14 +43,11 @@ export const Header: React.FC = () => {
     setShowLoginPopup(false);
   };
 
-  const isActive = true;
-
   return (
     <header className="header">
       <NavLink
         to="/" 
         className="header__logo-link" 
-        style={() => ({ color: isActive ? 'black' : 'red' }) }
       >
         <img
           className="header__logo"
@@ -81,15 +78,6 @@ export const Header: React.FC = () => {
             </li>
           )}
 
-          {showLoginPopup && (
-            <div className="login-popup-overlay">
-              <div className="login-popup-container" ref={popupRef}>
-                <LoginPopup />
-                <a onClick={handleCloseLoginPopup}>Close</a>
-              </div>
-            </div>
-          )}
-
           {!isAuth && (
             <li className="nav__item">
               <NavLink to={registration.path} className="nav__link">
@@ -101,7 +89,7 @@ export const Header: React.FC = () => {
           {isAuth && (
             <li className="nav__item">
               <NavLink
-                to={`${routes.user.path.parent}/${userId}`}
+                to={`${user.path.parent}/${userId}`}
                 className="nav__link"
               >
                 My Dreams
@@ -110,12 +98,21 @@ export const Header: React.FC = () => {
           )}
 
           <li className="nav__item nav__favorites-icon">
-            <NavLink to={routes.favorites.path}>
+            <NavLink to={favorites.path}>
               <BsBox2Heart />
             </NavLink>
           </li>
         </ul>
       </nav>
+      
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup-container" ref={popupRef}>
+            <LoginPopup />
+            <a onClick={handleCloseLoginPopup}>Close</a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

@@ -42,9 +42,15 @@ export const Header: React.FC = () => {
     setShowLoginPopup(false);
   };
 
+  const isActive = true;
+
   return (
     <header className="header">
-      <NavLink to="/" className="header__logo-link">
+      <NavLink
+        to="/" 
+        className="header__logo-link" 
+        style={() => ({ color: isActive ? 'black' : 'red' }) }
+      >
         <img
           className="header__logo"
           src={logo}

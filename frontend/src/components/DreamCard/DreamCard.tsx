@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import './DreamCard.scss';
 import { routes } from '../../routes/routerConfig';
+import arrow from './../../assets/images/details-arrow-icon.svg';
 
 interface DreamItemProps {
   dream: Dream;
@@ -33,8 +34,9 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
           <p className="dream-card__body">{dream.body}</p>
           <Button 
             to={`/dream/${dream.id}`} 
-            title='Details &nbsp; &nbsp;&nbsp; >'
-          />
+          >
+            <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
+          </Button>
           <h4>{dream.userId}</h4>
         </div>
       </div>

@@ -71,6 +71,15 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
   }
+
+  &__arrow-button {
+    text-align: right;
+    font-weight: 700;
+  }
+
+  &__arrow-button img {
+    transform: translateY(3px);
+  }
 }
 
 .dream-card--homepage .dream-card {

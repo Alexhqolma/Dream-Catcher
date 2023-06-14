@@ -56,4 +56,8 @@ export const routes = {
     name: 'FavoritesPage',
     element: FavoritesPage,
   },
+
+  rootError: {
+    path: '*',
+  },
 };

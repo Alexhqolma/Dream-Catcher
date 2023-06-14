@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routerConfig';
 import { NotFoundPage } from '../pages';
 
-const { home, login, registration, dream, dreams, user, favorites } = routes;
+const { home, login, registration, dream, dreams, user, favorites, rootError } = routes;
 
 export const router = createBrowserRouter([
   {
@@ -62,4 +62,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: rootError.path,
+    element: <>this route is not exist!</>,
+  }
 ]);

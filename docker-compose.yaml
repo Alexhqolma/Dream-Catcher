@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres
     restart: unless-stopped
-    env_file: ./.env
+    env_file: .env
     ports:
       - "${POSTGRES_LOCAL_PORT}:${POSTGRES_DOCKER_PORT}"
     environment:
@@ -20,8 +20,8 @@ services:
     depends_on:
       - postgres
     image: postgres/dream-catcher-postgres-app
-    build: .
-    env_file: ./.env
+    build: api
+    env_file: .env
     ports:
       - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
       - "${DEBUG_PORT}:${DEBUG_PORT}"

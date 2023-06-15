@@ -2,11 +2,11 @@ import React, { useMemo, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
-import BasicPagination from "../BasicPagination/BasicPagination";
 import { Dream } from "../../types/Dream";
+import { BasicPagination } from "../BasicPagination";
+import { SelectPerPage } from "../SelectPerPage";
 
 import './DreamsContainer.scss';
-import { SelectPerPage } from "../SelectPerPage";
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);

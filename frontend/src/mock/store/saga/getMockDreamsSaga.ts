@@ -7,7 +7,7 @@ import {
   setStatus,
 } from '../features/mock/mockSlice';
 import { Dream } from '../../../types/Dream';
-import { getAllDreams } from '../../../api/dreams';
+import { getAllDreams } from '../../api/mockDreams';
 // import { getAllDreamsLocal } from '../../../api/dreamsLocal';
 
 export function* getMockDreamsSaga() {

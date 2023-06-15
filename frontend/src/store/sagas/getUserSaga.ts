@@ -6,8 +6,8 @@ import {
   setUser,
   setStatus,
 } from '../features/user/userSlice';
-import { getFirstUser } from '../../api/user';
 import { User } from '../../types/User';
+import { getFirstUser } from '../../mock/api/mockUser';
 
 export function* getUsersSaga() {
   yield put(setStatus('loading'));

@@ -16,6 +16,7 @@ interface ButtonProps {
   to?: To;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  target?: 'blank';
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -25,6 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   to,
   onClick = () => console.warn('no OnClick function'),
   className,
+  target,
  }) => {
 
   if (href) {
@@ -32,6 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
       <a
         className={classNames("button' , 'button__link")}
         href={href}
+        target={target}
       >
         {children}
       </a>

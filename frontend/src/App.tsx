@@ -58,7 +58,7 @@ export const App: React.FC = () => {
       <main>
         <Layout />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

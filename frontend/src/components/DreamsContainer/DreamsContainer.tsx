@@ -2,18 +2,25 @@ import React, { useMemo, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
-import { Dream } from "../../types/Dream";
 import BasicPagination from "../BasicPagination/BasicPagination";
+import { Dream } from "../../types/Dream";
 
 import './DreamsContainer.scss';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
   const [countDreams, setCountDreams] = useState(8);
+  const [page, setPage] = useState(1);
+
+  const onPageChange = (page: number) => {
+    setPage(page);
+  }
 
   const dreamsCut: Dream[] = useMemo(() => {
-    return dreams.slice(0, countDreams);
-  }, [countDreams, dreams]);
+    return dreams.slice((page - 1) * countDreams, page * countDreams);
+  }, [countDreams, dreams, page]);
+
+  const totalPages = Math.ceil(dreams.length / countDreams);
 
   console.log(countDreams);
 
@@ -43,7 +50,7 @@ export const DreamsContainer: React.FC = () => {
           ))}
         </ul>
      </div>
-      <BasicPagination />
+      <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { BsBox2Heart } from 'react-icons/bs';
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
-import { LoginPopup } from "../loginPopup"
+import { LoginPopup } from "../LoginPopup"
 import { Button } from '../Button';
 import logo from "../../assets/images/big_logo.png";
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { MainSwiper } from "../../components/MainSwiper";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";

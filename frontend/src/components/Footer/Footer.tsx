@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Button } from "../Button";
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 

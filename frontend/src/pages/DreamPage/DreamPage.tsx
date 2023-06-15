@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData, selectMockUsers } from "../../mock/store/features/mock/mockSlice";

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler } from 'react';
 import classNames from "classnames";
 
 import './SelectPerPage.scss';

@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef, useState } from "react";
+import { MouseEventHandler, useRef, useState } from 'react';
 import { submitForm } from "../../services/fileUploader";
 import { useImagesDispatch } from "../../context/ImageContext";
 import { Button } from "../Button";

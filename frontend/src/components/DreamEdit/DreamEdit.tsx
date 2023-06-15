@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Dream } from "../../types/Dream";
 
-type DreamEditProps = {
+interface DreamEditProps {
   dream: Dream;
-};
+}
 
 export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
   const [updatedDream, setUpdatedDream] = useState(dream);

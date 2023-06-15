@@ -16,8 +16,6 @@ import { Dream } from './types/Dream';
 import './App.scss';
 import { getAllDreamsLocal } from './api/dreamsLocal';
 
-console.log(window.innerWidth);
-
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
@@ -39,7 +37,6 @@ export const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log('App', mockData);
   }, [mockData])
 
   useEffect(() => {

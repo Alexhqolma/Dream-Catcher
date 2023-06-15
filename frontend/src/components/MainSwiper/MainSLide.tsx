@@ -10,7 +10,6 @@ interface MainSlideProps {
 
 export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
   useEffect(() => {
-    console.log('render slide');
   }, [dream]);
 
   const styleTitle = {

@@ -23,8 +23,6 @@ export const DreamsContainer: React.FC = () => {
 
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
 
-  console.log(dreamsPerPage);
-
   return (
     <div className="DreamsContainer">
       <div className="DreamsContainer__controls">

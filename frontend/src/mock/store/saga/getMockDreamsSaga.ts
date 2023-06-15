@@ -19,7 +19,7 @@ export function* getMockDreamsSaga() {
     const response: Dream[] = yield getAllDreams();
     // const response: Dream[] = yield getAllDreamsLocal();
 
-    console.log('response = ', response);
+    // console.log('response = ', response);
     
     yield put(setMockDreams(response));
   } catch (error: unknown) {

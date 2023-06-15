@@ -12,7 +12,7 @@ export const clientLocal = {
   async get<T>(url: string) {
     const response = await instance.get<T>(url);
 
-    console.log('get', baseURL + url, response.data);
+    console.log('get', baseURL + url);
 
     return response.data;
   },

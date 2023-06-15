@@ -3,6 +3,7 @@ import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
+import BasicPagination from "../BasicPagination/BasicPagination";
 
 import './DreamsContainer.scss';
 
@@ -18,28 +19,31 @@ export const DreamsContainer: React.FC = () => {
 
   return (
     <div className="container">
-      <label htmlFor="DreamsPerPage" className="select-dreams__label">
-        Dreams per page&nbsp;
-        <select
-          value={countDreams}
-          className="select-for-dreams-container"
-          name="DreamsPerPage" 
-          id="DreamsPerPage"
-          onChange={(e) => setCountDreams(+e.target.value)}  
-        >
-          <option value="4">4</option>
-          <option value="8">8</option>
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option value={dreams.length}>all</option>
-        </select>
-      </label>
+     <div>
+        <label htmlFor="DreamsPerPage" className="select-dreams__label">
+          Dreams per page&nbsp;
+          <select
+            value={countDreams}
+            className="select-for-dreams-container"
+            name="DreamsPerPage"
+            id="DreamsPerPage"
+            onChange={(e) => setCountDreams(+e.target.value)}
+          >
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
+            <option value={dreams.length}>all</option>
+          </select>
+        </label>
 
-      <ul className="dreams-container grid">
-        {dreams.length && dreamsCut.length && dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d} page={""}/></li>
-        ))}
-      </ul>
+        <ul className="dreams-container grid">
+          {dreams.length && dreamsCut.length && dreamsCut.map(d => (
+            <li key={d.id}><DreamCard dream={d} page={""} /></li>
+          ))}
+        </ul>
+     </div>
+      <BasicPagination />
     </div>
   );
 }

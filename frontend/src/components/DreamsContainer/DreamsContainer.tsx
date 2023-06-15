@@ -44,13 +44,15 @@ export const DreamsContainer: React.FC = () => {
           </select>
         </label>
 
+        <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+
         <ul className="dreams-container grid">
           {dreams.length && dreamsCut.length && dreamsCut.map(d => (
             <li key={d.id}><DreamCard dream={d} page={""} /></li>
           ))}
         </ul>
      </div>
-      <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+      
     </div>
   );
 }

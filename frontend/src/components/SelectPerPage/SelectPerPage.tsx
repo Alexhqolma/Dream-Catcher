@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler } from "react";
 import classNames from "classnames";
 
 import './SelectPerPage.scss';
@@ -12,7 +12,7 @@ interface SelectPerPageProps {
 }
 
 export const SelectPerPage: React.FC<SelectPerPageProps> = ({ 
-  countAllDreams: countDreams,
+  countAllDreams,
   onChange = () => console.warn('no OnClick function'),
   className,
   values,
@@ -35,8 +35,8 @@ export const SelectPerPage: React.FC<SelectPerPageProps> = ({
         {values.map(value => (
           <option value={String(value)}>{value}</option>
         ))}
-        {countDreams && (
-          <option value={countDreams}>all</option>
+        {countAllDreams && (
+          <option value={String(countAllDreams)}>all</option>
         )}
       </select>
     </label>

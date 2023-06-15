@@ -1,14 +1,13 @@
 @import '../../styles/utils/variables';
 
 .footer {
-  position: absolute;
   bottom: 30px;
   width: 100%;
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid $darkPrimary;
-  height: $space_xs;
+  height: $height_footer;
   padding: 30px 100px;
   box-sizing: border-box;
   text-align: left;

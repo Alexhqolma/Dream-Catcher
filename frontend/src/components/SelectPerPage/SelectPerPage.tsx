@@ -33,7 +33,12 @@ export const SelectPerPage: React.FC<SelectPerPageProps> = ({
         onChange={onChange}
       >
         {values.map(value => (
-          <option value={String(value)}>{value}</option>
+          <option
+            key={value}
+            value={String(value)}
+          >
+              {value}
+          </option>
         ))}
         {countAllDreams && (
           <option value={String(countAllDreams)}>all</option>

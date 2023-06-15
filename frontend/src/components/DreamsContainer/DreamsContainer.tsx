@@ -6,10 +6,11 @@ import BasicPagination from "../BasicPagination/BasicPagination";
 import { Dream } from "../../types/Dream";
 
 import './DreamsContainer.scss';
+import { SelectPerPage } from "../SelectPerPage";
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
-  const [countDreams, setCountDreams] = useState(8);
+  const [dreamsPerPage, setDreamsPerPage] = useState(8);
   const [page, setPage] = useState(1);
 
   const onPageChange = (page: number) => {
@@ -17,42 +18,36 @@ export const DreamsContainer: React.FC = () => {
   }
 
   const dreamsCut: Dream[] = useMemo(() => {
-    return dreams.slice((page - 1) * countDreams, page * countDreams);
-  }, [countDreams, dreams, page]);
+    return dreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage);
+  }, [dreamsPerPage, dreams, page]);
 
-  const totalPages = Math.ceil(dreams.length / countDreams);
+  const totalPages = Math.ceil(dreams.length / dreamsPerPage);
 
-  console.log(countDreams);
+  console.log(dreamsPerPage);
 
   return (
-    <div className="container">
-     <div>
-        <label htmlFor="DreamsPerPage" className="select-dreams__label">
-          Dreams per page&nbsp;
-          <select
-            value={countDreams}
-            className="select-for-dreams-container"
-            name="DreamsPerPage"
-            id="DreamsPerPage"
-            onChange={(e) => setCountDreams(+e.target.value)}
-          >
-            <option value="4">4</option>
-            <option value="8">8</option>
-            <option value="12">12</option>
-            <option value="16">16</option>
-            <option value={dreams.length}>all</option>
-          </select>
-        </label>
+    <div className="DreamsContainer">
+      <div className="DreamsContainer__controls">
+        <SelectPerPage 
+          onChange={(e) => setDreamsPerPage(+e.target.value)}
+          className="DreamsContainer__select"
+          values={[4, 8, 16, 48]}
+          countAllDreams={dreams.length} 
+          defaultValue={dreamsPerPage}        
+        />
 
         <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+      </div>
 
-        <ul className="dreams-container grid">
-          {dreams.length && dreamsCut.length && dreamsCut.map(d => (
-            <li key={d.id}><DreamCard dream={d} page={""} /></li>
-          ))}
-        </ul>
-     </div>
-      
+      <ul className="DreamsContainer__content grid">
+        {dreams.length && dreamsCut.length && dreamsCut.map(d => (
+          <li key={d.id}><DreamCard dream={d} page={""} /></li>
+        ))}
+      </ul>
+
+      <div className="DreamsContainer__controls">
+        <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+      </div>
     </div>
   );
 }

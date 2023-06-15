@@ -4,12 +4,10 @@ import './DreamsPage.scss';
 
 const DreamsPage: React.FC = () => {
   return (
-    <>
-      <div className="container">
-        <h1 className="container__title title">Dreams</h1>
-        <DreamsContainer />
-      </div>
-    </>
+    <div className="DreamsPage">
+      <h1 className="DreamsPage__title title">Dreams</h1>
+      <DreamsContainer />
+    </div>
   );
 }
 

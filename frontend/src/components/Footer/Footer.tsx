@@ -13,18 +13,22 @@ const Footer: React.FC = () => {
         </Button>
         <p className="footer__watchword">dreams can come true...</p>
         <p className="footer__team-info">
-          this site was created by a team of five people. ©2023 All rights reserved
+          this site was created by a team of five people. 
+          <br/>
+          ©2023 All rights reserved
         </p>
       </div>
       <div className="footer__contact">
+        {/* Buttons */}
         <p>
           <a href="mailto:info@dream_catcher.com">info@dream_catcher.com</a>
         </p>
         <p>Phone: +38 (095) 456 78 90</p>
+
         <div className="footer__social-links">
-          <SocialIcon url="https://facebook.com" />
-          <SocialIcon url="https://twitter.com" />
-          <SocialIcon url="https://telegram.com" />
+          <SocialIcon url="https://facebook.com" bgColor="#1D1919" />
+          <SocialIcon url="https://twitter.com" bgColor="#1D1919" />
+          <SocialIcon url="https://telegram.com" bgColor="#1D1919" />
         </div>
       </div>
       <div className="footer__navigation">

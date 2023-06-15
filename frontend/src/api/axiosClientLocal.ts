@@ -8,16 +8,18 @@ const instance = axios.create({
 
 type FetchData = object;
 
-export const client = {
+export const clientLocal = {
   async get<T>(url: string) {
     const response = await instance.get<T>(url);
 
-    console.log('get', baseURL + url);
+    console.log('get', baseURL + url, response.data);
 
     return response.data;
   },
 
   async post<T>(url: string, data: FetchData) {
+    console.log('post', baseURL + url);
+
     const response = await instance.post<T>(url, data);
 
     return response.data;

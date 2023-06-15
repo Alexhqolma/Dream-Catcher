@@ -14,6 +14,7 @@ import {
 import { Dream } from './types/Dream';
 
 import './App.scss';
+import { getAllDreamsLocal } from './api/dreamsLocal';
 
 console.log(window.innerWidth);
 
@@ -25,6 +26,16 @@ export const App: React.FC = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   
+  useEffect(() => {
+    const login = async () => {
+      const dreams: Dream[] = await getAllDreamsLocal();
+
+      return dreams;
+    }
+
+    login();
+  }, [])
+
   useEffect(() => {
     console.log('App', mockData);
   }, [mockData])
@@ -58,7 +69,7 @@ export const App: React.FC = () => {
       <main>
         <Layout />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

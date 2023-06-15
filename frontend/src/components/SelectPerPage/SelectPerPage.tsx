@@ -36,7 +36,7 @@ export const SelectPerPage: React.FC<SelectPerPageProps> = ({
           <option value={String(value)}>{value}</option>
         ))}
         {countDreams && (
-          <option value={String(countDreams)}>all</option>
+          <option value={countDreams}>all</option>
         )}
       </select>
     </label>

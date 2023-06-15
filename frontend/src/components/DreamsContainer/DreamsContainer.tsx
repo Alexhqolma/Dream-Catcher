@@ -28,7 +28,7 @@ export const DreamsContainer: React.FC = () => {
   return (
     <div className="DreamsContainer">
       <div className="DreamsContainer__controls">
-        <SelectPerPage 
+        <SelectPerPage
           onChange={(e) => setDreamsPerPage(+e.target.value)}
           className="DreamsContainer__select"
           values={[4, 8, 16, 48]}

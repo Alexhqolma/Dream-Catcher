@@ -1,44 +1,51 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
+import Select from 'react-select'
 import classNames from "classnames";
 
 import './SelectPerPage.scss';
 
 interface SelectPerPageProps {
-  onChange?: ChangeEventHandler<HTMLSelectElement>;
+  onChange?: (value: any) => void;
   className?: string;
   values: number[];
   countAllDreams?: number;
   defaultValue?: number;
 }
 
-export const SelectPerPage: React.FC<SelectPerPageProps> = ({ 
+export const SelectPerPage: React.FC<SelectPerPageProps> = ({
   countAllDreams: countDreams,
-  onChange = () => console.warn('no OnClick function'),
+  onChange = () => console.warn('no OnChange function'),
   className,
   values,
   defaultValue,
- }) => {
+}) => {
+
+  const options = values.map((value) => ({
+    value: value,
+    label: String(value),
+  }));
+
+  if (countDreams) {
+    options.push({
+      value: countDreams,
+      label: "all",
+    });
+  }
 
   return (
-    <label 
-      htmlFor="DreamsPerPage" 
+    <label
+      htmlFor="DreamsPerPage"
       className={classNames('SelectPerPage', className)}
     >
       Dreams per page&nbsp;
-      <select
-        value={defaultValue}
+      <Select
+        value={{ value: defaultValue, label: String(defaultValue) }}
         className="DreamsPerPage__select"
         name="DreamsPerPage"
         id="DreamsPerPage"
-        onChange={onChange}
-      >
-        {values.map(value => (
-          <option value={String(value)}>{value}</option>
-        ))}
-        {countDreams && (
-          <option value={countDreams}>all</option>
-        )}
-      </select>
+        options={options}
+        onChange={(selectedOption) => onChange(selectedOption?.value)}
+      />
     </label>
   )
 }

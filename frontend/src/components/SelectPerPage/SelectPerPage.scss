@@ -1,0 +1,24 @@
+@import '../../styles/utils/variables';
+
+.button {
+  display: block;
+  height: 20px;
+  color: $darkPrimary;
+  text-align: center;
+  font-size: $font-size-16;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: $lightPrimary;
+  }
+}
+
+.button--regular {
+  padding: $space-m;
+  border-radius: $border-radius-m;
+  background-color: $white;
+  box-shadow: $shadow;
+}

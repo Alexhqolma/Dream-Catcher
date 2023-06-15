@@ -26,15 +26,17 @@ export const App: React.FC = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   
-  useEffect(() => {
-    const login = async () => {
-      const dreams: Dream[] = await getAllDreamsLocal();
+  // useEffect(() => {
+  //   const login = async () => {
+  //     const dreams: any = await getAllDreamsLocal();
 
-      return dreams;
-    }
+  //     console.log('dreams = ', JSON.parse(dreams));
 
-    login();
-  }, [])
+  //     return dreams;
+  //   }
+
+  //   login();
+  // }, [])
 
   useEffect(() => {
     console.log('App', mockData);

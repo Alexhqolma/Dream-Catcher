@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../Button";
-import { SocialIcon } from 'react-social-icons';
+// import { SocialIcon } from 'react-social-icons';
+import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 
 import "./Footer.scss";
 
@@ -26,9 +27,12 @@ const Footer: React.FC = () => {
         <p>Phone: +38 (095) 456 78 90</p>
 
         <div className="footer__social-links">
-          <SocialIcon url="https://facebook.com" bgColor="#1D1919" />
+          <BsTelegram />
+          <BsFacebook />
+          <BsTwitter />
+          {/* <SocialIcon url="https://facebook.com" bgColor="#1D1919" />
           <SocialIcon url="https://twitter.com" bgColor="#1D1919" />
-          <SocialIcon url="https://telegram.com" bgColor="#1D1919" />
+          <SocialIcon url="https://telegram.com" bgColor="#1D1919" /> */}
         </div>
       </div>
       <div className="footer__navigation">

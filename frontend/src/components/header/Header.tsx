@@ -109,7 +109,7 @@ import "./Header.scss";
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>
             <LoginPopup />
-            <a onClick={handleCloseLoginPopup}>Close</a>
+            <Button onClick={handleCloseLoginPopup}>Close</Button>
           </div>
         </div>
       )}

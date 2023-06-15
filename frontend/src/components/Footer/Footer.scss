@@ -1,9 +1,16 @@
 @import '../../styles/utils/variables';
 
 .footer {
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid $darkPrimary;
-  height: $space-xxxl;
+  height: $space_xs;
+  padding: 30px 100px;
+  text-align: left;
 
   &__about {
     width: $space-xxxxl;
@@ -16,7 +23,6 @@
     font-weight: 900;
     font-size: $font-size-l;
     text-transform: uppercase;
-    text-align: center;
   }
 
   &__watchword {
@@ -31,4 +37,20 @@
       font-weight: 400;
       font-size: $font-size-14;
   }
+
+  &__navLink {
+    display: block;
+    padding-left: 50%;
+  }
+
+  &__contact {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: $space-s;
+  }
+
+  &__social-links {
+    justify-content: space-between;
+color: $darkPrimary  }
 }

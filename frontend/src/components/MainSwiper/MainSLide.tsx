@@ -3,6 +3,7 @@ import { Dream } from '../../types/Dream';
 
 import './MainSLide.scss';
 import { Link } from 'react-router-dom';
+import { Button } from '../Button';
 
 interface MainSlideProps {
   dream: Dream;
@@ -36,7 +37,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
             style={styleBody}
           >
             <p>{dream.body}&nbsp;</p>
-            <Link to={`/dream/${dream.id}`}>details...</Link>
+            <Button to={`/dream/${dream.id}`}>details...</Button>
           </div>
         </>
       )}

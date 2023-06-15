@@ -51,7 +51,7 @@ export const App: React.FC = () => {
   }, [dispatch, users, dreams, photos])
 
   return (
-    <div>
+    <div className='App'>
       <Header />
       {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 

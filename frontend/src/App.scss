@@ -1,6 +1,9 @@
 @import "./styles/main.scss";
 
 .App {
+  position: relative;
+  min-height: 100vh;
+
   &__greetings {
     text-align: center;
     margin: 1rem;

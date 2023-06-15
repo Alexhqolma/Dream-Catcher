@@ -2,7 +2,7 @@
 
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
   width: 100%;
   display: grid;
   justify-content: space-between;
@@ -10,6 +10,7 @@
   border-top: 1px solid $darkPrimary;
   height: $space_xs;
   padding: 30px 100px;
+  box-sizing: border-box;
   text-align: left;
 
   &__about {
@@ -51,6 +52,8 @@
   }
 
   &__social-links {
-    justify-content: space-between;
-color: $darkPrimary  }
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
 }

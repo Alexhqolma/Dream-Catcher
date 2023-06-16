@@ -8,6 +8,7 @@ import { getAllDreamsSaga } from './getAllDreamsSaga';
 import { getCreatedDreamsSaga } from './getCreatedDreamsSaga';
 import { getTakenDreamsSaga } from './getTakenDreamsSaga';
 import { postCreateDreamSaga } from './postCreateDreamSaga';
+import { getSearchDreamsSaga } from './getSearchDreamsSaga';
 
 export function* watchSaga() {
   console.log('watchSaga');
@@ -19,6 +20,7 @@ export function* watchSaga() {
   yield getAllDreamsSaga();
   yield getCreatedDreamsSaga('1');
   yield getTakenDreamsSaga('2');
+  yield getSearchDreamsSaga('string');
 
   yield postCreateDreamSaga({
     title: 'string',

@@ -8,3 +8,5 @@ export const getCreatedDreams = (userId: string) => clientLocal.get<Dream[]>(`/w
 export const getTakenDreams = (userId: string) => clientLocal.get<Dream[]>(`/wishes/taken-user/${userId}`);
 
 export const createDream = (data: Omit<Dream, 'id'>) => clientLocal.post<Dream>('/wishes/create', data);
+
+export const getSearchDreams = (query: string) => clientLocal.get<Dream>(`/wishes/search/${query}`);

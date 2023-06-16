@@ -8,7 +8,7 @@ export function* getSearchDreamsSaga() {
   yield put(setStatus('loading'));
   
   try {
-    const response: Dream[] = yield getSearchDreams(query: string);
+    const response: Dream[] = yield getSearchDreams(query);
 
     yield put(setDreams(response));
   } catch (error: unknown) {
@@ -17,8 +17,3 @@ export function* getSearchDreamsSaga() {
     yield put(setStatus('idle'));
   }
 }
-
-export const getTodosThunk = createAsyncThunk<ITodo[], string>('todos/get', async (filter) => {
-  const response = await httpService.get({ url: `todos/${filter}` });
-  return response.data;
-});

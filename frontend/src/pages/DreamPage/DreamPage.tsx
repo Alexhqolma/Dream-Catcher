@@ -40,7 +40,7 @@ export const DreamPage: React.FC = () => {
   }
 
   return (
-    <div className="DreamPage">
+    <main className="DreamPage">
       <h2 className="DreamPage__title title">{dream.title}</h2>
       <img
         className="DreamPage__img" 
@@ -63,8 +63,7 @@ export const DreamPage: React.FC = () => {
       </div>)}
 
       {isOwner && editMode && <DreamEdit dream={dream} />}
-    </div>
-
+    </main>
   );
 }
 

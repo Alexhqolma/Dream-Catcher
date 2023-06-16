@@ -37,6 +37,7 @@ export const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
+    console.log('render App');
   }, [mockData])
 
   useEffect(() => {
@@ -65,9 +66,7 @@ export const App: React.FC = () => {
       <Header />
       {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 
-      <main>
-        <Layout />
-      </main>
+      <Layout />
       <Footer />
     </div>
   );

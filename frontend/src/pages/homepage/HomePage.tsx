@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
 
       <div>
         {dreams.map(dream => (
-          <DreamCard key={dream.id} dream={dream} page={routes.home.name} />
+          <DreamCard key={dream.id} dream={dream} pageMode={routes.home.name} />
         ))}
       </div>
     </>

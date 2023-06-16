@@ -23,10 +23,16 @@ export const DreamsContainer: React.FC = () => {
 
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
 
+  if (!dreams.length && !dreamsCut.length) {
+    return (
+      <div className="centeredContainer">
+        <h1 className='title'>there are no any dreams!</h1>
+      </div>
+    )
+  }
+
   return (
-    <div 
-      className="DreamsContainer" 
-    >
+    <div className="DreamsContainer" >
       <div className="DreamsContainer__controls">
         <CustomSelect
           onChange={(value) => setDreamsPerPage(+value)}
@@ -44,10 +50,11 @@ export const DreamsContainer: React.FC = () => {
       </div>
 
       <ul className="DreamsContainer__content grid">
-        {dreams.length && dreamsCut.length && dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d} page={""} /></li>
+        {dreamsCut.map(d => (
+          <li key={d.id}><DreamCard dream={d} pageMode /></li>
         ))}
       </ul>
+
 
       <div className="DreamsContainer__controls">
         <BasicPagination 

@@ -4,22 +4,21 @@ import { Button } from '../Button';
 import classNames from 'classnames';
 
 import './DreamCard.scss';
-import { routes } from '../../routes/routerConfig';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
 interface DreamItemProps {
   dream: Dream;
-  page: string;
+  pageMode: boolean;
 }
 
-export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
+export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode }) => {
   const isOwner = false;
   const isControlAvailable = false;
 
   return (
     <div className={classNames(
       'dream-card',
-      { 'dream-card--homepage': page === routes.home.name }
+      { 'dream-card--homepage': pageMode }
     )}>
       <div className="dream-card__description">
         <div className="dream-card__img">

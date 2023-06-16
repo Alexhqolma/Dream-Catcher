@@ -39,7 +39,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 
   return (
     <div
-      className={classNames('CustomSelect', className)}
+      className={classNames(className, 'CustomSelect')}
       onClick={toggleSelect}
     > 
       <p className="CustomSelect__label">Dreams per page</p>

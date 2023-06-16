@@ -51,7 +51,7 @@ export const DreamsContainer: React.FC = () => {
 
       <ul className="DreamsContainer__content grid">
         {dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d} pageMode /></li>
+          <li key={d.id}><DreamCard dream={d} /></li>
         ))}
       </ul>
 

@@ -1,14 +1,17 @@
 import React from 'react';
-import { Dream } from '../../types/Dream';
-import { Button } from '../Button';
 import classNames from 'classnames';
 
-import './DreamCard.scss';
+import { Dream } from '../../types/Dream';
+import { Button } from '../Button';
 import arrow from './../../assets/images/details-arrow-icon.svg';
+
+import './DreamCard.scss';
+import './DreamCard.horizontal.scss';
+import './DreamCard.page.scss';
 
 interface DreamItemProps {
   dream: Dream;
-  pageMode: boolean;
+  pageMode?: boolean;
 }
 
 export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode }) => {

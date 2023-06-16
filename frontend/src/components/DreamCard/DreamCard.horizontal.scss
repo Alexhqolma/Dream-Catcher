@@ -1,0 +1,141 @@
+@import '../../styles//utils/variables';
+
+.dream-card--horizontal {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  padding-bottom: 10px;
+
+  &:hover ::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid $lightSecondary;
+  }
+
+  &__description {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-m;
+  }
+
+  &__img {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: $space_xl;
+  }
+
+  &__img::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &__img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  &__title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: $font-size-16;
+    margin-bottom: $space_m;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+  }
+ 
+  &__body {
+    display: block;
+    font-size: $font-size-14;
+    overflow: hidden;
+    margin-bottom: $space_m;
+      word-wrap: break-word;
+      white-space: normal;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+  }
+
+  &__arrow-button {
+    text-align: right;
+    font-weight: 700;
+  }
+
+  &__arrow-button img {
+    transform: translateY(3px);
+  }
+
+  &__date-created {
+    font-size: $font-size-12;
+    color: $lightPrimary;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
+
+.dream-card--homepage .dream-card {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  &__description {
+    border: 1px solid red;
+    // padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  &__img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    // margin-bottom: $space-l;
+  }
+  
+  &__title {
+    font-weight: bold;
+    line-height: $font-size-xl;
+    font-size: $font-size-l;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+  }
+ 
+  &__body-text {
+    display: block;
+    font-size: $font-size-m;
+    padding: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+  } 
+}

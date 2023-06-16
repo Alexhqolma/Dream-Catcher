@@ -30,11 +30,15 @@ export const DreamsContainer: React.FC = () => {
           onChange={(e) => setDreamsPerPage(+e.target.value)}
           className="DreamsContainer__select"
           values={[4, 8, 16, 48]}
-          countAllDreams={dreams.length} 
-          defaultValue={dreamsPerPage}        
+          countAllDreams={dreams.length}
+          defaultValue={dreamsPerPage}
         />
 
-        <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+        <BasicPagination 
+          onPageChange={onPageChange} 
+          totalPages={totalPages} 
+          page={page}
+        />
       </div>
 
       <ul className="DreamsContainer__content grid">
@@ -44,7 +48,11 @@ export const DreamsContainer: React.FC = () => {
       </ul>
 
       <div className="DreamsContainer__controls">
-        <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+        <BasicPagination 
+          onPageChange={onPageChange}
+          totalPages={totalPages}
+          page={page}
+        />
       </div>
     </div>
   );

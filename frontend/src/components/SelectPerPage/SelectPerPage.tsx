@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 import classNames from "classnames";
+import arrow from './../../assets/images/arrow-down.svg';
 
 import './SelectPerPage.scss';
 
@@ -20,30 +21,32 @@ export const SelectPerPage: React.FC<SelectPerPageProps> = ({
  }) => {
 
   return (
-    <label 
-      htmlFor="DreamsPerPage" 
-      className={classNames('SelectPerPage', className)}
-    >
-      Dreams per page&nbsp;
-      <select
+    <label
+      htmlFor="DreamsPerPage"
+      className={classNames('SelectPerPage__lebel', className)}
+    > Dreams per page &nbsp; &nbsp;
+    <select
         value={defaultValue}
-        className="DreamsPerPage__select"
-        name="DreamsPerPage"
-        id="DreamsPerPage"
-        onChange={onChange}
-      >
+      className="DreamsPerPage__select"
+      name="DreamsPerPage"
+      id="DreamsPerPage"
+      onChange={onChange}
+    >
         {values.map(value => (
           <option
             key={value}
             value={String(value)}
           >
-              {value}
+            {value}
           </option>
         ))}
         {countAllDreams && (
           <option value={String(countAllDreams)}>all</option>
         )}
       </select>
+      <div className="DreamsPerPage__select-arrow">
+        <img src={arrow} alt="arrow" />
+      </div>
     </label>
   )
 }

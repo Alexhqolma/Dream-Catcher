@@ -14,5 +14,16 @@
     margin-bottom: $space_m;
     outline: none;
     display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
+
+    &__select-arrow {
+      position: absolute;
+      top: 32%;
+      left: 100%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
 }

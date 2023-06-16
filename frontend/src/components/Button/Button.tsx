@@ -4,10 +4,6 @@ import classNames from "classnames";
 
 import './Button.scss';
 
-// button - title, onClick, children 
-// link - to, title, children
-// a href mailto call - href, title, children
-
 interface ButtonProps {
   href?: string;
   link?: string;

@@ -10,4 +10,3 @@ export type Dream = {
   messages: Message[],
   photo: string | null,
 };
-

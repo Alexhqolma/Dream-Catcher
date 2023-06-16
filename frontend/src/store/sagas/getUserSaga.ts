@@ -15,6 +15,8 @@ export function* getUsersSaga() {
   try {
     const response: User = yield getFirstUser();
 
+    console.warn('test saga');
+
     yield put(setUser(response));
   } catch (error: unknown) {
     yield put(setError((error as AxiosError).message));

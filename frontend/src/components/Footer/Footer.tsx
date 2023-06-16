@@ -1,10 +1,47 @@
-import React from 'react';
-import { Button } from "../Button";
+import React, { useEffect, useRef, useState } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
+
+import { Button } from "../Button";
+import { routes } from "../../routes/routerConfig";
+import { useAppSelector } from "../../store/hooks";
+import { selectUser } from "../../store/features/user/userSlice";
+import { LoginPopup } from "../LoginPopup"
 
 import "./Footer.scss";
 
 const Footer: React.FC = () => {
+  const { home, dreams, login, registration, user, favorites } = routes;
+  const isAuth = Boolean(useAppSelector(selectUser));
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const userId = useAppSelector(selectUser)?.userId;
+
+  useEffect(() => {
+    console.log('render footer');
+  }, [isAuth]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        setShowLoginPopup(false);
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleOpenLoginPopup = () => {
+    setShowLoginPopup(true);
+  };
+
+  const handleCloseLoginPopup = () => {
+    setShowLoginPopup(false);
+  };
+
   return (
     <footer className="footer">
       <div className="footer__about">
@@ -57,23 +94,43 @@ const Footer: React.FC = () => {
 
       <div className="footer__navigation">
         <div>
-          <Button className="footer__navLink" to="/">
+          <Button className="footer__navLink" to={home.path}>
             Home
           </Button>
-          <Button className="footer__navLink" to="/dreams">
+          <Button className="footer__navLink" to={dreams.path}>
             Dreams
           </Button>
-          <Button className="footer__navLink" to="/login">
+          <Button className="footer__navLink" to={login.path}>
             Log in
           </Button>
-          <Button className="footer__navLink" to="/registration">
+          <Button className="footer__navLink" to={registration.path}>
             Registration
           </Button>
-          <Button className="footer__navLink" to="/logout">
-            Log out
+          {isAuth && (
+            <><Button
+                className="footer__navLink"
+                to={`${user.path.parent}/${userId}`}
+              > 
+              My Dreams
+              </Button>
+              <Button className="footer__navLink" to={favorites.path}>
+                Favorites
+              </Button>
+            </>
+          )}
+          <Button className="footer__navLink" to={login.path}>
+            Login
           </Button>
         </div>
       </div>
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup-container" ref={popupRef}>
+            <LoginPopup />
+            <Button onClick={handleCloseLoginPopup}>Close</Button>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

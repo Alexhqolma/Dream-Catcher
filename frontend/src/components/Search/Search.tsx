@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import SearchBar from '@mkyy/mui-search-bar';
 import './Search.scss';
-// import { useAppDispatch } from '../../store//hooks';
-// import { setQuery } from '../../store/features/Search/Search';
+
 interface SearchProps {
   query: string;
   onChange: (value: string) => void;

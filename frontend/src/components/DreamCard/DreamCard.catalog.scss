@@ -65,12 +65,12 @@
     font-size: $font-size-14;
     overflow: hidden;
     margin-bottom: $space_m;
-      word-wrap: break-word;
-      white-space: normal;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   &__arrow-button {

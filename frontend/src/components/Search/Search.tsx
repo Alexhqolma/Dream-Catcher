@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from '@mkyy/mui-search-bar';
+import './Search.scss';
 // import { useAppDispatch } from '../../store//hooks';
 // import { setQuery } from '../../store/features/Search/Search';
 interface SearchProps {
@@ -15,12 +16,6 @@ export const Search: React.FC<SearchProps> = ({
   options = [],
   optionsHandler = () => console.warn('optionsHandler is absent'),
 }) => {
-  // const dispatch = useAppDispatch();
-  // const [searchValue, setSearchValue] = useState('');
-
-  // const handleSearch = () => {
-  //   dispatch(setQuery(searchValue));
-  // };
 
   useEffect(() => {
     optionsHandler();

@@ -1,10 +1,44 @@
-@import '../../styles/variables.scss';
+@import '../../styles/utils/variables';
 
 .searchBar {
-  display: inline-block;
-  max-width: 200px;
-  max-height: 25px;
-  border: 1px solid $darkPrimary;
-  border-radius: 0;
-  font-size: $font-size-m;
+        max-width: 250px;
+
+  & div {
+      padding-right: 0;
+      margin-right: 0;
+  }
+  & input {
+    border-bottom: 1px solid $lightPrimary;
+    border-radius: 0;
+    width: 180px;
+    font-family: 'Lato', sans-serif;
+      font-weight: $font_weight_normal;
+  }
+
+  & ul {
+    border: 0;
+        border-radius: 0;
+  }
+
+  & li {
+    display: block;
+    background-color: $white;
+    font-family: 'Lato', sans-serif;
+    font-weight: $font_weight_normal;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    & :focus {
+        background-color:$lightPrimaryHover;
+      }
+
+            & :hover {
+              background-color:$lightPrimaryHover;
+            }
+  }
 }

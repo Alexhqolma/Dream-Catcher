@@ -12,9 +12,9 @@ import {
   setMockData
 } from './mock/store/features/mock/mockSlice';
 import { Dream } from './types/Dream';
+import { getAllDreamsLocal } from './api/dreamsLocal';
 
 import './App.scss';
-import { getAllDreamsLocal } from './api/dreamsLocal';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -4,6 +4,12 @@ import classNames from "classnames";
 
 import './Button.scss';
 
+enum Target {
+  Blank = '_blank',
+  Parent = '_parent',
+  Self = '_self',
+}
+
 interface ButtonProps {
   href?: string;
   link?: string;
@@ -12,7 +18,7 @@ interface ButtonProps {
   to?: To;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  target?: 'blank';
+  target?: Target.Blank;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 

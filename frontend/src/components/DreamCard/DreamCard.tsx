@@ -47,9 +47,9 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode, isHorizon
         </div>
       </div>
 
-      {isOwner && <div className='dream-card__edit-mode'></div>}
+      {isOwner && pageMode && <div className='dream-card__edit-mode'></div>}
 
-      {isControlAvailable && <div className='dream-card__controls'></div>}
+      {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
     </div>
   );
 };

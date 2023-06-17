@@ -10,12 +10,12 @@ export const router = createBrowserRouter([
     path: home.path,
     element: <home.element.App />,
     errorElement: <NotFoundPage />,
-    id: 'root',
+    id: home.name.root,
     children: [
       {
         path: home.path,
         element: <home.element.HomePage />,
-        id: home.name,
+        id: home.name.child,
         errorElement: <NotFoundPage />,
       },
       {

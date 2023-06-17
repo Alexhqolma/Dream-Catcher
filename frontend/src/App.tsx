@@ -26,7 +26,7 @@ export const App: React.FC = () => {
   
   useEffect(() => {
     const login = async () => {
-      const dreams: any = await getAllDreamsLocal();
+      const dreams: Dream[] = await getAllDreamsLocal();
 
       console.log('dreams = ', dreams);
 

@@ -1,4 +1,3 @@
-import editDream, { EditDreamState } from './features/editDream/editDreamSlice';
 import {
   configureStore,
   ThunkAction,

@@ -13,7 +13,7 @@ import {
 export const routes = {
   home: {
     path: '/',
-    name: 'HomePage',
+    name: { root: 'root', child: 'HomePage'},
     element: { App, HomePage }
   },
   login: {

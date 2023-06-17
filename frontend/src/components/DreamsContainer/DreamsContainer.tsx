@@ -30,7 +30,7 @@ export const DreamsContainer: React.FC = () => {
   const optionsHandler = useCallback(() => setSearchOptions(
     dreamsCut
       .filter(d => d.title.toLowerCase().includes(searchQuery.toLowerCase()))
-      .map(d => d.title)
+      .map(d => d.title),
     ), []);
 
   if (!dreams.length && !dreamsCut.length) {

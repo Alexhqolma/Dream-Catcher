@@ -12,11 +12,16 @@ import './DreamCard.page.scss';
 interface DreamItemProps {
   dream: Dream;
   pageMode?: boolean;
-  isHorizontal?: boolean;
+  horizontalMode?: boolean;
   catalogMode?: boolean;
 }
 
-export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode, isHorizontal, catalogMode }) => {
+export const DreamCard: React.FC<DreamItemProps> = ({ 
+  dream,
+  pageMode,
+  horizontalMode, 
+  catalogMode 
+}) => {
   const isOwner = false;
   const isControlAvailable = false;
 
@@ -25,7 +30,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode, isHorizon
       'dream-card',
       {'dream-card--catalogMode': catalogMode },
       { 'dream-card--page': pageMode },
-      { 'dream-card--horizontal': isHorizontal },
+      { 'dream-card--horizontal': horizontalMode },
     )}>
       <div className="dream-card__description">
         <div className="dream-card__img">

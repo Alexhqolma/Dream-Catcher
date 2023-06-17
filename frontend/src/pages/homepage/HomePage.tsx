@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 
       <div className='dreamsCatalog'>
         {dreams.map(dream => (
-          <DreamCard key={dream.id} dream={dream} isHorizontal={true} />
+          <DreamCard key={dream.id} dream={dream} horizontalMode={true} />
         ))}
       </div>
     </>

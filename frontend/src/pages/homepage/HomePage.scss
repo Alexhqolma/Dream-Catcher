@@ -1,0 +1,9 @@
+@import "../../styles/utils/variables";
+
+.dreamsCatalog {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: $space-m;
+  padding: 40px;
+}

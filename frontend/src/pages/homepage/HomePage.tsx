@@ -3,7 +3,8 @@ import { MainSwiper } from "../../components/MainSwiper";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../../components/DreamCard/DreamCard";
-import { routes } from "../../routes/routerConfig";
+
+import './HomePage.scss';
 
 const HomePage: React.FC = () => {
   const dreams = useAppSelector(selectMockData).slice(0, 2);
@@ -12,9 +13,9 @@ const HomePage: React.FC = () => {
     <>
       <MainSwiper />
 
-      <div>
+      <div className='dreamsCatalog'>
         {dreams.map(dream => (
-          <DreamCard key={dream.id} dream={dream} pageMode={routes.home.name} />
+          <DreamCard key={dream.id} dream={dream} isHorizontal={true} />
         ))}
       </div>
     </>

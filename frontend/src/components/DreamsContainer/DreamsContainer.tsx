@@ -22,6 +22,7 @@ export const DreamsContainer: React.FC = () => {
   }, [dreamsPerPage, dreams, page]);
 
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
+  const isChoseAllDreams = dreamsPerPage === dreams.length;
 
   if (!dreams.length && !dreamsCut.length) {
     return (
@@ -42,11 +43,13 @@ export const DreamsContainer: React.FC = () => {
           currentValue={dreamsPerPage.toString()}
         />
 
-        <BasicPagination 
-          onPageChange={onPageChange} 
-          totalPages={totalPages} 
-          page={page}
-        />
+        {!isChoseAllDreams &&
+          <BasicPagination 
+            onPageChange={onPageChange} 
+            totalPages={totalPages} 
+            page={page}
+          />
+        }
       </div>
 
       <ul className="DreamsContainer__content grid">
@@ -56,13 +59,14 @@ export const DreamsContainer: React.FC = () => {
       </ul>
 
 
-      <div className="DreamsContainer__controls">
-        <BasicPagination 
-          onPageChange={onPageChange}
-          totalPages={totalPages}
-          page={page}
-        />
-      </div>
+      {!isChoseAllDreams && 
+        <div className="DreamsContainer__controls">
+          <BasicPagination 
+            onPageChange={onPageChange}
+            totalPages={totalPages}
+            page={page}
+          />
+        </div>}
     </div>
   );
 }

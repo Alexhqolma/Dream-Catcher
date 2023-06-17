@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from '@mkyy/mui-search-bar';
-import { useAppDispatch } from '../../store//hooks';
-import { setQuery } from '../../store/features/Search/Search';
+// import { useAppDispatch } from '../../store//hooks';
+// import { setQuery } from '../../store/features/Search/Search';
+interface SearchProps {
+  query: string;
+  onChange: (value: string) => void;
+  options: string[];
+  optionsHandler: () => void;
+}
 
-export const Search: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const [searchValue, setSearchValue] = useState('');
+export const Search: React.FC<SearchProps> = ({
+  query = '',
+  onChange = () => console.warn('onChange is absent'),
+  options = [],
+  optionsHandler = () => console.warn('optionsHandler is absent'),
+}) => {
+  // const dispatch = useAppDispatch();
+  // const [searchValue, setSearchValue] = useState('');
 
-  const handleSearch = () => {
-    dispatch(setQuery(searchValue));
-  };
+  // const handleSearch = () => {
+  //   dispatch(setQuery(searchValue));
+  // };
+
+  useEffect(() => {
+    optionsHandler();
+  }, [optionsHandler, query])
 
   return (
     <SearchBar
+      value={query}
       className="searchBar"
-      onChange={(value) => setSearchValue(value)}
-      onSearch={handleSearch}
+      onSearch={onChange}
+      options={options}
     />
   );
 };

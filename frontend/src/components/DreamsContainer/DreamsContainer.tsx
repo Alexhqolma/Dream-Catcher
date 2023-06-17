@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
@@ -7,11 +7,14 @@ import { BasicPagination } from "../BasicPagination";
 
 import './DreamsContainer.scss';
 import { CustomSelect } from '../CustomSelect';
+import { Search } from '../Search';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
   const [dreamsPerPage, setDreamsPerPage] = useState<number>(8);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchOptions, setSearchOptions] = useState<string[]>([]);
 
   const onPageChange = (page: number) => {
     setPage(page);
@@ -23,6 +26,12 @@ export const DreamsContainer: React.FC = () => {
 
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
   const isChoseAllDreams = dreamsPerPage === dreams.length;
+
+  const optionsHandler = useCallback(() => setSearchOptions(
+    dreamsCut
+      .filter(d => d.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      .map(d => d.title)
+    ), []);
 
   if (!dreams.length && !dreamsCut.length) {
     return (
@@ -50,6 +59,13 @@ export const DreamsContainer: React.FC = () => {
             page={page}
           />
         }
+
+        <Search 
+          query={searchQuery}
+          onChange={setSearchQuery}
+          options={searchOptions}
+          optionsHandler={optionsHandler}
+        />
       </div>
 
       <ul className="DreamsContainer__content grid" >

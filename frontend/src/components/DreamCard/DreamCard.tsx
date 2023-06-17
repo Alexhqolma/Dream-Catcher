@@ -1,25 +1,29 @@
 import React from 'react';
-import { Dream } from '../../types/Dream';
-import { Button } from '../Button';
 import classNames from 'classnames';
 
-import './DreamCard.scss';
-import { routes } from '../../routes/routerConfig';
+import { Dream } from '../../types/Dream';
+import { Button } from '../Button';
 import arrow from './../../assets/images/details-arrow-icon.svg';
+
+import './DreamCard.scss';
+import './DreamCard.horizontal.scss';
+import './DreamCard.page.scss';
 
 interface DreamItemProps {
   dream: Dream;
-  page: string;
+  pageMode?: boolean;
+  isHorizontal?: boolean;
 }
 
-export const DreamCard: React.FC<DreamItemProps> = ({ dream, page }) => {
+export const DreamCard: React.FC<DreamItemProps> = ({ dream, pageMode, isHorizontal }) => {
   const isOwner = false;
   const isControlAvailable = false;
 
   return (
     <div className={classNames(
       'dream-card',
-      { 'dream-card--homepage': page === routes.home.name }
+      { 'dream-card--page': pageMode },
+      { 'dream-card--horizontal': isHorizontal },
     )}>
       <div className="dream-card__description">
         <div className="dream-card__img">

@@ -7,7 +7,7 @@ import {
   setStatus,
 } from '../features/mock/mockSlice';
 import { Dream } from '../../../types/Dream';
-import { getAllDreams } from '../../../api/dreams';
+import { getAllDreams } from '../../api/mockDreams';
 // import { getAllDreamsLocal } from '../../../api/dreamsLocal';
 
 export function* getMockDreamsSaga() {
@@ -19,7 +19,7 @@ export function* getMockDreamsSaga() {
     const response: Dream[] = yield getAllDreams();
     // const response: Dream[] = yield getAllDreamsLocal();
 
-    console.log('response = ', response);
+    // console.log('response = ', response);
     
     yield put(setMockDreams(response));
   } catch (error: unknown) {

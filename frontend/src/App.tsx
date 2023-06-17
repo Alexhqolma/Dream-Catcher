@@ -16,8 +16,6 @@ import { Dream } from './types/Dream';
 import './App.scss';
 import { getAllDreamsLocal } from './api/dreamsLocal';
 
-console.log(window.innerWidth);
-
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
@@ -26,20 +24,20 @@ export const App: React.FC = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   
-  // useEffect(() => {
-  //   const login = async () => {
-  //     const dreams: any = await getAllDreamsLocal();
+  useEffect(() => {
+    const login = async () => {
+      const dreams: any = await getAllDreamsLocal();
 
-  //     console.log('dreams = ', JSON.parse(dreams));
+      console.log('dreams = ', dreams);
 
-  //     return dreams;
-  //   }
+      return dreams;
+    }
 
-  //   login();
-  // }, [])
+    login();
+  }, [])
 
   useEffect(() => {
-    console.log('App', mockData);
+    console.log('render App');
   }, [mockData])
 
   useEffect(() => {
@@ -68,9 +66,7 @@ export const App: React.FC = () => {
       <Header />
       {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 
-      <main>
-        <Layout />
-      </main>
+      <Layout />
       <Footer />
     </div>
   );

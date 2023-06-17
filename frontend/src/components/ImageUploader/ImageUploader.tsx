@@ -1,18 +1,20 @@
-import { MouseEventHandler, useRef, useState } from "react";
-import { submitForm } from "../../services/fileUploader";
-import { useImagesDispatch } from "../../context/ImageContext";
+// NOT WORK!!!
+
+import { MouseEventHandler, useRef, useState } from 'react';
+// import { submitForm } from "../../services/fileUploader";
+// import { useImagesDispatch } from "../../context/ImageContext";
 import { Button } from "../Button";
 
 export const ImageUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const dispatch = useImagesDispatch();
+  // const dispatch = useImagesDispatch();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const formSubmitHandler: MouseEventHandler = async (e) => {
     e.preventDefault();
-    await submitForm(selectedFiles!!);
+    // await submitForm(selectedFiles!!);
     setSelectedFiles(null);
-    dispatch!!({ type: "outdated" });
+    // dispatch!!({ type: "outdated" });
   };
 
   return (

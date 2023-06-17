@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { MainSwiper } from "../../components/MainSwiper";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
 
       <div>
         {dreams.map(dream => (
-          <DreamCard key={dream.id} dream={dream} page={routes.home.name} />
+          <DreamCard key={dream.id} dream={dream} pageMode={routes.home.name} />
         ))}
       </div>
     </>

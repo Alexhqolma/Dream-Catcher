@@ -1,27 +1,22 @@
 @import '../../styles/utils/variables';
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $space_xxl;
-  padding-bottom: $space_l;
-}
+.DreamsContainer {
+  padding-bottom: $space_xl;
 
-.select-for-dreams-container {
-  padding: 0.3rem;
-  border-color: $white;
-  border-radius: $border_radius_s;
-  background-color: $white;
-  cursor: pointer;
-  margin-bottom: $space_m;
-
-  &__label {
-    font-size: $font_size_l;
-    color: $darkPrimary;
+  & > :not(:last-child) {
+    margin-bottom: $space_xl;
   }
-}
 
-.select-for-dreams-container:hover {
-  background-color: $white;
+  &__controls {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__select {
+    position: absolute;
+    left: 10px;
+    z-index: $z-index-controls;
+  }
 }

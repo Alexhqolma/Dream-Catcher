@@ -1,0 +1,53 @@
+@import '../../styles/utils/variables';
+
+.CustomSelect {
+  font-size: $font_size_m;
+  font-weight: $font_weight_bold;
+  line-height: 32px;
+  color: $darkPrimary;
+
+  user-select: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  border: 1px solid transparent;
+
+  & > * {
+    display: inline-block;
+    position: relative;
+  }
+
+  &__label {
+    margin-right: 7px;
+    line-height: 32px;
+  }
+
+  &__select-container {
+    height: $font_size_m;
+    min-width: 28px;
+    margin-right: 0px;
+    height: 32px;
+    padding: 0;
+  }
+
+  &__select {
+    line-height: 32px;
+    line-height:  $font_size_m;
+    margin-bottom: $space_m;
+    outline: none;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s ease;
+  }
+
+  &__option {
+    min-width: 30px;
+    line-height: 32px;
+  }
+
+  &__select-arrow {
+    position: relative;
+    top: 3px;
+  }
+}

@@ -14,8 +14,8 @@ const initialState: DreamsState = {
   error: null,
 };
 
-const dreamsSlice = createSlice({
-  name: 'dreams',
+const allDreamsSlice = createSlice({
+  name: 'allDreams',
   initialState,
   reducers: {
     setDreams: (state: DreamsState, action: PayloadAction<Dream[]>) => {
@@ -37,15 +37,15 @@ const dreamsSlice = createSlice({
   },
 });
 
-export default dreamsSlice.reducer;
+export default allDreamsSlice.reducer;
 export const {
   setDreams,
   setStatus,
   setError,
   resetState,
-} = dreamsSlice.actions;
+} = allDreamsSlice.actions;
 
-export const selectDreams = (state: RootState) => state.dreams.storage;
+export const selectDreams = (state: RootState) => state.createdDreams.storage;
 export const selectDreamsStatusLoading
-= (state: RootState) => state.dreams.statusLoading;
-export const selectDreamsError = (state: RootState) => state.dreams.error;
+= (state: RootState) => state.createdDreams.statusLoading;
+export const selectDreamsError = (state: RootState) => state.createdDreams.error;

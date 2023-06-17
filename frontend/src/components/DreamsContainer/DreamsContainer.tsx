@@ -1,15 +1,16 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react';
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
-import BasicPagination from "../BasicPagination/BasicPagination";
 import { Dream } from "../../types/Dream";
+import { BasicPagination } from "../BasicPagination";
 
 import './DreamsContainer.scss';
+import { CustomSelect } from '../CustomSelect';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);
-  const [countDreams, setCountDreams] = useState(8);
+  const [dreamsPerPage, setDreamsPerPage] = useState<number>(8);
   const [page, setPage] = useState(1);
 
   const onPageChange = (page: number) => {
@@ -17,40 +18,51 @@ export const DreamsContainer: React.FC = () => {
   }
 
   const dreamsCut: Dream[] = useMemo(() => {
-    return dreams.slice((page - 1) * countDreams, page * countDreams);
-  }, [countDreams, dreams, page]);
+    return dreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage);
+  }, [dreamsPerPage, dreams, page]);
 
-  const totalPages = Math.ceil(dreams.length / countDreams);
+  const totalPages = Math.ceil(dreams.length / dreamsPerPage);
 
-  console.log(countDreams);
+  if (!dreams.length && !dreamsCut.length) {
+    return (
+      <div className="centeredContainer">
+        <h1 className='title'>there are no any dreams!</h1>
+      </div>
+    )
+  }
 
   return (
-    <div className="container">
-     <div>
-        <label htmlFor="DreamsPerPage" className="select-dreams__label">
-          Dreams per page&nbsp;
-          <select
-            value={countDreams}
-            className="select-for-dreams-container"
-            name="DreamsPerPage"
-            id="DreamsPerPage"
-            onChange={(e) => setCountDreams(+e.target.value)}
-          >
-            <option value="4">4</option>
-            <option value="8">8</option>
-            <option value="12">12</option>
-            <option value="16">16</option>
-            <option value={dreams.length}>all</option>
-          </select>
-        </label>
+    <div className="DreamsContainer" >
+      <div className="DreamsContainer__controls">
+        <CustomSelect
+          onChange={(value) => setDreamsPerPage(+value)}
+          className="DreamsContainer__select"
+          values={['4', '8', '16', '48']}
+          valueForAll={dreams.length.toString()}
+          currentValue={dreamsPerPage.toString()}
+        />
 
-        <ul className="dreams-container grid">
-          {dreams.length && dreamsCut.length && dreamsCut.map(d => (
-            <li key={d.id}><DreamCard dream={d} page={""} /></li>
-          ))}
-        </ul>
-     </div>
-      <BasicPagination onPageChange={onPageChange} totalPages={totalPages} />
+        <BasicPagination 
+          onPageChange={onPageChange} 
+          totalPages={totalPages} 
+          page={page}
+        />
+      </div>
+
+      <ul className="DreamsContainer__content grid">
+        {dreamsCut.map(d => (
+          <li key={d.id}><DreamCard dream={d} /></li>
+        ))}
+      </ul>
+
+
+      <div className="DreamsContainer__controls">
+        <BasicPagination 
+          onPageChange={onPageChange}
+          totalPages={totalPages}
+          page={page}
+        />
+      </div>
     </div>
   );
 }

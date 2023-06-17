@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.searchBar {
+  display: inline-block;
+  max-width: 200px;
+  max-height: 25px;
+  border: 1px solid $darkPrimary;
+  border-radius: 0;
+  font-size: $font-size-m;
+}

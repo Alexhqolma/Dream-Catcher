@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { Dream } from '../../types/Dream';
+import { Button } from '../Button';
 
 import './MainSLide.scss';
-import { Link } from 'react-router-dom';
-import { Button } from '../Button';
 
 interface MainSlideProps {
   dream: Dream;
 }
+
 export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
   useEffect(() => {
-    console.log('render slide');
   }, [dream]);
 
   const styleTitle = {

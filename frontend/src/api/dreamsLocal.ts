@@ -1,6 +1,6 @@
 import { Dream } from '../types/Dream';
 import { User } from '../types/User';
-import { clientLocal } from './axiosClientLocal';
+import { clientLocal } from './instanceLocal';
 
 export const getAllDreamsLocal = () => clientLocal.get<Dream[]>('/wishes');
 

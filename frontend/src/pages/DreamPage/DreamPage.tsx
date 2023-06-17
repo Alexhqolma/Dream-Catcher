@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData, selectMockUsers } from "../../mock/store/features/mock/mockSlice";
@@ -9,6 +9,7 @@ import { Button } from "../../components/Button";
 
 import './DreamPage.scss';
 import { routes } from "../../routes/routerConfig";
+import { DreamCard } from '../../components/DreamCard/DreamCard';
 
 export const DreamPage: React.FC = () => {
   const { dreamId } = useParams();
@@ -40,8 +41,10 @@ export const DreamPage: React.FC = () => {
   }
 
   return (
-    <div className="DreamPage">
-      <h2 className="DreamPage__title title">{dream.title}</h2>
+    <main className="DreamPage">
+      <DreamCard dream={dream} pageMode />
+
+      {/* <h2 className="DreamPage__title title">{dream.title}</h2>
       <img
         className="DreamPage__img" 
         src={dream.photo || undefined} 
@@ -56,15 +59,14 @@ export const DreamPage: React.FC = () => {
             {owner?.name}
           </Button>
         </p>
-      </div>
+      </div> */}
 
       {isOwner && (<div onClick={toggleEditMode}>
         <Button title='Edit' />
       </div>)}
 
       {isOwner && editMode && <DreamEdit dream={dream} />}
-    </div>
-
+    </main>
   );
 }
 

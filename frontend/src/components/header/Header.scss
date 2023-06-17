@@ -1,7 +1,7 @@
 @import '../../styles/utils/variables.scss';
 
 .header {
-  height: 15rem;
+  height: $height_header;
   display: flex;
   align-items: center;
   justify-content: space-between;

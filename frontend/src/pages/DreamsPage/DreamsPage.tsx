@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react';
 import { DreamsContainer } from "../../components/DreamsContainer";
 import './DreamsPage.scss';
 
 const DreamsPage: React.FC = () => {
   return (
-    <>
-      <div className="container">
-        <h1 className="container__title title">Dreams</h1>
-        <DreamsContainer />
-      </div>
-    </>
+    <main className="DreamsPage">
+      <h1 className="DreamsPage__title title">Dreams</h1>
+      
+      <DreamsContainer />
+    </main>
   );
 }
 

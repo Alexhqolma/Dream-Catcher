@@ -1,13 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const UserPage: React.FC = () => {
   return (
-    <>
-      <div className="container">
-        <h1>UserPage</h1>
+    <main className="UserPage">
+      <h1>UserPage</h1>
 
-      </div>
-    </>
+    </main>
   );
 }
 

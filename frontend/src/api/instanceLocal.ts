@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const baseURL = 'http://127.0.0.1:6868';
 
-const instance = axios.create({
+const instanceLocal = axios.create({
   baseURL,
 });
 
 type FetchData = object;
 
-export const client = {
+export const clientLocal = {
   async get<T>(url: string) {
-    const response = await instance.get<T>(url);
+    const response = await instanceLocal.get<T>(url);
 
     console.log('get', baseURL + url);
 
@@ -18,18 +18,20 @@ export const client = {
   },
 
   async post<T>(url: string, data: FetchData) {
-    const response = await instance.post<T>(url, data);
+    console.log('post', baseURL + url);
+
+    const response = await instanceLocal.post<T>(url, data);
 
     return response.data;
   },
 
   async patch<T>(url: string, data: FetchData) {
-    const response = await instance.patch<T>(url, data);
+    const response = await instanceLocal.patch<T>(url, data);
 
     return response.data;
   },
 
   async delete(url: string) {
-    return instance.delete(url);
+    return instanceLocal.delete(url);
   },
 };

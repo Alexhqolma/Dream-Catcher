@@ -20,12 +20,6 @@ export const DreamsContainer: React.FC = () => {
     setPage(page);
   }
 
-  const optionsHandler = useCallback(() => setSearchOptions(
-    dreamsCut
-      .filter(d => d.title.toLowerCase().includes(searchQuery))
-      .map(d => d.title)
-    ), []);
-
   const dreamsCut: Dream[] = useMemo(() => {
     return dreams
     .slice((page - 1) * dreamsPerPage, page * dreamsPerPage)
@@ -35,14 +29,11 @@ export const DreamsContainer: React.FC = () => {
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
   const isChoseAllDreams = dreamsPerPage === dreams.length;
 
-<<<<<<< HEAD
   const optionsHandler = useCallback(() => setSearchOptions(
     dreamsCut
       .filter(d => d.title.toLowerCase().includes(searchQuery.toLowerCase()))
       .map(d => d.title),
     ), []);
-=======
->>>>>>> d01895a01d66394885b5592e39d9038022da6e7d
 
   if (!dreams.length && !dreamsCut.length) {
     return (

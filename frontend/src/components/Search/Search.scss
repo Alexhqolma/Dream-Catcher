@@ -1,23 +1,24 @@
 @import '../../styles/utils/variables';
 
 .searchBar {
-        max-width: 250px;
+  max-width: 250px;
 
   & div {
-      padding-right: 0;
-      margin-right: 0;
+    padding-right: 0;
+    margin-right: 0;
   }
+
   & input {
     border-bottom: 1px solid $lightPrimary;
     border-radius: 0;
     width: 180px;
     font-family: 'Lato', sans-serif;
-      font-weight: $font_weight_normal;
+    font-weight: $font_weight_normal;
   }
 
   & ul {
     border: 0;
-        border-radius: 0;
+    border-radius: 0;
   }
 
   & li {
@@ -34,11 +35,11 @@
     -webkit-box-orient: vertical;
 
     & :focus {
-        background-color:$lightPrimaryHover;
-      }
+      background-color: $lightPrimaryHover;
+    }
 
-            & :hover {
-              background-color:$lightPrimaryHover;
-            }
+    & :hover {
+      background-color: $lightPrimaryHover;
+    }
   }
 }

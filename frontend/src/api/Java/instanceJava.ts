@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const baseURL = 'http://127.0.0.1:6868';
 
@@ -17,7 +17,7 @@ export const clientLocal = {
     return response.data;
   },
 
-  async post<T>(url: string, data: FetchData) {
+  async post<T>(url: string, data: AxiosRequestConfig<unknown> | undefined) {
     console.log('post', baseURL + url);
 
     const response = await instanceLocal.post<T>(url, data);

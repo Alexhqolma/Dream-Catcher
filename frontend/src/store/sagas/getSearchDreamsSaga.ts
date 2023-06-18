@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
 import { setDreams, setError, setStatus } from '../features/allDreams/allDreamsSlice';
-import { getSearchDreams } from '../../api/dreams';
+import { getSearchDreams } from '../../api/Java/dreamsJava';
 import { Dream } from '../../types/Dream';
 
 export function* getSearchDreamsSaga() {

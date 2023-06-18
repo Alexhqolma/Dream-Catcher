@@ -52,7 +52,7 @@ export const RegistrationForm: React.FC = () => {
 
   const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);
-    dispatch(postUser({ name: values.name, password: values.password }));
+    dispatch(postUser({ fullName: values.name, password: values.password }));
   };
 
   const formik = useFormik({

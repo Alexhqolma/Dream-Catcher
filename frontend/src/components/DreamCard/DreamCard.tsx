@@ -41,7 +41,12 @@ export const DreamCard: React.FC<DreamItemProps> = ({
         </div>
 
         <div className='dream-card__info'>
-          <h4 className="dream-card__title">{dream.title}</h4>
+          <h4 className={classNames('dream-card__title',
+              { 'title' : horizontalMode },
+            )}
+          >
+            {dream.title}
+          </h4>
           <p className="dream-card__body">{dream.body}</p>
           <Button 
             href={`/dream/${dream.id}`} 

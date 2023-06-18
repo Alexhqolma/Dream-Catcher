@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from '@mkyy/mui-search-bar';
 // import { useAppDispatch } from '../../store//hooks';
 // import { setQuery } from '../../store/features/Search/Search';

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
@@ -12,9 +13,15 @@ import {
   setMockData
 } from './mock/store/features/mock/mockSlice';
 import { Dream } from './types/Dream';
-import { getAllDreamsLocal } from './api/dreamsLocal';
 
 import './App.scss';
+import {
+  createDream,
+  getDream,
+  // createDream,
+  getDreams, 
+} from './api/Node/dreams';
+import { getUser, login, register } from './api/Node/users';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,15 +32,89 @@ export const App: React.FC = () => {
   const mockData = useAppSelector(selectMockData);
   
   useEffect(() => {
-    const login = async () => {
-      const dreams: Dream[] = await getAllDreamsLocal();
+    const registerUser = async () => {
+      const data = {
+        email: 'app@test.app',
+        password: '12345',
+        fullName: 'App test user',
+      };
+
+      const user = await register(data);
+
+      console.log('user = ', user);
+
+      return user;
+    };
+
+    const loginUser = async () => {
+      const data = {
+        email: 'app@test.app',
+        password: '12345',
+      };
+
+      const user = await login(data);
+
+      console.log('login user = ', user);
+
+      return user;
+    };
+
+    const getCurrentUser = async () => {
+      const response = await getUser(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDhlOTJlODA2MTYzODc0NDI5YTlkOTQiLCJpYXQiOjE2ODcwNjUzNTYsImV4cCI6MTY4OTY1NzM1Nn0.8pZrr4TS43k5IswcoIO0cjZSn0eRASgvmCfLZAen16U',
+      );
+
+      console.log('getCurrentUser ', response);
+
+      return response;
+    };
+
+    const loadDreams = async () => {
+      const dreams: Dream[] = await getDreams();
 
       console.log('dreams = ', dreams);
 
       return dreams;
-    }
+    };
 
-    login();
+    const create = async () => {
+      const dream = await createDream(
+        {
+          title: "dream app new",
+          text: "dream app new",
+          tags: ["react", "html", "frontend12"]	
+        },
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDhlOTJlODA2MTYzODc0NDI5YTlkOTQiLCJpYXQiOjE2ODcwNjUzNTYsImV4cCI6MTY4OTY1NzM1Nn0.8pZrr4TS43k5IswcoIO0cjZSn0eRASgvmCfLZAen16U'
+      );
+
+      console.log('created dream = ', dream);
+
+      return dream;
+    };
+
+    const loadAllDreams = async () => {
+      const dreams = await getDreams();
+
+      console.log('all dreams = ', dreams);
+
+      return dreams;
+    };
+
+    const getCurrentDream = async () => {
+      const response = await getDream("648e6418bbccb45f4c5389f7");
+
+      console.log('getCurrentDream ', response);
+
+      return response;
+    };
+
+    // registerUser();
+    // loginUser();
+    // getCurrentUser();
+    // loadDreams();
+    // create();
+    loadAllDreams();
+    getCurrentDream();
   }, [])
 
   useEffect(() => {
@@ -64,7 +145,7 @@ export const App: React.FC = () => {
   return (
     <div className='App'>
       <Header />
-      {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
+      {user && <h1 className='App__greetings'>{`Hello, ${user.fullName}!`}</h1>}
 
       <Layout />
       <Footer />

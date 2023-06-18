@@ -11,13 +11,11 @@
     position: relative;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: 32px;
   }
 
   &__select {
-    position: absolute;
-    left: 10px;
-    z-index: $z-index-controls;
+    z-index: 111;
   }
 }

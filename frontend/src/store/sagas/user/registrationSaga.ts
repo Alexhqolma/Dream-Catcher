@@ -7,9 +7,10 @@ import {
   setStatus,
 } from '../../features/user/userSlice';
 import { register } from '../../../api/Node/users';
+import { User } from '../../../types/User';
 
 interface Props {
-  payload: any;
+  payload: Omit<User, 'userId'>;
 }
 
 export function* registrationSaga({ payload }: Props): Generator {

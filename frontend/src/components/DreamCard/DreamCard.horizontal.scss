@@ -27,7 +27,7 @@
     flex: 1;
     display: block;
     position: relative;
-    height: 200px;
+    height: 400px;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -78,7 +78,6 @@
   }
 
   &__arrow-button {
-    text-align: right;
     font-weight: 700;
   }
 

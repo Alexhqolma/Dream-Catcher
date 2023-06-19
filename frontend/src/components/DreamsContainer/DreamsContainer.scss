@@ -8,10 +8,16 @@
   }
 
   &__controls {
-    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    height: 32px;
+  }
+
+  &__lowerControls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     height: 32px;
   }
 

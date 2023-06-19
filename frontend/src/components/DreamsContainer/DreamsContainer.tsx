@@ -21,9 +21,7 @@ export const DreamsContainer: React.FC = () => {
   }
 
   const dreamsCut: Dream[] = useMemo(() => {
-    return dreams
-    .slice((page - 1) * dreamsPerPage, page * dreamsPerPage)
-    .filter(d => d.title.toLowerCase().includes(searchQuery))
+    return dreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage).filter(d => d.title.toLowerCase().includes(searchQuery))
   }, [dreamsPerPage, dreams, page, searchQuery]);
 
   const totalPages = Math.ceil(dreams.length / dreamsPerPage);
@@ -78,7 +76,7 @@ export const DreamsContainer: React.FC = () => {
 
 
       {!isChoseAllDreams && 
-        <div className="DreamsContainer__controls">
+        <div className="DreamsContainer__lowerControls">
           <BasicPagination 
             onPageChange={onPageChange}
             totalPages={totalPages}

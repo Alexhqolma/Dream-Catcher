@@ -1,11 +1,11 @@
 export interface UserLogin {
   password: string,
-  email: string,
+  name: string,
+  // email?: string,
 }
 
 export interface User extends UserLogin {
   userId: string,
-  fullName: string,
   avatarUrl?: string,
 }
 

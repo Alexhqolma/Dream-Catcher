@@ -25,8 +25,6 @@ import takenDreamsSlice from './features/takenDreams/takenDreamsSlice';
 import createdDreamsSlice from './features/createdDreams/createdDreamsSlice';
 import editDreamSlice from './features/editDream/editDreamSlice';
 
-const sagaMiddleware = createSagaMiddleware();
-
 const persistConfig = {
   key: 'root',
   storage,
@@ -49,6 +47,8 @@ const rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: persistedReducer,

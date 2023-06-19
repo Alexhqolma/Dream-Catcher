@@ -3,7 +3,11 @@ import { RootState } from '../..';
 import { User } from '../../../types/User';
 
 export interface UserState {
-  storage: User | null;
+  storage: {
+    name: string,
+    id: string,
+    token: string,
+  } | null;
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
@@ -18,7 +22,11 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state: UserState, action: PayloadAction<User>) => {
+    setUser: (state: UserState, action: PayloadAction<{
+      name: string,
+      id: string,
+      token: string,
+    }>) => {
       state.storage = action.payload;
     },
     setStatus: (

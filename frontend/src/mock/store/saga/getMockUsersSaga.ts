@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
-import { User } from '../../../types/User';
+import { MockUser } from '../../../types/User';
 import { getAllUsers } from '../../api/mockUser';
 import { setError, setMockUsers, setStatus } from '../features/mock/mockSlice';
 
@@ -10,7 +10,7 @@ export function* getMockUsersSaga() {
   yield put(setStatus('loading'));
   
   try {
-    const response: User[] = yield getAllUsers();
+    const response: MockUser[] = yield getAllUsers();
 
     yield put(setMockUsers(response));
   } catch (error: unknown) {

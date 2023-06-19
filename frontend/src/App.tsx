@@ -18,7 +18,6 @@ import './App.scss';
 import {
   createDream,
   getDream,
-  // createDream,
   getDreams, 
 } from './api/Node/dreams';
 import { getUser, login, register } from './api/Node/users';
@@ -36,7 +35,7 @@ export const App: React.FC = () => {
       const data = {
         email: 'app@test.app',
         password: '12345',
-        fullName: 'App test user',
+        name: 'App test user',
       };
 
       const user = await register(data);
@@ -48,7 +47,8 @@ export const App: React.FC = () => {
 
     const loginUser = async () => {
       const data = {
-        email: 'app@test.app',
+        // email: 'app@test.app',
+        name: 'any user',
         password: '12345',
       };
 
@@ -113,8 +113,8 @@ export const App: React.FC = () => {
     // getCurrentUser();
     // loadDreams();
     // create();
-    loadAllDreams();
-    getCurrentDream();
+    // loadAllDreams();
+    // getCurrentDream();
   }, [])
 
   useEffect(() => {
@@ -145,7 +145,7 @@ export const App: React.FC = () => {
   return (
     <div className='App'>
       <Header />
-      {user && <h1 className='App__greetings'>{`Hello, ${user.fullName}!`}</h1>}
+      {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 
       <Layout />
       <Footer />

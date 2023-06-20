@@ -38,8 +38,8 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
-    public Wish create(Wish wish, MultipartFile file) {
-        if (file != null) {
+    public Wish create(Wish wish/*, MultipartFile file*/) {
+        /*if (file != null) {
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -52,7 +52,7 @@ public class WishServiceImpl implements WishService {
                 throw new RuntimeException(e);
             }
             wish.setFileName(resultFileName);
-        }
+        }*/
         wish.setCreationDate(LocalDateTime.now());
         wish.setStatus(Status.POSTED);
         return wishRepository.save(wish);

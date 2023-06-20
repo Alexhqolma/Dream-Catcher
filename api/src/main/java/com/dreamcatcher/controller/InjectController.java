@@ -32,13 +32,13 @@ public class InjectController {
         wish.setName("Test Wish");
         wish.setText("Test Text");
         wish.setUser(user);
-        wishService.create(wish, null);
+        wishService.create(wish/*, null*/);
 
         Wish wish2 = new Wish();
         wish2.setName("Test2 Wish");
         wish2.setText("Test2 Text");
         wish2.setUser(user);
-        wishService.create(wish2, null);
+        wishService.create(wish2/*, null*/);
 
         User user2 = new User();
         user2.setName("member");
@@ -49,7 +49,7 @@ public class InjectController {
         wish3.setName("Test3 Wish");
         wish3.setText("Test3 Text");
         wish3.setUser(user2);
-        wishService.create(wish3, null);
+        wishService.create(wish3/*, null*/);
 
         wish.setTakenUser(user2);
         wishService.update(wish.getId(), wish);

@@ -8,12 +8,12 @@ export function* getJavaData() {
   yield getCreatedDreamsSaga('1');
   yield getTakenDreamsSaga('2');
 
-  const formData = new FormData();
+  // const formData = new FormData();
 
-  formData.append("name", "Groucho");
-  formData.append("text", "123456");
-  formData.append("status", 'status');  
-  formData.append("userId", '111');
+  // formData.append("name", "Groucho");
+  // formData.append("text", "123456");
+  // formData.append("status", 'status');  
+  // formData.append("userId", '111');
 
   // HTML file input, chosen by user
   // formData.append("userfile", fileInputElement.files[0]);
@@ -29,8 +29,11 @@ export function* getJavaData() {
   // request.open("POST", "http://foo.com/submitform.php");
   // request.send(formData);
 
+  const request = {
+    name: 'name',
+    userId: '1123123',
+  }
 
 
-
-  yield postCreateDreamSaga(formData);
+  yield postCreateDreamSaga(request);
 }

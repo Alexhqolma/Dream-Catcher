@@ -8,10 +8,20 @@ import {
 } from '../../features/user/userSlice';
 import { register } from '../../../api/Node/users';
 import { User } from '../../../types/User';
+import { getDreams } from '../../../api/Node/dreams';
 
 interface Props {
   payload: Omit<User, 'userId'>;
 }
+
+export function* getDreamsSaga(): Generator {
+  console.log('registrationSaga1');
+
+  const response = yield call(getDreams);
+
+  console.log('registrationSaga1 data', response);
+}
+
 
 export function* registrationSaga({ payload }: Props): Generator {
   console.log('registrationSaga', payload);

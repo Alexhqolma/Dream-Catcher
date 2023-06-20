@@ -1,37 +1,27 @@
-// import { fork, take, takeEvery } from 'redux-saga/effects';
-// import { getMockDreamsSaga } from '../../mock/store/saga/getMockDreamsSaga';
-// import { getMockUsersSaga } from '../../mock/store/saga/getMockUsersSaga';
-// import { getMockPhotoSaga } from '../../mock/store/saga/getMockPhotoSaga';
-import { getAllDreamsSaga } from './getAllDreamsSaga';
-import { getCreatedDreamsSaga } from './getCreatedDreamsSaga';
-import { getTakenDreamsSaga } from './getTakenDreamsSaga';
-import { postCreateDreamSaga } from './postCreateDreamSaga';
-// import { registrationSaga } from './user/registrationSaga';
-// import { sagaActions } from './actions';
+import { ActionChannelEffect, actionChannel, call, take, takeEvery } from 'redux-saga/effects';
+import { sagaActions } from './actions';
+import { getDreamsSaga } from './user/registrationSaga';
+import { getMockDataSaga } from './mock/getMockDataSaga';
 
 export function* watchSaga() {
   console.log('watchSaga');
 
-  // yield getMockUsersSaga();
-  // yield getMockDreamsSaga();
-  // yield getMockPhotoSaga();
+  yield getMockDataSaga();
+  // yield getJavaData();
 
+  const channel: ActionChannelEffect  = yield actionChannel(sagaActions.REGISTER_USER);
 
-  // get data from java server
-  yield getAllDreamsSaga();
-  yield getCreatedDreamsSaga('1');
-  yield getTakenDreamsSaga('2');
-  yield postCreateDreamSaga({
-    title: 'string',
-    body: 'string',
-    userId: 'string',
-    handler: null,
-    status: false,
-    messages: [],
-    photo: null,
-  });
+  while (true) {
+    yield take(channel);
+
+    console.log('pause');
+
+    yield call(getDreamsSaga);
+  }
+
 
   // yield takeEvery(loadUser, getMockUsersSaga);
+
   // yield takeEvery(sagaActions.REGISTER_USER, registrationSaga);
 
   // while (true) {
@@ -40,4 +30,6 @@ export function* watchSaga() {
   //   console.log('action', action);
   //   yield fork(registrationSaga, action)
   // }
+
+  yield null;
 }

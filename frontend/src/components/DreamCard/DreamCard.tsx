@@ -47,7 +47,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
           >
             {dream.title}
           </h4>
-          <p className="dream-card__body">{dream.body}</p>
+          <p className="dream-card__body">{dream.text}</p>
           <Button 
             href={`/dream/${dream.id}`} 
           >

@@ -22,20 +22,20 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const toggleSelect  = () => {
-    console.log('isOpenSelect = ', isOpenSelect);
+    // console.log('isOpenSelect = ', isOpenSelect);
     setIsOpenSelect(isOpenSelect => !isOpenSelect);
   };
 
   const valueHandler = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     e.stopPropagation();
-    console.log(e.currentTarget.dataset.value);
+    // console.log(e.currentTarget.dataset.value);
     onChange(e.currentTarget.dataset.value || 'no dataset.value');
     setTimeout(() => {
       toggleSelect();
     }, 200)
   };
 
-  console.log(currentValue, valueForAll);
+  // console.log(currentValue, valueForAll);
 
   return (
     <div

@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import './Button.scss';
 
-enum Target {
+export enum Target {
   Blank = '_blank',
   Parent = '_parent',
   Self = '_self',

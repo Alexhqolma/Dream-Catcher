@@ -35,7 +35,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
             className='slider__main-body'
             style={styleBody}
           >
-            <p>{dream.body}&nbsp;</p>
+            <p>{dream.text}&nbsp;</p>
             <Button to={`/dream/${dream.id}`}>details...</Button>
           </div>
         </>

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface WishService {
-    Wish create(Wish wish, MultipartFile file);
+    Wish create(Wish wish/*, MultipartFile file*/);
 
     Wish update(Long id, Wish wish);
 

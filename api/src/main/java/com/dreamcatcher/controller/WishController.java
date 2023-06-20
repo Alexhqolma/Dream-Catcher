@@ -32,10 +32,10 @@ public class WishController {
 
     @Tag(name = "Create Wish", description = "Create new wish")
     @PostMapping("/create")
-    public WishResponseDto create(@RequestBody WishRequestDto wishRequestDto,
-                                  @RequestParam("file") MultipartFile file) {
+    public WishResponseDto create(@RequestBody WishRequestDto wishRequestDto/*,
+                                  @RequestParam("file") MultipartFile file*/) {
         Wish wish = wishMapper.toModel(wishRequestDto);
-        return wishMapper.toDto(wishService.create(wish, file));
+        return wishMapper.toDto(wishService.create(wish/*, file*/));
     }
 
     @Tag(name = "Find Wish", description = "Get wish by wishId")

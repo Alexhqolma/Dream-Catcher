@@ -21,6 +21,8 @@ import {
   getDreams, 
 } from './api/Node/dreams';
 import { getUser, login, register } from './api/Node/users';
+import { Button } from './components/Button';
+import { sagaActions } from './store/sagas/actions';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +33,7 @@ export const App: React.FC = () => {
   const mockData = useAppSelector(selectMockData);
   
   useEffect(() => {
+    //node request WORKING!
     const registerUser = async () => {
       const data = {
         email: 'app@test.app',
@@ -117,9 +120,9 @@ export const App: React.FC = () => {
     // getCurrentDream();
   }, [])
 
-  useEffect(() => {
-    console.log('render App');
-  }, [mockData])
+  // useEffect(() => {
+  //   // console.log('');
+  // }, [mockData])
 
   useEffect(() => {
     if (users.length && dreams && photos) {
@@ -129,7 +132,7 @@ export const App: React.FC = () => {
         data.push({
           id: String(i),
           title: dreams[i]?.title,
-          body: dreams[i]?.body,
+          text: dreams[i]?.text,
           status: false,
           messages: [],
           userId: String(users[Math.round(10 * Math.random())]?.id),
@@ -144,6 +147,19 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
+      <Button onClick={() => dispatch({ 
+        type: sagaActions.REGISTER_USER, 
+       })}>
+        register
+      </Button>
+
+      <Button onClick={() => dispatch({ 
+        type: sagaActions.FETCH_MOCK_DATA, 
+       })}>
+        get mock data
+      </Button>
+
+
       <Header />
       {user && <h1 className='App__greetings'>{`Hello, ${user.name}!`}</h1>}
 

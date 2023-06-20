@@ -15,10 +15,10 @@ import "./Header.scss";
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const userId = useAppSelector(selectUser)?.userId;
+  const userId = useAppSelector(selectUser)?.id;
 
   useEffect(() => {
-    console.log('render header');
+    // console.log('render header');
   }, [isAuth]);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 
-import { Button } from "../Button";
+import { Button, Target } from "../Button";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
@@ -14,10 +14,10 @@ const Footer: React.FC = () => {
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const userId = useAppSelector(selectUser)?.userId;
+  const userId = useAppSelector(selectUser)?.id;
 
   useEffect(() => {
-    console.log('render footer');
+    // console.log('render footer');
   }, [isAuth]);
 
   useEffect(() => {
@@ -71,21 +71,21 @@ const Footer: React.FC = () => {
         <div className="footer__social-links">
           <Button
             href="https://web.telegram.org"
-            target="blank"
+            target={Target.Blank}
           >
             <BsTelegram size={30} />
           </Button>
 
           <Button
             href="https://facebook.com"
-            target="blank"
+            target={Target.Blank}
           >
             <BsFacebook size={30} />
           </Button>
 
           <Button
             href="https://twitter.com"
-            target="blank"
+            target={Target.Blank}
           >
             <BsTwitter size={30} />
           </Button>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
@@ -39,16 +39,16 @@ const validationSchema = Yup.object({
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const user = useAppSelector(selectUser);
 
-  useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        navigate(`${routes.user.path.parent}/${user?.userId}`);
-      }, 2000);
-    }
-  }, [navigate, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setTimeout(() => {
+  //       redirect(`${routes.user.path.parent}/${user?.id}`);
+  //     }, 2000);
+  //   }
+  // }, [navigate, user]);
 
   const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);

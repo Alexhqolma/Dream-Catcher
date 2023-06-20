@@ -3,17 +3,19 @@ import { RootState } from '../..';
 import { User } from '../../../types/User';
 
 export interface UserState {
-  storage: {
-    name: string,
-    id: string,
-    token: string,
-  } | null;
+  storage: User |null;
+
+  userName: string | null;
+  token: string | null;
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
 
 const initialState: UserState = {
   storage: null,
+
+  userName: null,
+  token: null,
   statusLoading: 'idle',
   error: null,
 };
@@ -22,12 +24,11 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state: UserState, action: PayloadAction<{
-      name: string,
-      id: string,
-      token: string,
-    }>) => {
-      state.storage = action.payload;
+    setToken: (state: UserState, action: PayloadAction<string>) => {
+      state.token = action.payload;
+    },
+    setName: (state: UserState, action: PayloadAction<string>) => {
+      state.userName = action.payload;
     },
     setStatus: (
       state: UserState,
@@ -36,8 +37,13 @@ const userSlice = createSlice({
       state.statusLoading = action.payload;
     },
     setError: (state: UserState, action: PayloadAction<string>) => {
+      console.log('serError ', action.payload);
       state.error = action.payload;
-      state.statusLoading = 'failed';
+      state.statusLoading = 'idle';
+    },
+    resetError: (state: UserState) => {
+      state.error = null;
+      state.statusLoading = 'idle';
     },
     resetState: () => {
       return initialState;
@@ -47,13 +53,18 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const {
-  setUser,
+  setToken,
+  setName,
   setStatus,
   setError,
+  resetError,
   resetState,
 } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user.storage;
+export const selectToken = (state: RootState) => state.user.token;
+export const selectName = (state: RootState) => state.user.userName;
+
 export const selectUserStatusLoading
 = (state: RootState) => state.user.statusLoading;
 export const selectUserError = (state: RootState) => state.user.error;

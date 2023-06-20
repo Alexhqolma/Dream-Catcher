@@ -1,9 +1,15 @@
 import { all, call, spawn } from 'redux-saga/effects';
-import { watchSaga } from './watchSaga';
+import { watchUserSaga } from './user/watchUserSaga';
+import { watchDreamSaga } from './dream/watchDreamSaga';
+import { getMockDataSaga } from './mock/getMockDataSaga';
+import { getJavaData } from './javaServer/getDataFromJavaServerSaga';
 
 export default function* rootSaga() {
   const sagas = [
-    watchSaga,
+    // getMockDataSaga,
+    getJavaData,
+    // watchUserSaga,
+    // watchDreamSaga,
   ];
 
 

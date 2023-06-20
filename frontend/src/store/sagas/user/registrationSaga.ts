@@ -3,45 +3,39 @@ import { AxiosError } from 'axios';
 import { call, put } from 'redux-saga/effects';
 import {
   setError,
-  setUser,
+  setToken,
   setStatus,
+  resetError,
 } from '../../features/user/userSlice';
 import { register } from '../../../api/Node/users';
 import { User } from '../../../types/User';
-import { getDreams } from '../../../api/Node/dreams';
 
 interface Props {
+  type: string;
   payload: Omit<User, 'userId'>;
 }
-
-export function* getDreamsSaga(): Generator {
-  console.log('registrationSaga1');
-
-  const response = yield call(getDreams);
-
-  console.log('registrationSaga1 data', response);
-}
-
 
 export function* registrationSaga({ payload }: Props): Generator {
   console.log('registrationSaga', payload);
 
   yield put(setStatus('loading'));
-
   
   try {
-    const response: {
-      name: string,
-      id: string,
-      token: string,
-    } = yield call(register, payload);
-
+    const response = yield call(register, payload);
     console.log('register saga response', response);
+    
+    if (!response.success) {
+      throw response;
+    }
+    
+    const { token } = response;
 
-    yield put(setUser(response));
+    yield put(setToken(token));
+    yield put(resetError());
   } catch (error: unknown) {
-    console.log(error);
-    yield put(setError((error as AxiosError).message));
+    console.error('catch registrationSaga', error.message);
+
+    yield put(setError(error.message));
   } finally {
     yield put(setStatus('idle'));
   }

@@ -1,38 +1,47 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { baseURL } from './routes';
 
-const instanceLocal = axios.create({
+const instanceNode = axios.create({
   baseURL,
 });
 
 export const client = {
-  async get<T>(url: string, params?: AxiosRequestConfig) {
-    const response = await instanceLocal.get<T>(url, params);
+  async get<T>(path: string, params?: AxiosRequestConfig) {
+    const response = await instanceNode.get<T>(path, params);
 
-    console.log('get', baseURL + url);
-
-    return response.data;
-  },
-
-  async post<T>(
-    url: string,
-    data: T,
-    params?: AxiosRequestConfig,
-  ) {
-    console.log('post', baseURL + url);
-
-    const response = await instanceLocal.post<T>(url, data, params);
+    console.log('get', baseURL + path);
 
     return response.data;
   },
 
-  async patch<T>(url: string, data: T, params: AxiosRequestConfig) {
-    const response = await instanceLocal.patch<T>(url, data, params);
+  async post<TRequest, TResponse>(
+    path: string,
+    payload: TRequest,
+    config?: AxiosRequestConfig,
+  ): Promise<TResponse> {
+    console.log('post', baseURL + path);
+
+    // const response = await instanceLocal.post<TRequest, TResponse, Params>(path, payload, config);
+    const response = config
+      ? await instanceNode.post<TResponse>(path, payload, config)
+      : await instanceNode.post<TResponse>(path, payload);
+
+    return response.data;
+  },
+
+  async patch<TRequest, TResponse>(
+    path: string,
+    payload: TRequest,
+    config?: AxiosRequestConfig) {
+    // const response = await instanceLocal.patch<TResponse>(path, payload, params);
+    const response = config
+      ? await instanceNode.patch<TResponse>(path, payload, config)
+      : await instanceNode.patch<TResponse>(path, payload);
 
     return response.data;
   },
 
   async delete(url: string) {
-    return instanceLocal.delete(url);
+    return instanceNode.delete(url);
   },
 };

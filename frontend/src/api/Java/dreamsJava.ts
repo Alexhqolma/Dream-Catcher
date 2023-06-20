@@ -1,17 +1,20 @@
 import { Dream } from '../../types/Dream';
-import { clientLocal } from './instanceJava';
+import { clientJava } from './instanceJava';
 
-export const getAllDreams = () => clientLocal.get<Dream>('/wishes');
+export const getAllDreams = () => clientJava.get<Dream>('/wishes');
 
-export const getCreatedDreams = (userId: string) => clientLocal.get<Dream[]>(`/wishes/user/${userId}`);
+export const getCreatedDreams = (userId: string) => clientJava.get<Dream[]>(`/wishes/user/${userId}`);
 
-export const getTakenDreams = (userId: string) => clientLocal.get<Dream[]>(`/wishes/taken-user/${userId}`);
+export const getTakenDreams = (userId: string) => clientJava.get<Dream[]>(`/wishes/taken-user/${userId}`);
 
-export const createDream = (dream: Omit<Dream, 'id'>, token: string) => clientLocal.post<Dream>('/wishes/create', {
+export const createDream = (
+  dream: Omit<Dream, 'id'> | FormData,
+  // token: string,
+) => clientJava.post<Dream>('/wishes/create', {
   data: dream,
-  headers: {
-    'Authorization': `Bearer ${token}`
-  },
+  // headers: {
+  //   'Authorization': `Bearer ${token}`
+  // },
 });
 
-export const getSearchDreams = (query: string) => clientLocal.get<Dream>(`/wishes/search/${query}`);
+export const getSearchDreams = (query: string) => clientJava.get<Dream>(`/wishes/search/${query}`);

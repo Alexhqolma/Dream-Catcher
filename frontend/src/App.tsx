@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { selectUser } from './store/features/user/userSlice';
+import { selectToken, selectUser, setToken } from './store/features/user/userSlice';
 import { 
   selectMockData,
   selectMockDreams,
@@ -22,7 +22,7 @@ import {
 } from './api/Node/dreams';
 import { getUser, login, register } from './api/Node/users';
 import { Button } from './components/Button';
-import { sagaActions } from './store/sagas/actions';
+import { registerUser, SagaActions } from './store/sagas/actions';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +31,7 @@ export const App: React.FC = () => {
   const dreams = useAppSelector(selectMockDreams);
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
+  const token = useAppSelector(selectToken) || '';
   
   useEffect(() => {
     //node request WORKING!
@@ -43,15 +44,15 @@ export const App: React.FC = () => {
 
       const user = await register(data);
 
-      console.log('user = ', user);
+      const { token } = user;
 
-      return user;
+      dispatch(setToken(token));
     };
 
     const loginUser = async () => {
       const data = {
         // email: 'app@test.app',
-        name: 'any user',
+        name: 'App test user',
         password: '12345',
       };
 
@@ -63,9 +64,7 @@ export const App: React.FC = () => {
     };
 
     const getCurrentUser = async () => {
-      const response = await getUser(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDhlOTJlODA2MTYzODc0NDI5YTlkOTQiLCJpYXQiOjE2ODcwNjUzNTYsImV4cCI6MTY4OTY1NzM1Nn0.8pZrr4TS43k5IswcoIO0cjZSn0eRASgvmCfLZAen16U',
-      );
+      const response = await getUser(token);
 
       console.log('getCurrentUser ', response);
 
@@ -87,7 +86,7 @@ export const App: React.FC = () => {
           text: "dream app new",
           tags: ["react", "html", "frontend12"]	
         },
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDhlOTJlODA2MTYzODc0NDI5YTlkOTQiLCJpYXQiOjE2ODcwNjUzNTYsImV4cCI6MTY4OTY1NzM1Nn0.8pZrr4TS43k5IswcoIO0cjZSn0eRASgvmCfLZAen16U'
+        token,
       );
 
       console.log('created dream = ', dream);
@@ -95,16 +94,8 @@ export const App: React.FC = () => {
       return dream;
     };
 
-    const loadAllDreams = async () => {
-      const dreams = await getDreams();
-
-      console.log('all dreams = ', dreams);
-
-      return dreams;
-    };
-
     const getCurrentDream = async () => {
-      const response = await getDream("648e6418bbccb45f4c5389f7");
+      const response = await getDream("64917b965df2b30c3b7b0b0b");
 
       console.log('getCurrentDream ', response);
 
@@ -116,7 +107,6 @@ export const App: React.FC = () => {
     // getCurrentUser();
     // loadDreams();
     // create();
-    // loadAllDreams();
     // getCurrentDream();
   }, [])
 
@@ -147,17 +137,37 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <Button onClick={() => dispatch({ 
-        type: sagaActions.REGISTER_USER, 
-       })}>
+      <Button onClick={() => dispatch(registerUser({
+          // email: 'app@test.app',
+          password: '12345',
+          name: 'App test user',
+        }))}>
         register
       </Button>
 
       <Button onClick={() => dispatch({ 
-        type: sagaActions.FETCH_MOCK_DATA, 
+        type: SagaActions.LOGIN_USER,
+        payload: {
+          password: '12345',
+          name: 'App test user',
+        },
        })}>
-        get mock data
+        login User
       </Button>
+
+      <Button onClick={() => dispatch({ 
+        type: SagaActions.FETCH_USER,
+        payload: token,
+       })}>
+        get User
+      </Button>
+
+      <Button onClick={() => dispatch({ 
+        type: SagaActions.FETCH_ALL_DREAMS,
+       })}>
+        get All Dreams
+      </Button>
+
 
 
       <Header />

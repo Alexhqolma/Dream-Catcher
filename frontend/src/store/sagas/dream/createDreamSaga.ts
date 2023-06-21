@@ -6,8 +6,7 @@ import {
   setError,
   setStatus,
 } from '../../features/allDreams/allDreamsSlice';
-import { createDream, getDreams } from '../../../api/Node/dreams';
-import { error } from 'console';
+import { createDream } from '../../../api/Node/dreams';
 import { Dream } from '../../../types/Dream';
 
 interface Props {

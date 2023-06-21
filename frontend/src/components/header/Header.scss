@@ -1,4 +1,4 @@
-@import '../../styles/utils/variables.scss';
+@import '../../styles/utils/variables';
 
 .header {
   height: $height_header;
@@ -46,6 +46,7 @@
   }
 
   &__favorites-icon {
+    position: relative;
     a {
         &:visited {
           color: $darkPrimary;
@@ -53,7 +54,18 @@
       }
   }
 
-  
+  &__favorites-count {
+    position: absolute;
+    bottom: 0.5em;
+    right: 1em;
+    font-size: $font-size-s;
+    background-color: $error;
+    width: $font-size-s;
+    line-height: $font-size-s;
+    text-align: center;
+    color: $white;
+    border-radius: 50%;
+  }
 }
 
 .login-popup-overlay {

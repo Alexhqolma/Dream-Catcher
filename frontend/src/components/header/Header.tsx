@@ -100,6 +100,7 @@ import "./Header.scss";
           <li className="nav__item nav__favorites-icon">
             <Button to={favorites.path}>
               <BsBox2Heart />
+              <div className="nav__favorites-count">0</div>
             </Button>
           </li>
         </ul>

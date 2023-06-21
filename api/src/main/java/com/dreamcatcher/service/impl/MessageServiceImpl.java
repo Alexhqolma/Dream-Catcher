@@ -3,7 +3,7 @@ package com.dreamcatcher.service.impl;
 import com.dreamcatcher.exception.DreamCatcherException;
 import com.dreamcatcher.model.Message;
 import com.dreamcatcher.model.User;
-import com.dreamcatcher.model.Wish;
+import com.dreamcatcher.model.Dream;
 import com.dreamcatcher.repository.MessageRepository;
 import com.dreamcatcher.service.MessageService;
 import lombok.AllArgsConstructor;
@@ -39,8 +39,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> findAllByWish(Wish wish) {
-        return messageRepository.findAllByWish(wish);
+    public List<Message> findAllByDream(Dream dream) {
+        return messageRepository.findAllByDream(dream);
     }
 
     @Override

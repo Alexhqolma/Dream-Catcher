@@ -17,9 +17,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByName(username);
+    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByEmail(userEmail);
         return user.map(CustomUserDetails::new)
-                .orElseThrow(() -> new DreamCatcherException("Can't find user: " + username));
+                .orElseThrow(() -> new DreamCatcherException("Can't find user: " + userEmail));
     }
 }

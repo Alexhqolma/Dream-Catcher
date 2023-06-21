@@ -5,26 +5,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "wishes")
-public class Wish {
+@Table(name = "dreams")
+public class Dream {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String text;
+    private String title;
+    private String body;
     @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "taken_user_id")
-    private User takenUser;
+    @JoinColumn(name = "handler_id")
+    private User handler;
     private LocalDateTime creationDate;
-    private String fileName;
+    private String imageUrl;
 }

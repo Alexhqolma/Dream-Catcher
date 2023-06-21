@@ -2,10 +2,10 @@ package com.dreamcatcher.controller;
 
 import com.dreamcatcher.model.Message;
 import com.dreamcatcher.model.User;
-import com.dreamcatcher.model.Wish;
+import com.dreamcatcher.model.Dream;
 import com.dreamcatcher.service.MessageService;
 import com.dreamcatcher.service.UserService;
-import com.dreamcatcher.service.WishService;
+import com.dreamcatcher.service.DreamService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,58 +18,58 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class InjectController {
     private final UserService userService;
-    private final WishService wishService;
+    private final DreamService dreamService;
     private final MessageService messageService;
 
     @GetMapping
     public String injection() {
         User user = new User();
-        user.setName("admin");
+        user.setEmail("admin@admin.com");
         user.setPassword("adminadmin");
         userService.create(user);
 
-        Wish wish = new Wish();
-        wish.setName("Test Wish");
-        wish.setText("Test Text");
-        wish.setUser(user);
-        wishService.create(wish/*, null*/);
+        Dream dream = new Dream();
+        dream.setTitle("Test Dream");
+        dream.setBody("Test Text");
+        dream.setUser(user);
+        dreamService.create(dream/*, null*/);
 
-        Wish wish2 = new Wish();
-        wish2.setName("Test2 Wish");
-        wish2.setText("Test2 Text");
-        wish2.setUser(user);
-        wishService.create(wish2/*, null*/);
+        Dream dream2 = new Dream();
+        dream2.setTitle("Test2 Dream");
+        dream2.setBody("Test2 Text");
+        dream2.setUser(user);
+        dreamService.create(dream2/*, null*/);
 
         User user2 = new User();
-        user2.setName("member");
+        user2.setEmail("member@member.com");
         user2.setPassword("adminadmin");
         userService.create(user2);
 
-        Wish wish3 = new Wish();
-        wish3.setName("Test3 Wish");
-        wish3.setText("Test3 Text");
-        wish3.setUser(user2);
-        wishService.create(wish3/*, null*/);
+        Dream dream3 = new Dream();
+        dream3.setTitle("Test3 Dream");
+        dream3.setBody("Test3 Text");
+        dream3.setUser(user2);
+        dreamService.create(dream3/*, null*/);
 
-        wish.setTakenUser(user2);
-        wishService.update(wish.getId(), wish);
+        dream.setHandler(user2);
+        dreamService.update(dream.getId(), dream);
 
         Message message = new Message();
-        message.setText("First message");
+        message.setBody("First message");
         message.setUser(user);
-        message.setWish(wish2);
+        message.setDream(dream2);
         messageService.create(message);
 
         Message message2 = new Message();
-        message2.setText("Second message");
+        message2.setBody("Second message");
         message2.setUser(user2);
-        message2.setWish(wish2);
+        message2.setDream(dream2);
         messageService.create(message2);
 
         Message message3 = new Message();
-        message3.setText("Third message");
+        message3.setBody("Third message");
         message3.setUser(user);
-        message3.setWish(wish2);
+        message3.setDream(dream2);
         messageService.create(message3);
 
         return "Ok!";

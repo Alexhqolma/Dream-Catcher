@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new DreamCatcherException("Can't find user bt id " + id));
+                .orElseThrow(() -> new DreamCatcherException("Can't find user by id " + id));
     }
 
     @Override

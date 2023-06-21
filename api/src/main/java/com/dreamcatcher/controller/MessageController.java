@@ -5,10 +5,10 @@ import com.dreamcatcher.dto.request.MessageRequestDto;
 import com.dreamcatcher.dto.response.MessageResponseDto;
 import com.dreamcatcher.model.Message;
 import com.dreamcatcher.model.User;
-import com.dreamcatcher.model.Wish;
+import com.dreamcatcher.model.Dream;
 import com.dreamcatcher.service.MessageService;
 import com.dreamcatcher.service.UserService;
-import com.dreamcatcher.service.WishService;
+import com.dreamcatcher.service.DreamService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +29,7 @@ public class MessageController {
     private final MessageMapper messageMapper;
     private final MessageService messageService;
     private final UserService userService;
-    private final WishService wishService;
+    private final DreamService dreamService;
 
     @Tag(name = "Create Message", description = "Create new message")
     @PostMapping("/create")
@@ -62,11 +62,11 @@ public class MessageController {
                 .collect(Collectors.toList());
     }
 
-    @Tag(name = "Messages by wish", description = "Find all messages created by wish. Get them by wish id")
+    @Tag(name = "Messages by wish", description = "Find all messages created by dream. Get them by wish id")
     @GetMapping("/wish/{id}")
-    public List<MessageResponseDto> findAllByWish(@PathVariable Long id) {
-        Wish wish = wishService.findById(id);
-        return messageService.findAllByWish(wish)
+    public List<MessageResponseDto> findAllByDream(@PathVariable Long id) {
+        Dream dream = dreamService.findById(id);
+        return messageService.findAllByDream(dream)
                 .stream()
                 .map(messageMapper::toDto)
                 .collect(Collectors.toList());

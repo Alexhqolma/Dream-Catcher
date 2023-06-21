@@ -6,20 +6,19 @@ import lombok.Getter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
-public class WishRequestDto {
-    @NotNull(message = "Name cannot be empty")
+public class DreamRequestDto {
+    @NotNull(message = "Title cannot be empty")
     @Size(min = 2, max = 20, message
-            = "Name must be between 2 and 20 characters")
-    private String name;
+            = "Title must be between 2 and 20 characters")
+    private String title;
     @Size(min = 2, max = 200, message
             = "Text must be between 2 and 200 characters")
-    private String text;
+    private String body;
     private Status status;
     private Long userId;
-    private Long takenUserId;
+    private Long handlerId;
     private LocalDateTime creationDate;
-    private String fileName;
+    private String imageUrl;
 }

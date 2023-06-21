@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 @Data
 public class MessageResponseDto {
     private Long id;
-    private String text;
+    private String body;
     private Long userId;
     private LocalDateTime creationDate;
-    private Long wishId;
+    private Long dreamId;
 }

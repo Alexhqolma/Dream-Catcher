@@ -14,10 +14,10 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String text;
+    private String body;
     @ManyToOne
     private User user;
     private LocalDateTime creationDate;
     @ManyToOne
-    private Wish wish;
+    private Dream dream;
 }

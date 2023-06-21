@@ -10,8 +10,8 @@ public class MessageRequestDto {
     @NotNull(message = "Message cannot be empty")
     @Size(min = 2, max = 200, message
             = "Message must be between 2 and 200 characters")
-    private String text;
+    private String body;
     private Long userId;
     private LocalDateTime creationDate;
-    private Long wishId;
+    private Long dreamId;
 }

@@ -37,7 +37,7 @@ public class WebSecurityConfig {
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("users/**", "/wishes/**", "/messages/**")
+                .requestMatchers("users/**", "/dreams/**", "/messages/**")
                 .authenticated()
                 .and()
                 .formLogin()

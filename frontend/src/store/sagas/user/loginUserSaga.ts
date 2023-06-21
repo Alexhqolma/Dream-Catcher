@@ -1,20 +1,22 @@
-import { AxiosError } from 'axios';
+import { ResponseLoginUser } from './../../../api/Node/users';
+import { AxiosError, AxiosResponse } from 'axios';
 
 import { call, put } from 'redux-saga/effects';
 import {
   setError,
   setToken,
   setStatus,
-  setName,
   resetError,
+  setFullName,
+  login,
+  setUserId,
 } from '../../features/user/userSlice';
-import { login } from '../../../api/Node/users';
-import { UserLogin } from '../../../types/User';
+import { RequestLoginUser, authAPI } from '../../../api/Node/users';
 import { SagaActions } from '../actions';
 
 interface Props {
   type: SagaActions;
-  payload: UserLogin;
+  payload: RequestLoginUser;
 }
 
 export function* loginUserSaga({ payload }: Props): Generator {
@@ -23,19 +25,22 @@ export function* loginUserSaga({ payload }: Props): Generator {
   yield put(setStatus('loading'));
   
   try {
-    const response = yield call(login, payload);
+    const response: AxiosResponse<ResponseLoginUser, any> | unknown = yield call(authAPI.login, payload);
 
-    console.log('loginUserSaga response', response);
+    console.log('loginUserSaga response', response as AxiosResponse<ResponseLoginUser, any> | unknown);
 
-    if (!response.success) {
-      throw response;
-    }
-
-    const { token, name } = response;
+    const {
+      token,
+      fullName,
+      // email,
+      _id: userId,
+    } = response;
 
     yield put(setToken(token));
-    yield put(setName(name));
+    yield put(setFullName(fullName));
+    yield put(setUserId(userId));
     yield put(resetError());
+    yield put(login());
 
   } catch (error: unknown) {
     console.log('catch', error);

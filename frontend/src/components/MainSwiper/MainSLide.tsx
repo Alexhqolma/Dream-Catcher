@@ -24,7 +24,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
     <div className="slider__banner">
       {dream && (
         <>
-          <img className="slider__main-img" src={dream.photo || undefined} alt="" />
+          <img className="slider__main-img" src={dream.imageUrl || undefined} alt="" />
           <div
             className='slider__main-title title'
             style={styleTitle}
@@ -35,7 +35,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
             className='slider__main-body'
             style={styleBody}
           >
-            <p>{dream.text}&nbsp;</p>
+            <p>{dream.body}&nbsp;</p>
             <Button to={`/dream/${dream.id}`}>details...</Button>
           </div>
         </>

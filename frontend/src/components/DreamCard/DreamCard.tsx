@@ -35,7 +35,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
       <div className="dream-card__description">
         <div className="dream-card__img">
           <img
-            src={dream?.photo || undefined} 
+            src={dream?.imageUrl || undefined} 
             alt="photo" 
           />
         </div>
@@ -47,7 +47,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
           >
             {dream.title}
           </h4>
-          <p className="dream-card__body">{dream.text}</p>
+          <p className="dream-card__body">{dream.body}</p>
           <Button 
             href={`/dream/${dream.id}`} 
           >

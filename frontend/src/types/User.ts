@@ -1,15 +1,17 @@
+export interface UserCreate {
+  email: string;
+  password: string;
+  fullName: string;
+}
+
 export interface UserLogin {
-  password: string,
-  name: string,
-  // email?: string,
+  email: string;
+  password: string;
 }
-
-export interface User extends UserLogin {
-  userId: string,
-  avatarUrl?: string,
-}
-
-export type MockUser = {
-  id: number;
-  name: string;
+export interface User {
+  userId: string;
+  email: string;
+  password: string;
+  fullName: string;
+  avatarUrl?: string;
 }

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../..';
-import { User } from '../../../types/User';
 
 export interface UserState {
-  storage: User |null;
+  storage: { userId: string } |null;
 
-  userName: string | null;
+  isAuth: boolean;
+  fullName: string | null;
   token: string | null;
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
@@ -14,7 +14,8 @@ export interface UserState {
 const initialState: UserState = {
   storage: null,
 
-  userName: null,
+  isAuth: false,
+  fullName: null,
   token: null,
   statusLoading: 'idle',
   error: null,
@@ -24,11 +25,20 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    login: (state: UserState) => {
+      state.isAuth = true;
+    },
+    logout: () => {
+      return initialState;
+    },
     setToken: (state: UserState, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
-    setName: (state: UserState, action: PayloadAction<string>) => {
-      state.userName = action.payload;
+    setFullName: (state: UserState, action: PayloadAction<string>) => {
+      state.fullName = action.payload;
+    },
+    setUserId: (state: UserState, action: PayloadAction<string>) => {
+      state.storage = { ...state.storage, userId: action.payload };
     },
     setStatus: (
       state: UserState,
@@ -53,17 +63,21 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const {
+  login,
+  logout,
   setToken,
-  setName,
+  setFullName,
   setStatus,
   setError,
+  setUserId,
   resetError,
   resetState,
 } = userSlice.actions;
 
+export const selectIsAuth = (state: RootState) => state.user.isAuth;
 export const selectUser = (state: RootState) => state.user.storage;
 export const selectToken = (state: RootState) => state.user.token;
-export const selectName = (state: RootState) => state.user.userName;
+export const selectFullName = (state: RootState) => state.user.fullName;
 
 export const selectUserStatusLoading
 = (state: RootState) => state.user.statusLoading;

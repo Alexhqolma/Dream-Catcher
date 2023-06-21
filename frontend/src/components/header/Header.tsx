@@ -3,7 +3,7 @@ import { BsBox2Heart } from 'react-icons/bs';
 
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
-import { selectUser } from "../../store/features/user/userSlice";
+import { selectIsAuth, selectUser } from "../../store/features/user/userSlice";
 import { LoginPopup } from "../LoginPopup"
 import { Button } from '../Button';
 import logo from "../../assets/images/big_logo.png";
@@ -12,10 +12,10 @@ import "./Header.scss";
 
   const Header: React.FC = () => {
   const { home, dreams, login, registration, user, favorites } = routes;
-  const isAuth = Boolean(useAppSelector(selectUser));
+  const isAuth = useAppSelector(selectIsAuth);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const userId = useAppSelector(selectUser)?.id;
+  const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     // console.log('render header');

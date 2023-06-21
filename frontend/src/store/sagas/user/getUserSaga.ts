@@ -7,7 +7,7 @@ import {
   setStatus,
   resetError,
 } from '../../features/user/userSlice';
-import { getUser } from '../../../api/Node/users';
+import { ResponseLoginUser, authAPI } from '../../../api/Node/users';
 import { SagaActions } from '../actions';
 
 interface Props {
@@ -21,7 +21,7 @@ export function* getUserSaga({ payload }: Props): Generator {
   yield put(setStatus('loading'));
   
   try {
-    const response = yield call(getUser, payload);
+    const response: ResponseLoginUser = yield call(authAPI.getUser, payload);
 
     if (!response.success) {
       throw response;

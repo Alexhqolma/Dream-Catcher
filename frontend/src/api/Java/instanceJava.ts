@@ -17,10 +17,14 @@ export const clientJava = {
     return response.data;
   },
 
-  async post<T>(url: string, data: AxiosRequestConfig<unknown> | undefined) {
+  async post<T>(
+    url: string,
+    data: T,
+    config?: AxiosRequestConfig<unknown> | undefined,
+  ) {
     console.log('post', baseURL + url);
 
-    const response = await instanceJava.post<T>(url, data);
+    const response = await instanceJava.post<T>(url, data, config);
 
     return response.data;
   },

@@ -1,6 +1,7 @@
 export type Message = {
-  id: string,
-  title: string,
+  id?: string,
+  dreamId: string,
+  userId: string,
   body: string,
-  userId: string
+  creationDate?: string,
 }

@@ -9,7 +9,7 @@ export enum SagaActions {
   FETCH_USER = 'saga/FETCH_USER',
 
   FETCH_ALL_DREAMS = 'saga/FETCH_ALL_DREAMS',
-};
+}
 
 const sagaActionsCreator = {
   loadMockUsers: () => ({ type: SagaActions.FETCH_MOCK_DATA }),

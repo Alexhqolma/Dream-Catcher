@@ -7,7 +7,7 @@ import {
   setStatus,
   resetError,
 } from '../../features/user/userSlice';
-import { register } from '../../../api/Node/users';
+import { authAPI, register } from '../../../api/Node/users';
 import { User } from '../../../types/User';
 
 interface Props {
@@ -21,7 +21,7 @@ export function* registrationSaga({ payload }: Props): Generator {
   yield put(setStatus('loading'));
   
   try {
-    const response = yield call(register, payload);
+    const response = yield call(authAPI.register, payload);
     console.log('register saga response', response);
     
     if (!response.success) {

@@ -28,7 +28,7 @@ export const DreamEdit: React.FC<DreamEditProps> = ({ dream }) => {
       />
       <textarea
         name="body"
-        value={updatedDream?.text}
+        value={updatedDream?.body}
         onChange={handleInputChange}
         placeholder="Dream description"
       />

@@ -7,9 +7,9 @@ import { getJavaData } from './javaServer/getDataFromJavaServerSaga';
 export default function* rootSaga() {
   const sagas = [
     // getMockDataSaga,
-    getJavaData,
-    // watchUserSaga,
-    // watchDreamSaga,
+    // getJavaData,
+    watchUserSaga,
+    watchDreamSaga,
   ];
 
 

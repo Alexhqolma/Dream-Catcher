@@ -84,10 +84,10 @@ export const RegistrationForm: React.FC = () => {
                   type="name"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.name}
+                  value={formik.values.fullName}
                 />
-                {formik.touched.name && formik.errors.name ? (
-                  <div className="error">{formik.errors.name}</div>
+                {formik.touched.fullName && formik.errors.fullName ? (
+                  <div className="error">{formik.errors.fullName}</div>
                 ) : null}
               </label>
             </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { LoginForm } from '../../components/LoginForm';
 
+import './LoginPage.scss';
+
 const LoginPage: React.FC = () => {
   return (
     <main className="LoginPage">

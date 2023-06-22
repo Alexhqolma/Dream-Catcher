@@ -8,12 +8,14 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
-import './LoginForm.scss';
 import { RequestLoginUser } from '../../types/User';
+import { Button } from '../Button';
+
+import './LoginForm.scss';
 
 const initialValues: RequestLoginUser = {
-  email: 'app@test.app',
-  password: '12345',
+  email: '',
+  password: '',
 };
 
 const validationSchema = Yup.object({
@@ -37,9 +39,9 @@ export const LoginForm: React.FC = () => {
   }, [navigate, isAuth, message]);
 
   const onSubmit = (values: RequestLoginUser) => {
-     dispatch({
+    dispatch({
       type: SagaActions.LOGIN_USER_NODE,
-       payload: values,
+      payload: values,
     })
   }
 
@@ -50,8 +52,8 @@ export const LoginForm: React.FC = () => {
   });
 
   return (
-    <form className='regForm' onSubmit={formik.handleSubmit}>
-      <div className='regForm__wrapper'>
+    <form className='form' onSubmit={formik.handleSubmit}>
+      <div className='form__wrapper'>
         {message}
         {isAuth ? (
           <div className="regMessage">
@@ -60,48 +62,39 @@ export const LoginForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="regForm__control">
-              <label htmlFor="email">
-                Email
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <div className="error">{formik.errors.email}</div>
-                ) : null}
-              </label>
+            <div className="form__control">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder='Email'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="error">{formik.errors.email}</div>
+              ) : null}
             </div>
 
-            <div className="regForm__control">
-              <label htmlFor="password">
-                Password
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="error">{formik.errors.password}</div>
-                ) : null}
-              </label>
+            <div className="form__control">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder='Password'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div className="error">{formik.errors.password}</div>
+              ) : null}
             </div>
             <div className="buttonWrapper">
-              <button type="button" onClick={() => window.history.go(-1)}>
-                Back
-              </button>
-              <button
-                type="submit"
-              >
-                Login
-              </button>
+                <Button title='Back' onClick={() => window.history.go(-1)}>
+              </Button>
+              <Button title='Login' type="submit" />
             </div>
           </>
         )}

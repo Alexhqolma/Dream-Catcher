@@ -19,6 +19,7 @@ interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   target?: Target.Blank;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -29,6 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick = () => console.warn('no OnClick function'),
   className,
   target,
+  type
  }) => {
 
   if (href) {
@@ -57,8 +59,9 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button 
-      className={classNames('button', 'button__regular', className)}
+      className={classNames("button', 'button__regular", className)}
       onClick={onClick}
+      type={type}
     >
       {title}
       {children}

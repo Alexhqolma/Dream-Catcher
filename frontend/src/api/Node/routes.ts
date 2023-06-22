@@ -6,6 +6,7 @@ export const routesServer = {
     login: '/auth/login',
     register: '/auth/register',
     getUser: '/auth/me',
+    deleteUser: '/auth/deleteMe',
   },
   messages: '/messages',
 }

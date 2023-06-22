@@ -26,7 +26,7 @@ export function* deleteUserSaga({ payload }: Props): Generator<unknown, any, Res
   yield put(setStatus(RequestStatus.LOADING));
   
   try {
-    const response = yield call(authAPI.getUser, payload);
+    const response = yield call(authAPI.deleteUser, payload);
     const { success, message } = response;
 
     if (!success) {

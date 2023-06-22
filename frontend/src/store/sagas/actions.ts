@@ -7,6 +7,7 @@ export enum SagaActions {
   REGISTER_USER_NODE = 'saga/REGISTER_USER_NODE',
   LOGIN_USER_NODE = 'saga/LOGIN_USER_NODE',
   FETCH_USER_NODE = 'saga/FETCH_USER_NODE',
+  DELETE_USER_NODE = 'saga/DELETE_USER_NODE',
 
   FETCH_ALL_DREAMS = 'saga/FETCH_ALL_DREAMS',
 }
@@ -26,6 +27,10 @@ const sagaActionsCreator = {
     type: SagaActions.FETCH_USER_NODE,
     payload: token,
   }),
+  deleteUserNODE: (token: string) => ({ 
+    type: SagaActions.DELETE_USER_NODE,
+    payload: token,
+  }),
 
   loadDreams: () => ({ type: SagaActions.FETCH_ALL_DREAMS }),
 };
@@ -34,6 +39,7 @@ export const {
   registerUserNODE,
   loginUserNODE,
   loadUserNODE,
+  deleteUserNODE,
 
   loadDreams,
   loadMockUsers,

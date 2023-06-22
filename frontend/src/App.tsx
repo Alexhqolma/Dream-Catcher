@@ -188,19 +188,24 @@ export const App: React.FC = () => {
         </Button>
 
         <Button onClick={() => dispatch({ 
+          type: SagaActions.DELETE_USER_NODE,
+          payload: token,
+        })}>
+          delete User
+        </Button>
+
+        <Button onClick={() => dispatch({ 
           type: SagaActions.FETCH_ALL_DREAMS,
         })}>
           get All Dreams
         </Button>
       </div>
+
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
+      
       <Header />
-
       <Layout />
-
-
       <Footer />
-
     </div>
   );
 }

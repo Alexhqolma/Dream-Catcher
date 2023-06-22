@@ -17,7 +17,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import storage from 'redux-persist/lib/storage';
 import rootSaga from './sagas/rootSaga';
-import controlsSlice from './features/controls/controlsSlice';
+import controlsSlice from './features/Controls/controlsSlice';
 import allDreamsSlice from './features/allDreams/allDreamsSlice';
 import userSlice from './features/user/userSlice';
 import mockUsersSlice from '../mock/store/features/mock/mockSlice';

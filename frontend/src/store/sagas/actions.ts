@@ -10,6 +10,11 @@ export enum SagaActions {
   DELETE_USER_NODE = 'saga/DELETE_USER_NODE',
 
   FETCH_ALL_DREAMS = 'saga/FETCH_ALL_DREAMS',
+
+  REGISTER_USER_JAVA = 'saga/REGISTER_USER_JAVA',
+  LOGIN_USER_JAVA = 'saga/LOGIN_USER_JAVA',
+  FETCH_USER_JAVA = 'saga/FETCH_USER_JAVA',
+  DELETE_USER_JAVA = 'saga/DELETE_USER_JAVA',
 }
 
 const sagaActionsCreator = {
@@ -33,6 +38,23 @@ const sagaActionsCreator = {
   }),
 
   loadDreams: () => ({ type: SagaActions.FETCH_ALL_DREAMS }),
+
+  registerUserJAVA: (user: RequestCreateUser) => ({ 
+    type: SagaActions.REGISTER_USER_JAVA, 
+    payload: user,
+  }),
+  loginUserJAVA: (userLogin: RequestLoginUser) => ({ 
+    type: SagaActions.LOGIN_USER_JAVA, 
+    payload: userLogin,
+  }),
+  loadUserJAVA: (token: string) => ({ 
+    type: SagaActions.FETCH_USER_JAVA,
+    payload: token,
+  }),
+  deleteUserJAVA: (token: string) => ({ 
+    type: SagaActions.DELETE_USER_JAVA,
+    payload: token,
+  }),
 };
 
 export const {
@@ -40,7 +62,13 @@ export const {
   loginUserNODE,
   loadUserNODE,
   deleteUserNODE,
-
+  
   loadDreams,
+
+  registerUserJAVA,
+  loginUserJAVA,
+  loadUserJAVA,
+  deleteUserJAVA,
+
   loadMockUsers,
 } = sagaActionsCreator;

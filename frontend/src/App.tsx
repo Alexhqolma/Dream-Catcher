@@ -14,7 +14,6 @@ import {
 } from './mock/store/features/mock/mockSlice';
 import { Dream, DreamsStatus } from './types/Dream';
 
-import './App.scss';
 import {
   createDream,
   getDream,
@@ -23,8 +22,10 @@ import {
 // import { getUser, login, register } from './api/Node/users';
 import { Button } from './components/Button';
 import { registerUserNODE, SagaActions } from './store/sagas/actions';
-import { clientJava } from './api/Java/instanceJava';
+// import { clientJava } from './api/Java/instanceJava';
 import { authAPI } from './api/Node/users';
+
+import './App.scss';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -160,7 +161,7 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
-      {/* <div className='App__buttons_for_Node'>
+      <div className='App__buttons_for_Node'>
         <Button onClick={() => dispatch(registerUserNODE({
             email: 'app@test.app',
             password: '12345',
@@ -199,7 +200,7 @@ export const App: React.FC = () => {
         })}>
           get All Dreams
         </Button>
-      </div> */}
+      </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
       

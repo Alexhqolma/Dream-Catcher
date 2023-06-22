@@ -19,10 +19,10 @@ type FormValues = {
 };
 
 const initialValues = {
-  fullName: 'Mr. Jones',
-  email: 'app@test.app',
-  password: '123qweASD',
-  confirmPassword: '123qweASD',
+  fullName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 const validationSchema = Yup.object({
@@ -72,8 +72,8 @@ export const RegistrationForm: React.FC = () => {
   console.log('isSubmitted = ', isSubmitted);
 
   return (
-    <form className='regForm' onSubmit={formik.handleSubmit}>
-      <div className='regForm__wrapper'>
+    <form className='form' onSubmit={formik.handleSubmit}>
+      <div className='form__wrapper'>
         {message}
         {isSubmitted ? (
           <div className="regMessage">
@@ -82,13 +82,12 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="regForm__control">
-              <label htmlFor="fullName">
-                FullName
+            <div className="form__control">
                 <input
                   id="fullName"
                   name="fullName"
                   type="fullName"
+                  placeholder='Full Name'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.fullName}
@@ -96,16 +95,14 @@ export const RegistrationForm: React.FC = () => {
                 {formik.touched.fullName && formik.errors.fullName ? (
                   <div className="error">{formik.errors.fullName}</div>
                 ) : null}
-              </label>
             </div>
 
-            <div className="regForm__control">
-              <label htmlFor="email">
-                Email
+            <div className="form__control">
                 <input
                   id="email"
                   name="email"
                   type="email"
+                  placeholder='Email'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
@@ -113,16 +110,14 @@ export const RegistrationForm: React.FC = () => {
                 {formik.touched.email && formik.errors.email ? (
                   <div className="error">{formik.errors.email}</div>
                 ) : null}
-              </label>
             </div>
 
-            <div className="regForm__control">
-              <label htmlFor="password">
-                Password
+            <div className="form__control">
                 <input
                   id="password"
                   name="password"
                   type="password"
+                  placeholder='Password'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
@@ -130,16 +125,14 @@ export const RegistrationForm: React.FC = () => {
                 {formik.touched.password && formik.errors.password ? (
                   <div className="error">{formik.errors.password}</div>
                 ) : null}
-              </label>
             </div>
 
-            <div className="regForm__control">
-              <label htmlFor="confirmPassword">
-                Confirm Password
+            <div className="form__control">
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
                   type="password"
+                  placeholder='Confirm Password'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.confirmPassword}
@@ -147,7 +140,6 @@ export const RegistrationForm: React.FC = () => {
                 {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
                   <div className="error">{formik.errors.confirmPassword}</div>
                 ) : null}
-              </label>
             </div>
 
             <div className="buttonWrapper">

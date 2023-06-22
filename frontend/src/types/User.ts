@@ -37,3 +37,12 @@ export type ResponseGetUser = {
   userId: string;
 };
 export type ResponseGetUserWithError = { success: boolean; message: string; };
+
+export type RequestDeleteUser = {
+  token: string;
+};
+export type ResponseDeleteUser = {
+  success: boolean;
+  message: string;
+};
+export type ResponseDeleteUserWithError = { success: boolean; message: string; };

@@ -9,8 +9,8 @@ export interface UserState {
   fullName: string | null;
   token: string | null;
 
-  message: string | null;
-  isRegistrationSuccess: boolean;
+  responseMessage: string | null;
+  isResponseSuccess: boolean;
 
   statusLoading: RequestStatus;
   error: string | null;
@@ -23,8 +23,8 @@ const initialState: UserState = {
   fullName: null,
   token: null,
 
-  message: null,
-  isRegistrationSuccess: false,
+  responseMessage: null,
+  isResponseSuccess: false,
 
   statusLoading: RequestStatus.IDLE,
   error: null,
@@ -43,6 +43,9 @@ const userSlice = createSlice({
     setToken: (state: UserState, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
+    resetToken: (state: UserState) => {
+      state.token = initialState.token;
+    },
     setFullName: (state: UserState, action: PayloadAction<string>) => {
       state.fullName = action.payload;
     },
@@ -50,16 +53,16 @@ const userSlice = createSlice({
       state.storage = { ...state.storage, userId: action.payload };
     },
     setRegistrationSuccess: (state: UserState, action: PayloadAction<boolean>) => {
-      state.isRegistrationSuccess = action.payload;
+      state.isResponseSuccess = action.payload;
     },
     setMessage: (state: UserState, action: PayloadAction<string>) => {
-      state.message = action.payload;
+      state.responseMessage = action.payload;
     },
     resetRegistrationSuccess: (state: UserState) => {
-      state.isRegistrationSuccess = initialState.isRegistrationSuccess;
+      state.isResponseSuccess = initialState.isResponseSuccess;
     },
     resetMessage: (state: UserState) => {
-      state.message = initialState.message;
+      state.responseMessage = initialState.responseMessage;
     },
     setStatus: (
       state: UserState,
@@ -95,6 +98,7 @@ export const {
   resetRegistrationSuccess,
   resetMessage,
   resetError,
+  resetToken,
   resetState,
 } = userSlice.actions;
 
@@ -103,8 +107,8 @@ export const selectUser = (state: RootState) => state.user.storage;
 export const selectToken = (state: RootState) => state.user.token;
 export const selectFullName = (state: RootState) => state.user.fullName;
 
-export const selectMessage = (state: RootState) => state.user.message;
-export const selectRegistrationSuccess = (state: RootState) => state.user.isRegistrationSuccess;
+export const selectMessage = (state: RootState) => state.user.responseMessage;
+export const selectRegistrationSuccess = (state: RootState) => state.user.isResponseSuccess;
 
 export const selectUserStatusLoading
 = (state: RootState) => state.user.statusLoading;

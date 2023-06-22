@@ -1,53 +1,14 @@
-// import { useState } from 'react';
-// import { Button } from '../Button';
-// // import { useDispatch } from 'react-redux';
-// // import { getUser } from '../../store/features/user/userSlice';
-
-// export const LoginForm: React.FC = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   // const dispatch = useDispatch();
-
-//   const handleLogin = () => {
-//   //   dispatch(getUser({ username, password }));
-//   };
-
-//   return (
-//     <div className="login-popup">
-//       <h2>Login</h2>
-//       <input
-//         type="text"
-//         placeholder="Username"
-//         value={username}
-//         onChange={(e) => setUsername(e.target.value)}
-//       />
-//       <input
-//         type="password"
-//         placeholder="Password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//       />
-//       <Button onClick={handleLogin}>
-//         Log in
-//       </Button>
-//     </div>
-//   );
-// };
-
-
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginUserNODE } from '../../store/sagas/actions';
-
-import './LoginForm.scss';
-import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectMessage } from '../../store/features/user/userSlice';
+import './LoginForm.scss';
 
 type FormValues = {
   email: string;
@@ -61,12 +22,7 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required(),
-  password: Yup.string()
-    .matches(
-      /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
-      'Password should be at least 7 characters long, contain digit and uppercase letter'
-    )
-    .required()
+  password: Yup.string().required()
 });
 
 export const LoginForm: React.FC = () => {

@@ -41,7 +41,9 @@ export const client = {
     return response.data;
   },
 
-  async delete(url: string) {
-    return instanceNode.delete(url);
+  async delete<T>(path: string, params?: AxiosRequestConfig) {
+    const response = await instanceNode.delete<T>(path, params);
+
+    return response.data;
   },
 };

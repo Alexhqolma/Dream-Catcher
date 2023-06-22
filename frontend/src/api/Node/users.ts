@@ -1,12 +1,12 @@
 import { routesServer } from './routes';
 import { client } from './instance';
 
-import { AxiosResponse } from 'axios';
-import { RequestCreateUser, RequestLoginUser, ResponseGetUser, ResponseLoginUser } from '../../types/User';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { RequestCreateUser, RequestLoginUser, ResponseDeleteUser, ResponseGetUser, ResponseLoginUser } from '../../types/User';
 
 export const authAPI = {
   deleteUser(token: string) {
-    return client.get<AxiosResponse<ResponseGetUser>>(
+    return client.delete<AxiosResponse<ResponseDeleteUser>>(
       routesServer.user.deleteUser,
       {
         headers: {

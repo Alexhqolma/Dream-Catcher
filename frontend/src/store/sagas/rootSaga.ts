@@ -1,15 +1,18 @@
 import { all, call, spawn } from 'redux-saga/effects';
-import { watchUserSaga } from './user/watchUser.saga';
-import { watchDreamSaga } from './dream/watchDream.saga';
+import { watchUserSaga as watchUserSagaNode } from './nodeServer/user/watchUser.saga';
 import { getMockDataSaga } from './mock/getMockData.saga';
-import { getJavaData } from './javaServer/getDataFromJavaServerSaga';
+// import { getJavaData } from './javaServer/getDataFromJavaServerSaga';
+import { watchDreamSaga as watchDreamSagaNode } from './nodeServer/dream/watchDream.saga';
+import { watchUserSaga as watchUserSagaJava } from './javaServer/user/watchUser.saga';
 
 export default function* rootSaga() {
   const sagas = [
     getMockDataSaga,
     // getJavaData,
-    watchUserSaga,
-    watchDreamSaga,
+    watchUserSagaNode,
+    // watchDreamSagaNode,
+
+    watchUserSagaJava,
   ];
 
   const retrySagas: Generator[] = yield sagas.map(saga => {

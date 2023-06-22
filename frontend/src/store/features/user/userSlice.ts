@@ -8,6 +8,10 @@ export interface UserState {
   isAuth: boolean;
   fullName: string | null;
   token: string | null;
+
+  message: string | null;
+  isRegistrationSuccess: boolean;
+
   statusLoading: RequestStatus;
   error: string | null;
 }
@@ -18,6 +22,10 @@ const initialState: UserState = {
   isAuth: false,
   fullName: null,
   token: null,
+
+  message: null,
+  isRegistrationSuccess: false,
+
   statusLoading: RequestStatus.IDLE,
   error: null,
 };
@@ -40,6 +48,18 @@ const userSlice = createSlice({
     },
     setUserId: (state: UserState, action: PayloadAction<string>) => {
       state.storage = { ...state.storage, userId: action.payload };
+    },
+    setRegistrationSuccess: (state: UserState, action: PayloadAction<boolean>) => {
+      state.isRegistrationSuccess = action.payload;
+    },
+    setMessage: (state: UserState, action: PayloadAction<string>) => {
+      state.message = action.payload;
+    },
+    resetRegistrationSuccess: (state: UserState) => {
+      state.isRegistrationSuccess = initialState.isRegistrationSuccess;
+    },
+    resetMessage: (state: UserState) => {
+      state.message = initialState.message;
     },
     setStatus: (
       state: UserState,
@@ -70,6 +90,10 @@ export const {
   setStatus,
   setError,
   setUserId,
+  setRegistrationSuccess,
+  setMessage,
+  resetRegistrationSuccess,
+  resetMessage,
   resetError,
   resetState,
 } = userSlice.actions;
@@ -78,6 +102,9 @@ export const selectIsAuth = (state: RootState) => state.user.isAuth;
 export const selectUser = (state: RootState) => state.user.storage;
 export const selectToken = (state: RootState) => state.user.token;
 export const selectFullName = (state: RootState) => state.user.fullName;
+
+export const selectMessage = (state: RootState) => state.user.message;
+export const selectRegistrationSuccess = (state: RootState) => state.user.isRegistrationSuccess;
 
 export const selectUserStatusLoading
 = (state: RootState) => state.user.statusLoading;

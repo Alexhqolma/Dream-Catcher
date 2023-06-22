@@ -4,6 +4,8 @@ import {
   setToken,
   setStatus,
   resetError,
+  setMessage,
+  setRegistrationSuccess,
 } from '../../features/user/userSlice';
 import { authAPI } from '../../../api/Node/users';
 
@@ -30,9 +32,10 @@ export function* registrationSaga({ payload }: Props): Generator<unknown, any, R
       throw response;
     }
     
-    const { token } = response;
-
-    yield put(setToken(token));
+    const { message, success } = response;
+    
+    yield put(setMessage(message));
+    yield put(setRegistrationSuccess(success));
     yield put(resetError());
   } catch (error) {
     console.error('catch registrationSaga', error);

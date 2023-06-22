@@ -11,7 +11,7 @@ export type RequestCreateUser = {
   password: string;
   fullName: string;
 };
-export type ResponseCreateUser = { success: boolean; token: string; };
+export type ResponseCreateUser = { success: boolean; message: string; };
 export type ResponseCreateUserWithError = { success: boolean; message: string; };
 
 export type RequestLoginUser = {

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectUser } from '../../store/features/user/userSlice';
+import { resetMessage, resetRegistrationSuccess, selectMessage, selectRegistrationSuccess } from '../../store/features/user/userSlice';
 import { registerUserNODE } from '../../store/sagas/actions';
 
 import './RegistrationForm.scss';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../routes/routerConfig';
 
 type FormValues = {
   fullName: string;
@@ -39,20 +41,21 @@ const validationSchema = Yup.object({
 
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  // const navigate = useNavigate();
-  const user = useAppSelector(selectUser);
+  const isSubmitted = useAppSelector(selectRegistrationSuccess);
+  const message = useAppSelector(selectMessage);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setTimeout(() => {
-  //       redirect(`${routes.user.path.parent}/${user?.id}`);
-  //     }, 2000);
-  //   }
-  // }, [navigate, user]);
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        navigate(routes.login.path);
+        dispatch(resetMessage());
+        dispatch(resetRegistrationSuccess());
+      }, 2000);
+    }
+  }, [navigate, isSubmitted, message]);
 
   const onSubmit = (values: FormValues) => {
-    setIsSubmitted(true);
     dispatch(registerUserNODE({
       email: values.email,
       fullName: values.fullName, 
@@ -65,23 +68,27 @@ export const RegistrationForm: React.FC = () => {
     onSubmit,
     validationSchema
   });
+
+  console.log('isSubmitted = ', isSubmitted);
+
   return (
     <form className='regForm' onSubmit={formik.handleSubmit}>
       <div className='regForm__wrapper'>
+        {message}
         {isSubmitted ? (
           <div className="regMessage">
-            <div className="regTitle">Registration successful!</div>
+            <div className="regTitle">{message}</div>
             <TaskAltIcon />
           </div>
         ) : (
           <>
-              <div className="regForm__control">
-              <label htmlFor="name">
-                Name
+            <div className="regForm__control">
+              <label htmlFor="fullName">
+                FullName
                 <input
-                  id="name"
-                  name="name"
-                  type="name"
+                  id="fullName"
+                  name="fullName"
+                  type="fullName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.fullName}
@@ -91,7 +98,25 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
-              <div className="regForm__control">
+
+            <div className="regForm__control">
+              <label htmlFor="email">
+                Email
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="error">{formik.errors.email}</div>
+                ) : null}
+              </label>
+            </div>
+
+            <div className="regForm__control">
               <label htmlFor="password">
                 Password
                 <input
@@ -107,7 +132,8 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
-              <div className="regForm__control">
+
+            <div className="regForm__control">
               <label htmlFor="confirmPassword">
                 Confirm Password
                 <input
@@ -123,6 +149,7 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
+
             <div className="buttonWrapper">
               <button type="button" onClick={() => window.history.go(-1)}>
                 Back
@@ -139,3 +166,5 @@ export const RegistrationForm: React.FC = () => {
     </form>
   );
 };
+
+  

@@ -1,4 +1,4 @@
-import { ResponseLoginUser, ResponseLoginUserWithError } from '../../../api/Node/users';
+import { ResponseLoginUser, ResponseLoginUserWithError } from '../../../api/Node/typesNodeServer';
 import { AxiosError, AxiosResponse } from 'axios';
 
 import {
@@ -10,7 +10,8 @@ import {
   login,
   setUserId,
 } from '../../features/user/userSlice';
-import { RequestLoginUser, authAPI } from '../../../api/Node/users';
+import { authAPI } from '../../../api/Node/users';
+import { RequestLoginUser } from '../../../api/Node/typesNodeServer';
 import { SagaActions } from '../actions';
 import { call, put } from 'redux-saga/effects';
 import { Error } from '../../../types/Error';

@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/features/user/userSlice';
-import { registerUser } from '../../store/sagas/actions';
+import { registerUserNODE } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 
 import './RegistrationForm.scss';
@@ -52,7 +52,7 @@ export const RegistrationForm: React.FC = () => {
 
   const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);
-    dispatch(registerUser({ name: values.name, password: values.password }));
+    dispatch(registerUserNODE({ name: values.name, password: values.password }));
   };
 
   const formik = useFormik({

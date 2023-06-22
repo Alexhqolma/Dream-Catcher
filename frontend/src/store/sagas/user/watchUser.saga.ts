@@ -5,7 +5,7 @@ import { getUserSaga } from './getUser.saga';
 import { loginUserSaga } from './loginUser.saga';
 
 export function* watchUserSaga() {
-  yield takeEvery(SagaActions.REGISTER_USER, registrationSaga);
-  yield takeEvery(SagaActions.LOGIN_USER, loginUserSaga);
-  yield takeEvery(SagaActions.FETCH_USER, getUserSaga);
+  yield takeEvery(SagaActions.REGISTER_USER_NODE, registrationSaga);
+  yield takeEvery(SagaActions.LOGIN_USER_NODE, loginUserSaga);
+  yield takeEvery(SagaActions.FETCH_USER_NODE, getUserSaga);
 }

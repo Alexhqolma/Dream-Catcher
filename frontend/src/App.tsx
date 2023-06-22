@@ -22,7 +22,7 @@ import {
 } from './api/Node/dreams';
 // import { getUser, login, register } from './api/Node/users';
 import { Button } from './components/Button';
-import { registerUser, SagaActions } from './store/sagas/actions';
+import { registerUserNODE, SagaActions } from './store/sagas/actions';
 import { clientJava } from './api/Java/instanceJava';
 import { authAPI } from './api/Node/users';
 
@@ -161,7 +161,7 @@ export const App: React.FC = () => {
   return (
     <div className='App'>
       <div className='App__buttons_for_Node'>
-        <Button onClick={() => dispatch(registerUser({
+        <Button onClick={() => dispatch(registerUserNODE({
             email: 'app@test.app',
             password: '12345',
             fullName: 'App test user',
@@ -170,7 +170,7 @@ export const App: React.FC = () => {
         </Button>
 
         <Button onClick={() => dispatch({ 
-          type: SagaActions.LOGIN_USER,
+          type: SagaActions.LOGIN_USER_NODE,
           payload: {
             password: '12345',
             email: 'app@test.app',
@@ -181,7 +181,7 @@ export const App: React.FC = () => {
         </Button>
 
         <Button onClick={() => dispatch({ 
-          type: SagaActions.FETCH_USER,
+          type: SagaActions.FETCH_USER_NODE,
           payload: token,
         })}>
           get User

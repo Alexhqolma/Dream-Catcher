@@ -4,9 +4,9 @@ import { User, UserLogin } from './../../types/User';
 export enum SagaActions {
   FETCH_MOCK_DATA = 'saga/FETCH_MOCK_DATA',
 
-  REGISTER_USER = 'saga/REGISTER_USER',
-  LOGIN_USER = 'saga/LOGIN_USER',
-  FETCH_USER = 'saga/FETCH_USER',
+  REGISTER_USER_NODE = 'saga/REGISTER_USER_NODE',
+  LOGIN_USER_NODE = 'saga/LOGIN_USER_NODE',
+  FETCH_USER_NODE = 'saga/FETCH_USER_NODE',
 
   FETCH_ALL_DREAMS = 'saga/FETCH_ALL_DREAMS',
 }
@@ -14,16 +14,16 @@ export enum SagaActions {
 const sagaActionsCreator = {
   loadMockUsers: () => ({ type: SagaActions.FETCH_MOCK_DATA }),
 
-  registerUser: (user: Omit<User, 'userId'>) => ({ 
-    type: SagaActions.REGISTER_USER, 
+  registerUserNODE: (user: Omit<User, 'userId'>) => ({ 
+    type: SagaActions.REGISTER_USER_NODE, 
     payload: user,
   }),
-  loginUser: (userLogin: UserLogin) => ({ 
-    type: SagaActions.LOGIN_USER, 
+  loginUserNODE: (userLogin: UserLogin) => ({ 
+    type: SagaActions.LOGIN_USER_NODE, 
     payload: userLogin,
   }),
-  loadUser: (token: string) => ({ 
-    type: SagaActions.FETCH_USER,
+  loadUserNODE: (token: string) => ({ 
+    type: SagaActions.FETCH_USER_NODE,
     payload: token,
   }),
 
@@ -31,9 +31,9 @@ const sagaActionsCreator = {
 };
 
 export const {
-  registerUser,
-  loginUser,
-  loadUser,
+  registerUserNODE,
+  loginUserNODE,
+  loadUserNODE,
 
   loadDreams,
   loadMockUsers,

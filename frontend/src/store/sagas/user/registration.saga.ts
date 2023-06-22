@@ -5,7 +5,8 @@ import {
   setStatus,
   resetError,
 } from '../../features/user/userSlice';
-import { ResponseCreateUser, ResponseCreateUserWithError, authAPI } from '../../../api/Node/users';
+import { authAPI } from '../../../api/Node/users';
+import { ResponseCreateUser, ResponseCreateUserWithError } from '../../../api/Node/typesNodeServer';
 import { UserCreate } from '../../../types/User';
 import { AxiosError } from 'axios';
 import { Error } from '../../../types/Error';

@@ -10,7 +10,8 @@ import {
   setUserId,
   login,
 } from '../../features/user/userSlice';
-import { ResponseGetUser, ResponseGetUserWithError, authAPI } from '../../../api/Node/users';
+import { authAPI } from '../../../api/Node/users';
+import { ResponseGetUser, ResponseGetUserWithError } from '../../../api/Node/typesNodeServer';
 import { SagaActions } from '../actions';
 import { RequestStatus } from '../../../types/RequestStatus';
 import { Error } from '../../../types/Error';

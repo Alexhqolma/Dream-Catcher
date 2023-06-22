@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
@@ -7,24 +6,26 @@ import * as Yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/features/user/userSlice';
 import { registerUserNODE } from '../../store/sagas/actions';
-import { routes } from '../../routes/routerConfig';
 
 import './RegistrationForm.scss';
 
 type FormValues = {
-  name: string;
+  fullName: string;
+  email: string;
   password: string;
   confirmPassword: string;
 };
 
 const initialValues = {
-  name: 'Mr. Jones',
+  fullName: 'Mr. Jones',
+  email: 'app@test.app',
   password: '123qweASD',
   confirmPassword: '123qweASD',
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().min(2).required(),
+  fullName: Yup.string().min(2).required(),
+  email: Yup.string().min(2).required(),
   password: Yup.string()
     .matches(
       /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
@@ -52,7 +53,11 @@ export const RegistrationForm: React.FC = () => {
 
   const onSubmit = (values: FormValues) => {
     setIsSubmitted(true);
-    dispatch(registerUserNODE({ name: values.name, password: values.password }));
+    dispatch(registerUserNODE({
+      email: values.email,
+      fullName: values.fullName, 
+      password: values.password,
+    }));
   };
 
   const formik = useFormik({

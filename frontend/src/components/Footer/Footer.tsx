@@ -5,7 +5,7 @@ import { Button, Target } from "../Button";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
-import { LoginPopup } from "../LoginPopup"
+// import { LoginPopup } from "../LoginPopup"
 
 import "./Footer.scss";
 

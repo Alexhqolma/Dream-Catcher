@@ -1,64 +1,92 @@
+// import { useState } from 'react';
+// import { Button } from '../Button';
+// // import { useDispatch } from 'react-redux';
+// // import { getUser } from '../../store/features/user/userSlice';
+
+// export const LoginForm: React.FC = () => {
+//   const [username, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+
+//   // const dispatch = useDispatch();
+
+//   const handleLogin = () => {
+//   //   dispatch(getUser({ username, password }));
+//   };
+
+//   return (
+//     <div className="login-popup">
+//       <h2>Login</h2>
+//       <input
+//         type="text"
+//         placeholder="Username"
+//         value={username}
+//         onChange={(e) => setUsername(e.target.value)}
+//       />
+//       <input
+//         type="password"
+//         placeholder="Password"
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//       />
+//       <Button onClick={handleLogin}>
+//         Log in
+//       </Button>
+//     </div>
+//   );
+// };
+
+
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { resetMessage, resetRegistrationSuccess, selectMessage, selectRegistrationSuccess } from '../../store/features/user/userSlice';
-import { registerUserNODE } from '../../store/sagas/actions';
+import { loginUserNODE } from '../../store/sagas/actions';
 
-import './RegistrationForm.scss';
+import './LoginForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
+import { resetMessage, selectMessage } from '../../store/features/user/userSlice';
 
 type FormValues = {
-  fullName: string;
   email: string;
   password: string;
-  confirmPassword: string;
 };
 
 const initialValues = {
-  fullName: 'Mr. Jones',
   email: 'app@test.app',
   password: '123qweASD',
-  confirmPassword: '123qweASD',
 };
 
 const validationSchema = Yup.object({
-  fullName: Yup.string().min(2).required(),
   email: Yup.string().email().required(),
   password: Yup.string()
     .matches(
       /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
       'Password should be at least 7 characters long, contain digit and uppercase letter'
     )
-    .required(),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), ''], 'Passwords do not match')
     .required()
 });
 
-export const RegistrationForm: React.FC = () => {
+export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const isSubmitted = useAppSelector(selectRegistrationSuccess);
   const message = useAppSelector(selectMessage);
   const navigate = useNavigate();
+  const isSubmitted = message === 'User logged in successfully';
 
   useEffect(() => {
     if (isSubmitted) {
       setTimeout(() => {
         navigate(routes.login.path);
         dispatch(resetMessage());
-        dispatch(resetRegistrationSuccess());
       }, 2000);
     }
   }, [navigate, isSubmitted, message]);
 
   const onSubmit = (values: FormValues) => {
-    dispatch(registerUserNODE({
+    dispatch(loginUserNODE({
       email: values.email,
-      fullName: values.fullName, 
       password: values.password,
     }));
   };
@@ -82,23 +110,6 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="regForm__control">
-              <label htmlFor="fullName">
-                FullName
-                <input
-                  id="fullName"
-                  name="fullName"
-                  type="fullName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.fullName}
-                />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <div className="error">{formik.errors.fullName}</div>
-                ) : null}
-              </label>
-            </div>
-
             <div className="regForm__control">
               <label htmlFor="email">
                 Email
@@ -132,24 +143,6 @@ export const RegistrationForm: React.FC = () => {
                 ) : null}
               </label>
             </div>
-
-            <div className="regForm__control">
-              <label htmlFor="confirmPassword">
-                Confirm Password
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.confirmPassword}
-                />
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <div className="error">{formik.errors.confirmPassword}</div>
-                ) : null}
-              </label>
-            </div>
-
             <div className="buttonWrapper">
               <button type="button" onClick={() => window.history.go(-1)}>
                 Back
@@ -167,4 +160,3 @@ export const RegistrationForm: React.FC = () => {
   );
 };
 
-  

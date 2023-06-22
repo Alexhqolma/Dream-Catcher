@@ -9,10 +9,14 @@
   background-color: $white;
   padding: 1rem 2rem 1rem 5rem;
   box-sizing: border-box;
+  
 
     &__logo {
-      margin: 0 auto;
-      width: 6rem;
+      position: absolute;
+      top: 1rem;
+      height: 6rem;
+      padding: 0;
+      margin: 0;
     }
 
   &__menu {
@@ -68,20 +72,20 @@
   }
 }
 
-.login-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// .login-popup-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
 
-.login-popup-container {
-  background-color: $white;
-  padding: 20px;
-  border-radius: 4px;
-}
+// .login-popup-container {
+//   background-color: $white;
+//   padding: 20px;
+//   border-radius: 4px;
+// }

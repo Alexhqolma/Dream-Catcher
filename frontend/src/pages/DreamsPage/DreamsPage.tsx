@@ -4,7 +4,7 @@ import './DreamsPage.scss';
 
 const DreamsPage: React.FC = () => {
   return (
-    <main className="DreamsPage">
+    <main className="DreamsPage container">
       <h1 className="DreamsPage__title title">Dreams</h1>
       
       <DreamsContainer />

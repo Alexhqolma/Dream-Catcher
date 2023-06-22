@@ -5,7 +5,7 @@ import './LoginPage.scss';
 
 const LoginPage: React.FC = () => {
   return (
-    <main className="LoginPage">
+    <main className="LoginPage container">
       <h1 className='LoginPage__title title'>LoginPage</h1>
       <LoginForm />
     </main>

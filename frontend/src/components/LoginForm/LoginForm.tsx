@@ -5,19 +5,15 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { loginUserNODE } from '../../store/sagas/actions';
+import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
-import { resetMessage, selectMessage } from '../../store/features/user/userSlice';
+import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import './LoginForm.scss';
+import { RequestLoginUser } from '../../types/User';
 
-type FormValues = {
-  email: string;
-  password: string;
-};
-
-const initialValues = {
+const initialValues: RequestLoginUser = {
   email: 'app@test.app',
-  password: '123qweASD',
+  password: '12345',
 };
 
 const validationSchema = Yup.object({
@@ -29,23 +25,23 @@ export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const message = useAppSelector(selectMessage);
   const navigate = useNavigate();
-  const isSubmitted = message === 'User logged in successfully';
+  const isAuth = useAppSelector(selectIsAuth);
 
   useEffect(() => {
-    if (isSubmitted) {
+    if (isAuth) {
       setTimeout(() => {
         navigate(routes.login.path);
         dispatch(resetMessage());
       }, 2000);
     }
-  }, [navigate, isSubmitted, message]);
+  }, [navigate, isAuth, message]);
 
-  const onSubmit = (values: FormValues) => {
-    dispatch(loginUserNODE({
-      email: values.email,
-      password: values.password,
-    }));
-  };
+  const onSubmit = (values: RequestLoginUser) => {
+     dispatch({
+      type: SagaActions.LOGIN_USER_NODE,
+       payload: values,
+    })
+  }
 
   const formik = useFormik({
     initialValues,
@@ -53,13 +49,11 @@ export const LoginForm: React.FC = () => {
     validationSchema
   });
 
-  console.log('isSubmitted = ', isSubmitted);
-
   return (
     <form className='regForm' onSubmit={formik.handleSubmit}>
       <div className='regForm__wrapper'>
         {message}
-        {isSubmitted ? (
+        {isAuth ? (
           <div className="regMessage">
             <div className="regTitle">{message}</div>
             <TaskAltIcon />
@@ -106,7 +100,7 @@ export const LoginForm: React.FC = () => {
               <button
                 type="submit"
               >
-                Submit
+                Login
               </button>
             </div>
           </>

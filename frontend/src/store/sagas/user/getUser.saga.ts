@@ -11,10 +11,11 @@ import {
   login,
 } from '../../features/user/userSlice';
 import { authAPI } from '../../../api/Node/users';
-import { ResponseGetUser, ResponseGetUserWithError } from '../../../api/Node/typesNodeServer';
+
 import { SagaActions } from '../actions';
 import { RequestStatus } from '../../../types/RequestStatus';
 import { Error } from '../../../types/Error';
+import { ResponseGetUser, ResponseGetUserWithError } from '../../../types/User';
 
 interface Props {
   type: SagaActions;
@@ -28,7 +29,7 @@ export function* getUserSaga({ payload }: Props): Generator<unknown, any, Respon
   
   try {
     const response = yield call(authAPI.getUser, payload);
-    const { success, token, fullName, _id: userId } = response;
+    const { success, token, fullName, userId } = response;
 
     if (!success) {
       throw response;

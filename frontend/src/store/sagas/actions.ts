@@ -1,4 +1,4 @@
-import { User, UserLogin } from './../../types/User';
+import { RequestLoginUser, RequestCreateUser } from './../../types/User';
 
 // create saga actions ONLY
 export enum SagaActions {
@@ -14,11 +14,11 @@ export enum SagaActions {
 const sagaActionsCreator = {
   loadMockUsers: () => ({ type: SagaActions.FETCH_MOCK_DATA }),
 
-  registerUserNODE: (user: Omit<User, 'userId'>) => ({ 
+  registerUserNODE: (user: RequestCreateUser) => ({ 
     type: SagaActions.REGISTER_USER_NODE, 
     payload: user,
   }),
-  loginUserNODE: (userLogin: UserLogin) => ({ 
+  loginUserNODE: (userLogin: RequestLoginUser) => ({ 
     type: SagaActions.LOGIN_USER_NODE, 
     payload: userLogin,
   }),

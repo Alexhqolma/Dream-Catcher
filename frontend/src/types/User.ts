@@ -6,17 +6,34 @@ export interface User {
   avatarUrl?: string;
 }
 
-export interface UserCreate {
+export type RequestCreateUser = {
   email: string;
   password: string;
   fullName: string;
-}
+};
+export type ResponseCreateUser = { success: boolean; token: string; };
+export type ResponseCreateUserWithError = { success: boolean; message: string; };
 
-export interface UserLogin {
+export type RequestLoginUser = {
   email: string;
   password: string;
-}
-
-export interface UserGet {
+};
+export type ResponseLoginUser = {
+  success: boolean;
+  fullName: string;
   token: string;
-}
+  userId: string;
+};
+export type ResponseLoginUserWithError = { success: boolean; message: string; };
+
+export type RequestGetUser = {
+  token: string;
+};
+export type ResponseGetUser = {
+  success: boolean;
+  email: string;
+  fullName: string;
+  token: string;
+  userId: string;
+};
+export type ResponseGetUserWithError = { success: boolean; message: string; };

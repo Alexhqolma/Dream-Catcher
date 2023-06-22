@@ -1,8 +1,8 @@
 import { routesServer } from './routes';
 import { client } from './instance';
-import { UserCreate, UserLogin } from '../../types/User';
+
 import { AxiosResponse } from 'axios';
-import { ResponseGetUser, RequestLoginUser, ResponseLoginUser, RequestCreateUser } from './typesNodeServer';
+import { RequestCreateUser, RequestLoginUser, ResponseGetUser, ResponseLoginUser } from '../../types/User';
 
 export const authAPI = {
   getUser(token: string) {
@@ -16,14 +16,14 @@ export const authAPI = {
     );
   },
 
-  login(data: UserLogin) {
+  login(data: RequestLoginUser) {
     return client.post<RequestLoginUser, AxiosResponse<ResponseLoginUser>>(
       routesServer.user.login, 
       data,
     );
   },
 
-  register(data: UserCreate) {
+  register(data: RequestCreateUser) {
     return client.post<
       RequestCreateUser,
       AxiosResponse<ResponseLoginUser>

@@ -1,4 +1,3 @@
-import { ResponseLoginUser, ResponseLoginUserWithError } from '../../../api/Node/typesNodeServer';
 import { AxiosError, AxiosResponse } from 'axios';
 
 import {
@@ -11,11 +10,11 @@ import {
   setUserId,
 } from '../../features/user/userSlice';
 import { authAPI } from '../../../api/Node/users';
-import { RequestLoginUser } from '../../../api/Node/typesNodeServer';
 import { SagaActions } from '../actions';
 import { call, put } from 'redux-saga/effects';
 import { Error } from '../../../types/Error';
 import { RequestStatus } from '../../../types/RequestStatus';
+import { RequestLoginUser, ResponseLoginUser, ResponseLoginUserWithError } from '../../../types/User';
 
 interface Props {
   type: SagaActions;
@@ -30,13 +29,13 @@ export function* loginUserSaga({ payload }: Props): Generator<unknown, any, Resp
   try {
     const response = yield call(authAPI.login, payload);
 
-    console.log('loginUserSaga response', response as AxiosResponse<ResponseLoginUser, unknown> | unknown);
+    console.log('loginUserSaga response', response);
 
     const {
       token,
       fullName,
       // email,
-      _id: userId,
+      userId,
     } = response;
 
     yield put(setToken(token));
@@ -56,5 +55,3 @@ export function* loginUserSaga({ payload }: Props): Generator<unknown, any, Resp
     yield put(setStatus(RequestStatus.IDLE));
   }
 }
-
-

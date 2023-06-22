@@ -160,45 +160,47 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <Button onClick={() => dispatch(registerUser({
-          email: 'app@test.app',
-          password: '12345',
-          fullName: 'App test user',
-        }))}>
-        register
-      </Button>
+      <div className='App__buttons_for_Node'>
+        <Button onClick={() => dispatch(registerUser({
+            email: 'app@test.app',
+            password: '12345',
+            fullName: 'App test user',
+          }))}>
+          register
+        </Button>
 
-      <Button onClick={() => dispatch({ 
-        type: SagaActions.LOGIN_USER,
-        payload: {
-          password: '12345',
-          email: 'app@test.app',
-          // fullName: 'App test user',
-        },
-       })}>
-        login User
-      </Button>
+        <Button onClick={() => dispatch({ 
+          type: SagaActions.LOGIN_USER,
+          payload: {
+            password: '12345',
+            email: 'app@test.app',
+            // fullName: 'App test user',
+          },
+        })}>
+          login User
+        </Button>
 
-      <Button onClick={() => dispatch({ 
-        type: SagaActions.FETCH_USER,
-        payload: token,
-       })}>
-        get User
-      </Button>
+        <Button onClick={() => dispatch({ 
+          type: SagaActions.FETCH_USER,
+          payload: token,
+        })}>
+          get User
+        </Button>
 
-      <Button onClick={() => dispatch({ 
-        type: SagaActions.FETCH_ALL_DREAMS,
-       })}>
-        get All Dreams
-      </Button>
-
+        <Button onClick={() => dispatch({ 
+          type: SagaActions.FETCH_ALL_DREAMS,
+        })}>
+          get All Dreams
+        </Button>
+      </div>
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
-
-
       <Header />
 
       <Layout />
+
+
       <Footer />
+
     </div>
   );
 }

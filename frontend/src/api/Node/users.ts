@@ -1,42 +1,35 @@
 import { routesServer } from './routes';
-import { client, instanceNode } from './instance';
-import { UserCreate, UserLogin } from '../../types/User';
+import { client } from './instance';
+import { UserCreate, UserGet, UserLogin } from '../../types/User';
 import { AxiosResponse } from 'axios';
 
-// export const register = (data: UserCreate) => client.post(
-//   routesServer.user.register, 
-//   data,
-// );
-
-// export const login = (data: UserLogin) => client.post(
-//   routesServer.user.login, 
-//   data,
-// );
-
-// export const getUser = (token: string) => client.get(
-//   routesServer.user.getUser,
-//   {
-//     headers: {
-//       'Authorization': `Bearer ${token}`,
-//     },
-//   }
-// );
+export type RequestGetUser = UserGet;
+export type ResponseGetUser = {
+  success: boolean;
+  email: string;
+  fullName: string;
+  token: string;
+  _id: string;
+};
+export type ResponseGetUserWithError = { success: boolean; message: string; };
 
 export type RequestLoginUser = UserLogin;
 export type ResponseLoginUser = {
   success: boolean;
+  fullName: string;
   token: string;
-}
+  _id: string;
+};
+export type ResponseLoginUserWithError = { success: boolean; message: string; };
+
 
 export type RequestCreateUser = UserCreate;
-export type ResponseCreateUser = {
-  success: boolean;
-  token: string;
-}
+export type ResponseCreateUser = { success: boolean; token: string; };
+export type ResponseCreateUserWithError = { success: boolean; message: string; };
 
 export const authAPI = {
   getUser(token: string) {
-    return client.get<AxiosResponse<ResponseLoginUser>>(
+    return client.get<AxiosResponse<ResponseGetUser>>(
       routesServer.user.getUser,
       {
         headers: {
@@ -54,7 +47,10 @@ export const authAPI = {
   },
 
   register(data: UserCreate) {
-    return client.post<RequestCreateUser, AxiosResponse<ResponseLoginUser>>(
+    return client.post<
+      RequestCreateUser,
+      AxiosResponse<ResponseLoginUser>
+    >(
       routesServer.user.register, 
       data,
     );

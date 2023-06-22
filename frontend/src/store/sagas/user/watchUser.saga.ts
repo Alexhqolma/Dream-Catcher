@@ -1,8 +1,8 @@
 import { takeEvery } from 'redux-saga/effects';
 import { SagaActions } from '../actions';
-import { registrationSaga } from './registrationSaga';
-import { getUserSaga } from './getUserSaga';
-import { loginUserSaga } from './loginUserSaga';
+import { registrationSaga } from './registration.saga';
+import { getUserSaga } from './getUser.saga';
+import { loginUserSaga } from './loginUser.saga';
 
 export function* watchUserSaga() {
   yield takeEvery(SagaActions.REGISTER_USER, registrationSaga);

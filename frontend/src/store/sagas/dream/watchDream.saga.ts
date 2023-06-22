@@ -1,6 +1,6 @@
 import { takeEvery } from 'redux-saga/effects';
 import { SagaActions } from '../actions';
-import { getAllDreamsSaga } from './getAllDreamsSaga';
+import { getAllDreamsSaga } from './getAllDreams.saga';
 
 export function* watchDreamSaga() {
   yield takeEvery(SagaActions.FETCH_ALL_DREAMS, getAllDreamsSaga);

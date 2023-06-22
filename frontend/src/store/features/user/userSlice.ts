@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../..';
+import { RequestStatus } from '../../../types/RequestStatus';
 
 export interface UserState {
   storage: { userId: string } |null;
@@ -7,7 +8,7 @@ export interface UserState {
   isAuth: boolean;
   fullName: string | null;
   token: string | null;
-  statusLoading: 'idle' | 'loading' | 'failed';
+  statusLoading: RequestStatus;
   error: string | null;
 }
 
@@ -17,7 +18,7 @@ const initialState: UserState = {
   isAuth: false,
   fullName: null,
   token: null,
-  statusLoading: 'idle',
+  statusLoading: RequestStatus.IDLE,
   error: null,
 };
 
@@ -42,18 +43,17 @@ const userSlice = createSlice({
     },
     setStatus: (
       state: UserState,
-      action: PayloadAction<'idle' | 'loading' | 'failed'>,
+      action: PayloadAction<RequestStatus>,
     ) => {
       state.statusLoading = action.payload;
     },
     setError: (state: UserState, action: PayloadAction<string>) => {
-      console.log('serError ', action.payload);
       state.error = action.payload;
-      state.statusLoading = 'idle';
+      state.statusLoading = RequestStatus.FAILED;
     },
     resetError: (state: UserState) => {
       state.error = null;
-      state.statusLoading = 'idle';
+      state.statusLoading = RequestStatus.IDLE;
     },
     resetState: () => {
       return initialState;

@@ -1,7 +1,7 @@
 import { routesServer } from './routes';
 import { client } from './instance';
 
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { RequestCreateUser, RequestLoginUser, ResponseDeleteUser, ResponseGetUser, ResponseLoginUser } from '../../types/User';
 
 export const authAPI = {

@@ -9,8 +9,8 @@ export default function* rootSaga() {
   const sagas = [
     // getMockDataSaga,
     // getJavaData,
-    // watchUserSagaNode,
-    // watchDreamSagaNode,
+    watchUserSagaNode,
+    watchDreamSagaNode,
 
     watchUserSagaJava,
   ];

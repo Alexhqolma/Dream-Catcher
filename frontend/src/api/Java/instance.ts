@@ -43,8 +43,8 @@ export const client = {
 
   async delete<TRequest, TResponse>(
     path: string,
-    payload: TRequest,
+    config?: AxiosRequestConfig,
     ) {
-    return instanceJava.delete<TResponse>(path, payload);
+    return instanceJava.delete<TResponse>(path, config);
   },
 };

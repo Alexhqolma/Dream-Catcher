@@ -10,7 +10,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border: 1px solid red;
 
   & :hover {
     color: $lightPrimary;
@@ -22,11 +21,11 @@
 }
 
 .custom-button--regular.custom-button {
-  border: 10px solid green;
   background-color: $lightSecondary;
-  // border: 0;
+  border: 0;
   color: $white;
   font-weight: $font_weight_normal;
   padding: 0 $space_s;
   font-size: $font_size_14;
+  border: 10px solid green;
 }

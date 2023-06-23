@@ -56,8 +56,8 @@ export const LoginForm: React.FC = () => {
       <div className='form__wrapper'>
         {message}
         {isAuth ? (
-          <div className="regMessage">
-            <div className="regTitle">{message}</div>
+          <div className="form__regMessage">
+            <div className="form__regTitle">{message}</div>
             <TaskAltIcon />
           </div>
         ) : (
@@ -73,7 +73,7 @@ export const LoginForm: React.FC = () => {
                 value={formik.values.email}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="error">{formik.errors.email}</div>
+                  <div className="form__control--error">{formik.errors.email}</div>
               ) : null}
             </div>
 
@@ -88,11 +88,11 @@ export const LoginForm: React.FC = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="error">{formik.errors.password}</div>
+                  <div className="form__control--error">{formik.errors.password}</div>
               ) : null}
             </div>
-            <div className="buttonWrapper">
-              <CustomButton onClick={() => window.history.go(-1)}>Back</CustomButton>
+              <div className="form__buttonWrapper">
+              <CustomButton title='Back' onClick={() => window.history.go(-1)} />
               <CustomButton title='Login' type={ButtonType.SUBMIT} />
             </div>
           </>

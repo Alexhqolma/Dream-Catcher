@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
       <h1 className='title'>LoginPage</h1>
       <LoginForm />
       <p className='LoginPage__registrationLink'>
-        Don't have an account? 
+        Don't have an account?&nbsp;&nbsp;&nbsp; 
         <CustomButton to={registration.path} className="link">
           Sign up
         </CustomButton>

@@ -78,8 +78,8 @@ export const RegistrationForm: React.FC = () => {
       <div className='form__wrapper'>
         {message}
         {isSubmitted ? (
-          <div className="regMessage">
-            <div className="regTitle">{message}</div>
+          <div className="form__regMessage">
+            <div className="form__regTitle">{message}</div>
             <TaskAltIcon />
           </div>
         ) : (
@@ -95,7 +95,7 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.fullName}
               />
               {formik.touched.fullName && formik.errors.fullName ? (
-                <div className="error">{formik.errors.fullName}</div>
+                <div className="form__control--error">{formik.errors.fullName}</div>
               ) : null}
             </div>
 
@@ -110,7 +110,7 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.email}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="error">{formik.errors.email}</div>
+                <div className="form__control--error">{formik.errors.email}</div>
               ) : null}
             </div>
 
@@ -125,7 +125,7 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="error">{formik.errors.password}</div>
+                <div className="form__control--error">{formik.errors.password}</div>
               ) : null}
             </div>
 
@@ -143,11 +143,11 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.confirmPassword}
               />
               {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                <div className="error">{formik.errors.confirmPassword}</div>
+                <div className="form__control--error">{formik.errors.confirmPassword}</div>
               ) : null}
             </div>
 
-            <div className="buttonWrapper">
+            <div className="form__buttonWrapper">
               <CustomButton 
                 type={ButtonType.BUTTON} 
                 onClick={() => window.history.go(-1)}

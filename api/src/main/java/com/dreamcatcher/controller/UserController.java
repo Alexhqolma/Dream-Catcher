@@ -1,14 +1,12 @@
 package com.dreamcatcher.controller;
 
 import com.dreamcatcher.dto.mapper.UserMapper;
-import com.dreamcatcher.dto.request.UserRequestDto;
 import com.dreamcatcher.dto.response.UserResponseDto;
-import com.dreamcatcher.model.User;
 import com.dreamcatcher.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,13 +15,6 @@ import java.util.stream.Collectors;
 public class UserController {
     private final UserMapper userMapper;
     private final UserService userService;
-
-    @Tag(name = "Registration", description = "post user for registration")
-    @PostMapping("/registration")
-    public UserResponseDto registration(@Valid @RequestBody UserRequestDto userRequestDto) {
-        User user = userMapper.toModel(userRequestDto);
-        return userMapper.toDto(userService.create(user));
-    }
 
     @Tag(name = "Users", description = "Get all users from db")
     @GetMapping("/users")

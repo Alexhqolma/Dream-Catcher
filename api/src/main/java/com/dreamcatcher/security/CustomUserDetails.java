@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {
-    private String fullName;
     private String email;
     private String password;
+    private String fullName;
     private List<GrantedAuthority> authorities;
 
     public CustomUserDetails(User user) {
-        fullName = user.getFullName();
         email = user.getEmail();
         password = user.getPassword();
         authorities = Arrays.stream(user.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+        fullName = user.getFullName();
     }
 
     @Override
@@ -37,6 +37,10 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
+        return email;
+    }
+
+    public String getFullName() {
         return fullName;
     }
 

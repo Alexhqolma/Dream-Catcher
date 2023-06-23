@@ -1,30 +1,29 @@
 package com.dreamcatcher.config;
 
-import com.dreamcatcher.exception.DreamCatcherException;
-import com.dreamcatcher.security.CustomUserDetailsService;
+import com.dreamcatcher.security.jwt.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
+
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,16 +31,19 @@ public class WebSecurityConfig {
                 .csrf().disable().cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/inject", "/registration", "/swagger-ui").permitAll()
-                //.requestMatchers("/**").permitAll()
+                //.requestMatchers("/", "/inject", "/swagger-ui").permitAll()
+                .requestMatchers("/**").permitAll()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("users/**", "/dreams/**", "/messages/**")
-                .authenticated()
+                //.requestMatchers("users/**", "/dreams/**", "/messages/**")
+                //.authenticated()
                 .and()
-                .formLogin()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
@@ -63,34 +65,7 @@ public class WebSecurityConfig {
             "/v3/api-docs/**",
             "/v3/api-docs.yaml",
             "swagger-ui/**",
-            "swagger-ui.html"
+            "swagger-ui.html",
+            "/auth/**"
     };
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider =
-                new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
-        try {
-            return config.getAuthenticationManager();
-        } catch (Exception e) {
-            throw new DreamCatcherException("Authentication Manager error");
-        }
-    }
 }

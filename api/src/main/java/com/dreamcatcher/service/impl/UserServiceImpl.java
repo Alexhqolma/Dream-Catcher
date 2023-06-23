@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.naming.AuthenticationException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,5 +34,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User login(String userEmail, String password) throws AuthenticationException {
+        Optional<User> user = userRepository.findByEmail(userEmail);
+        String encodedPassword = passwordEncoder.encode(password);
+        if (user.isEmpty() || user.get().getPassword().equals(encodedPassword)) {
+            throw new AuthenticationException("Incorrect username or password!!!");
+        }
+        return user.orElseThrow(() -> new RuntimeException("Can't find user with user email " + userEmail));
     }
 }

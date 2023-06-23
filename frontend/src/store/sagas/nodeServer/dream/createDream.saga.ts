@@ -1,27 +1,23 @@
 import { AxiosError } from 'axios';
 
-import { call, put, select } from 'redux-saga/effects';
-import {
-  setDreams,
-  setError,
-  setStatus,
-} from '../../features/allDreams/allDreamsSlice';
-import { createDream } from '../../../api/Node/dreams';
-import { Dream } from '../../../types/Dream';
-
+import { call, put } from 'redux-saga/effects';
+import { setDreams, setError, setStatus } from '../../../features/allDreams/allDreamsSlice';
+import { dreamAPI } from '../../../../api/Node/dreams';
+import { RequestCreateDream, ResponseCreateDream, ResponseCreateDreamWithError } from '../../../../types/Dream';
+import { RequestStatus } from '../../../../types/RequestStatus';
+import { Error } from '../../../../types/Error';
 interface Props {
   type: string;
-  payload: Omit<Dream, 'id'>;
+  payload: RequestCreateDream;
 }
 
-export function* createDreamSaga({ payload }): Generator<Props> {
-  console.log('getAllDreamsSaga');
-  const token = select(state => state.user.token);
+export function* createDreamSaga({ payload }: Props): Generator<unknown, any, ResponseCreateDream> {
+  console.log('createDreamSaga', payload);
 
-  yield put(setStatus('loading'));
+  yield put(setStatus(RequestStatus.LOADING));
   
   try {
-    const response = yield call(createDream(payload), token);
+    const response = yield call(dreamAPI.create, payload);
 
     console.log('createDreamSaga response', response);
 
@@ -29,13 +25,17 @@ export function* createDreamSaga({ payload }): Generator<Props> {
       throw response;
     }
 
-    yield put(setDreams(response.dreams));
+    console.log(response);
+
+    // yield put(setDreams(response.dream));
   } catch (error: unknown) {
-    console.log('catch getAllDreamsSaga', error);
-    yield put(setError((error as AxiosError).message));
+    console.log('catch createDreamSaga', (error as AxiosError<ResponseCreateDreamWithError>).response?.data?.message);
+
+    yield put(setError(
+      (error as AxiosError<ResponseCreateDreamWithError>).response?.data?.message ||
+      (error as AxiosError)?.message ||
+      Error.UNEXPECTED_ERROR));
   } finally {
-    yield put(setStatus('idle'));
+    yield put(setStatus(RequestStatus.IDLE));
   }
 }
-
-

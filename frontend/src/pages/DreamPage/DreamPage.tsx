@@ -27,10 +27,10 @@ export const DreamPage: React.FC = () => {
   }, [dreamId, dreams]);
 
   const owner = useMemo(() => {
-    return users.find(user => String(user.id) === String(dream?.userId));
+    return users.find(user => String(user.id) === String(dream?.user));
   }, [dreamId, dreams]);
 
-  const isOwner = authUser?.userId === dream?.userId;
+  const isOwner = authUser?.userId === dream?.user;
 
   const toggleEditMode = () => {
     setEditMode(!editMode);

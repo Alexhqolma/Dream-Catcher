@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { selectFullName, selectToken, selectUser, setToken } from './store/features/user/userSlice';
+import { selectFullName, selectToken, } from './store/features/user/userSlice';
 import { 
   selectMockData,
   selectMockDreams,
@@ -15,7 +15,6 @@ import {
 import { Dream, DreamsStatus } from './types/Dream';
 
 import {
-  createDream,
   getDream,
   getDreams, 
 } from './api/Node/dreams';
@@ -24,9 +23,9 @@ import { CustomButton } from './components/Button';
 import { registerUserNODE, SagaActions } from './store/sagas/actions';
 // import { clientJava } from './api/Java/instanceJava';
 import { authAPI } from './api/Node/users';
+import { client } from './api/Java/instance';
 
 import './App.scss';
-import { client } from './api/Java/instance';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -160,7 +159,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     if (users.length && dreams && photos) {
-      const data: Dream[] = [];
+      const data = [];
       
       for (let i = 0; i < 100; i++) {
         data.push({
@@ -169,7 +168,7 @@ export const App: React.FC = () => {
           body: dreams[i]?.body,
           status: DreamsStatus.POSTED,
           // messages: [],
-          userId: String(users[Math.round(10 * Math.random())]?.id),
+          user: String(users[Math.round(10 * Math.random())]?.id),
           handler: null,
           imageUrl: photos[i],
           tags: []
@@ -221,6 +220,8 @@ export const App: React.FC = () => {
         })}>
           get All Dreams
         </CustomButton>
+           
+
       </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}

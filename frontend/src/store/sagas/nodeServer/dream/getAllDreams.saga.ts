@@ -34,5 +34,3 @@ export function* getAllDreamsSaga(): Generator<unknown, any, ResponseGetDream> {
     yield put(setStatus(RequestStatus.IDLE));
   }
 }
-
-

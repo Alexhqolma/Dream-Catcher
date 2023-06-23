@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../../store';
-import { MockUser, User } from '../../../../types/User';
+import { MockUser } from '../../../../types/User';
 import { Dream } from '../../../../types/Dream';
 import { MockPhoto } from '../../../../types/MockPhoto';
 

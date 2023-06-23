@@ -1,5 +1,3 @@
-import { Message } from "./Message";
-
 export enum DreamsStatus {
   PENDING = 'PENDING',
   POSTED = 'POSTED',
@@ -12,8 +10,7 @@ export type Dream = {
   title: string;
   body: string;
   status?: DreamsStatus;
-  // tags?: string[];
-  userId: string;
+  user: string;
   handler: string | null;
   imageUrl?: string | null,
   tags: string[],

@@ -7,9 +7,9 @@ import { watchUserSaga as watchUserSagaJava } from './javaServer/user/watchUser.
 
 export default function* rootSaga() {
   const sagas = [
-    getMockDataSaga,
+    // getMockDataSaga,
     // getJavaData,
-    watchUserSagaNode,
+    // watchUserSagaNode,
     // watchDreamSagaNode,
 
     watchUserSagaJava,

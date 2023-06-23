@@ -9,7 +9,7 @@ export const client = {
   async get<T>(path: string, params?: AxiosRequestConfig) {
     const response = await instanceJava.get<T>(path, params);
 
-    console.log('get NODE API', baseURL + path);
+    console.log('get JAVA API', baseURL + path);
 
     return response.data;
   },
@@ -19,7 +19,7 @@ export const client = {
     payload: TRequest,
     config?: AxiosRequestConfig,
   ): Promise<TResponse> {
-    console.log('post NODE API', baseURL + path);
+    console.log('post JAVA API', baseURL + path);
 
     // const response = await instanceLocal.post<TRequest, TResponse, Params>(path, payload, config);
     const response = config

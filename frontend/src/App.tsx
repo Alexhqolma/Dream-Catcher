@@ -26,6 +26,7 @@ import { registerUserNODE, SagaActions } from './store/sagas/actions';
 import { authAPI } from './api/Node/users';
 
 import './App.scss';
+import { client } from './api/Java/instance';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -132,6 +133,27 @@ export const App: React.FC = () => {
   //   // getCurrentDream();
   //   // createJavaDream();
   // }, [])
+
+  useEffect(() => {
+    const loginJava = async () => {
+      console.log('loginDream');
+
+      const user = {
+        email: 'admin@admin.com',
+        password: 'adminadmin',
+      };
+
+      const response = await client.post(
+        '/login',
+        user,
+      )
+
+      return response;
+    };
+
+    loginJava().then(res => console.log(res));
+  }, [])
+
 
   useEffect(() => {
     console.log('user APP', fullName);

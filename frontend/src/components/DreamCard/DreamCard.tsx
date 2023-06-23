@@ -8,6 +8,10 @@ import arrow from './../../assets/images/details-arrow-icon.svg';
 import './DreamCard.catalog.scss';
 import './DreamCard.horizontal.scss';
 import './DreamCard.page.scss';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectToken } from '../../store/features/user/userSlice';
+import { SagaActions } from '../../store/sagas/actions';
+import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
 
 interface DreamItemProps {
   dream: Dream;
@@ -22,6 +26,8 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   horizontalMode, 
   catalogMode 
 }) => {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(selectToken);
   const isOwner = false;
   const isControlAvailable = false;
 
@@ -53,13 +59,28 @@ export const DreamCard: React.FC<DreamItemProps> = ({
           >
             <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
           </CustomButton>
-          <h4 className='dream-card__date-created'>{dream.userId}</h4>
+          <h4 className='dream-card__date-created'>{dream.user}</h4>
         </div>
       </div>
 
       {isOwner && pageMode && <div className='dream-card__edit-mode'></div>}
 
       {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
+
+      <CustomButton onClick={() => {
+            dispatch({ 
+              type: SagaActions.CREATE_DREAM,
+              payload: {
+                token,
+                dream,
+              }});
+
+            dispatch(removeMockItem(dream));
+          }
+        }
+      >
+          teleport
+      </CustomButton>
     </div>
   );
 };

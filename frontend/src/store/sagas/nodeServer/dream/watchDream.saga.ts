@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
-import { SagaActions } from '../actions';
 import { getAllDreamsSaga } from './getAllDreams.saga';
+import { SagaActions } from '../../actions';
+import { createDreamSaga } from './createDream.saga';
 
 export function* watchDreamSaga() {
   yield takeEvery(SagaActions.FETCH_ALL_DREAMS, getAllDreamsSaga);
-  // yield takeEvery(sagaActions.LOGIN_USER, loginUserSaga);
-  // yield takeEvery(sagaActions.FETCH_USER, getUserSaga);
+  yield takeEvery(SagaActions.CREATE_DREAM, createDreamSaga);
 }

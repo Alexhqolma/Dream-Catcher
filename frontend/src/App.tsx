@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { selectFullName, selectToken, selectUser, setToken } from './store/features/user/userSlice';
+import { selectFullName, selectToken, } from './store/features/user/userSlice';
 import { 
   selectMockData,
   selectMockDreams,
@@ -15,7 +15,6 @@ import {
 import { Dream, DreamsStatus } from './types/Dream';
 
 import {
-  createDream,
   getDream,
   getDreams, 
 } from './api/Node/dreams';
@@ -24,9 +23,9 @@ import { CustomButton } from './components/Button';
 import { registerUserNODE, SagaActions } from './store/sagas/actions';
 // import { clientJava } from './api/Java/instanceJava';
 import { authAPI } from './api/Node/users';
+import { client } from './api/Java/instance';
 
 import './App.scss';
-import { client } from './api/Java/instance';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -134,26 +133,25 @@ export const App: React.FC = () => {
   //   // createJavaDream();
   // }, [])
 
-  useEffect(() => {
-    const loginJava = async () => {
-      console.log('loginDream');
+  // useEffect(() => {
+  //   const loginJava = async () => {
+  //     console.log('loginDream');
 
-      const user = {
-        email: 'admin@admin.com',
-        password: 'adminadmin',
-      };
+  //     const user = {
+  //       email: 'admin@admin.com',
+  //       password: 'adminadmin',
+  //     };
 
-      const response = await client.post(
-        '/login',
-        user,
-      )
+  //     const response = await client.post(
+  //       '/login',
+  //       user,
+  //     )
 
-      return response;
-    };
+  //     return response;
+  //   };
 
-    loginJava().then(res => console.log(res));
-  }, [])
-
+  //   loginJava().then(res => console.log(res));
+  // }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -161,7 +159,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     if (users.length && dreams && photos) {
-      const data: Dream[] = [];
+      const data = [];
       
       for (let i = 0; i < 100; i++) {
         data.push({
@@ -170,7 +168,7 @@ export const App: React.FC = () => {
           body: dreams[i]?.body,
           status: DreamsStatus.POSTED,
           // messages: [],
-          userId: String(users[Math.round(10 * Math.random())]?.id),
+          user: String(users[Math.round(10 * Math.random())]?.id),
           handler: null,
           imageUrl: photos[i],
           tags: []
@@ -179,20 +177,20 @@ export const App: React.FC = () => {
 
       dispatch(setMockData(data));
     }
-  }, [dispatch, users, dreams, photos])
+  }, [dispatch, users, dreams, photos]);
 
   return (
     <div className='App'>
-      {/* <div className='App__buttons_for_Node'>
-        <Button onClick={() => dispatch(registerUserNODE({
+      <div className='App__buttons_for_Node'>
+        <CustomButton onClick={() => dispatch(registerUserNODE({
             email: 'app@test.app',
             password: '12345',
             fullName: 'App test user',
           }))}>
           register
-        </Button>
+        </CustomButton>
 
-        <Button onClick={() => dispatch({ 
+        <CustomButton onClick={() => dispatch({ 
           type: SagaActions.LOGIN_USER_NODE,
           payload: {
             password: '12345',
@@ -201,28 +199,30 @@ export const App: React.FC = () => {
           },
         })}>
           login User
-        </Button>
+        </CustomButton>
 
-        <Button onClick={() => dispatch({ 
+        <CustomButton onClick={() => dispatch({ 
           type: SagaActions.FETCH_USER_NODE,
           payload: token,
         })}>
           get User
-        </Button>
+        </CustomButton>
 
-        <Button onClick={() => dispatch({ 
+        <CustomButton onClick={() => dispatch({ 
           type: SagaActions.DELETE_USER_NODE,
           payload: token,
         })}>
           delete User
-        </Button>
+        </CustomButton>
 
-        <Button onClick={() => dispatch({ 
+        <CustomButton onClick={() => dispatch({ 
           type: SagaActions.FETCH_ALL_DREAMS,
         })}>
           get All Dreams
-        </Button>
-      </div> */}
+        </CustomButton>
+           
+
+      </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
       

@@ -12,11 +12,11 @@
   }
 
   @include onLaptop {
-    padding: 3rem 2rem;
+    padding: 2rem;
   }
 
   @include onDesktop {
-    padding: 5rem 1rem;
+    padding: 3rem 1rem;
     max-width: 1440px;
     margin: 0 auto;
   }

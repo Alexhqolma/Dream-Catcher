@@ -11,6 +11,7 @@ import './DreamCard.page.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectToken } from '../../store/features/user/userSlice';
 import { SagaActions } from '../../store/sagas/actions';
+import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
 
 interface DreamItemProps {
   dream: Dream;
@@ -66,12 +67,17 @@ export const DreamCard: React.FC<DreamItemProps> = ({
 
       {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
 
-      <CustomButton onClick={() => dispatch({ 
-        type: SagaActions.CREATE_DREAM,
-        payload: {
-          token,
-          dream,
-        }})}
+      <CustomButton onClick={() => {
+            dispatch({ 
+              type: SagaActions.CREATE_DREAM,
+              payload: {
+                token,
+                dream,
+              }});
+
+            dispatch(removeMockItem(dream));
+          }
+        }
       >
           teleport
       </CustomButton>

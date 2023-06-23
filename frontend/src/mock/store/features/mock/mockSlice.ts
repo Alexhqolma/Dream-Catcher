@@ -42,6 +42,10 @@ const mockSlice = createSlice({
     setMockData: (state, action: PayloadAction<Dream[]>) => {
       state.mockData = action.payload;
     },
+    removeMockItem: (state, action: PayloadAction<Dream>) => {
+      state.mockData = state.mockData.filter(el => el.id !== action.payload.id);
+    },
+
     setStatus: (
       state: MockState,
       action: PayloadAction<'idle' | 'loading' | 'failed'>,
@@ -66,6 +70,7 @@ export const {
   setMockData,
   setStatus,
   setError,
+  removeMockItem,
   resetState,
 } = mockSlice.actions;
 

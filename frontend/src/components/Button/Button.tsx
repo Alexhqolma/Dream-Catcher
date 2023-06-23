@@ -59,7 +59,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button 
-      className={classNames("button', 'button__regular", className)}
+      className={classNames('button', 'button__regular', className)}
       onClick={onClick}
       type={type}
     >

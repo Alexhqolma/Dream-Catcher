@@ -92,8 +92,7 @@ export const LoginForm: React.FC = () => {
               ) : null}
             </div>
             <div className="buttonWrapper">
-                <Button title='Back' onClick={() => window.history.go(-1)}>
-              </Button>
+              <Button onClick={() => window.history.go(-1)}>Back</Button>
               <Button title='Login' type="submit" />
             </div>
           </>

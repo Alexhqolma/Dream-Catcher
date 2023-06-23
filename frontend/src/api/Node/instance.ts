@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { baseURL } from './routes';
 
 export const instanceNode = axios.create({
@@ -21,7 +21,6 @@ export const client = {
   ): Promise<TResponse> {
     console.log('post NODE API', baseURL + path);
 
-    // const response = await instanceLocal.post<TRequest, TResponse, Params>(path, payload, config);
     const response = config
       ? await instanceNode.post<TResponse>(path, payload, config)
       : await instanceNode.post<TResponse>(path, payload);
@@ -32,8 +31,10 @@ export const client = {
   async patch<TRequest, TResponse>(
     path: string,
     payload: TRequest,
-    config?: AxiosRequestConfig) {
-    // const response = await instanceLocal.patch<TResponse>(path, payload, params);
+    config?: AxiosRequestConfig,
+  ) {
+    console.log('patch NODE API', baseURL + path);
+
     const response = config
       ? await instanceNode.patch<TResponse>(path, payload, config)
       : await instanceNode.patch<TResponse>(path, payload);
@@ -42,6 +43,8 @@ export const client = {
   },
 
   async delete<T>(path: string, params?: AxiosRequestConfig) {
+    console.log('delete NODE API', baseURL + path);
+
     const response = await instanceNode.delete<T>(path, params);
 
     return response.data;

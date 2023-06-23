@@ -36,7 +36,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <a
-        className={classNames("button' , 'button__link")}
+        className={classNames('button' , 'button__link')}
         href={href}
         target={target}
       >
@@ -48,7 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (to) {
     return (
       <NavLink
-        className={classNames("button', 'button__navLink", className)}
+        className={classNames('button', 'button__navLink', className)}
         to={to}
       >
         {title}

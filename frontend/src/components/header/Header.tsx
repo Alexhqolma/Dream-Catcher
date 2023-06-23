@@ -4,7 +4,6 @@ import { BsBox2Heart } from 'react-icons/bs';
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectIsAuth, selectUser } from "../../store/features/user/userSlice";
-// import { LoginPopup } from "../LoginPopup"
 import { Button } from '../Button';
 import logo from "../../assets/images/big_logo.png";
 
@@ -109,7 +108,6 @@ import "./Header.scss";
       {showLoginPopup && (
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>
-            <LoginPopup />
             <Button onClick={handleCloseLoginPopup}>Close</Button>
           </div>
         </div>

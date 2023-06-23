@@ -5,16 +5,18 @@
 
 .container {
   padding: 0 1rem;
+  margin-bottom: 20px;
 
   @include onTablet {
-    padding: 0 2rem;
+    padding: 2rem 2rem;
   }
 
   @include onLaptop {
-    padding: 0 2rem;
+    padding: 3rem 2rem;
   }
 
   @include onDesktop {
+    padding: 5rem 1rem;
     max-width: 1440px;
     margin: 0 auto;
   }

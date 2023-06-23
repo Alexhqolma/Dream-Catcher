@@ -10,7 +10,7 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
-import { CustomButton } from '../Button';
+import { ButtonType, CustomButton } from '../Button';
 
 type FormValues = {
   fullName: string;
@@ -54,7 +54,7 @@ export const RegistrationForm: React.FC = () => {
         dispatch(resetRegistrationSuccess());
       }, 2000);
     }
-  }, [navigate, isSubmitted, message]);
+  }, [navigate, isSubmitted, message, dispatch]);
 
   const onSubmit = (values: FormValues) => {
     dispatch(registerUserNODE({
@@ -84,71 +84,71 @@ export const RegistrationForm: React.FC = () => {
         ) : (
           <>
             <div className="form__control">
-                <input
-                  id="fullName"
-                  name="fullName"
-                  type="fullName"
-                  placeholder='Full Name'
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.fullName}
-                />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <div className="error">{formik.errors.fullName}</div>
-                ) : null}
+              <input
+                id="fullName"
+                name="fullName"
+                type="fullName"
+                placeholder='Full Name'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.fullName}
+              />
+              {formik.touched.fullName && formik.errors.fullName ? (
+                <div className="error">{formik.errors.fullName}</div>
+              ) : null}
             </div>
 
             <div className="form__control">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder='Email'
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <div className="error">{formik.errors.email}</div>
-                ) : null}
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder='Email'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className="error">{formik.errors.email}</div>
+              ) : null}
             </div>
 
             <div className="form__control">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder='Password'
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="error">{formik.errors.password}</div>
-                ) : null}
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder='Password'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div className="error">{formik.errors.password}</div>
+              ) : null}
             </div>
 
             <div className="form__control">
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder='Confirm Password'
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.confirmPassword}
-                />
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <div className="error">{formik.errors.confirmPassword}</div>
-                ) : null}
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder='Confirm Password'
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.confirmPassword}
+              />
+              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                <div className="error">{formik.errors.confirmPassword}</div>
+              ) : null}
             </div>
 
             <div className="buttonWrapper">
-              <CustomButton type="button" onClick={() => window.history.go(-1)}>
+              <CustomButton type={ButtonType.BUTTON} onClick={() => window.history.go(-1)}>
                 Back
               </CustomButton>
               <CustomButton
-                type="submit"
+                type={ButtonType.SUBMIT}
               >
                 Submit
               </CustomButton>

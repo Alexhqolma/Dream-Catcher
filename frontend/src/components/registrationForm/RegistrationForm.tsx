@@ -11,6 +11,7 @@ import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
 import { ButtonType, CustomButton } from '../Button';
+import classNames from 'classnames';
 
 type FormValues = {
   fullName: string;
@@ -87,7 +88,7 @@ export const RegistrationForm: React.FC = () => {
               <input
                 id="fullName"
                 name="fullName"
-                type="fullName"
+                type="text"
                 placeholder='Full Name'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -128,7 +129,10 @@ export const RegistrationForm: React.FC = () => {
               ) : null}
             </div>
 
-            <div className="form__control">
+            <div className={classNames("form__control",
+                {'form__control--error': formik.touched.confirmPassword && formik.errors.confirmPassword }
+              )}
+            >
               <input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -144,9 +148,13 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className="buttonWrapper">
-              <CustomButton type={ButtonType.BUTTON} onClick={() => window.history.go(-1)}>
+              <CustomButton 
+                type={ButtonType.BUTTON} 
+                onClick={() => window.history.go(-1)}
+              >
                 Back
               </CustomButton>
+
               <CustomButton
                 type={ButtonType.SUBMIT}
               >

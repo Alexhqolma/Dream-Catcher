@@ -61,15 +61,27 @@
   }
 }
 
-.buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
+// .buttons {
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+// }
 
-input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+.form__control input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
   border: 1px solid $white;
   border-bottom: 1px solid $darkPrimary;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $white;
+    border-bottom: 1px solid $darkPrimary;
+  }
+}
+
+.form__control--error input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+  border: 1px solid $white;
+  border-bottom: 1px solid $darkPrimary;
+  border: 1px solid red;
 
   &:focus {
     outline: none;

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Dream } from '../../types/Dream';
-import { Button } from '../Button';
+import { CustomButton } from '../Button';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
 import './DreamCard.catalog.scss';
@@ -28,7 +28,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   return (
     <div className={classNames(
       'dream-card',
-      {'dream-card--catalogMode': catalogMode },
+      {'dream-card--catalog': catalogMode },
       { 'dream-card--page': pageMode },
       { 'dream-card--horizontal': horizontalMode },
     )}>
@@ -48,11 +48,11 @@ export const DreamCard: React.FC<DreamItemProps> = ({
             {dream.title}
           </h4>
           <p className="dream-card__body">{dream.body}</p>
-          <Button 
+          <CustomButton 
             href={`/dream/${dream.id}`} 
           >
             <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
-          </Button>
+          </CustomButton>
           <h4 className='dream-card__date-created'>{dream.userId}</h4>
         </div>
       </div>

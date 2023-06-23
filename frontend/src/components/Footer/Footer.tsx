@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 
-import { Button, Target } from "../Button";
+import { CustomButton, Target } from "../Button";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
@@ -46,9 +46,9 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer__about">
         <div>
-          <Button to="/" className="footer__logo-link">
+          <CustomButton to="/" className="footer__logo-link">
             Dream Catcher
-          </Button>
+          </CustomButton>
           <p className="footer__watchword">dreams can come true...</p>
         </div>
 
@@ -60,74 +60,74 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="footer__contact">
-        <Button href="mailto:info@dream_catcher.com">
+        <CustomButton href="mailto:info@dream_catcher.com">
           info@dream_catcher.com
-        </Button>
+        </CustomButton>
 
-        <Button href="tel:+38095-456-78-90">
+        <CustomButton href="tel:+38095-456-78-90">
           +38 (095) 456 78 90
-        </Button>
+        </CustomButton>
 
         <div className="footer__social-links">
-          <Button
+          <CustomButton
             href="https://web.telegram.org"
             target={Target.Blank}
           >
             <BsTelegram size={30} />
-          </Button>
+          </CustomButton>
 
-          <Button
+          <CustomButton
             href="https://facebook.com"
             target={Target.Blank}
           >
             <BsFacebook size={30} />
-          </Button>
+          </CustomButton>
 
-          <Button
+          <CustomButton
             href="https://twitter.com"
             target={Target.Blank}
           >
             <BsTwitter size={30} />
-          </Button>
+          </CustomButton>
         </div>
       </div>
 
       <div className="footer__navigation">
         <div>
-          <Button className="footer__navLink" to={home.path}>
+          <CustomButton className="footer__navLink" to={home.path}>
             Home
-          </Button>
-          <Button className="footer__navLink" to={dreams.path}>
+          </CustomButton>
+          <CustomButton className="footer__navLink" to={dreams.path}>
             Dreams
-          </Button>
-          <Button className="footer__navLink" to={login.path}>
+          </CustomButton>
+          <CustomButton className="footer__navLink" to={login.path}>
             Log in
-          </Button>
-          <Button className="footer__navLink" to={registration.path}>
+          </CustomButton>
+          <CustomButton className="footer__navLink" to={registration.path}>
             Registration
-          </Button>
+          </CustomButton>
           {isAuth && (
-            <><Button
+            <><CustomButton
                 className="footer__navLink"
                 to={`${user.path.parent}/${userId}`}
               > 
               My Dreams
-              </Button>
-              <Button className="footer__navLink" to={favorites.path}>
+              </CustomButton>
+              <CustomButton className="footer__navLink" to={favorites.path}>
                 Favorites
-              </Button>
+              </CustomButton>
             </>
           )}
-          <Button className="footer__navLink" to={login.path}>
+          <CustomButton className="footer__navLink" to={login.path}>
             Login
-          </Button>
+          </CustomButton>
         </div>
       </div>
       {showLoginPopup && (
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>
             <LoginPopup />
-            <Button onClick={handleCloseLoginPopup}>Close</Button>
+            <CustomButton onClick={handleCloseLoginPopup}>Close</CustomButton>
           </div>
         </div>
       )}

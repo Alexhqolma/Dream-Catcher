@@ -4,7 +4,7 @@ import { BsBox2Heart } from 'react-icons/bs';
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectIsAuth, selectUser } from "../../store/features/user/userSlice";
-import { Button } from '../Button';
+import { CustomButton } from '../Button';
 import logo from "../../assets/images/big_logo.png";
 
 import "./Header.scss";
@@ -44,7 +44,7 @@ import "./Header.scss";
 
   return (
     <header className="header">
-      <Button
+      <CustomButton
         to="/" 
         className="header__logo-link" 
       >
@@ -53,54 +53,54 @@ import "./Header.scss";
           src={logo}
           alt="NiceGadgets logo"
         />
-      </Button>
+      </CustomButton>
 
       <nav className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <Button to={home.path} className="nav__link">
+            <CustomButton to={home.path} className="nav__link">
               Home
-            </Button>
+            </CustomButton>
           </li>
 
           <li className="nav__item">
-            <Button to={dreams.path} className="nav__link">
+            <CustomButton to={dreams.path} className="nav__link">
               Dreams
-            </Button>
+            </CustomButton>
           </li>
 
           {!isAuth && (
             <li className="nav__item">
-              <Button to={login.path} className="nav__link" onClick={handleOpenLoginPopup}>
+              <CustomButton to={login.path} className="nav__link" onClick={handleOpenLoginPopup}>
                 Login
-              </Button>
+              </CustomButton>
             </li>
           )}
 
           {!isAuth && (
             <li className="nav__item">
-              <Button to={registration.path} className="nav__link">
+              <CustomButton to={registration.path} className="nav__link">
                 Registration
-              </Button>
+              </CustomButton>
             </li>
           )}
 
           {isAuth && (
             <li className="nav__item">
-              <Button
+              <CustomButton
                 to={`${user.path.parent}/${userId}`}
                 className="nav__link"
               >
                 My Dreams
-              </Button>
+              </CustomButton>
             </li>
           )}
 
           <li className="nav__item nav__favorites-icon">
-            <Button to={favorites.path}>
+            <CustomButton to={favorites.path}>
               <BsBox2Heart />
               <div className="nav__favorites-count">0</div>
-            </Button>
+            </CustomButton>
           </li>
         </ul>
       </nav>
@@ -108,7 +108,7 @@ import "./Header.scss";
       {showLoginPopup && (
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>
-            <Button onClick={handleCloseLoginPopup}>Close</Button>
+            <CustomButton onClick={handleCloseLoginPopup}>Close</CustomButton>
           </div>
         </div>
       )}

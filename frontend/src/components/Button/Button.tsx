@@ -10,7 +10,13 @@ export enum Target {
   Self = '_self',
 }
 
-interface ButtonProps {
+export enum ButtonType {
+  BUTTON = 'button',
+  SUBMIT = 'submit',
+  RESET = 'reset',
+}
+
+interface CustomButtonProps {
   href?: string;
   link?: string;
   title?: string;
@@ -19,10 +25,10 @@ interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   target?: Target.Blank;
-  type?: 'button' | 'submit' | 'reset';
+  type?: ButtonType;
 }
 
-export const Button: React.FC<ButtonProps> = ({ 
+export const CustomButton: React.FC<CustomButtonProps> = ({ 
   title,
   children,
   href,
@@ -36,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (href) {
     return (
       <a
-        className={classNames('button' , 'button__link')}
+        className={classNames('custom-button' , 'custom-button--link')}
         href={href}
         target={target}
       >
@@ -48,7 +54,7 @@ export const Button: React.FC<ButtonProps> = ({
   if (to) {
     return (
       <NavLink
-        className={classNames('button', 'button__navLink', className)}
+        className={classNames('custom-button', 'custom-button--navLink', className)}
         to={to}
       >
         {title}
@@ -59,7 +65,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button 
-      className={classNames('button', 'button__regular', className)}
+      className={classNames('custom-button', 'custom-button--regular', className)}
       onClick={onClick}
       type={type}
     >

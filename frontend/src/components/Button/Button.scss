@@ -1,8 +1,8 @@
 @import '../../styles/utils/variables';
 
-.button {
-  display: block;
-  height: 20px;
+.custom-button {
+  display: inline-block;
+  height: fit-content;
   color: $black;
   text-align: center;
   font-size: $font-size-16;
@@ -10,6 +10,7 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  border: 1px solid red;
 
   & :hover {
     color: $lightPrimary;
@@ -18,13 +19,14 @@
   & :visited {
     color: $black;
   }
+}
 
-  &__regular {
-    background-color: $lightSecondary;
-    border: 0;
-    color: $white;
-    font-weight: $font_weight_normal;
-    padding: 0 $space_s;
-    font-size: $font_size_14;
-  }
+.custom-button--regular.custom-button {
+  border: 10px solid green;
+  background-color: $lightSecondary;
+  // border: 0;
+  color: $white;
+  font-weight: $font_weight_normal;
+  padding: 0 $space_s;
+  font-size: $font_size_14;
 }

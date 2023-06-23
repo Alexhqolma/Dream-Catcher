@@ -5,7 +5,7 @@ import { selectMockData, selectMockUsers } from "../../mock/store/features/mock/
 
 import { DreamEdit } from "../../components/DreamEdit";
 import { selectUser } from "../../store/features/user/userSlice";
-import { Button } from "../../components/Button";
+import { CustomButton } from "../../components/Button";
 
 import './DreamPage.scss';
 import { routes } from "../../routes/routerConfig";
@@ -62,7 +62,7 @@ export const DreamPage: React.FC = () => {
       </div> */}
 
       {isOwner && (<div onClick={toggleEditMode}>
-        <Button title='Edit' />
+        <CustomButton title='Edit' />
       </div>)}
 
       {isOwner && editMode && <DreamEdit dream={dream} />}

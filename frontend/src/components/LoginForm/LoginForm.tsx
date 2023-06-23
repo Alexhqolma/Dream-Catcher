@@ -9,7 +9,7 @@ import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import { RequestLoginUser } from '../../types/User';
-import { Button } from '../Button';
+import { ButtonType, CustomButton } from '../Button';
 
 import './LoginForm.scss';
 
@@ -92,8 +92,8 @@ export const LoginForm: React.FC = () => {
               ) : null}
             </div>
             <div className="buttonWrapper">
-              <Button onClick={() => window.history.go(-1)}>Back</Button>
-              <Button title='Login' type="submit" />
+              <CustomButton onClick={() => window.history.go(-1)}>Back</CustomButton>
+              <CustomButton title='Login' type={ButtonType.SUBMIT} />
             </div>
           </>
         )}

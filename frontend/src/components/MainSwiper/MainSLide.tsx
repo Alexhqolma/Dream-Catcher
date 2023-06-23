@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dream } from '../../types/Dream';
-import { Button } from '../Button';
+import { CustomButton } from '../Button';
 
 import './MainSLide.scss';
 
@@ -36,7 +36,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
             style={styleBody}
           >
             <p>{dream.body}&nbsp;</p>
-            <Button to={`/dream/${dream.id}`}>details...</Button>
+            <CustomButton to={`/dream/${dream.id}`}>details...</CustomButton>
           </div>
         </>
       )}

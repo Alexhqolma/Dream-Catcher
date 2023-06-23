@@ -10,7 +10,7 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
-import { Button } from '../Button';
+import { CustomButton } from '../Button';
 
 type FormValues = {
   fullName: string;
@@ -144,14 +144,14 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className="buttonWrapper">
-              <Button type="button" onClick={() => window.history.go(-1)}>
+              <CustomButton type="button" onClick={() => window.history.go(-1)}>
                 Back
-              </Button>
-              <Button
+              </CustomButton>
+              <CustomButton
                 type="submit"
               >
                 Submit
-              </Button>
+              </CustomButton>
             </div>
           </>
         )}

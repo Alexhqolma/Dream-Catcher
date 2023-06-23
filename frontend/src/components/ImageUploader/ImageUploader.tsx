@@ -3,7 +3,7 @@
 import { MouseEventHandler, useRef, useState } from 'react';
 // import { submitForm } from "../../services/fileUploader";
 // import { useImagesDispatch } from "../../context/ImageContext";
-import { Button } from "../Button";
+import { CustomButton } from "../Button";
 
 export const ImageUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -34,7 +34,7 @@ export const ImageUploader = () => {
             fileInputRef.current?.click();
           }}
         >
-          <Button title="Select file" />
+          <CustomButton title="Select file" />
         </div>{" "}
         {selectedFiles && Array.from(selectedFiles).map((file, i) => (
           <li key={i}>
@@ -44,7 +44,7 @@ export const ImageUploader = () => {
       </section>
       <section>
         <button disabled={selectedFiles === null} onClick={formSubmitHandler}>
-          <Button title="Upload" />
+          <CustomButton title="Upload" />
         </button>
       </section>
     </>

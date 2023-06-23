@@ -2,7 +2,7 @@ import React from 'react';
 import { LoginForm } from '../../components/LoginForm';
 
 import './LoginPage.scss';
-import { Button } from '../../components/Button';
+import { CustomButton } from '../../components/Button';
 import { routes } from '../../routes/routerConfig';
 
 const LoginPage: React.FC = () => {
@@ -14,9 +14,9 @@ const LoginPage: React.FC = () => {
       <LoginForm />
       <p className='LoginPage__registrationLink'>
         Don't have an account? 
-        <Button to={registration.path} className="link">
+        <CustomButton to={registration.path} className="link">
           Sign up
-        </Button>
+        </CustomButton>
       </p>
     </main>
   );

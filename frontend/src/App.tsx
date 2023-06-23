@@ -20,7 +20,7 @@ import {
   getDreams, 
 } from './api/Node/dreams';
 // import { getUser, login, register } from './api/Node/users';
-import { Button } from './components/Button';
+import { CustomButton } from './components/Button';
 import { registerUserNODE, SagaActions } from './store/sagas/actions';
 // import { clientJava } from './api/Java/instanceJava';
 import { authAPI } from './api/Node/users';

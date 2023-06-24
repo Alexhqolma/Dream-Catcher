@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../../store';
-import { MockUser } from '../../../../types/User';
 import { Dream } from '../../../../types/Dream';
 import { MockPhoto } from '../../../../types/MockPhoto';
 
+interface MockUser {
+  id: string;
+}
 export interface MockState {
   users: MockUser[];
   dreams: Dream[];

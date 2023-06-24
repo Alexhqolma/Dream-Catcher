@@ -73,6 +73,8 @@ export const RegistrationForm: React.FC = () => {
 
   console.log('isSubmitted = ', isSubmitted);
 
+  const isError = (value: keyof typeof formik.touched | keyof typeof formik.errors) => formik.touched[value] && formik.errors[value];
+
   return (
     <form className='form' onSubmit={formik.handleSubmit}>
       <div className='form__wrapper'>
@@ -84,7 +86,10 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="form__control">
+            <div className={classNames('form__control',
+                {'form__control--error': isError('fullName') },
+              )}
+            >
               <input
                 id="fullName"
                 name="fullName"
@@ -94,12 +99,15 @@ export const RegistrationForm: React.FC = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.fullName}
               />
-              {formik.touched.fullName && formik.errors.fullName ? (
-                <div className="form__control--error">{formik.errors.fullName}</div>
+              {isError('fullName') ? (
+                <div className="form__error">{formik.errors.fullName}</div>
               ) : null}
             </div>
 
-            <div className="form__control">
+            <div className={classNames("form__control",
+                {'form__control--error': formik.touched.email && formik.errors.email }
+              )}
+            >
               <input
                 id="email"
                 name="email"
@@ -110,11 +118,14 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.email}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="form__control--error">{formik.errors.email}</div>
+                <div className="form__error">{formik.errors.email}</div>
               ) : null}
             </div>
 
-            <div className="form__control">
+            <div className={classNames("form__control",
+                {'form__control--error': formik.touched.password && formik.errors.password }
+              )}
+            >
               <input
                 id="password"
                 name="password"
@@ -125,7 +136,7 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="form__control--error">{formik.errors.password}</div>
+                <div className="form__error">{formik.errors.password}</div>
               ) : null}
             </div>
 
@@ -143,7 +154,7 @@ export const RegistrationForm: React.FC = () => {
                 value={formik.values.confirmPassword}
               />
               {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                <div className="form__control--error">{formik.errors.confirmPassword}</div>
+                <div className="form__error">{formik.errors.confirmPassword}</div>
               ) : null}
             </div>
 

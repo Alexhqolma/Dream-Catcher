@@ -56,12 +56,21 @@
 
     &:focus {
         outline: none;
-        border: 1px solid $white;
+        border: 1px solid transparent;
         border-bottom: 1px solid $darkPrimary;
       }
   }
 
-  &__control--error {
+  &__control--error input {
+    border-bottom: 1px solid $lightSecondary;
+
+    &:focus {
+        border-bottom: 1px solid $lightSecondary;
+      }
+  }
+
+
+  &__error {
     position: relative;
     color: $lightSecondary;
     font-size: $font_size_12;

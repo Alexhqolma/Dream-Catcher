@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppSelector } from "../../store/hooks";
-import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
-import { BasicPagination } from "../BasicPagination";
 
 import './DreamsContainer.scss';
-import { CustomSelect } from '../CustomSelect';
-import { Search } from '../Search';
 import { selectAllDreams } from '../../store/features/allDreams/allDreamsSlice';
+import { CustomSelect } from '../UI/CustomSelect';
+import { BasicPagination } from '../UI/BasicPagination';
+import { Search } from '../UI/Search';
 
 export const DreamsContainer: React.FC = () => {
   // const dreams = useAppSelector(selectMockData);

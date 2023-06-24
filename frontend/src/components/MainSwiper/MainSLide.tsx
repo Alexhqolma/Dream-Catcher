@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dream } from '../../types/Dream';
-import { CustomButton } from '../Button';
+import { CustomButton } from '../Ui/Button';
 
 import './MainSLide.scss';
 
@@ -15,10 +15,10 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
   const styleTitle = {
     top: `calc(${Math.random() * 10}% + 10%)`,
   };
-  
+
   const styleBody = {
     bottom: `calc(${Math.random() * 20}% + 10%)`,
-  }; 
+  };
 
   return (
     <div className="slider__banner">
@@ -31,7 +31,7 @@ export const MainSLide: React.FC<MainSlideProps> = ({ dream }) => {
           >
             <h1>{dream.title}</h1>
           </div>
-          <div 
+          <div
             className='slider__main-body'
             style={styleBody}
           >

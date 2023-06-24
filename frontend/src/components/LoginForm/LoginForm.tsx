@@ -9,9 +9,10 @@ import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import { RequestLoginUser } from '../../types/User';
-import { ButtonType, CustomButton } from '../Button';
+import { ButtonType, CustomButton } from '../Ui/Button';
 
 import './LoginForm.scss';
+import { InputType, CustomInput } from '../Ui/CustomInput';
 
 const initialValues: RequestLoginUser = {
   email: '',
@@ -62,38 +63,31 @@ export const LoginForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="form__control">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder='Email'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                  <div className="form__control--error">{formik.errors.email}</div>
-              ) : null}
-            </div>
+            <CustomInput 
+              name="email"
+              type={InputType.EMAIL}
+              formik={formik}
+              placeholder='Email'
+            />
 
-            <div className="form__control">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder='Password'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
+            <CustomInput
+              name="password"
+              type={InputType.PASSWORD}
+              formik={formik}
+              placeholder='Password'
+            />
+
+            <div className="form__buttonWrapper">
+              <CustomButton
+                title='Back'
+                onClick={() => window.history.go(-1)}
+                width={100}
               />
-              {formik.touched.password && formik.errors.password ? (
-                  <div className="form__control--error">{formik.errors.password}</div>
-              ) : null}
-            </div>
-              <div className="form__buttonWrapper">
-              <CustomButton title='Back' onClick={() => window.history.go(-1)} />
-              <CustomButton title='Login' type={ButtonType.SUBMIT} />
+              <CustomButton
+                title='Login'
+                type={ButtonType.SUBMIT}
+                width={100}
+              />
             </div>
           </>
         )}

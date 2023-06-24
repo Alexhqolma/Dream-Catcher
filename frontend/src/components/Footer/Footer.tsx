@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 
-import { CustomButton, Target } from "../Button";
+import { CustomButton, Target } from "../Ui/Button";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
@@ -53,8 +53,8 @@ const Footer: React.FC = () => {
         </div>
 
         <p className="footer__team-info">
-          this site was created by a team of five people. 
-          <br/>
+          this site was created by a team of five people.
+          <br />
           ©2023 All rights reserved
         </p>
       </div>
@@ -108,11 +108,11 @@ const Footer: React.FC = () => {
           </CustomButton>
           {isAuth && (
             <><CustomButton
-                className="footer__navLink"
-                to={`${user.path.parent}/${userId}`}
-              > 
+              className="footer__navLink"
+              to={`${user.path.parent}/${userId}`}
+            >
               My Dreams
-              </CustomButton>
+            </CustomButton>
               <CustomButton className="footer__navLink" to={favorites.path}>
                 Favorites
               </CustomButton>

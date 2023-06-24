@@ -1,8 +1,8 @@
-@import '../../styles/utils/variables';
+@import '../../../styles/utils/variables';
 
 .custom-button {
   display: inline-block;
-  height: fit-content;
+  width: fit-content;
   color: $black;
   text-align: center;
   font-size: $font-size-16;
@@ -20,12 +20,20 @@
   }
 }
 
-.custom-button--regular.custom-button {
+.custom-button--link {
+}
+
+.custom-button--navLink {
+}
+
+.custom-button--regular {
+  height: 50px;
   background-color: $lightSecondary;
   border: 0;
   color: $white;
   font-weight: $font_weight_normal;
   padding: $space_s $space_xl;
   font-size: $font_size_12;
-  border: 0;
 }
+
+// rgba(187, 186, 186, 1) 

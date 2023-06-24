@@ -5,7 +5,7 @@ import { selectMockData, selectMockUsers } from "../../mock/store/features/mock/
 
 import { DreamEdit } from "../../components/DreamEdit";
 import { selectUser } from "../../store/features/user/userSlice";
-import { CustomButton } from "../../components/Ui/Button";
+import { CustomButton } from "../../components/UI/CustomButton";
 
 import './DreamPage.scss';
 import { DreamCard } from '../../components/DreamCard/DreamCard';

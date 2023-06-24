@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Dream } from '../../types/Dream';
-import { CustomButton } from '../Ui/Button';
+import { CustomButton } from '../UI/CustomButton';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
 import './DreamCard.catalog.scss';

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dream } from '../../types/Dream';
-import { CustomButton } from '../Ui/Button';
+import { CustomButton } from '../UI/CustomButton';
 
 import './MainSLide.scss';
 

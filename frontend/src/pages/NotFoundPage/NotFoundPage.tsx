@@ -1,5 +1,5 @@
 import notFoundImage from '../../assets/images/notFound.png';
-import { CustomButton } from '../../components/Ui/Button';
+import { CustomButton } from '../../components/UI/CustomButton';
 import './NotFoundPage.scss';
 
 const NotFoundPage = () => (

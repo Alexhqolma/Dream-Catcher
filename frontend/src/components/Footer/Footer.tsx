@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
 
-import { CustomButton, Target } from "../Ui/Button";
+import { CustomButton, Target } from "../UI/CustomButton";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";

@@ -9,10 +9,10 @@ import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import { RequestLoginUser } from '../../types/User';
-import { ButtonType, CustomButton } from '../Ui/Button';
+import { ButtonType, CustomButton } from '../UI/CustomButton';
 
 import './LoginForm.scss';
-import { InputType, CustomInput } from '../Ui/CustomInput';
+import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
 
 const initialValues: RequestLoginUser = {
   email: '',
@@ -37,7 +37,7 @@ export const LoginForm: React.FC = () => {
         dispatch(resetMessage());
       }, 2000);
     }
-  }, [navigate, isAuth, message]);
+  }, [navigate, isAuth, message, dispatch]);
 
   const onSubmit = (values: RequestLoginUser) => {
     dispatch({

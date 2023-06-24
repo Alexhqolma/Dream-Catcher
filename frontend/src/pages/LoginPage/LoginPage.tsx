@@ -2,7 +2,7 @@ import React from 'react';
 import { LoginForm } from '../../components/LoginForm';
 
 import './LoginPage.scss';
-import { CustomButton } from '../../components/Ui/Button';
+import { CustomButton } from '../../components/UI/CustomButton';
 import { routes } from '../../routes/routerConfig';
 
 const LoginPage: React.FC = () => {

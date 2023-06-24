@@ -1,28 +1,33 @@
 @import "../../../styles/utils/variables";
 @import "../../../styles/utils/normalize.scss";
 
-.control {
+.CustomInput {
   height: $input-height;
   width: 30%;
   min-width: 300px;
 
-& input {
-  display: block;
-  width: 100%;
-  font-size: $font_size_m;
-  font-size: 14px;
-  line-height: $space_xl;
-  border: none;
-  border-bottom: 1px solid $darkPrimary;
-  padding: 0;
+  & input {
+    display: block;
+    width: 100%;
+    font-size: $font_size_m;
+    font-size: 14px;
+    line-height: $space_xl;
+    border: 1px solid transparent;
+    border-bottom: 1px solid $darkPrimary;
+    padding: 0;
+  }
 
-  &:focus {
+  & input:hover {
+    border-bottom: 1px solid $darkPrimary;
+  }
+
+  & input:focus {
     outline: none;
     border: 1px solid transparent;
     border-bottom: 1px solid $darkPrimary;
   }
 
-  &::placeholder {
+  & input::placeholder {
     position: absolute;
     bottom: 12px;
     font-family: 'Lato', sans-serif;
@@ -31,21 +36,19 @@
     color: $lightPrimary;
     opacity: 0.5;
   }
-}
 
-&__error input {
-  border-bottom: 1px solid $lightSecondary;
-
-  &:focus {
+  &--error input {
     border-bottom: 1px solid $lightSecondary;
+
+    &:focus {
+      border-bottom: 1px solid $lightSecondary;
+    }
   }
-}
 
-
-&__error--error {
-  position: relative;
-  color: $lightSecondary;
-  font-size: $font_size_12;
-  text-align: left;
-}
+  &__error {
+    position: relative;
+    color: $lightSecondary;
+    font-size: $font_size_12;
+    text-align: left;
+  }
 }

@@ -3,7 +3,7 @@
 import { MouseEventHandler, useRef, useState } from 'react';
 // import { submitForm } from "../../services/fileUploader";
 // import { useImagesDispatch } from "../../context/ImageContext";
-import { CustomButton } from "../Ui/Button";
+import { CustomButton } from "../UI/CustomButton";
 
 export const ImageUploader = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);

@@ -10,7 +10,7 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
-import { ButtonType, CustomButton } from '../Ui/Button';
+import { ButtonType, CustomButton } from '../UI/CustomButton';
 import { CustomInput, InputType } from '../Ui/CustomInput/CustomInput';
 
 type FormValues = {

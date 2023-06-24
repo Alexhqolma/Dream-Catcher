@@ -1,8 +1,8 @@
 import React, { MouseEventHandler } from 'react';
-import { NavLink, To } from "react-router-dom";
-import classNames from "classnames";
+import { NavLink, To } from 'react-router-dom';
+import classNames from 'classnames';
 
-import './Button.scss';
+import './CustomButton.scss';
 
 export enum Target {
   Blank = '_blank',
@@ -38,9 +38,8 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   className,
   target,
   type,
-  width
+  width,
  }) => {
-
   if (href) {
     return (
       <a
@@ -76,4 +75,4 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       {children}
     </button>
   )
-}
+};

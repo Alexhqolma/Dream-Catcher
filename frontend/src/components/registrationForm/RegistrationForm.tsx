@@ -11,9 +11,7 @@ import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
 import { ButtonType, CustomButton } from '../Ui/Button';
-import classNames from 'classnames';
-import CustomInput from '../Ui/CustomInput/CustomInput';
-
+import { CustomInput, InputType } from '../Ui/CustomInput/CustomInput';
 
 type FormValues = {
   fullName: string;
@@ -75,8 +73,6 @@ export const RegistrationForm: React.FC = () => {
 
   console.log('isSubmitted = ', isSubmitted);
 
-  const isError = (value: keyof typeof formik.touched | keyof typeof formik.errors) => formik.touched[value] && formik.errors[value];
-
   return (
     <form className='form' onSubmit={formik.handleSubmit}>
       <div className='form__wrapper'>
@@ -89,50 +85,30 @@ export const RegistrationForm: React.FC = () => {
         ) : (
           <>
             <CustomInput 
-              id="fullName"
               name="fullName"
-              type="text"
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              value={formik.values.fullName}
-                isError={formik.errors.fullName}
-              isTouched={formik.touched.fullName}
+              type={InputType.TEXT}
+              formik={formik}
               placeholder='Full Name'
             />
 
             <CustomInput 
-              id="email"
               name="email"
-              type="email"
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              value={formik.values.email}
-              isError={formik.errors.email}
-              isTouched={formik.touched.email}
+              type={InputType.EMAIL}
+              formik={formik}
               placeholder='Email'
             />
 
             <CustomInput
-              id="password"
               name="password"
-              type="password"
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              value={formik.values.password}
-              isError={formik.errors.password}
-              isTouched={formik.touched.password}
+              type={InputType.PASSWORD}
+              formik={formik}
               placeholder='Password'
             />
 
             <CustomInput 
-              id="confirmPassword"
               name="confirmPassword"
-              type="password"
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              value={formik.values.confirmPassword}
-              isError={formik.errors.confirmPassword}
-              isTouched={formik.touched.confirmPassword}
+              type={InputType.PASSWORD}
+              formik={formik}
               placeholder='Confirm Password'
             />
 
@@ -140,12 +116,14 @@ export const RegistrationForm: React.FC = () => {
               <CustomButton
                 type={ButtonType.BUTTON}
                 onClick={() => window.history.go(-1)}
+                width={100}
               >
                 Back
               </CustomButton>
 
               <CustomButton
                 type={ButtonType.SUBMIT}
+                width={100}
               >
                 Submit
               </CustomButton>

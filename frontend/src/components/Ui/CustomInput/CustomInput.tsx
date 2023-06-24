@@ -1,47 +1,44 @@
 import classNames from "classnames"
 
-type CustomInputProps = {
-  id?: string,
-  name?: string,
-  type?: string,
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void,
-  value: string,
-  isError: string | false | undefined,
-  isTouched: boolean | undefined,
-  placeholder: string
+export enum InputType {
+  TEXT = 'text',
+  PASSWORD = 'password',
+  EMAIL = 'email',
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ 
-  id,
-  name,
+interface CustomInputProps {
+  name: string;
+  type: InputType;
+  formik: any;
+  placeholder?: string
+}
+
+export const CustomInput: React.FC<CustomInputProps> = ({ 
   type,
-  handleChange, 
-  handleBlur, 
-  value, 
-  isError, 
-  isTouched, 
+  name,
+  formik,
   placeholder 
 }) => {
+
+  const isError = formik.errors[name];
+  const isTouched = formik.touched[name];
+
   return (
     <div className={classNames("form__control",
       { 'form__control--error': isError }
     )}
     >
       <input
-        id={id}
+        id={name}
         name={name}
         type={type}
-        placeholder={placeholder}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={value}
+        placeholder={placeholder ? placeholder : name.toUpperCase()}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values[name]}
       />
-      {isTouched && isError ? (
-        <div className="form__error">{isError}</div>
-      ) : null}
+
+      {(isTouched && isError) && <div className="form__error">{isError}</div>}
     </div>
   )
 }
-
-export default CustomInput

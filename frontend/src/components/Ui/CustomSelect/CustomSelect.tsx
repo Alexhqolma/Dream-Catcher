@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import arrow from './../../assets/images/arrow-down.svg';
+import arrow from './../../../assets/images/arrow-down.svg';
 
 import './CustomSelect.scss';
 

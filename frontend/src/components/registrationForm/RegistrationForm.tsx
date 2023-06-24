@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
 import { ButtonType, CustomButton } from '../Ui/Button';
 import classNames from 'classnames';
+import CustomInput from '../Ui/CustomInput/CustomInput';
+
 
 type FormValues = {
   fullName: string;
@@ -86,77 +88,53 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className={classNames('form__control',
-              { 'form__control--error': isError('fullName') },
-            )}
-            >
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                placeholder='Full Name'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.fullName}
-              />
-              {isError('fullName') ? (
-                <div className="form__error">{formik.errors.fullName}</div>
-              ) : null}
-            </div>
+            <CustomInput 
+              id="fullName"
+              name="fullName"
+              type="text"
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              value={formik.values.fullName}
+                isError={formik.errors.fullName}
+              isTouched={formik.touched.fullName}
+              placeholder='Full Name'
+            />
 
-            <div className={classNames("form__control",
-              { 'form__control--error': formik.touched.email && formik.errors.email }
-            )}
-            >
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder='Email'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <div className="form__error">{formik.errors.email}</div>
-              ) : null}
-            </div>
+            <CustomInput 
+              id="email"
+              name="email"
+              type="email"
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              value={formik.values.email}
+              isError={formik.errors.email}
+              isTouched={formik.touched.email}
+              placeholder='Email'
+            />
 
-            <div className={classNames("form__control",
-              { 'form__control--error': formik.touched.password && formik.errors.password }
-            )}
-            >
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder='Password'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div className="form__error">{formik.errors.password}</div>
-              ) : null}
-            </div>
+            <CustomInput
+              id="password"
+              name="password"
+              type="password"
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              value={formik.values.password}
+              isError={formik.errors.password}
+              isTouched={formik.touched.password}
+              placeholder='Password'
+            />
 
-            <div className={classNames("form__control",
-              { 'form__control--error': formik.touched.confirmPassword && formik.errors.confirmPassword }
-            )}
-            >
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder='Confirm Password'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.confirmPassword}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                <div className="form__error">{formik.errors.confirmPassword}</div>
-              ) : null}
-            </div>
+            <CustomInput 
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              value={formik.values.confirmPassword}
+              isError={formik.errors.confirmPassword}
+              isTouched={formik.touched.confirmPassword}
+              placeholder='Confirm Password'
+            />
 
             <div className="form__buttonWrapper">
               <CustomButton

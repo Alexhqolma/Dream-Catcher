@@ -1,8 +1,9 @@
-@import '../../styles/utils/variables';
+@import '../../../styles/utils/variables';
 
 .custom-button {
   display: inline-block;
-  height: fit-content;
+  // width: 362px;
+  // height: 50px;
   color: $black;
   text-align: center;
   font-size: $font-size-16;

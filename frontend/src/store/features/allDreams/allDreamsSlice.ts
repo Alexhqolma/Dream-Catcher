@@ -45,7 +45,7 @@ export const {
   resetState,
 } = allDreamsSlice.actions;
 
-export const selectDreams = (state: RootState) => state.createdDreams.storage;
+export const selectAllDreams = (state: RootState) => state.createdDreams.storage;
 export const selectDreamsStatusLoading
 = (state: RootState) => state.createdDreams.statusLoading;
 export const selectDreamsError = (state: RootState) => state.createdDreams.error;

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { FormType } from "./CustomForm";
+import { FormType } from './CustomForm';
 
 export const validationSchema = {
   [FormType.USER]: {

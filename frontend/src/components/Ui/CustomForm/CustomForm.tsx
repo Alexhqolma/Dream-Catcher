@@ -1,17 +1,15 @@
 import React from 'react';
 import { useFormik } from 'formik';
-
-import { User } from '../../../types/User';
-import { Dream } from '../../../types/Dream';
-import { ButtonType, CustomButton } from '../CustomButton';
-import { CustomInput, InputType } from '../CustomInput/CustomInput';
-import { validationSchema } from './validation';
+import { ButtonType, CustomButton } from '../CustomButton/index.tsx';
+import { CustomInput, InputType } from '../CustomInput/CustomInput.tsx';
+import { validationSchema } from './validationSchema.ts';
 
 export enum FormType {
   USER = 'USER',
   DREAM = 'DREAM'
 }
 
+<<<<<<< HEAD
 interface InputProperties<T> {
   name: keyof T;
   type: InputType;
@@ -28,8 +26,23 @@ interface CustomFormProps<T = User | Dream> {
 
 export const CustomForm: React.FC<CustomFormProps> = ({ data, validation, onSubmit }) => {
   const initialValues = {};
+=======
+interface CustomFormProps<T> {
+  data: {
+    name: string;
+    type: InputType;
+    placeholder: string;
+    initialValues: T;
+  }[];
+  onSubmit: () => void;
+  validation: FormType;
+}
 
-  data.forEach((el: { name: string | number; initialValue: string; }) => initialValues[el.name] = el.initialValue);
+export const CustomForm = <T,>({ data, validation, onSubmit }: CustomFormProps<T>) => {
+  const initialValues: Record<string, T> = {};
+>>>>>>> 94648d06540938a0a20421b85746073547588256
+
+  data.forEach(el => initialValues[el.name] = el.initialValues);
 
   const formik = useFormik({
     initialValues,

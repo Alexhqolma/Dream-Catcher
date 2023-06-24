@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { FormType } from "./CustomForm";
 
-export const validation = {
+export const validationSchema = {
   [FormType.USER]: {
     fullName: Yup.string().min(2).required(),
     email: Yup.string().email().required(),

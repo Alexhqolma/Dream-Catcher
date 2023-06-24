@@ -5,41 +5,41 @@ import { User } from '../../../types/User';
 import { Dream } from '../../../types/Dream';
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput, InputType } from '../CustomInput/CustomInput';
-import { validation } from './validation';
+import { validationSchema } from './validation';
 
 export enum FormType {
   USER = 'USER',
   DREAM = 'DREAM'
 }
 
-interface CustomFormProps {
+interface CustomFormProps<T> {
   data: {
-    name: keyof User | keyof Dream;
+    name: keyof T;
     type: InputType;
     placeholder: string;
-    initialValue: unknown;
+    initialValue: string;
   }[];
   onSubmit: (e: any) => void;
-  type: FormType;
+  validation: FormType;
 }
 
-export const CustomForm: React.FC<CustomFormProps> = ({ data, type, onSubmit }) => {
+export const CustomForm: React.FC<CustomFormProps> = ({ data, validation, onSubmit }) => {
   const initialValues: User | Dream | any = {};
 
-  data.forEach(el => initialValues[el.name] = el.initialValue);
+  data.forEach((el: { name: string | number; initialValue: string; }) => initialValues[el.name] = el.initialValue);
 
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema: validation[FormType[type]],
+    validationSchema: validationSchema[FormType[validation]],
   });
 
   return (
     <form className="CustomForm">
-      {data.map(el => (
+      {data.map((el: { name: React.Key | null | undefined; type: InputType; placeholder: string | undefined; }) => (
         <CustomInput
           key={el.name}
-          name={el.name}
+          name={String(el.name)}
           type={el.type}
           formik={formik}
           placeholder={el.placeholder} />

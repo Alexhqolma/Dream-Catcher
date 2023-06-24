@@ -13,6 +13,7 @@ import { ButtonType, CustomButton } from '../UI/CustomButton';
 
 import './LoginForm.scss';
 import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
+import { CustomForm, FormType } from '../UI/CustomForm';
 
 const initialValues: RequestLoginUser = {
   email: '',
@@ -52,47 +53,67 @@ export const LoginForm: React.FC = () => {
     validationSchema
   });
 
+  // data: {
+  //   name: keyof User | keyof Dream;
+  //   type: InputType;
+  //   placeholder: string;
+  //   initialValue: unknown;
+  // }[];
+
+  const data = [
+    { name: 'email', type: InputType.EMAIL, placeholder: 'enter email', initialValue: initialValues.email },
+    { name: 'password', type: InputType.PASSWORD, placeholder: 'enter password', initialValue: initialValues.password },
+  ];
+
   return (
-    <form className='form' onSubmit={formik.handleSubmit}>
-      <div className='form__wrapper'>
-        {message}
-        {isAuth ? (
-          <div className="form__regMessage">
-            <div className="form__regTitle">{message}</div>
-            <TaskAltIcon />
-          </div>
-        ) : (
-          <>
-            <CustomInput 
-              name="email"
-              type={InputType.EMAIL}
-              formik={formik}
-              placeholder='Email'
-            />
-
-            <CustomInput
-              name="password"
-              type={InputType.PASSWORD}
-              formik={formik}
-              placeholder='Password'
-            />
-
-            <div className="form__buttonWrapper">
-              <CustomButton
-                title='Back'
-                onClick={() => window.history.go(-1)}
-                width={100}
-              />
-              <CustomButton
-                title='Login'
-                type={ButtonType.SUBMIT}
-                width={100}
-              />
+    <>
+      <form className='form' onSubmit={formik.handleSubmit}>
+        <div className='form__wrapper'>
+          {message}
+          {isAuth ? (
+            <div className="form__regMessage">
+              <div className="form__regTitle">{message}</div>
+              <TaskAltIcon />
             </div>
-          </>
-        )}
-      </div>
-    </form>
+          ) : (
+            <>
+              <CustomInput 
+                name="email"
+                type={InputType.EMAIL}
+                formik={formik}
+                placeholder='Email'
+              />
+
+              <CustomInput
+                name="password"
+                type={InputType.PASSWORD}
+                formik={formik}
+                placeholder='Password'
+              />
+
+              <div className="form__buttonWrapper">
+                <CustomButton
+                  title='Back'
+                  onClick={() => window.history.go(-1)}
+                  width={100}
+                />
+                <CustomButton
+                  title='Login'
+                  type={ButtonType.SUBMIT}
+                  width={100}
+                />
+              </div>
+            </>
+          )}
+        </div>
+      </form>
+
+      <CustomForm<RequestLoginUser> 
+        data={data}
+        onSubmit={onSubmit}
+        validation={FormType.USER}
+      />
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
-import { ButtonType, CustomButton } from '../Button';
+import { ButtonType, CustomButton } from '../Ui/Button';
 import classNames from 'classnames';
 
 type FormValues = {
@@ -60,7 +60,7 @@ export const RegistrationForm: React.FC = () => {
   const onSubmit = (values: FormValues) => {
     dispatch(registerUserNODE({
       email: values.email,
-      fullName: values.fullName, 
+      fullName: values.fullName,
       password: values.password,
     }));
   };
@@ -87,8 +87,8 @@ export const RegistrationForm: React.FC = () => {
         ) : (
           <>
             <div className={classNames('form__control',
-                {'form__control--error': isError('fullName') },
-              )}
+              { 'form__control--error': isError('fullName') },
+            )}
             >
               <input
                 id="fullName"
@@ -105,8 +105,8 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className={classNames("form__control",
-                {'form__control--error': formik.touched.email && formik.errors.email }
-              )}
+              { 'form__control--error': formik.touched.email && formik.errors.email }
+            )}
             >
               <input
                 id="email"
@@ -123,8 +123,8 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className={classNames("form__control",
-                {'form__control--error': formik.touched.password && formik.errors.password }
-              )}
+              { 'form__control--error': formik.touched.password && formik.errors.password }
+            )}
             >
               <input
                 id="password"
@@ -141,8 +141,8 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className={classNames("form__control",
-                {'form__control--error': formik.touched.confirmPassword && formik.errors.confirmPassword }
-              )}
+              { 'form__control--error': formik.touched.confirmPassword && formik.errors.confirmPassword }
+            )}
             >
               <input
                 id="confirmPassword"
@@ -159,8 +159,8 @@ export const RegistrationForm: React.FC = () => {
             </div>
 
             <div className="form__buttonWrapper">
-              <CustomButton 
-                type={ButtonType.BUTTON} 
+              <CustomButton
+                type={ButtonType.BUTTON}
                 onClick={() => window.history.go(-1)}
               >
                 Back
@@ -179,4 +179,3 @@ export const RegistrationForm: React.FC = () => {
   );
 };
 
-  

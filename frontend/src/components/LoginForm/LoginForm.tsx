@@ -9,7 +9,7 @@ import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import { RequestLoginUser } from '../../types/User';
-import { ButtonType, CustomButton } from '../Button';
+import { ButtonType, CustomButton } from '../Ui/Button';
 
 import './LoginForm.scss';
 
@@ -73,7 +73,7 @@ export const LoginForm: React.FC = () => {
                 value={formik.values.email}
               />
               {formik.touched.email && formik.errors.email ? (
-                  <div className="form__control--error">{formik.errors.email}</div>
+                <div className="form__control--error">{formik.errors.email}</div>
               ) : null}
             </div>
 
@@ -88,10 +88,10 @@ export const LoginForm: React.FC = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                  <div className="form__control--error">{formik.errors.password}</div>
+                <div className="form__control--error">{formik.errors.password}</div>
               ) : null}
             </div>
-              <div className="form__buttonWrapper">
+            <div className="form__buttonWrapper">
               <CustomButton title='Back' onClick={() => window.history.go(-1)} />
               <CustomButton title='Login' type={ButtonType.SUBMIT} />
             </div>

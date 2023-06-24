@@ -3,11 +3,11 @@ import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
 import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
-import { BasicPagination } from "../BasicPagination";
+import { BasicPagination } from "../Ui/BasicPagination";
 
 import './DreamsContainer.scss';
-import { CustomSelect } from '../CustomSelect';
-import { Search } from '../Search';
+import { CustomSelect } from '../Ui/CustomSelect';
+import { Search } from '../Ui/Search';
 
 export const DreamsContainer: React.FC = () => {
   const dreams = useAppSelector(selectMockData);

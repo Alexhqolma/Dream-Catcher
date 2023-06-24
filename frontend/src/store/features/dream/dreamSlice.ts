@@ -2,32 +2,36 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../..';
 import { Dream } from '../../../types/Dream';
 
-export interface EditDreamState {
+export interface DreamState {
   storage: Dream | null;
+  input: Dream | null;
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
 
-const initialState: EditDreamState = {
+const initialState: DreamState = {
   storage: null,
+  input: null,
   statusLoading: 'idle',
   error: null,
 };
 
-const editDreamSlice = createSlice({
+const dreamSlice = createSlice({
   name: 'editDream',
   initialState,
   reducers: {
-    setDream: (state: EditDreamState, action: PayloadAction<Dream>) => {
+    setDream: (state: DreamState, action: PayloadAction<Dream>) => {
+      console.log('setDream');
+
       state.storage = action.payload;
     },
     setStatus: (
-      state: EditDreamState,
+      state: DreamState,
       action: PayloadAction<'idle' | 'loading' | 'failed'>,
     ) => {
       state.statusLoading = action.payload;
     },
-    setError: (state: EditDreamState, action: PayloadAction<string>) => {
+    setError: (state: DreamState, action: PayloadAction<string>) => {
       state.error = action.payload;
       state.statusLoading = 'failed';
     },
@@ -37,15 +41,15 @@ const editDreamSlice = createSlice({
   },
 });
 
-export default editDreamSlice.reducer;
+export default dreamSlice.reducer;
 export const {
   setDream,
   setError,
   setStatus,
   resetState,
-} = editDreamSlice.actions;
+} = dreamSlice.actions;
 
-export const selectEditDream = (state: RootState) => state.editDream.storage;
-export const selectEditDreamStatusLoading
-= (state: RootState) => state.editDream.statusLoading;
-export const selectEditDreamError = (state: RootState) => state.editDream.error;
+export const selectDream = (state: RootState) => state.dream.storage;
+export const selectDreamStatusLoading
+= (state: RootState) => state.dream.statusLoading;
+export const selectDreamError = (state: RootState) => state.dream.error;

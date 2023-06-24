@@ -8,12 +8,12 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
-import { RequestLoginUser } from '../../types/User';
 import { ButtonType, CustomButton } from '../UI/CustomButton';
 
 import './LoginForm.scss';
 import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
-import { CustomForm, FormType } from '../UI/CustomForm';
+import { CustomForm } from '../UI/CustomForm';
+import { RequestLoginUser } from '../../types/User';
 
 const initialValues: RequestLoginUser = {
   email: '',
@@ -108,7 +108,7 @@ export const LoginForm: React.FC = () => {
         </div>
       </form>
 
-      <CustomForm<RequestLoginUser> 
+      <CustomForm<RequestLoginUser>
         data={data}
         onSubmit={onSubmit}
         validation={FormType.USER}

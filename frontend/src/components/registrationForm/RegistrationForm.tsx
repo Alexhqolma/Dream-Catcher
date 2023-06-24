@@ -11,7 +11,7 @@ import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
 import { ButtonType, CustomButton } from '../UI/CustomButton';
-import { CustomInput, InputType } from '../Ui/CustomInput/CustomInput';
+import { CustomInput, InputType } from '../UI/CustomInput/CustomInput';
 
 type FormValues = {
   fullName: string;
@@ -84,14 +84,14 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <CustomInput 
+            <CustomInput
               name="fullName"
               type={InputType.TEXT}
               formik={formik}
               placeholder='Full Name'
             />
 
-            <CustomInput 
+            <CustomInput
               name="email"
               type={InputType.EMAIL}
               formik={formik}
@@ -105,7 +105,7 @@ export const RegistrationForm: React.FC = () => {
               placeholder='Password'
             />
 
-            <CustomInput 
+            <CustomInput
               name="confirmPassword"
               type={InputType.PASSWORD}
               formik={formik}

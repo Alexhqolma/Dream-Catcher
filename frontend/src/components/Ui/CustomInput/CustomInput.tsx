@@ -1,4 +1,6 @@
 import classNames from "classnames"
+import React from "react"
+import "./CustomInput.scss"
 
 export enum InputType {
   TEXT = 'text',
@@ -24,8 +26,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   const isTouched = formik.touched[name];
 
   return (
-    <div className={classNames("form__control",
-      { 'form__control--error': isError }
+    <div className={classNames("control",
+      { 'control__error': isError }
     )}
     >
       <input
@@ -38,7 +40,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         value={formik.values[name]}
       />
 
-      {(isTouched && isError) && <div className="form__error">{isError}</div>}
+      {(isTouched && isError) && <div className="control__error--error">{isError}</div>}
     </div>
   )
 }

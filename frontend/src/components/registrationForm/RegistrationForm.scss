@@ -39,42 +39,4 @@
     min-width: 300px;
     padding-top: $space_xl;
   }
-
-  &__control {
-    height: $input-height;
-    width: 30%;
-    min-width: 300px;
-  }
-
-  &__control input {
-    display: block;
-    width: 100%;
-    font-size: $font_size_m;
-    font-size: 14px;
-    line-height: $space_xl;
-    border: 1px solid $white;
-    border-bottom: 1px solid $darkPrimary;
-
-    &:focus {
-        outline: none;
-        border: 1px solid transparent;
-        border-bottom: 1px solid $darkPrimary;
-      }
-  }
-
-  &__control--error input {
-    border-bottom: 1px solid $lightSecondary;
-
-    &:focus {
-        border-bottom: 1px solid $lightSecondary;
-      }
-  }
-
-
-  &__error {
-    position: relative;
-    color: $lightSecondary;
-    font-size: $font_size_12;
-    text-align: left;
-  }
 }

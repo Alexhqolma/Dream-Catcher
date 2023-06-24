@@ -59,6 +59,10 @@
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
   }
+
+  &__text {
+    position: relative;
+  }
  
   &__body {
     display: block;
@@ -74,9 +78,9 @@
   }
 
   &__arrow-button {
-    text-align: right;
+    position: absolute;
     font-weight: 700;
-    border: 1px solid red;
+    right: 0;
   }
 
   &__arrow-button img {

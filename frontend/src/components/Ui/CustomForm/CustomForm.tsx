@@ -34,7 +34,7 @@ interface CustomFormProps<T> {
     placeholder: string;
     initialValues: T;
   }[];
-  onSubmit: () => void;
+  onSubmit: (e: any) => void;
   validation: FormType;
 }
 

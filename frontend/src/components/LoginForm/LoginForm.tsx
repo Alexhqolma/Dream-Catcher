@@ -16,7 +16,7 @@ import { ButtonType, CustomButton } from '../UI/CustomButton';
 
 import './LoginForm.scss';
 import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
-import { CustomForm } from '../UI/CustomForm';
+import { CustomForm, FormType } from '../UI/CustomForm';
 import { RequestLoginUser } from '../../types/User';
 >>>>>>> 94648d06540938a0a20421b85746073547588256
 

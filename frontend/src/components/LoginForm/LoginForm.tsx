@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
 import { RequestLoginUser } from '../../types/User';
-import { ButtonType, CustomButton } from '../UI/CustomButton';
 
 import './LoginForm.scss';
-import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
+import { InputType } from '../UI/CustomInput/CustomInput';
 import { CustomForm, FormType } from '../UI/CustomForm';
 
 const initialValues: RequestLoginUser = {
@@ -20,10 +16,10 @@ const initialValues: RequestLoginUser = {
   password: '',
 };
 
-const validationSchema = Yup.object({
-  email: Yup.string().email().required(),
-  password: Yup.string().required()
-});
+// const validationSchema = Yup.object({
+//   email: Yup.string().email().required(),
+//   password: Yup.string().required()
+// });
 
 export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -47,11 +43,11 @@ export const LoginForm: React.FC = () => {
     })
   }
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema
-  });
+  // const formik = useFormik({
+  //   initialValues,
+  //   onSubmit,
+  //   validationSchema
+  // });
 
   // data: {
   //   name: keyof User | keyof Dream;
@@ -67,7 +63,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <>
-      <form className='form' onSubmit={formik.handleSubmit}>
+      {/* <form className='form' onSubmit={formik.handleSubmit}>
         <div className='form__wrapper'>
           {message}
           {isAuth ? (
@@ -106,9 +102,9 @@ export const LoginForm: React.FC = () => {
             </>
           )}
         </div>
-      </form>
+      </form> */}
 
-      <CustomForm<RequestLoginUser> 
+      <CustomForm 
         data={data}
         onSubmit={onSubmit}
         validation={FormType.USER}

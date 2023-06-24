@@ -12,19 +12,22 @@ export enum FormType {
   DREAM = 'DREAM'
 }
 
-interface CustomFormProps<T> {
-  data: {
-    name: keyof T;
-    type: InputType;
-    placeholder: string;
-    initialValue: string;
-  }[];
-  onSubmit: (e: any) => void;
+interface InputProperties<T> {
+  name: keyof T;
+  type: InputType;
+  placeholder: string;
+  initialValue: string;
+}
+
+
+interface CustomFormProps<T = User | Dream> {
+  data: InputProperties<T>[];
+  onSubmit: (e: React.MouseEvent) => void;
   validation: FormType;
 }
 
 export const CustomForm: React.FC<CustomFormProps> = ({ data, validation, onSubmit }) => {
-  const initialValues: User | Dream | any = {};
+  const initialValues = {};
 
   data.forEach((el: { name: string | number; initialValue: string; }) => initialValues[el.name] = el.initialValue);
 
@@ -36,10 +39,10 @@ export const CustomForm: React.FC<CustomFormProps> = ({ data, validation, onSubm
 
   return (
     <form className="CustomForm">
-      {data.map((el: { name: React.Key | null | undefined; type: InputType; placeholder: string | undefined; }) => (
+      {data.map(el => (
         <CustomInput
           key={el.name}
-          name={String(el.name)}
+          name={el.name}
           type={el.type}
           formik={formik}
           placeholder={el.placeholder} />

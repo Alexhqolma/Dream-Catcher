@@ -47,19 +47,21 @@ export const DreamCard: React.FC<DreamItemProps> = ({
         </div>
 
         <div className='dream-card__info'>
-          <h4 className={classNames('dream-card__title',
-            { 'title': horizontalMode },
-          )}
-          >
-            {dream.title}
-          </h4>
-          <p className="dream-card__body">{dream.body}</p>
-          <CustomButton
-            href={`/dream/${dream.id}`}
-          >
-            <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
-          </CustomButton>
-          <h4 className='dream-card__date-created'>{dream.user}</h4>
+          <div className='dream-card__text'>
+            <h4 className={classNames('dream-card__title',
+              { 'title': horizontalMode }
+            )}
+            >
+              {dream.title}
+            </h4>
+            <p className="dream-card__body">{dream.body}</p>
+            <CustomButton
+              href={`/dream/${dream.id}`}
+            >
+              <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
+            </CustomButton>
+            <h4 className='dream-card__date-created'>{dream.user}</h4>
+          </div>
         </div>
       </div>
 
@@ -67,7 +69,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
 
       {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
 
-      <CustomButton onClick={() => {
+      {/* <CustomButton onClick={() => {
         dispatch({
           type: SagaActions.CREATE_DREAM,
           payload: {
@@ -81,7 +83,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
       }
       >
         teleport
-      </CustomButton>
+      </CustomButton> */}
     </div>
   );
 };

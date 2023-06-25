@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput, InputType } from '../CustomInput/CustomInput';
-import * as Yup from 'yup';
 
 export enum FormType {
   USER = 'USER',

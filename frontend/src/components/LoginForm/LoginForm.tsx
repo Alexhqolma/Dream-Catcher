@@ -61,16 +61,16 @@ export const LoginForm: React.FC = () => {
 
   const data:InputProperties<RequestLoginUser>[] = [
     { 
-      name: 'email' as keyof RequestLoginUser,
+      name: 'email',
       type: InputType.EMAIL,
       placeholder: 'enter email',
-      initialValue: initialValues.email as string,
+      initialValue: initialValues.email,
     },
     { 
-      name: 'password' as keyof RequestLoginUser, 
+      name: 'password', 
       type: InputType.PASSWORD, 
       placeholder: 'enter password', 
-      initialValue: initialValues.password as string, 
+      initialValue: initialValues.password, 
     },
   ];
 

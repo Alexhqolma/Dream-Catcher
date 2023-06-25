@@ -1,24 +1,18 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { SagaActions } from '../../store/sagas/actions';
 import { routes } from '../../routes/routerConfig';
 import { resetMessage, selectIsAuth, selectMessage } from '../../store/features/user/userSlice';
-<<<<<<< HEAD
 import { RequestLoginUser } from '../../types/User';
 
 import './LoginForm.scss';
 import { InputType } from '../UI/CustomInput/CustomInput';
-import { CustomForm, FormType } from '../UI/CustomForm';
-=======
-import { ButtonType, CustomButton } from '../UI/CustomButton';
-
-import './LoginForm.scss';
-import { InputType, CustomInput } from '../UI/CustomInput/CustomInput';
-import { CustomForm } from '../UI/CustomForm';
-import { RequestLoginUser } from '../../types/User';
->>>>>>> 94648d06540938a0a20421b85746073547588256
+import { CustomForm, FormType, InputProperties } from '../UI/CustomForm';
+import { validationSchema } from '../UI/CustomForm/validationSchema';
 
 const initialValues: RequestLoginUser = {
   email: '',
@@ -65,9 +59,19 @@ export const LoginForm: React.FC = () => {
   //   initialValue: unknown;
   // }[];
 
-  const data = [
-    { name: 'email', type: InputType.EMAIL, placeholder: 'enter email', initialValue: initialValues.email },
-    { name: 'password', type: InputType.PASSWORD, placeholder: 'enter password', initialValue: initialValues.password },
+  const data:InputProperties<RequestLoginUser>[] = [
+    { 
+      name: 'email' as keyof RequestLoginUser,
+      type: InputType.EMAIL,
+      placeholder: 'enter email',
+      initialValue: initialValues.email as string,
+    },
+    { 
+      name: 'password' as keyof RequestLoginUser, 
+      type: InputType.PASSWORD, 
+      placeholder: 'enter password', 
+      initialValue: initialValues.password as string, 
+    },
   ];
 
   return (
@@ -113,14 +117,10 @@ export const LoginForm: React.FC = () => {
         </div>
       </form> */}
 
-<<<<<<< HEAD
-      <CustomForm 
-=======
-      <CustomForm<RequestLoginUser>
->>>>>>> 94648d06540938a0a20421b85746073547588256
+      <CustomForm<RequestLoginUser> 
         data={data}
+        validationSchema={Yup.object(validationSchema[FormType.LOGIN_USER])}
         onSubmit={onSubmit}
-        validation={FormType.USER}
       />
     </>
   );

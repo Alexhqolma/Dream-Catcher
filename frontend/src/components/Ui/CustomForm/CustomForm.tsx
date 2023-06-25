@@ -1,61 +1,49 @@
-import React from 'react';
 import { useFormik } from 'formik';
-import { ButtonType, CustomButton } from '../CustomButton/index.tsx';
-import { CustomInput, InputType } from '../CustomInput/CustomInput.tsx';
-import { validationSchema } from './validationSchema.ts';
+
+import { ButtonType, CustomButton } from '../CustomButton';
+import { CustomInput, InputType } from '../CustomInput/CustomInput';
+import * as Yup from 'yup';
 
 export enum FormType {
   USER = 'USER',
+  LOGIN_USER = 'LOGIN_USER',
   DREAM = 'DREAM'
 }
 
-<<<<<<< HEAD
-interface InputProperties<T> {
+export interface InputProperties<T> {
   name: keyof T;
   type: InputType;
   placeholder: string;
   initialValue: string;
 }
 
-
-interface CustomFormProps<T = User | Dream> {
-  data: InputProperties<T>[];
-  onSubmit: (e: React.MouseEvent) => void;
-  validation: FormType;
-}
-
-export const CustomForm: React.FC<CustomFormProps> = ({ data, validation, onSubmit }) => {
-  const initialValues = {};
-=======
 interface CustomFormProps<T> {
-  data: {
-    name: string;
-    type: InputType;
-    placeholder: string;
-    initialValues: T;
-  }[];
-  onSubmit: () => void;
-  validation: FormType;
+  data: InputProperties<T>[];
+  validationSchema:  Yup.ObjectSchema<any>;
+  onSubmit: (e: any) => void;
 }
 
-export const CustomForm = <T,>({ data, validation, onSubmit }: CustomFormProps<T>) => {
-  const initialValues: Record<string, T> = {};
->>>>>>> 94648d06540938a0a20421b85746073547588256
+export const CustomForm = <T,>({ 
+  data,
+  validationSchema,
+  onSubmit,
+}: CustomFormProps<T>) => {
+  const initialValues: Partial<Record<keyof T, string>> = {};
 
-  data.forEach(el => initialValues[el.name] = el.initialValues);
+  data.forEach((el) => initialValues[el.name as keyof T] = el.initialValue);
 
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema: validationSchema[FormType[validation]],
+    validationSchema,
   });
 
   return (
     <form className="CustomForm">
       {data.map(el => (
         <CustomInput
-          key={el.name}
-          name={el.name}
+          key={el.name as string}
+          name={el.name as string}
           type={el.type}
           formik={formik}
           placeholder={el.placeholder} />

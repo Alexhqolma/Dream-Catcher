@@ -22,9 +22,8 @@ export const DreamsContainer: React.FC = () => {
 
   const onChangePage = (page: number) => setPage(page);
 
-  const dreamsCut: Dream[] = useMemo(() => allDreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage).filter(d => d.title.toLowerCase().includes(searchQuery)), []);
+  const dreamsCut: Dream[] = allDreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage).filter(d => d.title.toLowerCase().includes(searchQuery));
  
-
   const totalPages = Math.ceil(allDreams.length / dreamsPerPage);
   const isChoseAllDreams = dreamsPerPage === allDreams.length;
 
@@ -48,7 +47,6 @@ export const DreamsContainer: React.FC = () => {
 
   return (
     <div className="DreamsContainer" >
-      dreams container
       <div className="DreamsContainer__controls">
         <CustomSelect
           onChange={(value) => setDreamsPerPage(+value)}
@@ -75,7 +73,7 @@ export const DreamsContainer: React.FC = () => {
       </div>
 
       <ul className="DreamsContainer__content grid" >
-        {allDreams.map(d => (
+        {dreamsCut.map(d => (
           <li key={d.id}><DreamCard dream={d} catalogMode /></li>
         ))}
       </ul>

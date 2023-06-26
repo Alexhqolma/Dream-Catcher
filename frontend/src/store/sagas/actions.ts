@@ -1,4 +1,4 @@
-import { RequestCreateDream, RequestGetDream, RequestPatchDream } from '../../types/Dream';
+import { Dream, DreamsStatus, RequestCreateDream, RequestGetDream, RequestPatchDream } from '../../types/Dream';
 import { RequestLoginUser, RequestCreateUser } from './../../types/User';
 
 // create saga actions ONLY
@@ -54,6 +54,14 @@ const sagaActionsCreator = {
     type: SagaActions.UPDATE_DREAM, 
     payload,
   }),
+  // takeDream:  (payload: RequestPatchDream) => ({ 
+  //   type: SagaActions.UPDATE_DREAM, 
+  //   payload,
+  // }),
+  // refuseDream:  (payload: RequestPatchDream) => ({ 
+  //   type: SagaActions.UPDATE_DREAM, 
+  //   payload,
+  // }),
 
   registerUserJAVA: (user: RequestCreateUser) => ({ 
     type: SagaActions.REGISTER_USER_JAVA, 
@@ -73,6 +81,12 @@ const sagaActionsCreator = {
   }),
 };
 
+const takeDream = (dream: Dream; token: string; ) => {
+  const takeDream = { ...dream, status: DreamsStatus.TAKEN};
+
+  return sagaActionsCreator.updateDream(takeDream, token);
+}
+
 export const {
   registerUserNODE,
   loginUserNODE,
@@ -82,6 +96,7 @@ export const {
   loadAllDreams,
   loadDream,
   updateDream,
+  refuseDream,
 
   registerUserJAVA,
   loginUserJAVA,

@@ -13,7 +13,7 @@ export type Dream = {
   user: string;
   handler: string | null;
   imageUrl?: string | null,
-  tags: string[],
+  tags?: string[],
   creationDate?: string | null;
 };
 

@@ -71,8 +71,6 @@ export const RegistrationForm: React.FC = () => {
     validationSchema
   });
 
-  console.log('isSubmitted = ', isSubmitted);
-
   return (
     <form className='form' onSubmit={formik.handleSubmit}>
       <div className='form__wrapper'>

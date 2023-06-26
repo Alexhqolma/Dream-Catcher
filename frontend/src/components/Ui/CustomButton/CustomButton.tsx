@@ -3,6 +3,7 @@ import { NavLink, To } from 'react-router-dom';
 import classNames from 'classnames';
 
 import './CustomButton.scss';
+import { type } from 'os';
 
 export enum Target {
   Blank = '_blank',
@@ -34,7 +35,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   href,
   to,
-  onClick = () => console.warn('no OnClick function'),
+  onClick = () => (type !== ButtonType.SUBMIT) && console.warn('no OnClick function'),
   className,
   target,
   type,

@@ -36,6 +36,8 @@ export const App: React.FC = () => {
   const mockData = useAppSelector(selectMockData);
   const token = useAppSelector(selectToken) || '';
 
+  
+
   // useEffect(() => {
   //   const createJavaDream = async () => {
   //     console.log('createJavaDream');
@@ -133,25 +135,26 @@ export const App: React.FC = () => {
   //   // createJavaDream();
   // }, [])
 
-  useEffect(() => {
-    const loginJava = async () => {
-      console.log('loginDream');
+  console.log();
+  // useEffect(() => {
+  //   const loginJava = async () => {
+  //     console.log('loginDream');
 
-      const user = {
-        email: 'admin@admin.com',
-        password: 'adminadmin',
-      };
+  //     const user = {
+  //       email: 'admin@admin.com',
+  //       password: 'adminadmin',
+  //     };
 
-      const response = await client.post(
-        '/auth/login',
-        user,
-      )
+  //     const response = await client.post(
+  //       '/auth/login',
+  //       user,
+  //     )
 
-      return response;
-    };
+  //     return response;
+  //   };
 
-    loginJava().then(res => console.log(res));
-  }, [])
+  //   loginJava().then(res => console.log(res));
+  // }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -181,13 +184,13 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <div className='App__buttons_for_Node'>
+      {/* <div className='App__buttons_for_Node'>
         <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'app@test.app',
           password: '12345',
           fullName: 'App test user',
         }))}>
-          register
+          register User 1
         </CustomButton>
 
         <CustomButton onClick={() => dispatch({
@@ -198,7 +201,26 @@ export const App: React.FC = () => {
             // fullName: 'App test user',
           },
         })}>
-          login User
+          login User 1
+        </CustomButton>
+
+        <CustomButton onClick={() => dispatch(registerUserNODE({
+          email: 'user2@test.app',
+          password: '1234567',
+          fullName: 'App test user 2',
+        }))}>
+          register User 2
+        </CustomButton>
+
+        <CustomButton onClick={() => dispatch({
+          type: SagaActions.LOGIN_USER_NODE,
+          payload: {
+            password: '1234567',
+            email: 'user2@test.app',
+            // fullName: 'App test user',
+          },
+        })}>
+          login User 2
         </CustomButton>
 
         <CustomButton onClick={() => dispatch({
@@ -220,7 +242,7 @@ export const App: React.FC = () => {
         })}>
           get All Dreams
         </CustomButton>
-      </div>
+      </div> */}
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
 

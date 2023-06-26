@@ -19,7 +19,7 @@ export interface InputProperties<T> {
 
 interface CustomFormProps<T> {
   data: InputProperties<T>[];
-  validationSchema:  Yup.ObjectSchema<any>;
+  validationSchema:  Yup.ObjectSchema<Partial<Record<keyof T, string>>>;
   onSubmit: (e: any) => void;
 }
 

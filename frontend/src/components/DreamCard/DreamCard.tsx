@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Dream } from '../../types/Dream';
@@ -10,7 +10,7 @@ import './DreamCard.horizontal.scss';
 import './DreamCard.page.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectToken } from '../../store/features/user/userSlice';
-import { SagaActions } from '../../store/sagas/actions';
+import { SagaActions, loadUserNODE } from '../../store/sagas/actions';
 import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
 
 interface DreamItemProps {

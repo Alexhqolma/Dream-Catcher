@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
-import { selectAllDreams } from '../../store/features/allDreams/allDreamsSlice';
 import { CustomSelect } from '../UI/CustomSelect';
 import { BasicPagination } from '../UI/BasicPagination';
 import { Search } from '../UI/Search';
 
+// import { loadAllDreams } from '../../store/sagas/actions';
 import './DreamsContainer.scss';
+import { selectAllDreams } from '../../store/features/allDreams/allDreamsSlice';
 import { loadAllDreams } from '../../store/sagas/actions';
 
 export const DreamsContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const allDreams = useAppSelector(selectAllDreams);
-
 
   const [dreamsPerPage, setDreamsPerPage] = useState<number>(8);
   const [page, setPage] = useState<number>(1);

@@ -26,7 +26,7 @@ export function* getDreamSaga({ payload }: Props): Generator<unknown, any, Respo
       throw response;
     }
 
-    yield put(setDream(response.dream));
+    yield put(setDream(response.dreams[0]));
   } catch (error: unknown) {
     console.log('catch getDreamSaga', (error as AxiosError<ResponseGetDreamWithError>).response?.data?.message);
 

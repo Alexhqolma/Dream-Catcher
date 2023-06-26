@@ -34,7 +34,6 @@ export const DreamCard: React.FC<DreamItemProps> = ({
 
   const onClick = () => {
     dispatch(updateDream({ dream, token }));
-    dispatch(loadAllDreams());
   };
 
   return (

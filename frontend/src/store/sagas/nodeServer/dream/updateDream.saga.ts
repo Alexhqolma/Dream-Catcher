@@ -1,11 +1,13 @@
+import { getAllDreams } from './../../../../mock/api/mockDreams';
 import { AxiosError } from 'axios';
 
 import { call, put } from 'redux-saga/effects';
-import { setError, setStatus } from '../../../features/allDreams/allDreamsSlice';
+import { setDreams, setError, setStatus } from '../../../features/allDreams/allDreamsSlice';
 import { dreamAPI } from '../../../../api/Node/dreams';
 import { RequestPatchDream, ResponsePatchDream, ResponsePatchDreamWithError } from '../../../../types/Dream';
 import { RequestStatus } from '../../../../types/RequestStatus';
 import { Error } from '../../../../types/Error';
+import { getAllDreamsSaga } from './getAllDreams.saga';
 interface Props {
   type: string;
   payload: RequestPatchDream;
@@ -27,7 +29,7 @@ export function* updateDreamSaga({ payload }: Props): Generator<unknown, any, Re
 
     console.log(response);
 
-    // yield put(setDreams(response.dream));
+    yield getAllDreamsSaga();
   } catch (error: unknown) {
     console.log('catch updateDreamSaga', (error as AxiosError<ResponsePatchDreamWithError>).response?.data?.message);
 

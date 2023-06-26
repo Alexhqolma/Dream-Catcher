@@ -30,6 +30,7 @@ public class WebSecurityConfig {
         return http
                 .csrf().disable().cors().configurationSource(corsConfigurationSource())
                 .and()
+                //.csrf().disable().cors().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/inject", "/swagger-ui", "/auth/**").permitAll()
                 //.requestMatchers("/**").permitAll()
@@ -49,10 +50,15 @@ public class WebSecurityConfig {
 
     CorsConfigurationSource corsConfigurationSource() {
         final var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD"));
+        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept",
+                "Authorization", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers",
+                "Access-Control-Allow-Methods", "Access-Control-Allow-Origin", "Access-Control-Expose-Headers",
+                "Access-Control-Max-Age", "Access-Control-Request-Headers", "Access-Control-Request-Method",
+                "Age", "Allow", "Alternates", "Content-Range", "Content-Disposition", "Content-Description"));
         configuration.setExposedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
 
         final var source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

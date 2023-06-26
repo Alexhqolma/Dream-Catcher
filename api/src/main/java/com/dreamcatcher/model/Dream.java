@@ -26,4 +26,5 @@ public class Dream {
     private User handler;
     private LocalDateTime creationDate;
     private String imageUrl;
+    private String tags;
 }

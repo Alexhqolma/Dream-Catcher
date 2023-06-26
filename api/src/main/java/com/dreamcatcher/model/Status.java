@@ -4,5 +4,5 @@ public enum Status {
     PENDING,
     POSTED,
     TAKEN,
-    FINISHED
+    COMPLETED
 }

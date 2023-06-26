@@ -10,8 +10,8 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes/routerConfig';
-import { ButtonType, CustomButton } from '../Button';
-import classNames from 'classnames';
+import { ButtonType, CustomButton } from '../UI/CustomButton';
+import { CustomInput, InputType } from '../UI/CustomInput/CustomInput';
 
 type FormValues = {
   fullName: string;
@@ -60,7 +60,7 @@ export const RegistrationForm: React.FC = () => {
   const onSubmit = (values: FormValues) => {
     dispatch(registerUserNODE({
       email: values.email,
-      fullName: values.fullName, 
+      fullName: values.fullName,
       password: values.password,
     }));
   };
@@ -84,79 +84,46 @@ export const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
-            <div className="form__control">
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                placeholder='Full Name'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.fullName}
-              />
-              {formik.touched.fullName && formik.errors.fullName ? (
-                <div className="form__control--error">{formik.errors.fullName}</div>
-              ) : null}
-            </div>
+            <CustomInput
+              name="fullName"
+              type={InputType.TEXT}
+              formik={formik}
+              placeholder='Full Name'
+            />
 
-            <div className="form__control">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder='Email'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <div className="form__control--error">{formik.errors.email}</div>
-              ) : null}
-            </div>
+            <CustomInput
+              name="email"
+              type={InputType.EMAIL}
+              formik={formik}
+              placeholder='Email'
+            />
 
-            <div className="form__control">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder='Password'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div className="form__control--error">{formik.errors.password}</div>
-              ) : null}
-            </div>
+            <CustomInput
+              name="password"
+              type={InputType.PASSWORD}
+              formik={formik}
+              placeholder='Password'
+            />
 
-            <div className={classNames("form__control",
-                {'form__control--error': formik.touched.confirmPassword && formik.errors.confirmPassword }
-              )}
-            >
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder='Confirm Password'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.confirmPassword}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                <div className="form__control--error">{formik.errors.confirmPassword}</div>
-              ) : null}
-            </div>
+            <CustomInput
+              name="confirmPassword"
+              type={InputType.PASSWORD}
+              formik={formik}
+              placeholder='Confirm Password'
+            />
 
             <div className="form__buttonWrapper">
-              <CustomButton 
-                type={ButtonType.BUTTON} 
+              <CustomButton
+                type={ButtonType.BUTTON}
                 onClick={() => window.history.go(-1)}
+                width={100}
               >
                 Back
               </CustomButton>
 
               <CustomButton
                 type={ButtonType.SUBMIT}
+                width={100}
               >
                 Submit
               </CustomButton>
@@ -168,4 +135,3 @@ export const RegistrationForm: React.FC = () => {
   );
 };
 
-  

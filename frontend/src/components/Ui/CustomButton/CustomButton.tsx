@@ -1,8 +1,8 @@
 import React, { MouseEventHandler } from 'react';
-import { NavLink, To } from "react-router-dom";
-import classNames from "classnames";
+import { NavLink, To } from 'react-router-dom';
+import classNames from 'classnames';
 
-import './Button.scss';
+import './CustomButton.scss';
 
 export enum Target {
   Blank = '_blank',
@@ -26,6 +26,7 @@ interface CustomButtonProps {
   className?: string;
   target?: Target.Blank;
   type?: ButtonType;
+  width?: number | '100%';
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({ 
@@ -36,9 +37,9 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   onClick = () => console.warn('no OnClick function'),
   className,
   target,
-  type
+  type,
+  width,
  }) => {
-
   if (href) {
     return (
       <a
@@ -68,9 +69,10 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       className={classNames('custom-button', 'custom-button--regular', className)}
       onClick={onClick}
       type={type}
+      style={{ width: width === '100%' ? '100%' : `${width}px` }}
     >
       {title}
       {children}
     </button>
   )
-}
+};

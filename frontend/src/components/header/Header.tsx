@@ -4,12 +4,12 @@ import { BsBox2Heart } from 'react-icons/bs';
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectIsAuth, selectUser } from "../../store/features/user/userSlice";
-import { CustomButton } from '../Button';
+import { CustomButton } from '../UI/CustomButton';
 import logo from "../../assets/images/big_logo.png";
 
 import "./Header.scss";
 
-  const Header: React.FC = () => {
+const Header: React.FC = () => {
   const { home, dreams, login, registration, user, favorites } = routes;
   const isAuth = useAppSelector(selectIsAuth);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
@@ -45,8 +45,8 @@ import "./Header.scss";
   return (
     <header className="header">
       <CustomButton
-        to="/" 
-        className="header__logo-link" 
+        to="/"
+        className="header__logo-link"
       >
         <img
           className="header__logo"
@@ -104,7 +104,7 @@ import "./Header.scss";
           </li>
         </ul>
       </nav>
-      
+
       {showLoginPopup && (
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>

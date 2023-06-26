@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { put } from 'redux-saga/effects';
 import { Dream } from '../../../types/Dream';
 import { createDream } from '../../../api/Java/dreamsJava';
-import { setDream, setError, setStatus } from '../../features/editDream/editDreamSlice';
+import { setDream, setError, setStatus } from '../../features/dream/dreamSlice';
 
 export function* postCreateDreamSaga(data: Omit<Dream, "id"> | FormData) {
   console.log('postCreateDreamSaga', data);

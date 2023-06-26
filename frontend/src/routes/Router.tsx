@@ -22,35 +22,35 @@ export const router = createBrowserRouter([
         path: login.path,
         element: <login.element />,
         id: login.name,
-        errorElement: <>Error on `${login.name}`</>,
+        errorElement: <main>Error on {login.name}</main>,
       },
       {
         path: registration.path,
         element: <registration.element />,
         id: registration.name,
-        errorElement: <>Error on `${registration.name}`</>,
+        errorElement: <main>Error on {registration.name}</main>,
       },
       {
         path: dreams.path,
         element: <dreams.element />,
         id: dreams.name,
-        errorElement: <>Error on `${dreams.name}`</>,
+        errorElement: <main>Error on {dreams.name}</main>,
       },
       {
         path: dream.path.dreamId,
         element: <dream.element />,
         id: dream.name,
-        errorElement: <>Error on `${dream.path.dreamId}`</>,
+        errorElement: <main>Error on {dream.path.dreamId}</main>,
       },
       {
         path: user.path.parent,
         element: <user.element />,
-        errorElement: <>Error on `${user.name}`</>,
+        errorElement: <main>Error on {user.name}</main>,
         children: [
           {
             path: user.path.userId,
             element: <user.element />,
-            errorElement: <>Error on `${user.path.userId}`</>,
+            errorElement: <main>Error on {user.path.userId}</main>,
           }
         ],
       },
@@ -58,12 +58,12 @@ export const router = createBrowserRouter([
         path: favorites.path,
         element: <favorites.element />,
         id: favorites.name,
-        errorElement: <>Error on `${favorites.path}`</>,
+        errorElement: <main>Error on `${favorites.path}`</main>,
       },
     ],
   },
   {
     path: rootError.path,
-    element: <>this route is not exist!</>,
+    element: <main>this route is not exist!</main>,
   }
 ]);

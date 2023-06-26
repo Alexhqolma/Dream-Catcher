@@ -1,4 +1,4 @@
-import { RequestCreateDream } from '../../types/Dream';
+import { RequestCreateDream, RequestGetDream, RequestPatchDream } from '../../types/Dream';
 import { RequestLoginUser, RequestCreateUser } from './../../types/User';
 
 // create saga actions ONLY
@@ -11,7 +11,9 @@ export enum SagaActions {
   DELETE_USER_NODE = 'saga/DELETE_USER_NODE',
 
   FETCH_ALL_DREAMS = 'saga/FETCH_ALL_DREAMS',
+  FETCH_DREAM = 'saga/FETCH_DREAM',
   CREATE_DREAM = 'saga/CREATE_DREAM',
+  UPDATE_DREAM = 'saga/UPDATE_DREAM',
 
   REGISTER_USER_JAVA = 'saga/REGISTER_USER_JAVA',
   LOGIN_USER_JAVA = 'saga/LOGIN_USER_JAVA',
@@ -39,9 +41,17 @@ const sagaActionsCreator = {
     payload: token,
   }),
 
-  loadDreams: () => ({ type: SagaActions.FETCH_ALL_DREAMS }),
+  loadAllDreams: () => ({ type: SagaActions.FETCH_ALL_DREAMS }),
+  loadDream: (payload: RequestGetDream) => ({ 
+    type: SagaActions.FETCH_DREAM, 
+    payload,
+  }),
   createDream: (payload: RequestCreateDream) => ({ 
     type: SagaActions.REGISTER_USER_NODE, 
+    payload,
+  }),
+  updateDream: (payload: RequestPatchDream) => ({ 
+    type: SagaActions.UPDATE_DREAM, 
     payload,
   }),
 
@@ -69,7 +79,9 @@ export const {
   loadUserNODE,
   deleteUserNODE,
   
-  loadDreams,
+  loadAllDreams,
+  loadDream,
+  updateDream,
 
   registerUserJAVA,
   loginUserJAVA,

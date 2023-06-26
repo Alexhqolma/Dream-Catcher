@@ -21,7 +21,7 @@ import userSlice from './features/user/userSlice';
 import mockUsersSlice from '../mock/store/features/mock/mockSlice';
 import takenDreamsSlice from './features/takenDreams/takenDreamsSlice';
 import createdDreamsSlice from './features/createdDreams/createdDreamsSlice';
-import editDreamSlice from './features/editDream/editDreamSlice';
+import dreamSlice from './features/dream/dreamSlice';
 import controlsSlice from './features/controls/controlsSlice';
 import rootSaga from './sagas/rootSaga';
 
@@ -41,7 +41,7 @@ const rootReducer = combineReducers({
   allDreams: allDreamsSlice,
   createdDreams: createdDreamsSlice,
   takenDreams: takenDreamsSlice,
-  editDream: editDreamSlice,
+  dream: dreamSlice,
     
   mock: mockUsersSlice,
 });

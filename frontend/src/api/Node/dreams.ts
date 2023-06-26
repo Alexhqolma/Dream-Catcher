@@ -27,7 +27,7 @@ export const dreamAPI = {
   },
 
   update({ dream, token }: RequestPatchDream) {
-    return client.post<Dream, AxiosResponse<ResponsePatchDream>>(
+    return client.patch<Dream, AxiosResponse<ResponsePatchDream>>(
       `${routesServer.dreams}/${dream.id}`, 
       dream,
       {

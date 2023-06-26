@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { selectFullName, selectToken, } from './store/features/user/userSlice';
+import { selectFullName, selectToken, selectUser, } from './store/features/user/userSlice';
 import {
   selectMockData,
   selectMockDreams,
@@ -30,6 +30,7 @@ import './App.scss';
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const fullName = useAppSelector(selectFullName);
+  const user = useAppSelector(selectUser);
   const users = useAppSelector(selectMockUsers);
   const dreams = useAppSelector(selectMockDreams);
   const photos = useAppSelector(selectMockPhotos);
@@ -184,14 +185,14 @@ export const App: React.FC = () => {
 
   return (
     <div className='App'>
-      {/* <div className='App__buttons_for_Node'>
-        <CustomButton onClick={() => dispatch(registerUserNODE({
+      <div className='App__buttons_for_Node'>
+        {/* <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'app@test.app',
           password: '12345',
           fullName: 'App test user',
         }))}>
           register User 1
-        </CustomButton>
+        </CustomButton> */}
 
         <CustomButton onClick={() => dispatch({
           type: SagaActions.LOGIN_USER_NODE,
@@ -204,13 +205,13 @@ export const App: React.FC = () => {
           login User 1
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch(registerUserNODE({
+        {/* <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'user2@test.app',
           password: '1234567',
           fullName: 'App test user 2',
         }))}>
           register User 2
-        </CustomButton>
+        </CustomButton> */}
 
         <CustomButton onClick={() => dispatch({
           type: SagaActions.LOGIN_USER_NODE,
@@ -222,7 +223,7 @@ export const App: React.FC = () => {
         })}>
           login User 2
         </CustomButton>
-
+{/* 
         <CustomButton onClick={() => dispatch({
           type: SagaActions.FETCH_USER_NODE,
           payload: token,
@@ -241,10 +242,11 @@ export const App: React.FC = () => {
           type: SagaActions.FETCH_ALL_DREAMS,
         })}>
           get All Dreams
-        </CustomButton>
-      </div> */}
+        </CustomButton> */}
+      </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
+      {user && <h1 className='title'>{user.userId}</h1>}
 
       <Header />
       <Layout />

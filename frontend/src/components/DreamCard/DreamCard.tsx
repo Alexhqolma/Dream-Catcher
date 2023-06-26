@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
-import { Dream } from '../../types/Dream';
+import { Dream, DreamsStatus } from '../../types/Dream';
 import { CustomButton } from '../UI/CustomButton';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
@@ -9,8 +9,8 @@ import './DreamCard.catalog.scss';
 import './DreamCard.horizontal.scss';
 import './DreamCard.page.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectToken } from '../../store/features/user/userSlice';
-import { SagaActions, loadUserNODE } from '../../store/sagas/actions';
+import { selectToken, selectUser } from '../../store/features/user/userSlice';
+import { SagaActions, loadAllDreams, loadUserNODE, updateDream } from '../../store/sagas/actions';
 import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
 
 interface DreamItemProps {
@@ -27,9 +27,15 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   catalogMode
 }) => {
   const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken);
+  const token = useAppSelector(selectToken) || '';
   const isOwner = false;
   const isControlAvailable = false;
+  const user = useAppSelector(selectUser);
+
+  const onClick = () => {
+    dispatch(updateDream({ dream, token }));
+    dispatch(loadAllDreams());
+  };
 
   return (
     <div className={classNames(
@@ -54,13 +60,18 @@ export const DreamCard: React.FC<DreamItemProps> = ({
             >
               {dream.title}
             </h4>
+
             <p className="dream-card__body">{dream.body}</p>
-            <CustomButton
-              href={`/dream/${dream.id}`}
-            >
+
+            <CustomButton href={`/dream/${dream.id}`}>
               <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
             </CustomButton>
-            <h4 className='dream-card__date-created'>{dream.user}</h4>
+
+            {/* <h4 className='dream-card__date-created'>{dream.user}</h4> */}
+
+            <p>status: {dream.status === DreamsStatus.TAKEN ? 'TAKEN' : 'POSTED'}</p>
+            <p style={{ backgroundColor: 'green' }}>{(dream.user === user?.userId) && 'YOUR CARD'}</p>
+            <p>handler: {dream.handler}</p>
           </div>
         </div>
       </div>
@@ -84,6 +95,10 @@ export const DreamCard: React.FC<DreamItemProps> = ({
       >
         teleport
       </CustomButton> */}
+
+      <CustomButton
+        onClick={onClick}
+      >Update</CustomButton>
     </div>
   );
 };

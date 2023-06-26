@@ -54,14 +54,14 @@ const sagaActionsCreator = {
     type: SagaActions.UPDATE_DREAM, 
     payload,
   }),
-  // takeDream:  (payload: RequestPatchDream) => ({ 
-  //   type: SagaActions.UPDATE_DREAM, 
-  //   payload,
-  // }),
-  // refuseDream:  (payload: RequestPatchDream) => ({ 
-  //   type: SagaActions.UPDATE_DREAM, 
-  //   payload,
-  // }),
+  takeDream:  (payload: RequestPatchDream) => updateDream({ 
+    dream: { ...payload.dream, status: DreamsStatus.TAKEN }, 
+    token: payload.token 
+  }),
+  refuseDream:  (payload: RequestPatchDream) => updateDream({ 
+    dream: { ...payload.dream, status: DreamsStatus.POSTED }, 
+    token: payload.token 
+  }),
 
   registerUserJAVA: (user: RequestCreateUser) => ({ 
     type: SagaActions.REGISTER_USER_JAVA, 
@@ -81,11 +81,11 @@ const sagaActionsCreator = {
   }),
 };
 
-const takeDream = (dream: Dream; token: string; ) => {
-  const takeDream = { ...dream, status: DreamsStatus.TAKEN};
+// const takeDream = (dream: Dream, token: string) => {
+//   const takeDream = { ...dream, status: DreamsStatus.TAKEN};
 
-  return sagaActionsCreator.updateDream(takeDream, token);
-}
+//   return sagaActionsCreator.updateDream({ dream: takeDream, token });
+// }
 
 export const {
   registerUserNODE,

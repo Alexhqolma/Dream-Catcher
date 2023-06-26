@@ -133,25 +133,25 @@ export const App: React.FC = () => {
   //   // createJavaDream();
   // }, [])
 
-  // useEffect(() => {
-  //   const loginJava = async () => {
-  //     console.log('loginDream');
+  useEffect(() => {
+    const loginJava = async () => {
+      console.log('loginDream');
 
-  //     const user = {
-  //       email: 'admin@admin.com',
-  //       password: 'adminadmin',
-  //     };
+      const user = {
+        email: 'admin@admin.com',
+        password: 'adminadmin',
+      };
 
-  //     const response = await client.post(
-  //       '/login',
-  //       user,
-  //     )
+      const response = await client.post(
+        '/auth/login',
+        user,
+      )
 
-  //     return response;
-  //   };
+      return response;
+    };
 
-  //   loginJava().then(res => console.log(res));
-  // }, [])
+    loginJava().then(res => console.log(res));
+  }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -220,8 +220,6 @@ export const App: React.FC = () => {
         })}>
           get All Dreams
         </CustomButton>
-
-
       </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}

@@ -5,7 +5,7 @@ import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput, InputType } from '../CustomInput/CustomInput';
 
 export enum FormType {
-  USER = 'USER',
+  CREATE_USER = 'CREATE_USER',
   LOGIN_USER = 'LOGIN_USER',
   DREAM = 'DREAM'
 }

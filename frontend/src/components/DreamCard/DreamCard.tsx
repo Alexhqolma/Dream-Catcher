@@ -10,7 +10,7 @@ import './DreamCard.horizontal.scss';
 import './DreamCard.page.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectToken, selectUser } from '../../store/features/user/userSlice';
-import { SagaActions, loadAllDreams, loadUserNODE, updateDream } from '../../store/sagas/actions';
+import { SagaActions, loadAllDreams, loadUserNODE, refuseDream, takeDream, updateDream } from '../../store/sagas/actions';
 import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
 
 interface DreamItemProps {
@@ -31,10 +31,6 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   const isOwner = false;
   const isControlAvailable = false;
   const user = useAppSelector(selectUser);
-
-  const onClick = () => {
-    dispatch(updateDream({ dream, token }));
-  };
 
   return (
     <div className={classNames(
@@ -95,9 +91,26 @@ export const DreamCard: React.FC<DreamItemProps> = ({
         teleport
       </CustomButton> */}
 
-      <CustomButton
-        onClick={onClick}
-      >Update</CustomButton>
+      {/* <CustomButton onClick={onClick}>Update</CustomButton> */}
+
+      {user?.userId === dream.user && (
+        <CustomButton onClick={() => dispatch(updateDream({
+          dream: {
+            ...dream,
+            title: 'updated title',
+          },
+          token
+        }))}>Update</CustomButton>
+      )}
+
+      {user?.userId !== dream.user && dream.handler === null && (
+        <CustomButton onClick={() => dispatch(takeDream({ dream, token }))}>Take</CustomButton>
+      )}
+
+      {user?.userId !== dream.user && dream.handler === user?.userId && (
+        <CustomButton onClick={() =>  dispatch(refuseDream({ dream, token }))}>Refuse</CustomButton>
+      )}
+
     </div>
   );
 };

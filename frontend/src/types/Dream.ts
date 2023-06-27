@@ -9,18 +9,20 @@ export type Dream = {
   id?: string;
   title: string;
   body: string;
-  status?: DreamsStatus;
-  user: string;
-  handler: string | null;
   imageUrl?: string | null,
   tags?: string[],
+
+  user: string;
+  handler: string | null;
+  status?: DreamsStatus;
+
   creationDate?: string | null;
 };
 
 
 export interface RequestCreateDream { dream: Dream; token: string; }
 export interface ResponseCreateDream { success: boolean; message: string; dream: Dream; }
-export interface ResponseCreateDreamWithError { success: boolean; message: string; }
+export interface ResponseCreateDreamWithError { success: boolean; message: string; errors?: string[]; }
 
 export interface RequestGetDream { dreamId: string; }
 export interface ResponseGetDream { success: boolean; message: string; dreams: Dream[]; }

@@ -27,7 +27,7 @@ import { client } from './api/Java/instance';
 import './App.scss';
 import Header from './components/Header/Header';
 
-export const App: React.FC = () => {
+export const App = () => {
   const dispatch = useAppDispatch();
   const fullName = useAppSelector(selectFullName);
   const user = useAppSelector(selectUser);

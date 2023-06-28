@@ -3,18 +3,12 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import { CustomForm } from '../UI/CustomForm';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch } from '../../store/hooks';
-
-type FormValues = {
-  fullName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+import { RequestCreateUser } from '../../types/User';
 
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
   
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = (values: RequestCreateUser) => {
     dispatch(registerUserNODE({
       email: values.email,
       fullName: values.fullName,
@@ -22,7 +16,7 @@ export const RegistrationForm: React.FC = () => {
     }));
   };
 
-  const data = [
+  const RegistrationData = [
     { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: '' },
     { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
     { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
@@ -32,7 +26,7 @@ export const RegistrationForm: React.FC = () => {
   return (
     <div>
       <CustomForm
-        data={data}
+        data={RegistrationData}
         onSubmit={onSubmit}
         formType='CREATE_USER'
       />

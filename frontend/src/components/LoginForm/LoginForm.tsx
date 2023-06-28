@@ -15,7 +15,7 @@ export const LoginForm: React.FC = () => {
     });
   };
 
-  const data = [
+  const LoginData = [
     { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
     { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' }
   ];
@@ -23,7 +23,7 @@ export const LoginForm: React.FC = () => {
   return (
     <div>
       <CustomForm
-        data={data}
+        data={LoginData}
         onSubmit={onSubmit}
         formType="LOGIN_USER"
       />

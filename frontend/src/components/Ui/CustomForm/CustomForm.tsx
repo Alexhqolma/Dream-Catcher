@@ -2,13 +2,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { ButtonType, CustomButton } from '../CustomButton';
-import { CustomInput, InputType } from '../CustomInput/CustomInput';
+import { CustomInput, InputType } from '../CustomInput';
 
-export enum FormType {
-  CREATE_USER = 'CREATE_USER',
-  LOGIN_USER = 'LOGIN_USER',
-  DREAM = 'DREAM'
-}
+import './CustomForm.scss';
+import { validationSchemas, FormType } from './validationSchemas';
 
 export interface InputProperties<T> {
   name: keyof T;
@@ -19,15 +16,16 @@ export interface InputProperties<T> {
 
 interface CustomFormProps<T> {
   data: InputProperties<T>[];
-  validationSchema:  Yup.ObjectSchema<Partial<Record<keyof T, string>>>;
   onSubmit: (e: any) => void;
+  formType: keyof typeof FormType
 }
 
 export const CustomForm = <T,>({ 
   data,
-  validationSchema,
   onSubmit,
+  formType
 }: CustomFormProps<T>) => {
+
   const initialValues: Partial<Record<keyof T, string>> = {};
 
   data.forEach((el) => initialValues[el.name as keyof T] = el.initialValue);
@@ -35,18 +33,20 @@ export const CustomForm = <T,>({
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema,
+    validationSchema: Yup.object(validationSchemas[formType])
   });
 
   return (
     <form className="CustomForm">
       {data.map(el => (
-        <CustomInput
-          key={el.name as string}
-          name={el.name as string}
-          type={el.type}
-          formik={formik}
-          placeholder={el.placeholder} />
+        <div className='CustomForm__input'>
+          <CustomInput
+            key={el.name as string}
+            name={el.name as string}
+            type={el.type}
+            formik={formik}
+            placeholder={el.placeholder} />
+        </div>
       ))}
 
       <div className="CustomForm__controls">

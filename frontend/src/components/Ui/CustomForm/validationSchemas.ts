@@ -1,8 +1,13 @@
 import * as Yup from 'yup';
-import { FormType } from "./CustomForm";
 
-export const validationSchema = {
-  [FormType.CREATE_USER]: {
+export enum FormType {
+  CREATE_USER = 'CREATE_USER',
+  LOGIN_USER = 'LOGIN_USER',
+  DREAM = 'DREAM',
+}
+
+export const validationSchemas = {
+  'CREATE_USER': {
     fullName: Yup.string().min(2).required(),
     email: Yup.string().email().required(),
     password: Yup.string()
@@ -16,7 +21,7 @@ export const validationSchema = {
       .required()
   },
 
-  [FormType.LOGIN_USER]: {
+  'LOGIN_USER': {
     email: Yup.string().email().required(),
     password: Yup.string()
       .matches(
@@ -26,7 +31,7 @@ export const validationSchema = {
       .required(),
   },
 
-  [FormType.DREAM]: {
+  'DREAM': {
     title: Yup.string().min(2).required(),
     body: Yup.string().min(2).required(),
   },

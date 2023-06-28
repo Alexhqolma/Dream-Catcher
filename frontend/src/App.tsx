@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
@@ -186,13 +186,13 @@ export const App: React.FC = () => {
   return (
     <div className='App'>
       <div className='App__buttons_for_Node'>
-        {/* <CustomButton onClick={() => dispatch(registerUserNODE({
+        <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'app@test.app',
           password: '12345',
           fullName: 'App test user',
         }))}>
           register User 1
-        </CustomButton> */}
+        </CustomButton>
 
         <CustomButton onClick={() => dispatch({
           type: SagaActions.LOGIN_USER_NODE,
@@ -205,13 +205,13 @@ export const App: React.FC = () => {
           login User 1
         </CustomButton>
 
-        {/* <CustomButton onClick={() => dispatch(registerUserNODE({
+        <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'user2@test.app',
           password: '1234567',
           fullName: 'App test user 2',
         }))}>
           register User 2
-        </CustomButton> */}
+        </CustomButton>
 
         <CustomButton onClick={() => dispatch({
           type: SagaActions.LOGIN_USER_NODE,

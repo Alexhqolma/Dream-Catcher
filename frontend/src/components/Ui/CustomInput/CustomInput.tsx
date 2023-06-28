@@ -13,21 +13,24 @@ interface CustomInputProps {
   name: string;
   type: InputType;
   formik: any;
-  placeholder?: string
+  placeholder?: string;
+  className?: string; 
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
   type,
   name,
   formik,
-  placeholder 
+  placeholder,
+  className,
 }) => {
   const isError = formik.errors[name];
   const isTouched = formik.touched[name];
 
   return (
     <div className={classNames("CustomInput",
-      { 'CustomInput--error': isError })}
+      { 'CustomInput--error': isError },
+      className)}
     >
       <input
         id={name}

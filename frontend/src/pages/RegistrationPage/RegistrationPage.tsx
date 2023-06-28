@@ -1,9 +1,11 @@
 import React from 'react';
 
-import './RegistrationPage.scss';
 import { CustomForm } from '../../components/UI/CustomForm';
 import { InputType } from '../../components/UI/CustomInput';
 import { registerUserNODE } from '../../store/sagas/actions';
+
+import './RegistrationPage.scss';
+import { useAppDispatch } from '../../store/hooks';
 
 type FormValues = {
   fullName: string;
@@ -12,7 +14,16 @@ type FormValues = {
   confirmPassword: string;
 };
 
+const registrationDate = [
+  { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: ''},
+  { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
+  { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
+  { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
+];
+
 const RegistrationPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const onSubmit = (values: FormValues) => {
     dispatch(registerUserNODE({
       email: values.email,
@@ -27,12 +38,7 @@ const RegistrationPage: React.FC = () => {
 
       <section>
         <CustomForm
-          data={[
-            { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: ''},
-            { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
-            { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
-            { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
-          ]}
+          data={registrationDate}
           onSubmit={onSubmit}
           formType='CREATE_USER'
         />
@@ -42,7 +48,3 @@ const RegistrationPage: React.FC = () => {
 }
 
 export default RegistrationPage;
-
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
-}

@@ -6,28 +6,34 @@ import { CustomForm } from '../../components/UI/CustomForm';
 import { InputType } from '../../components/UI/CustomInput';
 import { RequestLoginUser } from '../../types/User';
 import { SagaActions } from '../../store/sagas/actions';
+import { useAppDispatch } from '../../store/hooks';
+
+const loginDate = [
+  { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' }, 
+  { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' }
+];
 
 const LoginPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { registration } = routes;
 
   const onSubmit = (values: RequestLoginUser) => {
     dispatch({
       type: SagaActions.LOGIN_USER_NODE,
       payload: values,
-    })
+    });
   }
 
   return (
     <main className="LoginPage container">
       <h1 className='title'>LoginPage</h1>
+
       <CustomForm 
-        data={[
-          { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' }, 
-          { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' }
-        ]} 
+        data={loginDate} 
         onSubmit={onSubmit}
         formType='LOGIN_USER'
       />
+
       <p className='LoginPage__registrationLink'>
         Don't have an account?&nbsp;&nbsp;&nbsp;
         <CustomButton to={registration.path} className="link">
@@ -39,7 +45,3 @@ const LoginPage: React.FC = () => {
 }
 
 export default LoginPage;
-function dispatch(arg0: { type: any; payload: RequestLoginUser; }) {
-  throw new Error('Function not implemented.');
-}
-

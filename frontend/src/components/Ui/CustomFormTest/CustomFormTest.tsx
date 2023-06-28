@@ -1,34 +1,34 @@
+import React from 'react';
 import { useFormik } from 'formik';
+// import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import * as Yup from 'yup';
-
+// import { useNavigate } from 'react-router-dom';
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput, InputType } from '../CustomInput';
+import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
+import { InitialValues } from '../../RegistrationForm';
 
-import './CustomForm.scss';
-import { validationSchemas, FormType } from './validationSchemas';
-
-export interface InputProperties<T> {
-  name: keyof T;
+type InputProperties = {
+  name: string;
   type: InputType;
   placeholder: string;
   initialValue: string;
-}
+};
 
-interface CustomFormProps<T> {
-  data: InputProperties<T>[];
+interface CustomFormProps {
+  data: InputProperties[];
   onSubmit: (e: any) => void;
   formType: keyof typeof FormType
+  initialValues: InitialValues;
 }
 
-export const CustomForm = <T,>({ 
+export const CustomFormTest: React.FC = ({
   data,
   onSubmit,
-  formType
-}: CustomFormProps<T>) => {
+  formType,
+  initialValues
+}: CustomFormProps) => {
 
-  const initialValues: Partial<Record<keyof T, string>> = {};
-
-  data.forEach((el) => initialValues[el.name as keyof T] = el.initialValue);
 
   const formik = useFormik({
     initialValues,
@@ -38,18 +38,6 @@ export const CustomForm = <T,>({
 
   return (
     <form className="CustomForm">
-<<<<<<< HEAD
-      {data.map(el => (
-        <CustomInput
-          key={el.name as string}
-          name={el.name as string}
-          type={el.type}
-          formik={formik}
-          placeholder={el.placeholder}
-          className='CustomForm__input'
-        />
-      ))}
-=======
       <div className='CustomForm__input'>
         {data.map(el => (
           <CustomInput
@@ -60,7 +48,6 @@ export const CustomForm = <T,>({
             placeholder={el.placeholder} />
         ))}
       </div>
->>>>>>> ad652fca0ed665f4ae0cdecd25ae7abebe03f535
 
       <div className="CustomForm__controls">
         <CustomButton

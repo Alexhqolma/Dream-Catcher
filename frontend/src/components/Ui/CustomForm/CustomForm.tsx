@@ -39,14 +39,13 @@ export const CustomForm = <T,>({
   return (
     <form className="CustomForm">
       {data.map(el => (
-        <div className='CustomForm__input'>
           <CustomInput
             key={el.name as string}
             name={el.name as string}
             type={el.type}
             formik={formik}
-            placeholder={el.placeholder} />
-        </div>
+            placeholder={el.placeholder}
+            className='CustomForm__input' />
       ))}
 
       <div className="CustomForm__controls">

@@ -13,14 +13,16 @@ interface CustomInputProps {
   name: string;
   type: InputType;
   formik: any;
-  placeholder?: string
+  placeholder?: string;
+  className?: string;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
   type,
   name,
   formik,
-  placeholder 
+  placeholder,
+  className,
 }) => {
   const isError = formik.errors[name];
   const isTouched = formik.touched[name];
@@ -33,6 +35,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         id={name}
         name={name}
         type={type}
+        className={classNames("CustomInput__input", className)}
         placeholder={placeholder ? placeholder : name.toUpperCase()}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}

@@ -6,7 +6,7 @@ export interface User {
   avatarUrl?: string;
 }
 
-export interface RequestCreateUser { email: string; password: string; fullName: string; }
+export interface RequestCreateUser { fullName: string; email: string; password: string; }
 export interface ResponseCreateUser { success: boolean; message: string; }
 export interface ResponseCreateUserWithError { success: boolean; message: string; }
 

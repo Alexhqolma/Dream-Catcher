@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import Header from './components/header/Header';
 import { Layout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
@@ -26,6 +25,7 @@ import { authAPI } from './api/Node/users';
 import { client } from './api/Java/instance';
 
 import './App.scss';
+import Header from './components/Header/Header';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -223,7 +223,7 @@ export const App: React.FC = () => {
         })}>
           login User 2
         </CustomButton>
-{/* 
+
         <CustomButton onClick={() => dispatch({
           type: SagaActions.FETCH_USER_NODE,
           payload: token,
@@ -242,7 +242,7 @@ export const App: React.FC = () => {
           type: SagaActions.FETCH_ALL_DREAMS,
         })}>
           get All Dreams
-        </CustomButton> */}
+        </CustomButton>
       </div>
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}

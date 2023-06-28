@@ -6,6 +6,7 @@
 .container {
   padding: 0 1rem;
   margin-bottom: 20px;
+  text-align: center;
 
   @include onTablet {
     padding: 2rem 2rem;

@@ -38,15 +38,16 @@ export const CustomForm = <T,>({
 
   return (
     <form className="CustomForm">
-      {data.map(el => (
+      <div className='CustomForm__input'>
+        {data.map(el => (
           <CustomInput
             key={el.name as string}
             name={el.name as string}
             type={el.type}
             formik={formik}
-            placeholder={el.placeholder}
-            className='CustomForm__input' />
-      ))}
+            placeholder={el.placeholder} />
+        ))}
+      </div>
 
       <div className="CustomForm__controls">
         <CustomButton

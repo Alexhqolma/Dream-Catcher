@@ -1,19 +1,36 @@
 import React from 'react';
 import { registerUserNODE } from '../../store/sagas/actions';
-import { CustomForm } from '../UI/CustomForm';
+// import { CustomForm } from '../UI/CustomForm';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch } from '../../store/hooks';
 import { RequestCreateUser } from '../../types/User';
+import { CustomFormTest } from '../UI/CustomFormTest';
+import { useNavigate } from 'react-router-dom';
+
+export type InitialValues = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  
-  const onSubmit = (values: RequestCreateUser) => {
-    dispatch(registerUserNODE({
-      email: values.email,
-      fullName: values.fullName,
-      password: values.password,
-    }));
+  const navigate = useNavigate();
+
+  const onSubmit = async (values: RequestCreateUser) => {
+    try {
+      await dispatch(registerUserNODE({
+        email: values.email,
+        fullName: values.fullName,
+        password: values.password,
+      }));
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
+    setTimeout(() => {
+      navigate('/dreams');
+    }, 2000);
   };
 
   const RegistrationData = [
@@ -22,13 +39,21 @@ export const RegistrationForm: React.FC = () => {
     { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
     { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
   ]
+
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  };
  
   return (
     <div>
-      <CustomForm
+      <CustomFormTest
         data={RegistrationData}
         onSubmit={onSubmit}
         formType='CREATE_USER'
+        initialValues={initialValues}
       />
     </div>
   )

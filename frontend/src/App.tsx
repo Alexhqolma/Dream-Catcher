@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
 
-import Header from './components/Header/Header';
-import { Layout } from './components/Layout';
-import Footer from './components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { selectFullName, selectToken, selectUser, } from './store/features/user/userSlice';
 import {
@@ -12,21 +9,24 @@ import {
   selectMockUsers,
   setMockData
 } from './mock/store/features/mock/mockSlice';
-import { Dream, DreamsStatus } from './types/Dream';
+import { registerUserNODE, SagaActions } from './store/sagas/actions';
 
+import { Dream, DreamsStatus } from './types/Dream';
 import {
   getDream,
   getDreams,
 } from './api/Node/dreams';
-// import { getUser, login, register } from './api/Node/users';
-import { CustomButton } from './components/UI/CustomButton';
-import { registerUserNODE, SagaActions } from './store/sagas/actions';
-// import { clientJava } from './api/Java/instanceJava';
-import { authAPI } from './api/Node/users';
 import { client } from './api/Java/instance';
+import { authAPI } from './api/Node/users';
+// import { getUser, login, register } from './api/Node/users';
+// import { clientJava } from './api/Java/instanceJava';
+
+import Header from './components/Header/Header';
+import { Layout } from './components/Layout';
+import Footer from './components/Footer/Footer';
+import { CustomButton } from './components/UI/CustomButton';
 
 import './App.scss';
-import Header from './components/Header/Header';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -37,8 +37,6 @@ export const App = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   const token = useAppSelector(selectToken) || '';
-
-  
 
   // useEffect(() => {
   //   const createJavaDream = async () => {
@@ -205,6 +203,10 @@ export const App = () => {
           };
       
           loginJava().then(res => console.log(res));
+        }}
+        style={{
+          width: '100px',
+          height: '100px',
         }}
       >
         TEST JAVA POST

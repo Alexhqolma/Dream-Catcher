@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FocusEventHandler } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import './CustomInput.scss';
@@ -21,6 +21,7 @@ interface CustomInputProps {
   isTouched?: boolean;
   className?: string;
   label?: string;
+  children?: ReactNode;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
@@ -34,6 +35,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   isTouched,
   className,
   label,
+  children,
 }) => {
   return (
     <label 
@@ -43,7 +45,9 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         className)}
     >
       <span className='CustomInput__label'>{label}</span>
-      
+
+      {children}
+
       <input
         id={name}
         name={name}

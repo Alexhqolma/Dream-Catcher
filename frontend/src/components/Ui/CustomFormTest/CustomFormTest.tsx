@@ -18,7 +18,6 @@ export type DataValues = {
 interface CustomFormProps {
   data: DataValues[];
   onSubmit: (e: any) => void;
-  // formik: any;
   validationType: FormType;
   initialValues: { [value: string]: string }
 }
@@ -26,7 +25,6 @@ interface CustomFormProps {
 export const CustomFormTest: React.FC<CustomFormProps> = ({
   data,
   onSubmit,
-  // formik,
   initialValues,
   validationType,
 }) => {
@@ -44,7 +42,6 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             key={el.name as string}
             name={el.name as string}
             type={el.type}
-            // formik={formik}
             placeholder={el.placeholder} 
             value={formik.values[el.name]} 
             onChange={formik.handleChange} 

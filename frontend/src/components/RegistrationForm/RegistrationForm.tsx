@@ -4,47 +4,29 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch } from '../../store/hooks';
 import { RequestCreateUser } from '../../types/User';
-<<<<<<< HEAD
-import { FormType } from '../UI/CustomForm/validationSchemas';
+import { CustomFormTest } from '../UI/CustomFormTest';
+import { useNavigate } from 'react-router-dom';
 
-const RegistrationData = [
+export type InitialValues = {
+  name?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
+export type DataValues = {
+  name: string;
+  type: string;
+  placeholder: string;
+  initialValue: string;
+}
+
+const RegistrationData: DataValues[] = [
   { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: '' },
   { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
   { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
   { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
 ];
-
-export const RegistrationForm: React.FC = () => {
-  const dispatch = useAppDispatch();
-  
-  const onSubmit = (values: RequestCreateUser) => {
-    
-
-    console.log('onSubmit');
-
-    dispatch(registerUserNODE({
-      email: values.email,
-      fullName: values.fullName,
-      password: values.password,
-    }));
-  };
- 
-  return (
-    <CustomForm
-      data={RegistrationData}
-      onSubmit={onSubmit}
-      formType={FormType.CREATE_USER}
-    />
-=======
-import { CustomFormTest } from '../UI/CustomFormTest';
-import { useNavigate } from 'react-router-dom';
-
-export type InitialValues = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -65,13 +47,6 @@ export const RegistrationForm: React.FC = () => {
     }, 2000);
   };
 
-  const RegistrationData = [
-    { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: '' },
-    { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
-    { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
-    { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
-  ]
-
   const initialValues = {
     name: '',
     email: '',
@@ -88,6 +63,5 @@ export const RegistrationForm: React.FC = () => {
         initialValues={initialValues}
       />
     </div>
->>>>>>> ad652fca0ed665f4ae0cdecd25ae7abebe03f535
   )
 }

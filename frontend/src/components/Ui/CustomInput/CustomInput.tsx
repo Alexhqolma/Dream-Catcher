@@ -11,7 +11,7 @@ export enum InputType {
 
 interface CustomInputProps {
   name: string;
-  type: InputType;
+  type: string;
   formik: any;
   placeholder?: string;
 }
@@ -27,8 +27,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
 
   return (
     <div className={classNames("CustomInput",
-      { 'CustomInput--error': isError },
-      className)}
+      { 'CustomInput--error': isError })}
     >
       <input
         id={name}

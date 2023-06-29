@@ -4,30 +4,23 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 // import { useNavigate } from 'react-router-dom';
 import { ButtonType, CustomButton } from '../CustomButton';
-import { CustomInput, InputType } from '../CustomInput';
+import { CustomInput } from '../CustomInput';
 import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
-import { InitialValues } from '../../RegistrationForm';
-
-type InputProperties = {
-  name: string;
-  type: InputType;
-  placeholder: string;
-  initialValue: string;
-};
+import { DataValues, InitialValues } from '../../RegistrationForm';
 
 interface CustomFormProps {
-  data: InputProperties[];
+  data: DataValues[];
   onSubmit: (e: any) => void;
   formType: keyof typeof FormType
   initialValues: InitialValues;
 }
 
-export const CustomFormTest: React.FC = ({
+export const CustomFormTest: React.FC<CustomFormProps> = ({
   data,
   onSubmit,
   formType,
   initialValues
-}: CustomFormProps) => {
+}) => {
 
 
   const formik = useFormik({

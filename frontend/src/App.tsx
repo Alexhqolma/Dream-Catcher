@@ -26,7 +26,6 @@ import { authAPI } from './api/Node/users';
 import { client } from './api/Java/instance';
 
 import './App.scss';
-import Header from './components/Header/Header';
 
 export const App = () => {
   const dispatch = useAppDispatch();

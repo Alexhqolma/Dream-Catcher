@@ -1,38 +1,31 @@
 import React from 'react';
-import { useFormik } from 'formik';
-// import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import * as Yup from 'yup';
-// import { useNavigate } from 'react-router-dom';
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput } from '../CustomInput';
-import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
-import { DataValues, InitialValues } from '../../RegistrationForm';
 
 import './CustomFormTest.scss';
+
+export type DataValues = {
+  name: string;
+  type: string;
+  placeholder: string;
+  initialValue: string;
+};
 
 interface CustomFormProps {
   data: DataValues[];
   onSubmit: (e: any) => void;
-  formType: keyof typeof FormType
-  initialValues: InitialValues;
+  formik: any;
 }
 
 export const CustomFormTest: React.FC<CustomFormProps> = ({
   data,
   onSubmit,
-  formType,
-  initialValues
+  formik
 }) => {
 
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema: Yup.object(validationSchemas[formType])
-  });
-
   return (
-    <form className="CustomForm">
+    <form className="CustomForm" onSubmit={onSubmit} >
       <div className="CustomForm__input">
         {data.map(el => (
           <CustomInput
@@ -40,7 +33,8 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             name={el.name as string}
             type={el.type}
             formik={formik}
-            placeholder={el.placeholder} />
+            placeholder={el.placeholder} 
+          />
         ))}
       </div>
 

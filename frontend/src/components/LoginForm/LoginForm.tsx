@@ -1,54 +1,60 @@
-import React from 'react';
-// import { CustomForm } from '../UI/CustomForm';
+import React, { useState } from 'react';
+import * as Yup from 'yup';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch } from '../../store/hooks';
 import { loginUserNODE } from '../../store/sagas/actions';
 import { RequestLoginUser } from '../../types/User';
 import { CustomFormTest } from '../UI/CustomFormTest';
+import { validationSchemas } from '../UI/CustomForm/validationSchemas';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
-export type InitialValues = {
-  email: string;
-  password: string;
+const initialValues = {
+  email: '',
+  password: '',
 };
 
-export type DataValues = {
-  name: string;
-  type: string;
-  placeholder: string;
-  initialValue: string;
-};
+const validationSchema = Yup.object(validationSchemas.LOGIN_USER)
 
-const LoginData: DataValues[] = [
+
+const LoginData = [
   { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
   { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' }
 ];
 
 export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
+  const [isError, setIsError] = useState(null);
+  const navigate = useNavigate();
 
-  const onSubmit = async (values: RequestLoginUser) => {
+  const onSubmit = (values: RequestLoginUser) => {
     try {
-      await dispatch(loginUserNODE({
+      dispatch(loginUserNODE({
         email: values.email,
         password: values.password,
     }));
     } catch (error) {
-      console.error('Error loging user:', error);
+      setIsError(error as string);
     }
+    setTimeout(() => {
+      navigate('/dreams');
+    }, 2000);
   };
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema
+  });
  
-  const initialValues = {
-    email: '',
-    password: '',
-  };
   
   return (
     <div>
+      {isError && <h1>Something went wrong</h1>}
       <CustomFormTest
         data={LoginData}
-        onSubmit={onSubmit}
-        formType="LOGIN_USER"
-        initialValues={initialValues}
+        onSubmit={formik.handleSubmit}
+        formik={formik}
       />
     </div>
   )

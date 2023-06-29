@@ -13,7 +13,7 @@ interface CustomInputProps {
   name: string;
   type: string;
   formik: any;
-  placeholder?: string;
+  placeholder: string;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 

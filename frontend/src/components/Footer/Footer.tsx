@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
   const isAuth = Boolean(useAppSelector(selectUser));
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const userId = useAppSelector(selectUser)?.id;
+  const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     // console.log('render footer');
@@ -126,7 +126,6 @@ const Footer: React.FC = () => {
       {showLoginPopup && (
         <div className="login-popup-overlay">
           <div className="login-popup-container" ref={popupRef}>
-            <LoginPopup />
             <CustomButton onClick={handleCloseLoginPopup}>Close</CustomButton>
           </div>
         </div>

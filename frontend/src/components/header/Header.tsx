@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BsBox2Heart } from 'react-icons/bs';
 
 import { routes } from "../../routes/routerConfig";
@@ -12,35 +12,11 @@ import "./Header.scss";
 const Header: React.FC = () => {
   const { home, dreams, login, registration, user, favorites } = routes;
   const isAuth = useAppSelector(selectIsAuth);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const popupRef = useRef<HTMLDivElement>(null);
   const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     // console.log('render header');
   }, [isAuth]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
-        setShowLoginPopup(false);
-      }
-    };
-
-    window.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleOpenLoginPopup = () => {
-    setShowLoginPopup(true);
-  };
-
-  const handleCloseLoginPopup = () => {
-    setShowLoginPopup(false);
-  };
 
   return (
     <header className="header">
@@ -71,7 +47,7 @@ const Header: React.FC = () => {
 
           {!isAuth && (
             <li className="nav__item">
-              <CustomButton to={login.path} className="nav__link" onClick={handleOpenLoginPopup}>
+              <CustomButton to={login.path} className="nav__link">
                 Login
               </CustomButton>
             </li>
@@ -104,14 +80,6 @@ const Header: React.FC = () => {
           </li>
         </ul>
       </nav>
-
-      {showLoginPopup && (
-        <div className="login-popup-overlay">
-          <div className="login-popup-container" ref={popupRef}>
-            <CustomButton onClick={handleCloseLoginPopup}>Close</CustomButton>
-          </div>
-        </div>
-      )}
     </header>
   );
 };

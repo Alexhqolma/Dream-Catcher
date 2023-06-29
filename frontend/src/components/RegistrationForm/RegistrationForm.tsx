@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+// import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 import { InputType } from '../UI/CustomInput';
@@ -14,10 +14,10 @@ import { selectMessage, selectRegistrationSuccess, selectUserStatusLoading } fro
 import { RequestStatus } from '../../types/RequestStatus';
 
 const initialValues = {
-  fullName: 'custom',
-  email: 'custom@custom.com',
-  password: '123qweASD',
-  confirmPassword: '123qweASD'
+  fullName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
 };
 
 const validationSchema = Yup.object(validationSchemas.CREATE_USER);
@@ -44,11 +44,11 @@ export const RegistrationForm: React.FC = () => {
     }));
   };
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema,
-  });
+  // const formik = useFormik({
+  //   initialValues,
+  //   onSubmit,
+  //   validationSchema,
+  // });
 
   useEffect(() => {
     if (isSubmitted) {
@@ -76,7 +76,7 @@ export const RegistrationForm: React.FC = () => {
   return (
     <CustomFormTest
       data={registrationData}
-      onSubmit={formik.handleSubmit}
+      onSubmit={onSubmit}
       // formik={formik}
       validationType={FormType.CREATE_USER}
       initialValues={initialValues}

@@ -37,7 +37,7 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
   });
 
   return (
-    <form className="CustomForm" onSubmit={onSubmit} >
+    <form className="CustomForm" onSubmit={formik.handleSubmit} >
       <div className="CustomForm__input">
         {data.map(el => (
           <CustomInput

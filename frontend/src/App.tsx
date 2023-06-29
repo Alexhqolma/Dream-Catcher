@@ -186,6 +186,30 @@ export const App = () => {
 
   return (
     <div className='App'>
+      <button
+        onClick={() => {
+          const loginJava = async () => {
+            console.log('login JAVA');
+      
+            const user = {
+              email: 'admin@admin.com',
+              password: 'adminadmin',
+            };
+      
+            const response = await client.post(
+              '/auth/login',
+              user,
+            )
+      
+            return response;
+          };
+      
+          loginJava().then(res => console.log(res));
+        }}
+      >
+        TEST JAVA POST
+      </button>
+
       <div className='App__buttons_for_Node'>
         <CustomButton onClick={() => dispatch(registerUserNODE({
           email: 'app@test.app',

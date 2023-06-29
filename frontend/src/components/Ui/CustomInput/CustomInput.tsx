@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 import classNames from 'classnames';
 
 import './CustomInput.scss';
@@ -7,39 +7,54 @@ export enum InputType {
   TEXT = 'text',
   PASSWORD = 'password',
   EMAIL = 'email',
+  TEXTAREA = 'textarea',
 }
 
 interface CustomInputProps {
   name: string;
   type: string;
-  formik: any;
   placeholder: string;
+  value: string | number;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onBlur: FocusEventHandler<HTMLInputElement>;
+  error?: string;
+  isTouched?: boolean;
+  className?: string;
+  label?: string;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
   type,
   name,
-  formik,
   placeholder,
+  value,
+  onChange,
+  onBlur,
+  error,
+  isTouched,
+  className,
+  label,
 }) => {
-  const isError = formik.errors[name];
-  const isTouched = formik.touched[name];
-
   return (
-    <div className={classNames("CustomInput",
-      { 'CustomInput--error': isError })}
+    <label 
+      htmlFor={name}
+      className={classNames("CustomInput",
+        { 'CustomInput--error': error },
+        className)}
     >
+      <span className='CustomInput__label'>{label}</span>
+      
       <input
         id={name}
         name={name}
         type={type}
         placeholder={placeholder ? placeholder : name.toUpperCase()}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values[name]}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
       />
 
-      {(isTouched && isError) && <div className="CustomInput__error">{isError}</div>}
-    </div>
+      {(isTouched && error) && <div className="CustomInput__error">{error}</div>}
+    </label>
   );
 }

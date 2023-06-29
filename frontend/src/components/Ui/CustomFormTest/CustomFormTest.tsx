@@ -44,8 +44,13 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             key={el.name as string}
             name={el.name as string}
             type={el.type}
-            formik={formik}
+            // formik={formik}
             placeholder={el.placeholder} 
+            value={formik.values[el.name]} 
+            onChange={formik.handleChange} 
+            onBlur={formik.handleBlur} 
+            error={formik.errors[el.name]} 
+            isTouched={formik.touched[el.name]}            
           />
         ))}
       </div>

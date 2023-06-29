@@ -9,7 +9,7 @@ import { RequestCreateUser } from '../../types/User';
 import { CustomFormTest } from '../UI/CustomFormTest';
 import { useNavigate } from 'react-router-dom';
 import { registerUserNODE } from '../../store/sagas/actions';
-import { FormType, validationSchemas } from '../UI/CustomForm/validationSchemas';
+import { FormType } from '../UI/CustomForm/validationSchemas';
 import { selectMessage, selectRegistrationSuccess, selectUserStatusLoading } from '../../store/features/user/userSlice';
 import { RequestStatus } from '../../types/RequestStatus';
 
@@ -19,8 +19,6 @@ const initialValues = {
   password: '',
   confirmPassword: ''
 };
-
-const validationSchema = Yup.object(validationSchemas.CREATE_USER);
 
 const registrationData = [
   { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: '' },
@@ -43,12 +41,6 @@ export const RegistrationForm: React.FC = () => {
       fullName: values.fullName,
     }));
   };
-
-  // const formik = useFormik({
-  //   initialValues,
-  //   onSubmit,
-  //   validationSchema,
-  // });
 
   useEffect(() => {
     if (isSubmitted) {

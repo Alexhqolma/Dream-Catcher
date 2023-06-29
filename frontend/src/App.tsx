@@ -20,6 +20,10 @@ import { client } from './api/Java/instance';
 import { authAPI } from './api/Node/users';
 // import { getUser, login, register } from './api/Node/users';
 // import { clientJava } from './api/Java/instanceJava';
+import { CustomButton } from './components/UI/CustomButton';
+import Header from './components/Header/Header';
+import { Layout } from './components/Layout';
+import Footer from './components/Footer/Footer';
 
 import './App.scss';
 

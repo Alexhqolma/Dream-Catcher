@@ -8,6 +8,8 @@ import { CustomInput } from '../CustomInput';
 import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
 import { DataValues, InitialValues } from '../../RegistrationForm';
 
+import './CustomFormTest.scss';
+
 interface CustomFormProps {
   data: DataValues[];
   onSubmit: (e: any) => void;
@@ -31,7 +33,7 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
 
   return (
     <form className="CustomForm">
-      <div className='CustomForm__input'>
+      <div className="CustomForm__input">
         {data.map(el => (
           <CustomInput
             key={el.name as string}

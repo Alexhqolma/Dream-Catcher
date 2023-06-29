@@ -1,46 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BsTelegram, BsFacebook, BsTwitter } from 'react-icons/bs';
-
 import { CustomButton, Target } from "../UI/CustomButton";
 import { routes } from "../../routes/routerConfig";
 import { useAppSelector } from "../../store/hooks";
 import { selectUser } from "../../store/features/user/userSlice";
-// import { LoginPopup } from "../LoginPopup"
 
 import "./Footer.scss";
 
 const Footer: React.FC = () => {
   const { home, dreams, login, registration, user, favorites } = routes;
   const isAuth = Boolean(useAppSelector(selectUser));
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const popupRef = useRef<HTMLDivElement>(null);
   const userId = useAppSelector(selectUser)?.userId;
 
   useEffect(() => {
     // console.log('render footer');
   }, [isAuth]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
-        setShowLoginPopup(false);
-      }
-    };
-
-    window.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleOpenLoginPopup = () => {
-    setShowLoginPopup(true);
-  };
-
-  const handleCloseLoginPopup = () => {
-    setShowLoginPopup(false);
-  };
 
   return (
     <footer className="footer">
@@ -123,13 +97,6 @@ const Footer: React.FC = () => {
           </CustomButton>
         </div>
       </div>
-      {showLoginPopup && (
-        <div className="login-popup-overlay">
-          <div className="login-popup-container" ref={popupRef}>
-            <CustomButton onClick={handleCloseLoginPopup}>Close</CustomButton>
-          </div>
-        </div>
-      )}
     </footer>
   );
 };

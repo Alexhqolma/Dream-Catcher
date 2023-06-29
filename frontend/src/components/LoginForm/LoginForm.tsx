@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { InputType } from '../UI/CustomInput';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginUserNODE } from '../../store/sagas/actions';
 import { RequestLoginUser } from '../../types/User';
 import { CustomFormTest } from '../UI/CustomFormTest';
 import { validationSchemas } from '../UI/CustomForm/validationSchemas';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { selectUserError } from '../../store/features/user/userSlice';
 
 const initialValues = {
   email: '',
@@ -24,8 +25,8 @@ const LoginData = [
 
 export const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [isError, setIsError] = useState(null);
   const navigate = useNavigate();
+  const error = useAppSelector(selectUserError);
 
   const onSubmit = (values: RequestLoginUser) => {
     try {
@@ -34,7 +35,7 @@ export const LoginForm: React.FC = () => {
         password: values.password,
     }));
     } catch (error) {
-      setIsError(error as string);
+      console.error('Error loging user:', error);
     }
     setTimeout(() => {
       navigate('/dreams');
@@ -50,7 +51,7 @@ export const LoginForm: React.FC = () => {
   
   return (
     <div>
-      {isError && <h1>Something went wrong</h1>}
+      {error && <h1>Something went wrong</h1>}
       <CustomFormTest
         data={LoginData}
         onSubmit={formik.handleSubmit}

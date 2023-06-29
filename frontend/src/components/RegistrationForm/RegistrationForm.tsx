@@ -54,9 +54,6 @@ export const RegistrationForm: React.FC = () => {
     validationSchema
   });
 
-
-
- 
   return (
     <div>
       {isSubmited ? (

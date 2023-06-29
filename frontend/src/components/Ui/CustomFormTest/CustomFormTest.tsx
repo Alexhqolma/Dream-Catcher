@@ -1,8 +1,12 @@
 import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput } from '../CustomInput';
 
 import './CustomFormTest.scss';
+import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
 
 export type DataValues = {
   name: string;
@@ -14,15 +18,23 @@ export type DataValues = {
 interface CustomFormProps {
   data: DataValues[];
   onSubmit: (e: any) => void;
-  formik: any;
+  // formik: any;
+  validationType: FormType;
+  initialValues: { [value: string]: string }
 }
 
 export const CustomFormTest: React.FC<CustomFormProps> = ({
   data,
   onSubmit,
-  formik
+  // formik,
+  initialValues,
+  validationType,
 }) => {
-
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema: Yup.object(validationSchemas[validationType]),
+  });
 
   return (
     <form className="CustomForm" onSubmit={onSubmit} >

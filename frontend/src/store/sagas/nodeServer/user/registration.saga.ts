@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { call, delay, put } from 'redux-saga/effects';
 import {
   setError,
   setStatus,
@@ -22,6 +22,7 @@ export function* registrationSaga({ payload }: Props): Generator<unknown, any, R
   console.log('registrationSaga', payload);
 
   yield put(setStatus(RequestStatus.LOADING));
+  yield delay(1000);
   
   try {
     const response = yield call(authAPI.register, payload);

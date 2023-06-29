@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+
 import { InputType } from '../UI/CustomInput';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RequestCreateUser } from '../../types/User';
 import { CustomFormTest } from '../UI/CustomFormTest';
 import { useNavigate } from 'react-router-dom';
 import { registerUserNODE } from '../../store/sagas/actions';
-import { validationSchemas } from '../UI/CustomForm/validationSchemas';
+import { FormType, validationSchemas } from '../UI/CustomForm/validationSchemas';
+import { selectMessage, selectRegistrationSuccess, selectUserStatusLoading } from '../../store/features/user/userSlice';
+import { RequestStatus } from '../../types/RequestStatus';
 
 const initialValues = {
-  fullName: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
+  fullName: 'custom',
+  email: 'custom@custom.com',
+  password: '123qweASD',
+  confirmPassword: '123qweASD'
 };
 
-const validationSchema = Yup.object(validationSchemas.CREATE_USER)
+const validationSchema = Yup.object(validationSchemas.CREATE_USER);
 
-const RegistrationData = [
+const registrationData = [
   { name: 'fullName', type: InputType.TEXT, placeholder: 'Full Name', initialValue: '' },
   { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
   { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' },
@@ -28,46 +31,55 @@ const RegistrationData = [
 
 export const RegistrationForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [isSubmited, setIsSubmited] = useState(false);
   const navigate = useNavigate();
+  const isSubmitted = useAppSelector(selectRegistrationSuccess);
+  const isLoading = useAppSelector(selectUserStatusLoading) === RequestStatus.LOADING;
+  const responseMessage = useAppSelector(selectMessage);
 
   const onSubmit = (values: RequestCreateUser) => {
-    setIsSubmited(true);
-
-    try {
     dispatch(registerUserNODE({
       email: values.email,
       password: values.password,
       fullName: values.fullName,
     }));
-    } catch (error) {
-      console.error('Error registering user:', error);
-    }
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema
+    validationSchema,
   });
 
+  useEffect(() => {
+    if (isSubmitted) {
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    }
+  }, [navigate, isSubmitted])
+
+
+  if (isLoading) {
+    return <h1 className='title'>Loading ...</h1>
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="regMessage RegistrationForm__success">
+        <div className="regTitle">{responseMessage}</div>
+
+        <TaskAltIcon />
+      </div>
+    )
+  }
+
   return (
-    <div>
-      {isSubmited ? (
-        <div className="regMessage">
-          <div className="regTitle">Registration succesfull!</div>
-          <TaskAltIcon />
-        </div>
-      ) : (
-      <CustomFormTest
-        data={RegistrationData}
-        onSubmit={formik.handleSubmit}
-        formik={formik}
-      />
-      )}
-    </div>
+    <CustomFormTest
+      data={registrationData}
+      onSubmit={formik.handleSubmit}
+      // formik={formik}
+      validationType={FormType.CREATE_USER}
+      initialValues={initialValues}
+    />
   )
 }

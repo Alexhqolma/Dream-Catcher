@@ -52,11 +52,11 @@ export const LoginForm: React.FC = () => {
   return (
     <div>
       {error && <h1>Something went wrong</h1>}
-      <CustomFormTest
+      {/* <CustomFormTest
         data={LoginData}
         onSubmit={formik.handleSubmit}
         formik={formik}
-      />
+      /> */}
     </div>
   )
 }

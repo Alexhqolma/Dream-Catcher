@@ -2,11 +2,11 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
 import { ButtonType, CustomButton } from '../CustomButton';
 import { CustomInput } from '../CustomInput';
 
 import './CustomFormTest.scss';
-import { FormType, validationSchemas } from '../CustomForm/validationSchemas';
 
 export type DataValues = {
   name: string;

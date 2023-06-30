@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import * as Yup from 'yup';
-// import { useFormik } from 'formik';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 import { InputType } from '../UI/CustomInput';

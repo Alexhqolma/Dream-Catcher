@@ -10,7 +10,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
   & :hover {
     color: $lightPrimary;
   }
@@ -21,9 +20,26 @@
 }
 
 .custom-button--link {
+    outline-color: transparent;
+    outline-width: 1px;
+    // box-shadow: none;
+    // -moz-box-shadow: none;
+    // -webkit-box-shadow: none;
 }
 
 .custom-button--navLink {
+    outline-color: transparent;
+    outline-width: 1px;
+    // box-shadow: none;
+    // -moz-box-shadow: none;
+    // -webkit-box-shadow: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+
+    &:focus {
+      color: $lightSecondary;
+      border-bottom: 1px solid $lightSecondary;
+    }
 }
 
 .custom-button--regular {
@@ -34,6 +50,11 @@
   font-weight: $font_weight_normal;
   padding: $space_s $space_xl;
   font-size: $font_size_12;
+  outline-color: red;
+  outline-width: 1px;
+  // box-shadow: none;
+  // -moz-box-shadow: none;
+  // -webkit-box-shadow: none;
 }
 
 // rgba(187, 186, 186, 1) 

@@ -70,7 +70,7 @@ export const RegistrationForm: React.FC = () => {
       // formik={formik}
       validationType={FormType.CREATE_USER}
       initialValues={initialValues} 
-      startTabIndex={0}    
+      startTabIndex={7}
     />
   )
 }

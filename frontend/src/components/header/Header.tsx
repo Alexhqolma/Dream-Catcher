@@ -23,59 +23,75 @@ const Header: React.FC = () => {
       <CustomButton
         to="/"
         className="header__logo-link"
+        tabIndex={1}
       >
         <img
           className="header__logo"
           src={logo}
           alt="NiceGadgets logo"
-          tabIndex={1}
         />
       </CustomButton>
 
       <nav className="nav">
         <ul className="nav__list">
-          <li className="nav__item" tabIndex={2}>
-            <CustomButton to={home.path} className="nav__link" 
+          <li className="nav__item">
+            <CustomButton 
+              to={home.path}
+              className="nav__link" 
+              tabIndex={2}
             >
               Home
             </CustomButton>
           </li>
 
-          <li className="nav__item" tabIndex={3}>
-            <CustomButton to={dreams.path} className="nav__link">
+          <li className="nav__item">
+            <CustomButton
+              to={dreams.path}
+              className="nav__link"
+              tabIndex={3}
+            >
               Dreams
             </CustomButton>
           </li>
 
           {!isAuth && (
-            <li className="nav__item" tabIndex={4}>
-              <CustomButton to={login.path} className="nav__link">
+            <li className="nav__item">
+              <CustomButton
+                to={login.path}
+                className="nav__link"
+                tabIndex={4}
+              >
                 Login
               </CustomButton>
             </li>
           )}
 
           {!isAuth && (
-            <li className="nav__item" tabIndex={5}>
-              <CustomButton to={registration.path} className="nav__link">
+            <li className="nav__item">
+              <CustomButton 
+                to={registration.path}
+                className="nav__link"
+                tabIndex={5}
+              >
                 Registration
               </CustomButton>
             </li>
           )}
 
           {isAuth && (
-            <li className="nav__item" tabIndex={6}>
+            <li className="nav__item">
               <CustomButton
                 to={`${user.path.parent}/${userId}`}
                 className="nav__link"
+                tabIndex={6}
               >
                 My Dreams
               </CustomButton>
             </li>
           )}
 
-          <li className="nav__item nav__favorites-icon" tabIndex={7}>
-            <CustomButton to={favorites.path}>
+          <li className="nav__item nav__favorites-icon">
+            <CustomButton to={favorites.path} tabIndex={7}>
               <BsBox2Heart />
               <div className="nav__favorites-count">0</div>
             </CustomButton>

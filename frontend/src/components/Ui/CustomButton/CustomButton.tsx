@@ -27,7 +27,7 @@ interface CustomButtonProps {
   target?: Target.Blank;
   type?: ButtonType;
   width?: number | '100%';
-  tabIndex? : number;
+  tabIndex: number;
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({ 

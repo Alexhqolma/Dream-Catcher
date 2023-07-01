@@ -4,6 +4,9 @@
 .CustomInput {
   height: $input-height;
   min-width: 300px;
+  position: relative;
+  display: inline-block;
+  // border: 1px solid green;
 
   & input {
     display: block;
@@ -36,18 +39,22 @@
     opacity: 0.5;
   }
 
-  &--error input {
-    border-bottom: 1px solid $lightSecondary;
-
-    &:focus {
-      border-bottom: 1px solid $lightSecondary;
-    }
-  }
-
   &__error {
-    position: relative;
-    color: $lightSecondary;
-    font-size: $font_size_12;
-    text-align: left;
+    position: absolute;
+    bottom: 0;
   }
+}
+
+.CustomInput--withError {
+  color: $lightSecondary;
+  font-size: $font_size_12;
+  text-align: left;
+
+  & input {
+    border-bottom: 1px solid $lightSecondary;
+  }
+  
+  & input:focus {
+    border-bottom: 1px solid $lightSecondary;
+  } 
 }

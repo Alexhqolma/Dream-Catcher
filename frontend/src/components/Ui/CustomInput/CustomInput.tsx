@@ -42,8 +42,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   return (
     <label 
       htmlFor={name}
-      className={classNames("CustomInput",
-        { 'CustomInput--error': error },
+      className={classNames('CustomInput',
+        { 'CustomInput--withError': error },
         className)}
     >
       <span className='CustomInput__label'>{label}</span>

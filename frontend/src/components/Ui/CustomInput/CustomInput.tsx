@@ -22,6 +22,7 @@ interface CustomInputProps {
   className?: string;
   label?: string;
   children?: ReactNode;
+  tabIndex: number;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
@@ -36,6 +37,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   className,
   label,
   children,
+  tabIndex,
 }) => {
   return (
     <label 
@@ -56,6 +58,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        tabIndex={tabIndex}
       />
 
       {(isTouched && error) && <div className="CustomInput__error">{error}</div>}

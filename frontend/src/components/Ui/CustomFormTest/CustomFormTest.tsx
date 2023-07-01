@@ -35,9 +35,12 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
   });
 
   return (
-    <form className="CustomForm" onSubmit={formik.handleSubmit} >
+    <form 
+      className="CustomForm" 
+      onSubmit={formik.handleSubmit} 
+    >
       <div className="CustomForm__input">
-        {data.map(el => (
+        {data.map((el, index) => (
           <CustomInput
             key={el.name as string}
             name={el.name as string}
@@ -47,7 +50,8 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             onChange={formik.handleChange} 
             onBlur={formik.handleBlur} 
             error={formik.errors[el.name]} 
-            isTouched={formik.touched[el.name]}            
+            isTouched={formik.touched[el.name]}
+            tabIndex={index + 1}            
           />
         ))}
       </div>

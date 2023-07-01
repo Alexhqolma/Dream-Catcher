@@ -2,10 +2,8 @@
 @import "../../../styles/utils/normalize.scss";
 
 .CustomInput {
-  height: $input-height;
   min-width: 300px;
   position: relative;
-  display: inline-block;
   // border: 1px solid green;
 
   & input {
@@ -13,7 +11,7 @@
     width: 100%;
     font-size: $font_size_m;
     font-size: 14px;
-    line-height: $space_xl;
+    line-height: 63px;
     border: 1px solid transparent;
     border-bottom: 1px solid $darkPrimary;
     padding: 0;
@@ -41,7 +39,7 @@
 
   &__error {
     position: absolute;
-    bottom: 0;
+    top: 55%;
   }
 }
 

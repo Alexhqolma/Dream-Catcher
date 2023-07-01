@@ -27,6 +27,7 @@ interface CustomButtonProps {
   target?: Target.Blank;
   type?: ButtonType;
   width?: number | '100%';
+  tabIndex? : number;
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({ 
@@ -39,6 +40,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   target,
   type,
   width,
+  tabIndex,
  }) => {
   if (href) {
     return (
@@ -46,6 +48,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         className={classNames('custom-button' , 'custom-button--link')}
         href={href}
         target={target}
+        tabIndex={tabIndex}
       >
         {children}
       </a>
@@ -57,6 +60,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       <NavLink
         className={classNames('custom-button', 'custom-button--navLink', className)}
         to={to}
+        tabIndex={tabIndex}
       >
         {title}
         {children}
@@ -70,6 +74,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       onClick={onClick}
       type={type}
       style={{ width: width === '100%' ? '100%' : `${width}px` }}
+      tabIndex={tabIndex}
     >
       {title}
       {children}

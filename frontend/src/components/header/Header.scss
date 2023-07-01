@@ -30,6 +30,12 @@
     list-style: none;
     display: flex;
     gap: 1em;
+    
+    &:target {
+      background-color: red;
+      border: 1px solid red;
+      outline: none;
+    }
   }
 
   &__item {
@@ -39,7 +45,7 @@
     background-color: $white;
     transition: all 0.3s ease-in-out;
     line-height: $font-size-m;
-    
+
 
     &:hover {
         a {

@@ -19,7 +19,8 @@ interface CustomFormProps {
   data: DataValues[];
   onSubmit: (e: any) => void;
   validationType: FormType;
-  initialValues: { [value: string]: string }
+  initialValues: { [value: string]: string };
+  startTabIndex: number;
 }
 
 export const CustomFormTest: React.FC<CustomFormProps> = ({
@@ -27,6 +28,7 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
   onSubmit,
   initialValues,
   validationType,
+  startTabIndex = 7,
 }) => {
   const formik = useFormik({
     initialValues,
@@ -51,7 +53,7 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             onBlur={formik.handleBlur} 
             error={formik.errors[el.name]} 
             isTouched={formik.touched[el.name]}
-            tabIndex={index + 7}
+            tabIndex={index + startTabIndex}
           />
         ))}
       </div>

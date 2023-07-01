@@ -69,7 +69,8 @@ export const RegistrationForm: React.FC = () => {
       onSubmit={onSubmit}
       // formik={formik}
       validationType={FormType.CREATE_USER}
-      initialValues={initialValues}
+      initialValues={initialValues} 
+      startTabIndex={0}    
     />
   )
 }

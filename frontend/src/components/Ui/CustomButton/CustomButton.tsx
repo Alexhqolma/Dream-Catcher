@@ -3,7 +3,6 @@ import { NavLink, To } from 'react-router-dom';
 import classNames from 'classnames';
 
 import './CustomButton.scss';
-import { type } from 'os';
 
 export enum Target {
   Blank = '_blank',

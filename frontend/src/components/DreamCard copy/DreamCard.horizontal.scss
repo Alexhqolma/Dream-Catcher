@@ -1,0 +1,94 @@
+@import '../../styles//utils/variables';
+
+.dream-card--horizontal .dream-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 400px;
+  padding-bottom: 10px;
+
+  &:hover ::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid $lightSecondary;
+  }
+
+  &__description {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: $space-m;
+  }
+
+  &__img {
+    flex: 1;
+    display: block;
+    position: relative;
+    height: 400px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__img::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &__img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__info {
+    flex: 1;
+  }
+  
+  &__title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: $font-size-16;
+    margin-bottom: $space_m;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+  }
+ 
+  &__body {
+    display: block;
+    font-size: $font-size-14;
+    overflow: hidden;
+    margin-bottom: $space_m;
+      word-wrap: break-word;
+      white-space: normal;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+  }
+
+  &__arrow-button {
+    font-weight: 700;
+  }
+
+  &__arrow-button img {
+    transform: translateY(3px);
+  }
+
+  &__date-created {
+    font-size: $font-size-12;
+    color: $lightPrimary;
+    font-style: normal;
+    font-weight: 400;
+  }
+}

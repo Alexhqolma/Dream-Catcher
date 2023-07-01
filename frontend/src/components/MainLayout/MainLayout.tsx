@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-export const Layout: React.FC = () => {
+export const MainLayout: React.FC = () => {
   return (
     <Suspense>
       <Outlet />

@@ -22,7 +22,7 @@ import { authAPI } from './api/Node/users';
 // import { clientJava } from './api/Java/instanceJava';
 import { CustomButton } from './components/UI/CustomButton';
 import Header from './components/Header/Header';
-import { Layout } from './components/Layout';
+import { MainLayout } from './components/MainLayout';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';
@@ -275,7 +275,7 @@ export const App = () => {
       {user && <h1 className='title'>{user.userId}</h1>}
 
       <Header />
-      <Layout />
+      <MainLayout />
       <Footer />
     </div>
   );

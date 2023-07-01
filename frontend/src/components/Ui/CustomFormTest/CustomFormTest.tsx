@@ -51,16 +51,17 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
             onBlur={formik.handleBlur} 
             error={formik.errors[el.name]} 
             isTouched={formik.touched[el.name]}
-            tabIndex={index + 1}            
+            tabIndex={index + 7}
           />
         ))}
       </div>
 
-      <div className="CustomForm__controls">
+      <div className="CustomForm__controls" >
         <CustomButton
           type={ButtonType.BUTTON}
           onClick={() => window.history.go(-1)}
           width={100}
+          tabIndex={11}
         >
           Back
         </CustomButton>
@@ -68,6 +69,7 @@ export const CustomFormTest: React.FC<CustomFormProps> = ({
         <CustomButton
           type={ButtonType.SUBMIT}
           width={100}
+          tabIndex={12}
         >
           Submit
         </CustomButton>

@@ -8,6 +8,7 @@ const RegistrationPage: React.FC = () => {
     <main className="RegistrationPage container">
       <h1 className='title'>Registration</h1>
 
+      
       <section>
         <RegistrationForm 
           startTabIndex={7}

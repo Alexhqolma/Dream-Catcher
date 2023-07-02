@@ -47,7 +47,7 @@ const sagaActionsCreator = {
     payload,
   }),
   createDream: (payload: RequestCreateDream) => ({ 
-    type: SagaActions.REGISTER_USER_NODE, 
+    type: SagaActions.CREATE_DREAM, 
     payload,
   }),
   updateDream: (payload: RequestPatchDream) => ({ 
@@ -95,6 +95,7 @@ export const {
   
   loadAllDreams,
   loadDream,
+  createDream,
   updateDream,
   takeDream,
   refuseDream,

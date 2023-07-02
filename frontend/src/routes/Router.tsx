@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { routes } from './routerConfig';
-import { NotFoundPage } from '../pages';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 const { home, login, registration, dream, dreams, user, favorites, rootError } = routes;
 
@@ -64,6 +64,7 @@ export const router = createBrowserRouter([
   },
   {
     path: rootError.path,
-    element: <main>this route is not exist!</main>,
+    element: rootError.element,
   }
 ]);
+

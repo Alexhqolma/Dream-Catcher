@@ -9,6 +9,7 @@ import {
   UserPage,
   FavoritesPage,
 } from '../pages';
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
 export const routes = {
   home: {
@@ -59,5 +60,6 @@ export const routes = {
 
   rootError: {
     path: '*',
+    element: NotFoundPage({}),
   },
 };

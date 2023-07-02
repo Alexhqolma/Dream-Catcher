@@ -4,14 +4,18 @@ import { Dream } from '../../../types/Dream';
 
 export interface DreamState {
   storage: Dream | null;
-  input: Dream | null;
+  input: Omit<Dream, 'user' | 'handler'>;
+
+  message: string | null;
   statusLoading: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
 
 const initialState: DreamState = {
   storage: null,
-  input: null,
+  input: { title: '', body: '', imageUrl: '' } || null,
+
+  message: null,
   statusLoading: 'idle',
   error: null,
 };
@@ -24,6 +28,12 @@ const dreamSlice = createSlice({
       console.log('setDream');
 
       state.storage = action.payload;
+    },
+    setMessage: (
+      state: DreamState,
+      action: PayloadAction<string>,
+    ) => {
+      state.message = action.payload;
     },
     setStatus: (
       state: DreamState,

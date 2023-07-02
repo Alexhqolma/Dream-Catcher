@@ -8,6 +8,7 @@ export enum InputType {
   PASSWORD = 'password',
   EMAIL = 'email',
   TEXTAREA = 'textarea',
+  IMAGE_LINK = 'url',
 }
 
 interface CustomInputProps {

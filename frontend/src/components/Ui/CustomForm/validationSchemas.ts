@@ -34,5 +34,6 @@ export const validationSchemas = {
   'DREAM': {
     title: Yup.string().min(2).required(),
     body: Yup.string().min(2).required(),
+    imageUrl: Yup.string().url().nullable(),
   },
 };

@@ -1,19 +1,28 @@
-import { ButtonType, CustomButton } from '../../components/UI/CustomButton';
-
+import React from 'react';
 import './NotFoundPage.scss';
+import { CustomButton } from '../../components/UI/CustomButton/CustomButton';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const NotFoundPage: React.FC = () => {
-
-  
   return (
-    <main className="NotFoundPage">
-      <p>404</p>
-      <p>Page not found</p>
-      <CustomButton 
-        to="/" title='Home page' 
-        type={ButtonType.BUTTON} 
-        tabIndex={7} />
-    </main>
+    <>
+      <Header />
+      <main className="NotFoundPage">
+        <h1 className="NotFoundPage__title">Oops... This page does not exist!</h1>
+        <p className="NotFoundPage__text">
+          Unfortunately, the page you are requesting does not exist. It may be outdated, deleted, or an incorrect address was specified.
+        </p>
+        <CustomButton
+          to="/"
+          tabIndex={7}
+          className="custom-button--regular" 
+        >
+          Go to Home page
+        </CustomButton>
+      </main>
+      <Footer />
+    </>
   );
 };
 

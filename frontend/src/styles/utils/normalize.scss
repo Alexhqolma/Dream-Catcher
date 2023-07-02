@@ -36,9 +36,6 @@ li {
   padding: 0;
 }
 
-main {
-}
-
 li {
   list-style: none;
 }
@@ -46,10 +43,6 @@ li {
 a {
   text-decoration: none;
   color: $darkPrimary;
-
-  &:visited {
-    color: $darkPrimary;
-  }
 
   &:hover {
     color: $lightPrimary;

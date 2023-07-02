@@ -1,40 +1,33 @@
 @import '../../styles/utils/variables';
-@import '../../styles/utils/mixins';
 
 .NotFoundPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  text-align: center;
 
-  &__button {
-    display: block;
-    width: 200px;
-    height: 40px;
-
-    background-color: $whiteSecondary;
-
-    border: none;
-    border-radius: 8px;
-
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 21px;
-    color: $white;
-
-    &:hover {
-      // box-shadow: 0px 3px 6px rgba(23, 32, 49, 0.2); // correct style
-      border: 1px solid red;
-    }
-
-    &:active {
-      background-color: $white;
-      color: $white;
-      border: 1px solid $whiteSecondary;
-      box-shadow: none;
-    }
+  & main {
+    min-height: calc(100vh - $height_header - $height_footer);
   }
+
+  &__title {
+    font-size: $font-size-xl;
+    margin-bottom: $space-m;
+    padding-top: $space-xxl;
+  }
+
+  &__text {
+    font-size: $font-size-m;
+    margin-bottom: $space-xxl;
+  }
+}
+
+main {
+  min-height: calc(100vh - $height_header - $height_footer);
+}
+
+.custom-button--regular {
+  font-size: $font-size-16;
+  line-height: 30px;
+  
+  &:hover {
+      color: $white;
+    }
 }

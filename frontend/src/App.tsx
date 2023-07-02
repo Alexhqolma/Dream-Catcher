@@ -134,26 +134,34 @@ export const App = () => {
   //   // createJavaDream();
   // }, [])
 
-  console.log();
-  // useEffect(() => {
-  //   const loginJava = async () => {
-  //     console.log('loginDream');
+  useEffect(() => {
+    const loginJava = async () => {
+      console.log('loginDream');
 
-  //     const user = {
-  //       email: 'admin@admin.com',
-  //       password: 'adminadmin',
-  //     };
+      const user = {
+        email: 'admin@admin.com',
+        password: 'adminadmin',
+      };
 
-  //     const response = await client.post(
-  //       '/auth/login',
-  //       user,
-  //     )
+      const response = await fetch(
+        'http://localhost:6868/auth/login',
+        {
+          mode: 'no-cors',
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      )
 
-  //     return response;
-  //   };
+      console.log(response);
 
-  //   loginJava().then(res => console.log(res));
-  // }, [])
+      return response.json();
+    };
+
+    loginJava().then(res => console.log(res));
+  }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -183,7 +191,7 @@ export const App = () => {
 
   return (
     <div className='App'>
-      <button
+      {/* <button
         onClick={() => {
           const loginJava = async () => {
             console.log('login JAVA');
@@ -209,64 +217,78 @@ export const App = () => {
         }}
       >
         TEST JAVA POST
-      </button>
+      </button> */}
 
       <div className='App__buttons_for_Node'>
-        <CustomButton onClick={() => dispatch(registerUserNODE({
-          email: 'app@test.app',
-          password: '12345',
-          fullName: 'App test user',
-        }))}>
+        <CustomButton 
+          onClick={() => dispatch(registerUserNODE({
+            email: 'app@test.app',
+            password: '12345',
+            fullName: 'App test user',
+            }))} 
+          tabIndex={0}
+        >
           register User 1
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch({
-          type: SagaActions.LOGIN_USER_NODE,
-          payload: {
-            password: '12345',
-            email: 'app@test.app',
-            // fullName: 'App test user',
-          },
-        })}>
+        <CustomButton 
+          onClick={() => dispatch({
+            type: SagaActions.LOGIN_USER_NODE,
+            payload: {
+              password: '12345',
+              email: 'app@test.app',
+              // fullName: 'App test user',
+            }})}
+          tabIndex={0}
+        >
           login User 1
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch(registerUserNODE({
-          email: 'user2@test.app',
-          password: '1234567',
-          fullName: 'App test user 2',
-        }))}>
+        <CustomButton 
+          onClick={() => dispatch(registerUserNODE({
+            email: 'user2@test.app',
+            password: '1234567',
+            fullName: 'App test user 2'}))}
+          tabIndex={0}
+        >
           register User 2
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch({
-          type: SagaActions.LOGIN_USER_NODE,
-          payload: {
-            password: '1234567',
-            email: 'user2@test.app',
-            // fullName: 'App test user',
-          },
-        })}>
+        <CustomButton 
+            onClick={() => dispatch({
+              type: SagaActions.LOGIN_USER_NODE,
+              payload: {
+                password: '1234567',
+                email: 'user2@test.app',
+                // fullName: 'App test user',
+              }})}
+            tabIndex={0}
+          >
           login User 2
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch({
-          type: SagaActions.FETCH_USER_NODE,
-          payload: token,
-        })}>
+        <CustomButton 
+          onClick={() => dispatch({
+            type: SagaActions.FETCH_USER_NODE,
+            payload: token})} 
+          tabIndex={0}
+        >
           get User
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch({
-          type: SagaActions.DELETE_USER_NODE,
-          payload: token,
-        })}>
+        <CustomButton 
+          onClick={() => dispatch({
+            type: SagaActions.DELETE_USER_NODE,
+            payload: token})} 
+          tabIndex={0}
+        >
           delete User
         </CustomButton>
 
-        <CustomButton onClick={() => dispatch({
-          type: SagaActions.FETCH_ALL_DREAMS,
-        })}>
+        <CustomButton 
+          onClick={() => dispatch({ type: SagaActions.FETCH_ALL_DREAMS })}
+          tabIndex={0}
+        >
           get All Dreams
         </CustomButton>
       </div>

@@ -3,6 +3,7 @@ import { baseURL } from './routes';
 
 export const instanceJava = axios.create({
   baseURL,
+  mode: 'no-cors',
 });
 
 export const client = {

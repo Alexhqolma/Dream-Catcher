@@ -9,7 +9,6 @@
   background-color: $white;
   padding: 1rem 2rem 1rem 5rem;
   box-sizing: border-box;
-  
 
     &__logo {
  
@@ -30,12 +29,6 @@
     list-style: none;
     display: flex;
     gap: 1em;
-    
-    &:target {
-      background-color: red;
-      border: 1px solid red;
-      outline: none;
-    }
   }
 
   &__item {
@@ -47,13 +40,6 @@
     line-height: $font-size-m;
     transition: all 0.3s ease-in-out;
     line-height: $font-size-m;
-
-    &:hover {
-        a {
-          color: $lightPrimary;
-          ;
-        }
-      }
   }
 
   &__favorites-icon {

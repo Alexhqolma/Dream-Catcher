@@ -4,7 +4,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RequestCreateUser } from '../../types/User';
-import { CustomFormTest } from '../UI/CustomFormTest';
+import { CustomForm } from '../UI/CustomForm';
 import { useNavigate } from 'react-router-dom';
 import { registerUserNODE } from '../../store/sagas/actions';
 import { FormType } from '../UI/CustomForm/validationSchemas';
@@ -25,7 +25,13 @@ const registrationData = [
   { name: 'confirmPassword', type: InputType.PASSWORD, placeholder: 'Confirm Password', initialValue: '' },
 ];
 
-export const RegistrationForm: React.FC = () => {
+interface RegistrationFormProps {
+  startTabIndex: number;
+}
+
+export const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  startTabIndex
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSubmitted = useAppSelector(selectRegistrationSuccess);
@@ -64,13 +70,13 @@ export const RegistrationForm: React.FC = () => {
   }
 
   return (
-    <CustomFormTest
+    <CustomForm
       data={registrationData}
       onSubmit={onSubmit}
-      // formik={formik}
       validationType={FormType.CREATE_USER}
       initialValues={initialValues} 
-      startTabIndex={7}
+      startTabIndex={startTabIndex} 
+      className="RegistrationFrom"    
     />
   )
 }

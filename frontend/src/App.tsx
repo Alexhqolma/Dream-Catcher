@@ -22,7 +22,7 @@ import { authAPI } from './api/Node/users';
 // import { clientJava } from './api/Java/instanceJava';
 import { CustomButton } from './components/UI/CustomButton';
 import Header from './components/Header/Header';
-import { MainLayout } from './components/MainLayout';
+import { MainLayout } from './components/Layout';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';

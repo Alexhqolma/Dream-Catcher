@@ -9,7 +9,9 @@ const RegistrationPage: React.FC = () => {
       <h1 className='title'>Registration</h1>
 
       <section>
-        <RegistrationForm />
+        <RegistrationForm 
+          startTabIndex={7}
+        />
       </section>
     </main>
   );

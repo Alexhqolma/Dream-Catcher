@@ -4,7 +4,7 @@ import { InputType } from '../UI/CustomInput';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginUserNODE } from '../../store/sagas/actions';
 import { RequestLoginUser } from '../../types/User';
-import { CustomFormTest } from '../UI/CustomFormTest';
+import { CustomForm } from '../UI/CustomForm';
 import { validationSchemas } from '../UI/CustomForm/validationSchemas';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';

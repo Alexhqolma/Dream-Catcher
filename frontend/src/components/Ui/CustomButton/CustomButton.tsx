@@ -70,7 +70,9 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 
   return (
     <button 
-      className={classNames('custom-button', 'custom-button--regular', className)}
+      className={classNames(
+        'custom-button', 'custom-button--regular', className,
+        { 'custom-button--width-definite': width })}
       onClick={onClick}
       type={type}
       style={{ width: width === '100%' ? '100%' : `${width}px` }}

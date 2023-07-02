@@ -19,10 +19,10 @@ interface CustomInputProps {
   onBlur: FocusEventHandler<HTMLInputElement>;
   error?: string;
   isTouched?: boolean;
-  className?: string;
   label?: string;
   children?: ReactNode;
   tabIndex: number;
+  className?: string;
 }
 
 export const CustomInput: React.FC<CustomInputProps> = ({ 
@@ -34,10 +34,10 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   onBlur,
   error,
   isTouched,
-  className,
   label,
   children,
   tabIndex,
+  className,
 }) => {
   return (
     <label 

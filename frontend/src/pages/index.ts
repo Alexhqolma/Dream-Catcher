@@ -7,4 +7,3 @@ export const DreamsPage = lazy(() => import('./DreamsPage/DreamsPage'));
 export const DreamPage = lazy(() => import('./DreamPage/DreamPage'));
 export const UserPage = lazy(() => import('./UserPage/UserPage'));
 export const FavoritesPage = lazy(() => import('./FavoritesPage/FavoritesPage'));
-export const NotFoundPage = lazy(() => import('./NotFoundPage/NotFoundPage'));

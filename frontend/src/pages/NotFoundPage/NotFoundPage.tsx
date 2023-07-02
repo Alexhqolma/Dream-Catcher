@@ -2,7 +2,7 @@ import { ButtonType, CustomButton } from '../../components/UI/CustomButton';
 
 import './NotFoundPage.scss';
 
-const NotFoundPage = () => (
+const NotFoundPage: React.FC = () => (
   <main className="NotFoundPage">
     <p>404</p>
     <p>Page not found</p>

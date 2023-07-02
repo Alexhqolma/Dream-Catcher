@@ -59,7 +59,7 @@ useEffect(() => {
         validationType={FormType.LOGIN_USER}
         initialValues={initialValues}
         startTabIndex={startTabIndex}
-        className="LoginFrom"   
+        className="LoginFrom"
       />
     </div>
   )

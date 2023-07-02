@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
       ) : (
         <>
           {loginError && <p className="error-message">{loginError}</p>}
-          <LoginForm />
+            <LoginForm startTabIndex={7} />
         </>
       )}
       <p className="LoginPage__registrationLink">

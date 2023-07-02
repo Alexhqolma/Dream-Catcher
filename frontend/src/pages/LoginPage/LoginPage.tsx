@@ -23,7 +23,11 @@ const LoginPage: React.FC = () => {
       )}
       <p className="LoginPage__registrationLink">
         Don't have an account?&nbsp;&nbsp;&nbsp;
-        <CustomButton to={registration.path} className="link">
+        <CustomButton 
+          to={registration.path} 
+          className="link"
+          tabIndex={7}
+        >
           Sign up
         </CustomButton>
       </p>

@@ -1,25 +1,12 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/mixins';
 
-.not-found {
+.NotFoundPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-
-
-  &__image {
-    display: block;
-    width: 50%;
-    height: auto;
-
-    margin-bottom: 64px;
-
-    @include onTablet {
-      margin-bottom: 32px;
-    }
-  }
 
   &__button {
     display: block;

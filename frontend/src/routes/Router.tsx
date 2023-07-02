@@ -1,7 +1,6 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 import { routes } from './routerConfig';
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 const { home, login, registration, dream, dreams, user, favorites, rootError } = routes;
 
@@ -9,14 +8,14 @@ export const router = createBrowserRouter([
   {
     path: home.path,
     element: <home.element.App />,
-    errorElement: <NotFoundPage />,
+    errorElement: <main>Error on {home.name.root}</main>,
     id: home.name.root,
     children: [
       {
         path: home.path,
         element: <home.element.HomePage />,
         id: home.name.child,
-        errorElement: <NotFoundPage />,
+        errorElement: <main>Error on {home.name.child}</main>,
       },
       {
         path: login.path,

@@ -1,14 +1,15 @@
-import { CustomButton } from '../../components/UI/CustomButton';
+import { ButtonType, CustomButton } from '../../components/UI/CustomButton';
 
 import './NotFoundPage.scss';
 
 const NotFoundPage: React.FC = () => (
   <main className="NotFoundPage">
+    <p>404</p>
+    <p>Page not found</p>
     <CustomButton 
-      title='Go Back' 
-      onClick={() => window.history.go(-1)} 
-      tabIndex={0} 
-    />
+      to="/" title='Home page' 
+      type={ButtonType.BUTTON} 
+      tabIndex={7} />
   </main>
 );
 

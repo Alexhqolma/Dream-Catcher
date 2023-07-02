@@ -1,62 +1,66 @@
-import React from 'react';
-import * as Yup from 'yup';
+import React, { useEffect } from 'react';
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginUserNODE } from '../../store/sagas/actions';
 import { RequestLoginUser } from '../../types/User';
 import { CustomForm } from '../UI/CustomForm';
-import { validationSchemas } from '../UI/CustomForm/validationSchemas';
-import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { selectUserError } from '../../store/features/user/userSlice';
+import { selectIsAuth, selectUserStatusLoading } from '../../store/features/user/userSlice';
+import { FormType } from '../UI/CustomForm/validationSchemas';
+import { RequestStatus } from '../../types/RequestStatus';
+
 
 const initialValues = {
   email: '',
   password: '',
 };
 
-const validationSchema = Yup.object(validationSchemas.LOGIN_USER)
-
-
 const LoginData = [
   { name: 'email', type: InputType.EMAIL, placeholder: 'Email', initialValue: '' },
   { name: 'password', type: InputType.PASSWORD, placeholder: 'Password', initialValue: '' }
 ];
 
-export const LoginForm: React.FC = () => {
+
+interface LoginFormProps {
+  startTabIndex: number;
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({
+  startTabIndex
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const error = useAppSelector(selectUserError);
-
+  const isSubmitted = useAppSelector(selectIsAuth);
+  const isLoading = useAppSelector(selectUserStatusLoading) === RequestStatus.LOADING;
   const onSubmit = (values: RequestLoginUser) => {
-    try {
-      dispatch(loginUserNODE({
-        email: values.email,
-        password: values.password,
-    }));
-    } catch (error) {
-      console.error('Error loging user:', error);
-    }
+    dispatch(loginUserNODE({
+      email: values.email,
+      password: values.password,
+  }));
+};
+
+useEffect(() => {
+  if (isSubmitted) {
     setTimeout(() => {
       navigate('/dreams');
     }, 2000);
-  };
+  }
+}, [navigate, isSubmitted])
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema
-  });
- 
+  if (isLoading) {
+    return <h1 className='title'>Loading ...</h1>
+  }
   
   return (
     <div>
-      {error && <h1>Something went wrong</h1>}
-      {/* <CustomFormTest
+      <CustomForm
         data={LoginData}
-        onSubmit={formik.handleSubmit}
-        formik={formik}
-      /> */}
+        onSubmit={onSubmit}
+        validationType={FormType.LOGIN_USER}
+        initialValues={initialValues}
+        startTabIndex={startTabIndex}
+        className="LoginFrom"   
+      />
     </div>
   )
 }

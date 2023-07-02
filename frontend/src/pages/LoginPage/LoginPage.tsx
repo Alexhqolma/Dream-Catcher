@@ -18,12 +18,16 @@ const LoginPage: React.FC = () => {
       ) : (
         <>
           {loginError && <p className="error-message">{loginError}</p>}
-          <LoginForm />
+            <LoginForm startTabIndex={7} />
         </>
       )}
       <p className="LoginPage__registrationLink">
         Don't have an account?&nbsp;&nbsp;&nbsp;
-        <CustomButton to={registration.path} className="link">
+        <CustomButton 
+          to={registration.path} 
+          className="link"
+          tabIndex={7}
+        >
           Sign up
         </CustomButton>
       </p>

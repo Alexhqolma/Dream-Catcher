@@ -1,5 +1,5 @@
 import { Dream } from '../../types/Dream';
-import { routesServer } from './routes';
+import { routesServer } from './endPoints';
 import { client } from './instance';
 
 export const getDreams = () => client.get<Dream[]>(routesServer.dreams);

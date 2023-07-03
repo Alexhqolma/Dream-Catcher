@@ -1,5 +1,5 @@
 import { Dream, RequestCreateDream, RequestDeleteDream, RequestGetDream, RequestPatchDream, ResponseCreateDream, ResponseDeleteDream, ResponseGetDream, ResponsePatchDream } from '../../types/Dream';
-import { routesServer } from './routes';
+import { routesServer } from './endPoints';
 import { client } from './instance';
 import { AxiosResponse } from 'axios';
 

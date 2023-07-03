@@ -142,8 +142,8 @@ export const App = () => {
         "email": "admin@admin.com",
         "password": "adminadmin",
       };
-
-      const response = await fetch(
+      
+      fetch(
         'http://localhost:6868/auth/login',
         {
           mode: 'no-cors',
@@ -154,13 +154,11 @@ export const App = () => {
           body: JSON.stringify(user),
         }
       )
-
-      console.log(response);
-
-      return response.json();
     };
 
-    loginJava().then(res => console.log(res));
+    loginJava()
+      .then(res => console.log('JAVA RESPONSE', res))
+      .catch(e => console.log(e));
   }, [])
 
   useEffect(() => {

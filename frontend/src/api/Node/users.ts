@@ -1,4 +1,4 @@
-import { routesServer } from './routes';
+import { routesServer } from './endPoints';
 import { client } from './instance';
 
 import { AxiosResponse } from 'axios';

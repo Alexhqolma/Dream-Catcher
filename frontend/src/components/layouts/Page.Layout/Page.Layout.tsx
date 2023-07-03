@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
-import { Dream, DreamsStatus } from '../../types/Dream';
-import { CustomButton } from '../UI/CustomButton';
+import { Dream, DreamsStatus } from '../../../types/Dream';
+import { CustomButton } from '../../UI/CustomButton';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
 import './DreamCard.catalog.scss';
 import './DreamCard.horizontal.scss';
 import './DreamCard.page.scss';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectToken, selectUser } from '../../store/features/user/userSlice';
-import { SagaActions, loadAllDreams, loadUserNODE, refuseDream, takeDream, updateDream } from '../../store/sagas/actions';
-import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { selectToken, selectUser } from '../../../store/features/user/userSlice';
+import { refuseDream, takeDream, updateDream } from '../../../store/sagas/actions';
 
 interface DreamItemProps {
   dream: Dream;
@@ -58,7 +57,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
 
             <p className="dream-card__body">{dream.body}</p>
 
-            <CustomButton href={`/dream/${dream.id}`}>
+            <CustomButton href={`/dream/${dream.id}`} tabIndex={0}>
               <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
             </CustomButton>
 
@@ -100,15 +99,15 @@ export const DreamCard: React.FC<DreamItemProps> = ({
             title: 'updated title',
           },
           token
-        }))}>Update</CustomButton>
+        }))} tabIndex={0}>Update</CustomButton>
       )}
 
       {user?.userId !== dream.user && dream.handler === null && (
-        <CustomButton onClick={() => dispatch(takeDream({ dream, token }))}>Take</CustomButton>
+        <CustomButton onClick={() => dispatch(takeDream({ dream, token }))} tabIndex={0}>Take</CustomButton>
       )}
 
       {user?.userId !== dream.user && dream.handler === user?.userId && (
-        <CustomButton onClick={() =>  dispatch(refuseDream({ dream, token }))}>Refuse</CustomButton>
+        <CustomButton onClick={() => dispatch(refuseDream({ dream, token }))} tabIndex={0}>Refuse</CustomButton>
       )}
 
     </div>

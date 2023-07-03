@@ -1,6 +1,7 @@
 import React from 'react';
+import { Dream } from '../../../types/Dream';
 
-interface ManagementLayoutProps<T> {
+interface ManagementLayoutProps<T = Dream> {
   list: T[];
 }
 

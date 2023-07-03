@@ -59,11 +59,11 @@ export const router = createBrowserRouter([
         id: favorites.name,
         errorElement: <main>Error on `${favorites.path}`</main>,
       },
+      {
+        path: rootError.path,
+        element: rootError.element,
+      }
     ],
   },
-  {
-    path: rootError.path,
-    element: rootError.element,
-  }
 ]);
 

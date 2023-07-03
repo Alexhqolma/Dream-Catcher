@@ -7,7 +7,7 @@ import Footer from '../../components/Footer/Footer';
 const NotFoundPage: React.FC = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="NotFoundPage">
         <h1 className="NotFoundPage__title">Oops... This page does not exist!</h1>
         <p className="NotFoundPage__text">
@@ -21,7 +21,7 @@ const NotFoundPage: React.FC = () => {
           Go to Home page
         </CustomButton>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { MainSwiper } from "../../components/MainSwiper";
 import { useAppSelector } from "../../store/hooks";
 import { selectMockData } from "../../mock/store/features/mock/mockSlice";
-import { DreamCard } from "../../components/DreamCard/DreamCard";
+import { ItemHorizone } from '../../components/layouts/ItemHorizone.Layout/ItemHorizone.Layout';
 
 import './HomePage.scss';
 
@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 
       <div className='dreamsCatalog'>
         {dreams.map(dream => (
-          <DreamCard key={dream.id} dream={dream} horizontalMode={true} />
+          <ItemHorizone key={dream.id} dream={dream} horizontalMode={true} />
         ))}
       </div>
     </>

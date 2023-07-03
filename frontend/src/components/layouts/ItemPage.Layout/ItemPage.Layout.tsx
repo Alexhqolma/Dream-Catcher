@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Dream, DreamsStatus } from '../../../types/Dream';
 import { CustomButton } from '../../UI/CustomButton';
 import arrow from './../../assets/images/details-arrow-icon.svg';
 
-import './DreamCard.catalog.scss';
-import './DreamCard.horizontal.scss';
-import './DreamCard.page.scss';
+import './ItemPage.Layout.scss';
+
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectToken, selectUser } from '../../../store/features/user/userSlice';
 import { refuseDream, takeDream, updateDream } from '../../../store/sagas/actions';

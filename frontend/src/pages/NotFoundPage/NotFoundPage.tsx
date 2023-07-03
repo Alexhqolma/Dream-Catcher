@@ -1,8 +1,6 @@
 import React from 'react';
 import './NotFoundPage.scss';
 import { CustomButton } from '../../components/UI/CustomButton/CustomButton';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 
 const NotFoundPage: React.FC = () => {
   return (

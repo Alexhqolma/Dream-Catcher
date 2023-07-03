@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
 import { CustomSelect } from '../UI/CustomSelect';
 import { BasicPagination } from '../UI/BasicPagination';
 import { Search } from '../UI/Search';
+import { ItemCard } from '../layouts/ItemCard.Layout/ItemCard.Layout';
 
 // import { loadAllDreams } from '../../store/sagas/actions';
 import './DreamsContainer.scss';
@@ -74,7 +74,7 @@ export const DreamsContainer: React.FC = () => {
 
       <ul className="DreamsContainer__content grid" >
         {dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d} catalogMode /></li>
+          <li key={d.id}><ItemCard dream={d} catalogMode /></li>
         ))}
       </ul>
 

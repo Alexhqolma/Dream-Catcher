@@ -10,6 +10,7 @@ import { selectToken, selectUser, } from '../../store/features/user/userSlice';
 import { RequestStatus } from '../../types/RequestStatus';
 import { Dream, RequestCreateDream, RequestPatchDream } from '../../types/Dream';
 import { createDream, updateDream } from '../../store/sagas/actions';
+import Loader from '../Loader/Loader';
 
 export enum DreamFormType {
   CREATE = 'CREATE',
@@ -71,7 +72,7 @@ export const DreamForm: React.FC<DreamFormProps> = ({
   };
 
   if (isLoading) {
-    return <h1 className='title'>Loading ...</h1>
+    return <Loader />
   }
 
   if (isSubmitted) {

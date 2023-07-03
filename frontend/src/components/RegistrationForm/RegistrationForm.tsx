@@ -10,6 +10,7 @@ import { registerUserNODE } from '../../store/sagas/actions';
 import { FormType } from '../UI/CustomForm/validationSchemas';
 import { selectMessage, selectRegistrationSuccess, selectUserStatusLoading } from '../../store/features/user/userSlice';
 import { RequestStatus } from '../../types/RequestStatus';
+import Loader from '../Loader/Loader';
 
 const initialValues = {
   fullName: '',
@@ -56,7 +57,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
 
   if (isLoading) {
-    return <h1 className='title'>Loading ...</h1>
+    return <Loader />
   }
 
   if (isSubmitted) {

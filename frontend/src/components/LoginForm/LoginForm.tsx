@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { selectIsAuth, selectUserStatusLoading } from '../../store/features/user/userSlice';
 import { FormType } from '../UI/CustomForm/validationSchemas';
 import { RequestStatus } from '../../types/RequestStatus';
+import Loader from '../Loader/Loader';
 
 
 const initialValues = {
@@ -48,7 +49,7 @@ useEffect(() => {
 }, [navigate, isSubmitted])
 
   if (isLoading) {
-    return <h1 className='title'>Loading ...</h1>
+    return <Loader />
   }
   
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 
-import arrow from './../../assets/images/details-arrow-icon.svg';
+import arrow from '../../../assets/images//details-arrow-icon.svg';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectToken, selectUser } from '../../../store/features/user/userSlice';
@@ -10,9 +10,7 @@ import { refuseDream, takeDream, updateDream } from '../../../store/sagas/action
 import { CustomButton } from '../../UI/CustomButton';
 import { Dream, DreamsStatus } from '../../../types/Dream';
 
-import './DreamCard.catalog.scss';
-import './DreamCard.horizontal.scss';
-import './DreamCard.page.scss';
+import './ItemCard.Layout.scss';
 
 interface DreamItemProps {
   dream: Dream;
@@ -21,7 +19,7 @@ interface DreamItemProps {
   catalogMode?: boolean;
 }
 
-export const DreamCard: React.FC<DreamItemProps> = ({
+export const ItemCard: React.FC<DreamItemProps> = ({
   dream,
   pageMode,
   horizontalMode,

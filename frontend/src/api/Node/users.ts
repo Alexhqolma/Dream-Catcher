@@ -1,4 +1,4 @@
-import { routesServer } from './endPoints';
+import { nodeEndPoints } from './endPoints';
 import { client } from './instance';
 
 import { AxiosResponse } from 'axios';
@@ -10,21 +10,21 @@ export const authAPI = {
       RequestCreateUser,
       AxiosResponse<ResponseLoginUser>
     >(
-      routesServer.user.register, 
+      nodeEndPoints.user.register, 
       data,
     );
   },
 
   login(data: RequestLoginUser) {
     return client.post<RequestLoginUser, AxiosResponse<ResponseLoginUser>>(
-      routesServer.user.login, 
+      nodeEndPoints.user.login, 
       data,
     );
   },
   
   getUser(token: string) {
     return client.get<AxiosResponse<ResponseGetUser>>(
-      routesServer.user.getUser,
+      nodeEndPoints.user.getUser,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -35,7 +35,7 @@ export const authAPI = {
     
   deleteUser(token: string) {
     return client.delete<AxiosResponse<ResponseDeleteUser>>(
-      routesServer.user.deleteUser,
+      nodeEndPoints.user.deleteUser,
       {
         headers: {
           'Authorization': `Bearer ${token}`,

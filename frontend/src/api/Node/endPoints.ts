@@ -1,6 +1,6 @@
 export const baseURL = 'http://127.0.0.1:4444';
 
-export const routesServer = {
+export const nodeEndPoints = {
   dreams: '/dreams',
   dream: '/dreams/:dreamId',
 

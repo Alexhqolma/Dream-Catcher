@@ -1,4 +1,4 @@
-import { routesServer } from './endPoints';
+import { javaEndPoints } from './endPoints';
 import { client } from './instance';
 
 import { AxiosResponse } from 'axios';
@@ -7,7 +7,7 @@ import { RequestCreateUser, RequestLoginUser, ResponseGetUser, ResponseLoginUser
 export const authAPI = {
   deleteUser(token: string) {
     return client.get<AxiosResponse<ResponseGetUser>>(
-      routesServer.user.deleteUser,
+      javaEndPoints.user.deleteUser,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -18,7 +18,7 @@ export const authAPI = {
 
   getUser(token: string) {
     return client.get<AxiosResponse<ResponseGetUser>>(
-      routesServer.user.getUser,
+      javaEndPoints.user.getUser,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -29,7 +29,7 @@ export const authAPI = {
 
   login(data: RequestLoginUser) {
     return client.post<RequestLoginUser, AxiosResponse<ResponseLoginUser>>(
-      routesServer.user.login, 
+      javaEndPoints.user.login, 
       data,
     );
   },
@@ -39,7 +39,7 @@ export const authAPI = {
       RequestCreateUser,
       AxiosResponse<ResponseLoginUser>
     >(
-      routesServer.user.register, 
+      javaEndPoints.user.register, 
       data,
     );
   },

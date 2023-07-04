@@ -1,133 +1,43 @@
 import React from 'react';
-import classNames from 'classnames';
-
 
 import arrow from '../../../assets/images//details-arrow-icon.svg';
-
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { selectToken, selectUser } from '../../../store/features/user/userSlice';
-import { refuseDream, takeDream, updateDream } from '../../../store/sagas/actions';
 import { CustomButton } from '../../UI/CustomButton';
-import { Dream, DreamsStatus } from '../../../types/Dream';
+import { Dream } from '../../../types/Dream';
 
 import './ItemCard.Layout.scss';
+import classNames from 'classnames';
 
 interface DreamItemProps {
-  dream: Dream;
-  pageMode?: boolean;
-  horizontalMode?: boolean;
-  catalogMode?: boolean;
+  item: Dream;
+  className?: string;
 }
 
-export const ItemCard: React.FC<DreamItemProps> = ({
-  dream,
-  pageMode,
-  horizontalMode,
-  catalogMode
-}) => {
-  const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken) || '';
-  const isOwner = false;
-  const isControlAvailable = false;
-  const user = useAppSelector(selectUser);
-
+export const ItemCardLayout: React.FC<DreamItemProps> = ({ item, className }) => {
   return (
-    <div className={classNames(
-      'dream-card',
-      { 'dream-card--catalog': catalogMode },
-      { 'dream-card--page': pageMode },
-      { 'dream-card--horizontal': horizontalMode },
-    )}>
-      <div className="dream-card__description">
-        <div className="dream-card__img">
-          <img
-            src={dream?.imageUrl || undefined}
-            alt="photo"
-          />
-        </div>
-
-        <div className='dream-card__info'>
-          <div className='dream-card__text'>
-            <h4 className={classNames('dream-card__title',
-              { 'title': horizontalMode }
-            )}
-            >
-              {dream.title}
-            </h4>
-
-            <p className="dream-card__body">{dream.body}</p>
-
-            <CustomButton 
-              href={`/dream/${dream.id}`} 
-              tabIndex={-100}
-            >
-              <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
-            </CustomButton>
-
-            {/* <h4 className='dream-card__date-created'>{dream.user}</h4> */}
-
-            <p>status: {dream.status === DreamsStatus.TAKEN ? 'TAKEN' : 'POSTED'}</p>
-            <p style={{ backgroundColor: 'green' }}>{(dream.user === user?.userId) && 'YOUR CARD'}</p>
-            <p>handler: {dream.handler}</p>
-          </div>
-        </div>
+    <div className={classNames("ItemCardLayout", className)}>
+      <div className="ItemCardLayout__img">
+        <img
+          src={item?.imageUrl || undefined}
+          alt="photo"
+        />
       </div>
 
-      {isOwner && pageMode && <div className='dream-card__edit-mode'></div>}
+      <div className='ItemCardLayout__info'>
+        <div className='ItemCardLayout__text'>
+          <h4 className='ItemCardLayout__title'>
+            {item.title}
+          </h4>
 
-      {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
+          <p className="ItemCardLayout__body">{item.body}</p>
 
-      {/* <CustomButton onClick={() => {
-        dispatch({
-          type: SagaActions.CREATE_DREAM,
-          payload: {
-            token,
-            dream,
-          }
-        });
-
-        dispatch(removeMockItem(dream));
-      }
-      }
-      >
-        teleport
-      </CustomButton> */}
-
-      {/* <CustomButton onClick={onClick}>Update</CustomButton> */}
-
-      {user?.userId === dream.user && (
-        <CustomButton 
-          onClick={() => dispatch(updateDream({
-            dream: {
-              ...dream,
-              title: 'updated title',
-            },
-            token,
-          }))} 
-          tabIndex={0}
-        >
-          Update
-        </CustomButton>
-      )}
-
-      {user?.userId !== dream.user && dream.handler === null && (
-        <CustomButton 
-          onClick={() => dispatch(takeDream({ dream, token }))} 
-          tabIndex={0}
-        >
-          Take
-        </CustomButton>
-      )}
-
-      {user?.userId !== dream.user && dream.handler === user?.userId && (
-        <CustomButton 
-          onClick={() => dispatch(refuseDream({ dream, token }))} 
-          tabIndex={0}
-        >
-          Refuse
-        </CustomButton>
-      )}
-
+          <CustomButton 
+            href={`/dream/${item.id}`} 
+            tabIndex={-100}
+          >
+            <p className='ItemCardLayout__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
+          </CustomButton>
+        </div>
+      </div>
     </div>
   );
 };

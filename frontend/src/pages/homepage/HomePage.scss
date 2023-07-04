@@ -1,9 +1,16 @@
 @import "../../styles/utils/variables";
 
-.dreamsCatalog {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  gap: $space-m;
-  padding: 40px;
+.HomePage {
+  & > * {
+    margin-bottom: $space_xxl;
+  }
+
+  &__some-dreams-title {
+    text-align: center;    
+  }
+
+  &__some-dreams {
+    width: fit-content;
+    margin: 0 auto;
+  }
 }

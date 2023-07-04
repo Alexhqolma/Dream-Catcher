@@ -1,17 +1,19 @@
+@import './variables';
+
 @mixin onTablet {
-  @media (min-width: 640px) {
+  @media (min-width: $breakpoints-onTablet) {
     @content;
   }
 }
 
 @mixin onLaptop {
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoints-onLaptop) {
     @content;
   }
 }
 
 @mixin onDesktop {
-  @media (min-width: 1200px) {
+  @media (min-width: $breakpoints-onDesktop) {
     @content;
   }
 }
@@ -20,5 +22,4 @@
   max-width: 1200px;
   min-width: 320px;
   margin: 0 auto;
-  // padding: 24px 16px;
 }

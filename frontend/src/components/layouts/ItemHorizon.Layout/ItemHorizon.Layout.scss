@@ -1,0 +1,147 @@
+@import "../../../styles/utils/mixins";
+@import '../../..//styles/utils/variables';
+
+.ItemHorizonLayout {
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  & > * {
+    margin-bottom: $space_l;
+  }
+
+  &__img {
+    flex: 1;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__img::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &__img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__info {
+    flex: 1;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  &__info > * {
+    margin-bottom: $space_s;
+  }
+
+  &__title {
+    max-height: calc(($font_size_30) * 1);
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      max-width: 100%;
+  }
+ 
+  &__body {
+    display: block;
+    font-size: $font-size-14;
+    text-align: justify;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+  }
+
+  &__arrow-button {
+    font-weight: 700;
+    align-self: flex-end;
+  }
+
+  &__arrow-button img {
+    transform: translateY(3px);
+  }
+
+  @include onTablet {
+    display: flex;
+  
+    & > * {
+      margin-bottom: 0;
+    }
+  
+    &__title {
+      max-height: calc(($font_size_30) * 2);
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: normal;
+      text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        max-width: 100%;
+    }
+    
+    &__body {
+      display: block;
+      font-size: $font-size-14;
+      text-align: justify;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: normal;
+      text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+  
+  
+    &--left {
+      flex-direction: row;
+    }
+  
+    &--left &__info > * {
+      padding-left: $space_xxl;
+    }
+  
+    &--right {
+      flex-direction: row-reverse;
+    }
+  
+    &--right &__info > * {
+      padding-right: $space_xxl;
+    }
+  }
+
+  @include onLaptop {
+    max-width: $onDesktop-max-width;
+  }
+  
+  @include onDesktop {
+  
+  }
+}
+
+
+
+

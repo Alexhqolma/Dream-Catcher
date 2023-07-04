@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectToken, selectUser } from '../../store/features/user/userSlice';
 import { SagaActions, loadAllDreams, loadUserNODE, refuseDream, takeDream, updateDream } from '../../store/sagas/actions';
 import { removeMockItem } from '../../mock/store/features/mock/mockSlice';
+import { ItemCardLayout } from '../layouts/ItemCard.Layout/ItemCard.Layout';
 
 interface DreamItemProps {
   dream: Dream;
@@ -33,84 +34,74 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   const user = useAppSelector(selectUser);
 
   return (
-    <div className={classNames(
-      'dream-card',
-      { 'dream-card--catalog': catalogMode },
-      { 'dream-card--page': pageMode },
-      { 'dream-card--horizontal': horizontalMode },
-    )}>
-      <div className="dream-card__description">
-        <div className="dream-card__img">
-          <img
-            src={dream?.imageUrl || undefined}
-            alt="photo"
-          />
-        </div>
+    <>
+      <div className="DreamCard">
+        <ItemCardLayout item={dream} className="DreamCard__view" />
 
-        <div className='dream-card__info'>
-          <div className='dream-card__text'>
-            <h4 className={classNames('dream-card__title',
-              { 'title': horizontalMode }
+        <div className="DreamCard__controls">
+          <p>status: {dream.status === DreamsStatus.TAKEN ? 'TAKEN' : 'POSTED'}</p>
+
+          <p style={{ backgroundColor: 'green' }}>{(dream.user === user?.userId) && 'YOUR CARD'}</p>
+          <p>handler: {dream.handler}</p>
+
+          {isOwner && pageMode && <div className='item-card__edit-mode'></div>}
+
+          {isControlAvailable && pageMode && <div className='item-card__controls'></div>}
+
+          {/* <CustomButton onClick={() => {
+            dispatch({
+              type: SagaActions.CREATE_DREAM,
+              payload: {
+                token,
+                dream,
+              }
+            });
+
+            dispatch(removeMockItem(dream));
+          }
+          }
+          >
+            teleport
+          </CustomButton> */}
+
+          {/* <CustomButton onClick={onClick}>Update</CustomButton> */}
+          {/* <div className="item-card__controls">
+            {user?.userId === dream.user && (
+              <CustomButton 
+                onClick={() => dispatch(updateDream({
+                  dream: {
+                    ...item,
+                    title: 'updated title',
+                  },
+                  token,
+                }))} 
+                tabIndex={0}
+              >
+                Update
+              </CustomButton>
             )}
-            >
-              {dream.title}
-            </h4>
 
-            <p className="dream-card__body">{dream.body}</p>
+            {user?.userId !== dream.user && dream.handler === null && (
+              <CustomButton 
+                onClick={() => dispatch(takeDream({ dream: item, token }))} 
+                tabIndex={0}
+              >
+                Take
+              </CustomButton>
+            )}
 
-            <CustomButton href={`/dream/${dream.id}`}>
-              <p className='dream-card__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
-            </CustomButton>
+            {user?.userId !== dream.user && dream.handler === user?.userId && (
+              <CustomButton 
+                onClick={() => dispatch(refuseDream({ dream: item, token }))} 
+                tabIndex={0}
+              >
+                Refuse
+              </CustomButton>
+            )}
+          </div> */}
 
-            {/* <h4 className='dream-card__date-created'>{dream.user}</h4> */}
-
-            <p>status: {dream.status === DreamsStatus.TAKEN ? 'TAKEN' : 'POSTED'}</p>
-            <p style={{ backgroundColor: 'green' }}>{(dream.user === user?.userId) && 'YOUR CARD'}</p>
-            <p>handler: {dream.handler}</p>
-          </div>
         </div>
       </div>
-
-      {isOwner && pageMode && <div className='dream-card__edit-mode'></div>}
-
-      {isControlAvailable && pageMode && <div className='dream-card__controls'></div>}
-
-      {/* <CustomButton onClick={() => {
-        dispatch({
-          type: SagaActions.CREATE_DREAM,
-          payload: {
-            token,
-            dream,
-          }
-        });
-
-        dispatch(removeMockItem(dream));
-      }
-      }
-      >
-        teleport
-      </CustomButton> */}
-
-      {/* <CustomButton onClick={onClick}>Update</CustomButton> */}
-
-      {user?.userId === dream.user && (
-        <CustomButton onClick={() => dispatch(updateDream({
-          dream: {
-            ...dream,
-            title: 'updated title',
-          },
-          token
-        }))}>Update</CustomButton>
-      )}
-
-      {user?.userId !== dream.user && dream.handler === null && (
-        <CustomButton onClick={() => dispatch(takeDream({ dream, token }))}>Take</CustomButton>
-      )}
-
-      {user?.userId !== dream.user && dream.handler === user?.userId && (
-        <CustomButton onClick={() =>  dispatch(refuseDream({ dream, token }))}>Refuse</CustomButton>
-      )}
-
-    </div>
+    </>
   );
 };

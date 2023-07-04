@@ -4,12 +4,12 @@ import { Dream } from "../../types/Dream";
 import { CustomSelect } from '../UI/CustomSelect';
 import { BasicPagination } from '../UI/BasicPagination';
 import { Search } from '../UI/Search';
-import { ItemCard } from '../layouts/ItemCard.Layout/ItemCard.Layout';
 
 // import { loadAllDreams } from '../../store/sagas/actions';
 import './DreamsContainer.scss';
 import { selectAllDreams } from '../../store/features/allDreams/allDreamsSlice';
 import { loadAllDreams } from '../../store/sagas/actions';
+import { DreamCard } from '../DreamCard/DreamCard';
 
 export const DreamsContainer: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -73,8 +73,8 @@ export const DreamsContainer: React.FC = () => {
       </div>
 
       <ul className="DreamsContainer__content grid" >
-        {dreamsCut.map(d => (
-          <li key={d.id}><ItemCard dream={d} catalogMode /></li>
+        {dreamsCut.map(dream => (
+          <li key={dream.id}><DreamCard dream={dream} /></li>
         ))}
       </ul>
 

@@ -45,7 +45,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   if (href) {
     return (
       <a
-        className={classNames('custom-button' , 'custom-button--link')}
+        className={classNames('custom-button' , 'custom-button--link', className)}
         href={href}
         target={target}
         tabIndex={tabIndex}

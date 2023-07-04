@@ -134,32 +134,32 @@ export const App = () => {
   //   // createJavaDream();
   // }, [])
 
-  useEffect(() => {
-    const loginJava = async () => {
-      console.log('loginDream');
+  // useEffect(() => {
+  //   const loginJava = async () => {
+  //     console.log('loginDream');
 
-      const user = {
-        "email": "admin@admin.com",
-        "password": "adminadmin",
-      };
+  //     const user = {
+  //       "email": "admin@admin.com",
+  //       "password": "adminadmin",
+  //     };
       
-      fetch(
-        'http://localhost:6868/auth/login',
-        {
-          mode: 'no-cors',
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
-      )
-    };
+  //     fetch(
+  //       'http://localhost:6868/auth/login',
+  //       {
+  //         // mode: 'no-cors',
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(user),
+  //       }
+  //     )
+  //   };
 
-    loginJava()
-      .then(res => console.log('JAVA RESPONSE', res))
-      .catch(e => console.log(e));
-  }, [])
+  //   loginJava()
+  //     .then(res => console.log('JAVA RESPONSE', res))
+  //     .catch(e => console.log(e));
+  // }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -217,7 +217,7 @@ export const App = () => {
         TEST JAVA POST
       </button> */}
 
-      <div className='App__buttons_for_Node'>
+      {/* <div className='App__buttons_for_Node'>
         <CustomButton 
           onClick={() => dispatch(registerUserNODE({
             email: 'app@test.app',
@@ -289,7 +289,7 @@ export const App = () => {
         >
           get All Dreams
         </CustomButton>
-      </div>
+      </div> */}
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
       {user && <h1 className='title'>{user.userId}</h1>}

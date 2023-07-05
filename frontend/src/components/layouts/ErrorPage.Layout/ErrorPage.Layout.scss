@@ -1,0 +1,16 @@
+@import '../../styles/utils/variables';
+
+.ErrorPageLayout {
+  text-align: center;
+
+  &__title {
+    font-size: $font-size-xl;
+    margin-bottom: $space-m;
+    padding-top: $space-xxl;
+  }
+
+  &__text {
+    font-size: $font-size-m;
+    margin-bottom: $space-xxl;
+  }
+}

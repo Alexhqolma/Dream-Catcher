@@ -16,7 +16,14 @@ export enum ButtonType {
   RESET = 'reset',
 }
 
+export enum ButtonStyle {
+  HREF = 'HREF',
+  TO = 'TO',
+  BOX = 'BOX',
+}
+
 interface CustomButtonProps {
+  buttonStyle?: ButtonStyle,
   href?: string;
   link?: string;
   title?: string;
@@ -30,7 +37,8 @@ interface CustomButtonProps {
   tabIndex: number;
 }
 
-export const CustomButton: React.FC<CustomButtonProps> = ({ 
+export const CustomButton: React.FC<CustomButtonProps> = ({
+  buttonStyle, 
   title,
   children,
   href,
@@ -42,7 +50,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   width,
   tabIndex,
  }) => {
-  if (href) {
+  if (buttonStyle !== ButtonStyle.BOX && buttonStyle !== ButtonStyle.TO && href) {
     return (
       <a
         className={classNames('custom-button' , 'custom-button--link', className)}
@@ -55,7 +63,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     )
   }
 
-  if (to) {
+  if (buttonStyle !== ButtonStyle.HREF && buttonStyle !== ButtonStyle.BOX && to) {
     return (
       <NavLink
         className={classNames('custom-button', 'custom-button--navLink', className)}

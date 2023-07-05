@@ -31,7 +31,7 @@ export const DreamPage: React.FC = () => {
   };
 
   if (!dream) {
-    return <h1>This Card is not found</h1>
+    return <main><h1>This Card is not found</h1></main>
   }
 
   console.log('dream', dream);

@@ -1,11 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import arrow from '../../../assets/images//details-arrow-icon.svg';
 import { CustomButton } from '../../UI/CustomButton';
 import { Dream } from '../../../types/Dream';
 
 import './ItemCard.Layout.scss';
-import classNames from 'classnames';
 
 interface DreamItemProps {
   item: Dream;

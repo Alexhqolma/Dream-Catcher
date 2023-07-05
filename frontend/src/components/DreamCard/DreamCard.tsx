@@ -19,13 +19,13 @@ interface DreamItemProps {
   pageMode?: boolean;
   horizontalMode?: boolean;
   catalogMode?: boolean;
+  tabIndex: number,
 }
 
 export const DreamCard: React.FC<DreamItemProps> = ({
   dream,
   pageMode,
-  horizontalMode,
-  catalogMode
+  tabIndex,
 }) => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken) || '';
@@ -36,7 +36,7 @@ export const DreamCard: React.FC<DreamItemProps> = ({
   return (
     <>
       <div className="DreamCard">
-        <ItemCardLayout item={dream} className="DreamCard__view" />
+        <ItemCardLayout item={dream} className="DreamCard__view" tabIndex={tabIndex} />
 
         <div className="DreamCard__controls">
           <p>status: {dream.status === DreamsStatus.TAKEN ? 'TAKEN' : 'POSTED'}</p>

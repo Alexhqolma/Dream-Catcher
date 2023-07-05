@@ -10,9 +10,10 @@ import classNames from 'classnames';
 interface DreamItemProps {
   item: Dream;
   className?: string;
+  tabIndex: number;
 }
 
-export const ItemCardLayout: React.FC<DreamItemProps> = ({ item, className }) => {
+export const ItemCardLayout: React.FC<DreamItemProps> = ({ item, className, tabIndex }) => {
   return (
     <div className={classNames("ItemCardLayout", className)}>
       <div className="ItemCardLayout__img">
@@ -32,7 +33,7 @@ export const ItemCardLayout: React.FC<DreamItemProps> = ({ item, className }) =>
 
           <CustomButton 
             href={`/dream/${item.id}`} 
-            tabIndex={-100}
+            tabIndex={tabIndex}
           >
             <p className='ItemCardLayout__arrow-button'>Details&nbsp;&nbsp;&nbsp; <img src={arrow} alt="arrow" /></p>
           </CustomButton>

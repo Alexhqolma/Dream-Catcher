@@ -11,14 +11,14 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectToken, selectUser } from '../../../store/features/user/userSlice';
 import { refuseDream, takeDream, updateDream } from '../../../store/sagas/actions';
 
-interface DreamItemProps {
+interface ItemPageLayoutProps {
   dream: Dream;
   pageMode?: boolean;
   horizontalMode?: boolean;
   catalogMode?: boolean;
 }
 
-export const DreamCard: React.FC<DreamItemProps> = ({
+export const ItemPageLayout: React.FC<ItemPageLayoutProps> = ({
   dream,
   pageMode,
   horizontalMode,

@@ -16,14 +16,7 @@ export enum ButtonType {
   RESET = 'reset',
 }
 
-export enum ButtonStyle {
-  HREF = 'HREF',
-  TO = 'TO',
-  BOX = 'BOX',
-}
-
 interface CustomButtonProps {
-  buttonStyle?: ButtonStyle,
   href?: string;
   link?: string;
   title?: string;
@@ -38,7 +31,6 @@ interface CustomButtonProps {
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
-  buttonStyle, 
   title,
   children,
   href,
@@ -50,7 +42,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   width,
   tabIndex,
  }) => {
-  if (buttonStyle !== ButtonStyle.BOX && buttonStyle !== ButtonStyle.TO && href) {
+  if (href) {
     return (
       <a
         className={classNames('custom-button' , 'custom-button--link', className)}
@@ -63,7 +55,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
     )
   }
 
-  if (buttonStyle !== ButtonStyle.HREF && buttonStyle !== ButtonStyle.BOX && to) {
+  if (to) {
     return (
       <NavLink
         className={classNames('custom-button', 'custom-button--navLink', className)}
@@ -78,9 +70,9 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 
   return (
     <button 
-      className={classNames(
-        'custom-button', 'custom-button--regular', className,
-        { 'custom-button--width-definite': width })}
+      className={classNames('custom-button', 'custom-button--regular', className,
+        { 'custom-button--width-definite': width },
+      )}
       onClick={onClick}
       type={type}
       style={{ width: width === '100%' ? '100%' : `${width}px` }}

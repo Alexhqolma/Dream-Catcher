@@ -1,9 +1,9 @@
 import { Dream } from '../../types/Dream';
-import { routesServer } from './routes';
+import { javaEndPoints } from './endPoints';
 import { client } from './instance';
 
-export const getDreams = () => client.get<Dream[]>(routesServer.dreams);
-export const getDream = (dreamId: string) => client.get<Dream[]>(`${routesServer.dreams}/${dreamId}`);
+export const getDreams = () => client.get<Dream[]>(javaEndPoints.dreams);
+export const getDream = (dreamId: string) => client.get<Dream[]>(`${javaEndPoints.dreams}/${dreamId}`);
 
 interface TRequest {
   dream: Omit<Dream, 'id'>, 
@@ -14,7 +14,7 @@ export const createDream = (
   dream:Omit<Dream, 'id'>,
   token: string,
 ) => client.post<TRequest, TResponse>(
-  routesServer.dreams,
+  javaEndPoints.dreams,
   dream,
   {
     headers: {

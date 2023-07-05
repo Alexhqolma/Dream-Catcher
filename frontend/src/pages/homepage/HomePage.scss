@@ -1,9 +1,28 @@
 @import "../../styles/utils/variables";
+@import "../../styles/utils/mixins";
 
-.dreamsCatalog {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  gap: $space-m;
-  padding: 40px;
+.HomePage {
+  & > * {
+    margin-bottom: $space_xl;
+  }
+
+  &__some-dreams-title {
+    text-align: center;
+    margin-bottom: $space_xl;    
+  }
+
+  &__some-dreams {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  @include onTablet {
+    & > * {
+      margin-bottom: $space_xxxl;
+    }
+
+    &__some-dreams-title {
+      margin-bottom: $space_xxl;
+    }
+  }
 }

@@ -4,10 +4,11 @@
 .title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 30px;
+  font-size: $font_size_30;
+  line-height: $font_size_30;
   color: $darkPrimary;
   text-transform: uppercase;
-  padding-bottom: $space_l;
+  margin-bottom: $space_l;
 }
 
 .centeredContainer {

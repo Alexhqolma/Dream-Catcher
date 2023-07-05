@@ -30,7 +30,7 @@ interface CustomButtonProps {
   tabIndex: number;
 }
 
-export const CustomButton: React.FC<CustomButtonProps> = ({ 
+export const CustomButton: React.FC<CustomButtonProps> = ({
   title,
   children,
   href,
@@ -45,7 +45,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   if (href) {
     return (
       <a
-        className={classNames('custom-button' , 'custom-button--link')}
+        className={classNames('custom-button' , 'custom-button--link', className)}
         href={href}
         target={target}
         tabIndex={tabIndex}
@@ -70,9 +70,9 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 
   return (
     <button 
-      className={classNames(
-        'custom-button', 'custom-button--regular', className,
-        { 'custom-button--width-definite': width })}
+      className={classNames('custom-button', 'custom-button--regular', className,
+        { 'custom-button--width-definite': width },
+      )}
       onClick={onClick}
       type={type}
       style={{ width: width === '100%' ? '100%' : `${width}px` }}

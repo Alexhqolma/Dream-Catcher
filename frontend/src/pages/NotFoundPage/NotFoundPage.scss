@@ -19,10 +19,6 @@
   }
 }
 
-main {
-  min-height: calc(100vh - $height_header - $height_footer);
-}
-
 .custom-button--regular {
   font-size: $font-size-16;
   line-height: 30px;

@@ -1,13 +1,10 @@
-export const baseURL = 'http://127.0.0.1:4444';
+export const baseURL = 'http://localhost:6868';
 
-export const routesServer = {
+export const javaEndPoints = {
   dreams: '/dreams',
-  dream: '/dreams/:dreamId',
-
-
   user: {
     login: '/auth/login',
-    register: '/auth/registration',
+    register: '/registration',
     getUser: '/auth/me',
     deleteUser: '/auth/deleteMe',
   },

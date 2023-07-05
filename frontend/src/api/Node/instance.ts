@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { baseURL } from './routes';
+import { baseURL } from './endPoints';
 
 export const instanceNode = axios.create({
   baseURL,

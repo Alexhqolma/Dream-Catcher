@@ -1,21 +1,24 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { DreamCard } from "../DreamCard/DreamCard";
 import { Dream } from "../../types/Dream";
 import { CustomSelect } from '../UI/CustomSelect';
 import { BasicPagination } from '../UI/BasicPagination';
 import { Search } from '../UI/Search';
-
-// import { loadAllDreams } from '../../store/sagas/actions';
-import './DreamsContainer.scss';
 import { selectAllDreams } from '../../store/features/allDreams/allDreamsSlice';
 import { loadAllDreams } from '../../store/sagas/actions';
+import { DreamCard } from '../DreamCard/DreamCard';
+import { selectScreen } from '../../store/features/controls/controlsSlice';
+import { useOptionsSelectGridContainer } from '../../hooks/useScreen';
+
+import './DreamsContainer.scss';
 
 export const DreamsContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const allDreams = useAppSelector(selectAllDreams);
+  const screen = useAppSelector(selectScreen);
+  const { gridColumn, selectValues } = useOptionsSelectGridContainer(screen);
 
-  const [dreamsPerPage, setDreamsPerPage] = useState<number>(8);
+  const [dreamsPerPage, setDreamsPerPage] = useState<number>(gridColumn * 2);
   const [page, setPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchOptions, setSearchOptions] = useState<string[]>([]);
@@ -23,7 +26,6 @@ export const DreamsContainer: React.FC = () => {
   const onChangePage = (page: number) => setPage(page);
 
   const dreamsCut: Dream[] = allDreams.slice((page - 1) * dreamsPerPage, page * dreamsPerPage).filter(d => d.title.toLowerCase().includes(searchQuery));
- 
   const totalPages = Math.ceil(allDreams.length / dreamsPerPage);
   const isChoseAllDreams = dreamsPerPage === allDreams.length;
 
@@ -35,12 +37,12 @@ export const DreamsContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadAllDreams());
-  }, [])
+  }, [dispatch])
 
   if (!allDreams.length && !dreamsCut.length) {
     return (
       <div className="centeredContainer">
-        <h1 className='title'>there are no any dreams!</h1>
+        <h1 className='title'>There are no any dreams!</h1>
       </div>
     )
   }
@@ -51,7 +53,7 @@ export const DreamsContainer: React.FC = () => {
         <CustomSelect
           onChange={(value) => setDreamsPerPage(+value)}
           className="DreamsContainer__select"
-          values={['4', '8', '16', '48']}
+          values={selectValues}
           valueForAll={allDreams.length.toString()}
           currentValue={dreamsPerPage.toString()}
         />
@@ -73,11 +75,10 @@ export const DreamsContainer: React.FC = () => {
       </div>
 
       <ul className="DreamsContainer__content grid" >
-        {dreamsCut.map(d => (
-          <li key={d.id}><DreamCard dream={d} catalogMode /></li>
+        {dreamsCut.map(dream => (
+          <li key={dream.id}><DreamCard dream={dream} /></li>
         ))}
       </ul>
-
 
       {!isChoseAllDreams && 
         <div className="DreamsContainer__lowerControls">

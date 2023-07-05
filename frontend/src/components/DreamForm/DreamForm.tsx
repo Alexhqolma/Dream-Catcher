@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 import { InputType } from '../UI/CustomInput';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { CustomForm } from '../UI/CustomForm';
-import { useNavigate } from 'react-router-dom';
 import { FormType } from '../UI/CustomForm/validationSchemas';
 import { selectToken, selectUser, } from '../../store/features/user/userSlice';
 import { RequestStatus } from '../../types/RequestStatus';
-import { Dream, RequestCreateDream, RequestPatchDream } from '../../types/Dream';
+import { Dream } from '../../types/Dream';
 import { createDream, updateDream } from '../../store/sagas/actions';
+import Loader from '../Loader/Loader';
 
 export enum DreamFormType {
   CREATE = 'CREATE',
@@ -71,7 +71,7 @@ export const DreamForm: React.FC<DreamFormProps> = ({
   };
 
   if (isLoading) {
-    return <h1 className='title'>Loading ...</h1>
+    return <Loader />
   }
 
   if (isSubmitted) {

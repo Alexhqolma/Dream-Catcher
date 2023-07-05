@@ -26,6 +26,7 @@ import { MainLayout } from './components/layouts/Main.Layout';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';
+import { setScreen } from './store/features/controls/controlsSlice';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,10 @@ export const App = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   const token = useAppSelector(selectToken) || '';
+
+  useEffect(() => {
+    dispatch(setScreen());
+  }, [dispatch])
 
   // useEffect(() => {
   //   const createJavaDream = async () => {
@@ -134,34 +139,32 @@ export const App = () => {
   //   // createJavaDream();
   // }, [])
 
-  useEffect(() => {
-    const loginJava = async () => {
-      console.log('loginDream');
+  // useEffect(() => {
+  //   const loginJava = async () => {
+  //     console.log('loginDream');
 
-      const user = {
-        "email": "admin@admin.com",
-        "password": "adminadmin",
-      };
+  //     const user = {
+  //       "email": "admin@admin.com",
+  //       "password": "adminadmin",
+  //     };
+      
+  //     fetch(
+  //       'http://localhost:6868/auth/login',
+  //       {
+  //         // mode: 'no-cors',
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(user),
+  //       }
+  //     )
+  //   };
 
-      const response = await fetch(
-        'http://localhost:6868/auth/login',
-        {
-          mode: 'no-cors',
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
-      )
-
-      console.log(response);
-
-      return response.json();
-    };
-
-    loginJava().then(res => console.log(res));
-  }, [])
+  //   loginJava()
+  //     .then(res => console.log('JAVA RESPONSE', res))
+  //     .catch(e => console.log(e));
+  // }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);
@@ -219,7 +222,7 @@ export const App = () => {
         TEST JAVA POST
       </button> */}
 
-      <div className='App__buttons_for_Node'>
+      {/* <div className='App__buttons_for_Node'>
         <CustomButton 
           onClick={() => dispatch(registerUserNODE({
             email: 'app@test.app',
@@ -291,7 +294,7 @@ export const App = () => {
         >
           get All Dreams
         </CustomButton>
-      </div>
+      </div> */}
 
       {fullName && <h1 className='title'>{`Hello, ${fullName}!`}</h1>}
       {user && <h1 className='title'>{user.userId}</h1>}

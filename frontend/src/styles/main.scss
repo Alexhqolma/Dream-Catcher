@@ -26,6 +26,12 @@
 .grid {
   display: block;
 
+  @include onMobile {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 2rem;
+  }
+
   @include onTablet {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -35,14 +41,11 @@
 
   @include onLaptop {
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 2rem;
-    column-gap: 2rem;
   }
 
   @include onDesktop {
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
     row-gap: 4rem;
-    column-gap: 2rem;
   }
 }

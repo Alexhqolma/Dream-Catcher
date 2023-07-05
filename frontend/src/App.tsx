@@ -139,32 +139,32 @@ export const App = () => {
   //   // createJavaDream();
   // }, [])
 
-  // useEffect(() => {
-  //   const loginJava = async () => {
-  //     console.log('loginDream');
+  useEffect(() => {
+    const loginJava = async () => {
+      console.log('loginDream');
 
-  //     const user = {
-  //       "email": "admin@admin.com",
-  //       "password": "adminadmin",
-  //     };
+      const user = {
+        "email": "admin@admin.com",
+        "password": "adminadmin",
+      };
       
-  //     fetch(
-  //       'http://localhost:6868/auth/login',
-  //       {
-  //         // mode: 'no-cors',
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(user),
-  //       }
-  //     )
-  //   };
+      fetch(
+        'http://localhost:6868/dreams',
+        {
+          // mode: 'no-cors',
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // body: JSON.stringify(user),
+        }
+      )
+    };
 
-  //   loginJava()
-  //     .then(res => console.log('JAVA RESPONSE', res))
-  //     .catch(e => console.log(e));
-  // }, [])
+    loginJava()
+      .then(res => console.warn('JAVA RESPONSE', res))
+      .catch(e => console.log('java ', e));
+  }, [])
 
   useEffect(() => {
     console.log('user APP', fullName);

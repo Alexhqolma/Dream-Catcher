@@ -90,6 +90,10 @@
       margin-bottom: 0;
     }
   
+    &__img img {
+      transition: all 5s;
+    }
+
     &__title {
       max-height: calc(($font_size_30) * 2);
       overflow: hidden;
@@ -115,7 +119,6 @@
         -webkit-box-orient: vertical;
     }
   
-  
     &--left {
       flex-direction: row;
     }
@@ -131,17 +134,18 @@
     &--right &__info > * {
       padding-right: $space_xxl;
     }
+
+    &:hover &__img img {
+      scale: 1.1;
+      transition: all 1s;
+    }
   }
 
   @include onLaptop {
-    max-width: $onDesktop-max-width;
+    padding: 0 50px;
   }
   
   @include onDesktop {
-  
+    max-width: $breakpoints-w1400;
   }
 }
-
-
-
-

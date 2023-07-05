@@ -26,6 +26,7 @@ import { MainLayout } from './components/layouts/Main.Layout';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';
+import { setScreen } from './store/features/controls/controlsSlice';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,10 @@ export const App = () => {
   const photos = useAppSelector(selectMockPhotos);
   const mockData = useAppSelector(selectMockData);
   const token = useAppSelector(selectToken) || '';
+
+  useEffect(() => {
+    dispatch(setScreen());
+  }, [dispatch])
 
   // useEffect(() => {
   //   const createJavaDream = async () => {

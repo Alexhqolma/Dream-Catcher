@@ -41,8 +41,9 @@
   $z-index-controls: 5000;
   $z-index-errors: 7000;
 
-  $breakpoints-onTablet: 640px;
-  $breakpoints-onLaptop: 768px;
-  $breakpoints-onDesktop: 1200px;
-
-  $onDesktop-max-width: 1200px;
+  $breakpoints-w320: 320px;
+  $breakpoints-w576: 576px;
+  $breakpoints-w768: 768px;
+  $breakpoints-w992: 992px;
+  $breakpoints-w1200: 1200px;
+  $breakpoints-w1400: 1400px;

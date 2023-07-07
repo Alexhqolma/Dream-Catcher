@@ -28,12 +28,12 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                // .csrf().disable().cors().configurationSource(corsConfigurationSource())
-                // .and()
-                .csrf().disable().cors().disable()
+                .csrf().disable().cors().configurationSource(corsConfigurationSource())
+                .and()
+                // .csrf().disable().cors().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/inject", "/swagger-ui", "/auth/**").permitAll()
-                .requestMatchers("/**").permitAll()
+                // .requestMatchers("/**").permitAll()
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()

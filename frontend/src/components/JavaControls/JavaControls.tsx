@@ -28,7 +28,7 @@ export const JavaControls: React.FC = () => {
         },
         body: JSON.stringify(user),
       }
-    );
+    ).then(res => res.json())
 
     console.log(response);
   };

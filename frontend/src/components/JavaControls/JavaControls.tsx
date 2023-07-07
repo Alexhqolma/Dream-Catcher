@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { selectToken } from '../../store/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { registerUserNODE, SagaActions } from '../../store/sagas/actions';
@@ -9,20 +10,39 @@ export const JavaControls: React.FC = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectToken);
   
+  const loginJava = async () => {
+    console.log('loginDream');
+
+    const user = {
+      "email": "admin@admin.com",
+      "password": "adminadmin",
+    };
+    
+    const response = await fetch(
+      'http://localhost:6868/auth/login',
+      {
+        // mode: 'no-cors',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
+
+    console.log(response);
+  };
+ 
   return (
     <div className='App__buttons_for_Java JavaControls'>
       <p>JAVA</p>
       <div>
         <CustomButton
-          onClick={() => dispatch(registerUserNODE({
-            email: 'app@test.app',
-            password: '12345',
-            fullName: 'App test user',
-          }))}
+          onClick={() => loginJava()}
           tabIndex={0}
           width={200}
         >
-          register User 1
+          Login
         </CustomButton>
 
         <CustomButton

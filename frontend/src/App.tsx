@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from './store/hooks';
-import { selectFullName, selectToken, selectUser, } from './store/features/user/userSlice';
+import { selectFullName, selectUser, } from './store/features/user/userSlice';
 import {
   selectMockData,
   selectMockDreams,
@@ -9,17 +9,15 @@ import {
   selectMockUsers,
   setMockData
 } from './mock/store/features/mock/mockSlice';
-
 import { DreamsStatus } from './types/Dream';
-
 import Header from './components/Header/Header';
 import { MainLayout } from './components/layouts/Main.Layout';
 import Footer from './components/Footer/Footer';
-
-import './App.scss';
 import { setScreen } from './store/features/controls/controlsSlice';
 import { NodeControls } from './components/NodeControls/NodeControls';
 import { JavaControls } from './components/JavaControls';
+
+import './App.scss';
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -33,33 +31,6 @@ export const App = () => {
   useEffect(() => {
     dispatch(setScreen());
   }, [dispatch])
-
-  useEffect(() => {
-    const loginJava = async () => {
-      console.log('loginDream');
-
-      const user = {
-        "email": "admin@admin.com",
-        "password": "adminadmin",
-      };
-      
-      fetch(
-        'http://localhost:6868/auth/login',
-        {
-          // mode: 'no-cors',
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
-      )
-    };
-
-    loginJava()
-      .then(res => console.warn('JAVA RESPONSE', res))
-      .catch(e => console.log('java ', e));
-  }, [])
 
   useEffect(() => {
     if (users.length && dreams && photos) {

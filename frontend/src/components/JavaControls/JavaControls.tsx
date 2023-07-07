@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectToken } from '../../store/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { registerUserNODE, SagaActions } from '../../store/sagas/actions';
@@ -8,7 +8,9 @@ import './JavaControls.scss';
 
 export const JavaControls: React.FC = () => {
   const dispatch = useAppDispatch();
-  const token = useAppSelector(selectToken);
+
+  const [token, setToken] = useState('');
+
   
   const loginJava = async () => {
     console.log('loginDream');
@@ -28,9 +30,10 @@ export const JavaControls: React.FC = () => {
         },
         body: JSON.stringify(user),
       }
-    ).then(res => res.json())
+    ).then(res => res.json());
 
-    console.log(response);
+    console.log(response.token);
+    setToken(response.token);
   };
  
   const createDream = async () => {
@@ -48,10 +51,173 @@ export const JavaControls: React.FC = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(dream),
       }
-    );
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const updateDream = async () => {
+    console.log('updateDream');
+
+    const dream = {
+      "title": "title new dream version 1",
+      "body": "body new dream version 2",
+    };
+    
+    const response = await fetch(
+      'http://localhost:6868/dreams/1',
+      {
+        // mode: 'no-cors',
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const takeDream = async (value: number) => {
+    console.log('takeDream');
+
+    const dream = {
+      "title": "title new dream version 1",
+      "body": "body new dream version 2",
+    };
+    
+    const response = await fetch(
+      `http://localhost:6868/dreams/${value}`,
+      {
+        // mode: 'no-cors',
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getDreamById = async () => {
+    console.log('findDreamBuId');
+   
+    const response = await fetch(
+      'http://localhost:6868/dreams/1',
+      {
+        // mode: 'no-cors',
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getDreams = async () => {
+    console.log('findDreamBuId');
+   
+    const response = await fetch(
+      'http://localhost:6868/dreams',
+      {
+        // mode: 'no-cors',
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getDreamsPage1Dream5 = async () => {
+    console.log('getDreamsPage1Dream5');
+   
+    const response = await fetch(
+      'http://localhost:6868/dreams?page=1&size=5',
+      {
+        // mode: 'no-cors',
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getUser = async () => {
+    console.log('getUser');
+   
+    const response = await fetch(
+      'http://localhost:6868/dreams/user',
+      {
+        // mode: 'no-cors',
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getMyHandedDreams = async () => {
+    console.log('getMyHandedDreams');
+   
+    const response = await fetch(
+      'http://localhost:6868/dreams/handler',
+      {
+        // mode: 'no-cors',
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const deleteDream = async (value: number) => {
+    console.log('deleteDream');
+   
+    const response = await fetch(
+      `http://localhost:6868/dreams/${value}`,
+      {
+        // mode: 'no-cors',
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
 
     console.log(response);
   };
@@ -77,60 +243,68 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch(registerUserNODE({
-            email: 'user2@test.app',
-            password: '1234567',
-            fullName: 'App test user 2'
-          }))}
+          onClick={() => updateDream()}
           tabIndex={0}
           width={200}
         >
-         ----
+          Update
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch({
-            type: SagaActions.LOGIN_USER_NODE,
-            payload: {
-              password: '1234567',
-              email: 'user2@test.app',
-              // fullName: 'App test user',
-            }
-          })}
+          onClick={() => takeDream(1)}
           tabIndex={0}
           width={200}
         >
-          -----
+          takeDream
+        </CustomButton>
+
+        
+        <CustomButton
+          onClick={() => getDreamById()}
+          tabIndex={0}
+          width={200}
+        >
+          getDreamById
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch({
-            type: SagaActions.FETCH_USER_NODE,
-            payload: token
-          })}
+          onClick={() => getDreams()}
           tabIndex={0}
           width={200}
         >
-          get User
+          getDreams
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch({
-            type: SagaActions.DELETE_USER_NODE,
-            payload: token
-          })}
+          onClick={() => getDreamsPage1Dream5()}
           tabIndex={0}
           width={200}
         >
-          delete User
+          getDreamsPage1Dream5
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch({ type: SagaActions.FETCH_ALL_DREAMS })}
+          onClick={() => getUser()}
           tabIndex={0}
           width={200}
         >
-          get All Dreams
+          getUser
+        </CustomButton>
+
+        <CustomButton
+          onClick={() => getMyHandedDreams()}
+          tabIndex={0}
+          width={200}
+        >
+          getMyHandedDreams
+        </CustomButton>
+
+        <CustomButton
+          onClick={() => deleteDream(1)}
+          tabIndex={0}
+          width={200}
+        >
+          deleteDream
         </CustomButton>
       </div>
     </div>

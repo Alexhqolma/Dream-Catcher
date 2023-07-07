@@ -33,6 +33,29 @@ export const JavaControls: React.FC = () => {
     console.log(response);
   };
  
+  const createDream = async () => {
+    console.log('createDreamJava');
+
+    const user = {
+      "title": "title new dream",
+      "body": "body new dream",
+    };
+    
+    const response = await fetch(
+      'http://localhost:6868/dreams/create',
+      {
+        // mode: 'no-cors',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
+
+    console.log(response);
+  };
+
   return (
     <div className='App__buttons_for_Java JavaControls'>
       <p>JAVA</p>
@@ -46,18 +69,11 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => dispatch({
-            type: SagaActions.LOGIN_USER_NODE,
-            payload: {
-              password: '12345',
-              email: 'app@test.app',
-              // fullName: 'App test user',
-            }
-          })}
+          onClick={() => createDream()}
           tabIndex={0}
           width={200}
         >
-          login User 1
+          createDream
         </CustomButton>
 
         <CustomButton
@@ -69,7 +85,7 @@ export const JavaControls: React.FC = () => {
           tabIndex={0}
           width={200}
         >
-          register User 2
+         ----
         </CustomButton>
 
         <CustomButton
@@ -84,7 +100,7 @@ export const JavaControls: React.FC = () => {
           tabIndex={0}
           width={200}
         >
-          login User 2
+          -----
         </CustomButton>
 
         <CustomButton

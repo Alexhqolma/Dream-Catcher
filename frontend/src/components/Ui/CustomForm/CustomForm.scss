@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  margin-bottom: $space_xl;
+  width: fit-content;
+
 
   &__success-message {
     text-align: center;

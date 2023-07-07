@@ -3,26 +3,31 @@
 .custom-button {
   display: inline-block;
   width: fit-content;
-  color: $black;
   text-align: center;
   font-size: $font-size-16;
   font-weight: $font-weight-bold;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
 
-  & :hover {
-    color: $lightPrimary;
-  }
-
-  & :visited {
-    color: $black;
-  }
+.custom-button > * {
+  transition: all .3s ease-in-out;
 }
 
 .custom-button--link {
-  outline-color: transparent;
+  border: 1px solid transparent;
   outline-width: 1px;
+  color: $black;
+
+  &:hover {
+    color: $lightPrimary;
+    transition: all .3s ease-in-out;
+  }
+
+  &:visited {
+    color: $black;
+  }
 }
 
 .custom-button--navLink {
@@ -30,6 +35,16 @@
   outline-width: 1px;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
+  color: $black;
+
+  &:hover {
+    color: $lightPrimary;
+    transition: all .3s ease-in-out;
+  }
+
+  &:visited {
+    color: $black;
+  }
 
   &:focus {
     border-bottom: 1px solid $lightSecondary;
@@ -47,8 +62,13 @@
   outline-color: transparent;
   outline: none;
 
-  &:focus {
+  &:hover {
     background-color: $lightSecondaryActive;
+    transition: all .3s ease-in-out;
+  }
+
+  &:visited {
+    color: $black;
   }
 }
 

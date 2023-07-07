@@ -19,6 +19,7 @@ export const useOptionsSelectGridContainer = (screen : SCREEN) => {
 
     case screen === SCREEN.W_1200 || screen === SCREEN.W_1400:
       gridColumn = 4;
+      console.log('gridColumn', gridColumn);
       break;
 
     default:

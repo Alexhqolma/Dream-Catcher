@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 import { InputType } from '../UI/CustomInput';
@@ -10,6 +10,12 @@ import { RequestStatus } from '../../types/RequestStatus';
 import { Dream } from '../../types/Dream';
 import { createDream, updateDream } from '../../store/sagas/actions';
 import Loader from '../Loader/Loader';
+import { selectDream, selectDreamError, selectDreamMessage, selectDreamStatusLoading, setError } from '../../store/features/dream/dreamSlice';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../routes/routerConfig';
+import { CenteredWrapper } from '../layouts/CenteredWrapper/CenteredWrapper';
+
+import './DreamForm.scss'
 
 export enum DreamFormType {
   CREATE = 'CREATE',
@@ -17,25 +23,35 @@ export enum DreamFormType {
 }
 
 interface DreamFormProps {
+  title?: string;
   startTabIndex: number;
   type: DreamFormType;
+  dreamInitial?: Dream;
+  cbAfterSubmit?: () => void;
+  cbBackButton?: () => void;
 }
 
 export const DreamForm: React.FC<DreamFormProps> = ({
+  title,
   startTabIndex,
   type,
+  dreamInitial,
+  cbAfterSubmit,
+  cbBackButton,
 }) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isSubmitted = useAppSelector(state => state.dream.storage);
-  const isLoading = useAppSelector(state => state.dream.statusLoading) === RequestStatus.LOADING;
-  const responseMessage = useAppSelector(state => state.dream.message);
   const userId = useAppSelector(selectUser)?.userId;
   const token = useAppSelector(selectToken);
+  const isSubmitted = useAppSelector(selectDream) !== null;
+  const isLoading = useAppSelector(selectDreamStatusLoading) === RequestStatus.LOADING;
+  const responseMessage = useAppSelector(selectDreamMessage);
+  const responseError = useAppSelector(selectDreamError);
 
   const initialValues: Omit<Dream, 'user' | 'handler' | 'id' | 'status' | 'creationDate'> = {
-    title: '',
-    body: '',
-    imageUrl: '',
+    title: dreamInitial?.title || '',
+    body: dreamInitial?.body || '',
+    imageUrl: dreamInitial?.imageUrl || '',
   };
 
   const dreamFormData = [
@@ -45,8 +61,16 @@ export const DreamForm: React.FC<DreamFormProps> = ({
   ];
 
   const onSubmit = (values: Omit<Dream, 'user' | 'handler'>) => {
-    token &&
-    userId && 
+    if (!token || !userId) {
+      dispatch(setError('You are not authorized!'));
+
+      // setTimeout(() => {
+      //   navigate(routes.login.path);
+      // }, 2000)
+
+      return;
+    }
+
     type === DreamFormType.CREATE &&
     dispatch(createDream({
       dream: {
@@ -57,27 +81,42 @@ export const DreamForm: React.FC<DreamFormProps> = ({
       token,
     }));
 
-    token &&
-    userId && 
     type === DreamFormType.UPDATE &&
     dispatch(updateDream({
       dream: {
+        id: dreamInitial?.id,
         title: values.title,
         body: values.body,
         imageUrl: values.imageUrl,
       },
       token,
     }));
+
+    cbAfterSubmit && cbAfterSubmit();
   };
+
+  useEffect(() => {
+    console.log('render form useEffect', isLoading, isSubmitted, responseMessage, responseError);
+  }, [isLoading, isSubmitted, responseMessage, dreamInitial, responseError])
+
+  console.log('render form', isLoading, isSubmitted, responseMessage, responseError);
 
   if (isLoading) {
     return <Loader />
   }
 
+  if (responseError) {
+    <CenteredWrapper>
+      <div className="DreamForm__response">
+        <div className="DreamForm__title title">{responseError}</div>
+      </div>
+    </CenteredWrapper>
+  }
+
   if (isSubmitted) {
     return (
-      <div className="regMessage RegistrationForm__success">
-        <div className="regTitle">{responseMessage}</div>
+      <div className="DreamForm__response">
+        <div className="DreamForm__title title">{responseMessage}</div>
 
         <TaskAltIcon />
       </div>
@@ -85,14 +124,18 @@ export const DreamForm: React.FC<DreamFormProps> = ({
   }
 
   return (
-    <CustomForm
-      data={dreamFormData}
-      onSubmit={onSubmit}
-      validationType={FormType.DREAM}
-      initialValues={initialValues} 
-      startTabIndex={startTabIndex} 
-      className="DreamForm"    
-    />
+    <CenteredWrapper> 
+      <CustomForm
+        data={dreamFormData}
+        onSubmit={onSubmit}
+        validationType={FormType.DREAM}
+        initialValues={initialValues} 
+        startTabIndex={startTabIndex} 
+        className="DreamForm"
+        title={title}
+        cbBackButton={cbBackButton}  
+      />
+    </CenteredWrapper>
   )
 }
 

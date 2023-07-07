@@ -1,11 +1,11 @@
+import { call, delay, put } from 'redux-saga/effects';
 import { AxiosError } from 'axios';
 
-import { call, put } from 'redux-saga/effects';
-import { setDreams, setError, setStatus } from '../../../features/allDreams/allDreamsSlice';
 import { dreamAPI } from '../../../../api/Node/dreams';
 import { RequestCreateDream, ResponseCreateDream, ResponseCreateDreamWithError } from '../../../../types/Dream';
 import { RequestStatus } from '../../../../types/RequestStatus';
 import { Error } from '../../../../types/Error';
+import { setError, setStatus, resetError, setDream, setMessage, resetDream, resetMessage } from '../../../features/dream/dreamSlice';
 interface Props {
   type: string;
   payload: RequestCreateDream;
@@ -14,7 +14,11 @@ interface Props {
 export function* createDreamSaga({ payload }: Props): Generator<unknown, any, ResponseCreateDream> {
   console.log('createDreamSaga', payload);
 
+  yield put(resetDream());
+  yield put(resetMessage());
+  yield put(resetError());
   yield put(setStatus(RequestStatus.LOADING));
+  yield delay(2000);
   
   try {
     const response = yield call(dreamAPI.create, payload);
@@ -25,9 +29,8 @@ export function* createDreamSaga({ payload }: Props): Generator<unknown, any, Re
       throw response;
     }
 
-    console.log(response);
-
-    // yield put(setDreams(response.dream));
+    yield put(setDream(response.dream));
+    yield put(setMessage(response.message));
   } catch (error: unknown) {
     console.log('catch createDreamSaga', (error as AxiosError<ResponseCreateDreamWithError>).response?.data?.message);
 

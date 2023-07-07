@@ -31,6 +31,9 @@ const allDreamsSlice = createSlice({
       state.error = action.payload;
       state.statusLoading = 'failed';
     },
+    resetError: (state: DreamsState) => {
+      state.error = initialState.error;
+    },
     resetState: () => {
       return initialState;
     },
@@ -42,6 +45,7 @@ export const {
   setDreams,
   setStatus,
   setError,
+  resetError,
   resetState,
 } = allDreamsSlice.actions;
 

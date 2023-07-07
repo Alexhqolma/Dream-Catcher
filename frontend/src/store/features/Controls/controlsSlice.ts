@@ -48,7 +48,7 @@ const controlSlice = createSlice({
           break;
     
         default:
-          state.screen = BREAKPOINT.W_320.name;
+          state.screen = BREAKPOINT.W_1400.name;
       }
     },
     resetState: () => {

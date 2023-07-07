@@ -1,0 +1,21 @@
+.JavaControls {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  z-index: 9000;
+  border: 1px solid red;
+  
+  & > * {
+    transform: translateX(calc(-10% + 50px));
+    transition: all 1s;
+  }
+  
+  &:hover > * {
+    opacity: 1;
+    transform: translateX(calc(-100% + 50px));
+    transition: all 0.3s;
+  }
+}

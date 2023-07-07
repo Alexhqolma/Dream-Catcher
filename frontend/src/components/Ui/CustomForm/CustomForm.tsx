@@ -23,6 +23,8 @@ interface CustomFormProps {
   initialValues: { [value: string]: string };
   startTabIndex: number;
   className: string;
+  title?: string;
+  cbBackButton?: () => void;
 }
 
 export const CustomForm: React.FC<CustomFormProps> = ({
@@ -32,6 +34,8 @@ export const CustomForm: React.FC<CustomFormProps> = ({
   validationType,
   startTabIndex,
   className,
+  title,
+  cbBackButton = () => window.history.go(-1),
 }) => {
   const formik = useFormik({
     initialValues,
@@ -40,45 +44,49 @@ export const CustomForm: React.FC<CustomFormProps> = ({
   });
 
   return (
-    <form 
-      className={classNames('CustomForm', className)}
-      onSubmit={formik.handleSubmit} 
-    >
-      <div className="CustomForm__input">
-        {data.map((el, index) => (
-          <CustomInput
-            key={el.name as string}
-            name={el.name as string}
-            type={el.type}
-            placeholder={el.placeholder} 
-            value={formik.values[el.name]} 
-            onChange={formik.handleChange} 
-            onBlur={formik.handleBlur} 
-            error={formik.errors[el.name]} 
-            isTouched={formik.touched[el.name]}
-            tabIndex={index + startTabIndex}
-          />
-        ))}
-      </div>
+    <>
+      {title && <h3 className="CustomForm__title title">{title}</h3>}
+      
+      <form 
+        className={classNames('CustomForm', className)}
+        onSubmit={formik.handleSubmit} 
+      >
+        <div className="CustomForm__input">
+          {data.map((el, index) => (
+            <CustomInput
+              key={el.name as string}
+              name={el.name as string}
+              type={el.type}
+              placeholder={el.placeholder} 
+              value={formik.values[el.name]} 
+              onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              error={formik.errors[el.name]} 
+              isTouched={formik.touched[el.name]}
+              tabIndex={index + startTabIndex}
+            />
+          ))}
+        </div>
 
-      <div className="CustomForm__controls" >
-        <CustomButton
-          type={ButtonType.BUTTON}
-          onClick={() => window.history.go(-1)}
-          width={100}
-          tabIndex={startTabIndex + data.length + 1}
-        >
-          Back
-        </CustomButton>
+        <div className="CustomForm__controls" >
+          <CustomButton
+            type={ButtonType.BUTTON}
+            onClick={cbBackButton}
+            width={100}
+            tabIndex={startTabIndex + data.length + 1}
+          >
+            Back
+          </CustomButton>
 
-        <CustomButton
-          type={ButtonType.SUBMIT}
-          width={100}
-          tabIndex={startTabIndex + data.length + 2}
-        >
-          Submit
-        </CustomButton>
-      </div>
-    </form>
+          <CustomButton
+            type={ButtonType.SUBMIT}
+            width={100}
+            tabIndex={startTabIndex + data.length + 2}
+          >
+            Submit
+          </CustomButton>
+        </div>
+      </form>
+    </>
   );
 };

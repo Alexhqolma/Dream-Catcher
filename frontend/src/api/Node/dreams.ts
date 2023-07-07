@@ -9,7 +9,7 @@ export const getDream = (dreamId: string) => client.get<Dream[]>(`${nodeEndPoint
 
 export const dreamAPI = {
   create({ dream, token }: RequestCreateDream) {
-    return client.post<Dream, AxiosResponse<ResponseCreateDream>>(
+    return client.post<Omit<Dream, "user" | "handler">, AxiosResponse<ResponseCreateDream>>(
       nodeEndPoints.dreams, 
       dream,
       {
@@ -27,7 +27,7 @@ export const dreamAPI = {
   },
 
   update({ dream, token }: RequestPatchDream) {
-    return client.patch<Dream, AxiosResponse<ResponsePatchDream>>(
+    return client.patch<Omit<Dream, "user" | "handler">, AxiosResponse<ResponsePatchDream>>(
       `${nodeEndPoints.dreams}/${dream.id}`, 
       dream,
       {

@@ -1,67 +1,37 @@
-// .header {
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
 
-//   position: sticky;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: 1;
+.ManagementLayout {
 
-//   height: 48px;
-//   padding: 13px 0px 13px 16px;
 
-//   background: $white;
+}
 
-//     &__logo {
-//       width: 64px;
-//     }
+@include onTablet {
+  .ManagementLayout__container {
+    display: flex;
+    gap: $space-m;
+  }
 
-//   &__menu {
-//     height: 48px;
-//     width: 48px;
-//     padding: 16px;
-//     background: $white;
-//     box-shadow: -1px 0px 0px grey;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
+  .ManagementLayout__controls {
+    flex: 1;
+  }
 
-//     &:hover {
-//       opacity: 0.5;
-//     }
-//   }
+  .ManagementLayout__content {
+    flex: 1;
+  }
+}
 
-//   &__menu {
-//     display: block;
-//   }
-// }
+@include onLaptop {
+  .ManagementLayout__container {
+    display: flex;
+    gap: $space-m;
+  }
 
-// .nav {
-//   &__list {
-//     margin: 0 1em 0 0;
-//     padding: 0;
-//     list-style: none;
-//     display: flex;
-//     gap: 1em;
-//   }
-// }
+  .ManagementLayout__controls {
+    flex: 1;
+  }
 
-// .active {
-//   position: relative;
-//   color: $darkPrimary;
-  
-//   &::after {
-//     content: "";
-//     position: absolute;
-//     bottom: -2px;
-
-//     display: block;
-//     height: 2px;
-//     width: 100%;
-//     border-radius: 1.5px;
-//     opacity: 0.5;
-
-//     background-color: #3f653f;
-//   }
-// }
+  .ManagementLayout__content {
+    flex: 2;
+  }
+}

@@ -2,12 +2,14 @@
 @import '../../..//styles/utils/variables';
 
 .ItemHorizonLayout {
-  position: relative;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-
-  & > * {
+  &__container {
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__container > * {
     margin-bottom: $space_l;
   }
 
@@ -84,10 +86,16 @@
   }
 
   @include onTablet {
-    display: flex;
-  
-    & > * {
+    &__container {
+      display: flex;
+    }
+    
+    &__container > * {
       margin-bottom: 0;
+    }
+
+    &__info > * {
+      margin-bottom: $space_l;
     }
   
     &__img img {
@@ -120,6 +128,10 @@
     }
   
     &--left {
+      background-color: $white;
+    }
+    
+    &--left &__container {
       flex-direction: row;
     }
   
@@ -128,6 +140,10 @@
     }
   
     &--right {
+      background-color: $whiteThird;
+    }
+    
+    &--right > &__container {
       flex-direction: row-reverse;
     }
   
@@ -142,10 +158,24 @@
   }
 
   @include onLaptop {
-    padding: 0 50px;
+    &__container {
+      padding: 0 50px;
+    }
   }
   
   @include onDesktop {
-    max-width: $breakpoints-w1400;
+    &__container {
+      max-width: $breakpoints-w1400;
+      padding: 0 50px;
+      margin: 0 auto;
+    }
+  }
+
+  @include onMaxDesktop {
+    &__container {
+      max-width: $breakpoints-w1400;
+      padding: 0;
+      margin: 0 auto;
+    }
   }
 }

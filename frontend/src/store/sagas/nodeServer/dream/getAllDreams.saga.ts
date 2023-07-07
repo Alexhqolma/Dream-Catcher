@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { call, put } from 'redux-saga/effects';
+import { call, delay, put } from 'redux-saga/effects';
 import { setDreams, setError, setStatus } from '../../../features/allDreams/allDreamsSlice';
 import { dreamAPI } from '../../../../api/Node/dreams';
 import { ResponseGetDream, ResponseGetDreamWithError } from '../../../../types/Dream';
@@ -10,8 +10,9 @@ import { Error } from '../../../../types/Error';
 
 export function* getAllDreamsSaga(): Generator<unknown, any, ResponseGetDream> {
   console.log('getAllDreamsSaga');
-
+  
   yield put(setStatus(RequestStatus.LOADING));
+  yield delay(2000);
   
   try {
     const response = yield call(dreamAPI.get, { dreamId: '' });

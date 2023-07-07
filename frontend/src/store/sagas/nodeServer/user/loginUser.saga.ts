@@ -24,6 +24,7 @@ interface Props {
 export function* loginUserSaga({ payload }: Props): Generator<unknown, any, ResponseLoginUser> {
   console.log('loginUserSaga', payload);
 
+  yield put(resetError());
   yield put(setStatus(RequestStatus.LOADING));
   
   try {
@@ -41,7 +42,6 @@ export function* loginUserSaga({ payload }: Props): Generator<unknown, any, Resp
     yield put(setToken(token));
     yield put(setFullName(fullName));
     yield put(setUserId(userId));
-    yield put(resetError());
     yield put(login());
 
   } catch (error: unknown) {

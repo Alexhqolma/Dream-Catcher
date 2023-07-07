@@ -3,6 +3,7 @@ import { NavLink, To } from 'react-router-dom';
 import classNames from 'classnames';
 
 import './CustomButton.scss';
+import { string } from 'yup';
 
 export enum Target {
   Blank = '_blank',
@@ -28,6 +29,7 @@ interface CustomButtonProps {
   type?: ButtonType;
   width?: number | '100%';
   tabIndex: number;
+  dataValue?: string;
 }
 
 export const CustomButton: React.FC<CustomButtonProps> = ({
@@ -41,6 +43,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   type,
   width,
   tabIndex,
+  dataValue,
  }) => {
   if (href) {
     return (
@@ -49,6 +52,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         href={href}
         target={target}
         tabIndex={tabIndex}
+        data-value={dataValue}
       >
         {children}
       </a>
@@ -61,6 +65,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
         className={classNames('custom-button', 'custom-button--navLink', className)}
         to={to}
         tabIndex={tabIndex}
+        data-value={dataValue}
       >
         {title}
         {children}
@@ -70,13 +75,15 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
 
   return (
     <button 
-      className={classNames('custom-button', 'custom-button--regular', className,
+      className={classNames('custom-button', 'custom-button--regular',
         { 'custom-button--width-definite': width },
+        className,
       )}
       onClick={onClick}
       type={type}
       style={{ width: width === '100%' ? '100%' : `${width}px` }}
       tabIndex={tabIndex}
+      data-value-id={dataValue}
     >
       {title}
       {children}

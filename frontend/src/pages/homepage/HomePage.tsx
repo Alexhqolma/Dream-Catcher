@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
           <ItemHorizonLayout 
             key={dream.id} 
             item={dream}
-            type={index % 2 ? ItemHorizon.RIGHT : ItemHorizon.LEFT }
+            type={index % 2 ? ItemHorizon.IMG_RIGHT : ItemHorizon.IMG_LEFT }
           />
         ))}
       </section>

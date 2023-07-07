@@ -36,7 +36,7 @@ export const JavaControls: React.FC = () => {
   const createDream = async () => {
     console.log('createDreamJava');
 
-    const user = {
+    const dream = {
       "title": "title new dream",
       "body": "body new dream",
     };
@@ -49,7 +49,7 @@ export const JavaControls: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(dream),
       }
     );
 

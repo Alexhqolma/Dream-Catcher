@@ -1,21 +1,32 @@
 .JavaControls {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 50px;
+  top: 400px;
+  left: 0;
   display: flex;
   flex-direction: column;
   z-index: 9000;
-  border: 1px solid red;
-  
-  & > * {
-    transform: translateX(calc(-10% + 50px));
-    transition: all 1s;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  background-color: #fff;
+  transform: translateX(calc(-100% + 30px));
+  transition: all 0.5s;
+
+  & > p {
+    transform: rotate(-90deg);
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    padding: 0;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
   }
   
-  &:hover > * {
-    opacity: 1;
-    transform: translateX(calc(-100% + 50px));
-    transition: all 0.3s;
+  &:hover {
+    transform: translateX(calc(0px));
+    transition: all 0.5s;
   }
 }

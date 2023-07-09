@@ -51,8 +51,8 @@ public class InjectController {
         dream3.setUser(user2);
         dreamService.create(dream3/*, null*/);
 
-        dream.setHandler(user2);
-        dreamService.update(dream.getId(), dream);
+        //dream.setHandler(user2);
+        //dreamService.update(dream.getId(), dream, user2);
 
         Message message = new Message();
         message.setBody("First message");

@@ -8,7 +8,7 @@ import java.util.List;
 public interface DreamService {
     Dream create(Dream dream/*, MultipartFile file*/);
 
-    Dream update(Long id, Dream dream);
+    Dream update(Long id, Dream dream, User user);
 
     Dream findById(Long id);
 
@@ -18,7 +18,9 @@ public interface DreamService {
 
     List<Dream> findAllByHandler(User user);
 
-    void delete(Long id);
+    void delete(Long id, User user);
 
-    Dream takeDream(Long dreamId, Long userId);
+    Dream takeDream(Long id, User user);
+
+    Dream dropDream(Long id, User user);
 }

@@ -13,4 +13,6 @@ public interface UserService {
     List<User> findAll();
 
     User login(String email, String password) throws AuthenticationException;
+
+    User findByEmail(String email);
 }

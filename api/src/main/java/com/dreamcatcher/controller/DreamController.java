@@ -5,19 +5,14 @@ import com.dreamcatcher.dto.request.DreamRequestDto;
 import com.dreamcatcher.dto.response.DreamResponseDto;
 import com.dreamcatcher.model.User;
 import com.dreamcatcher.model.Dream;
+import com.dreamcatcher.security.TokenUtil;
 import com.dreamcatcher.service.UserService;
 import com.dreamcatcher.service.DreamService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,13 +23,27 @@ public class DreamController {
     private final DreamMapper dreamMapper;
     private final DreamService dreamService;
     private final UserService userService;
+    private final TokenUtil tokenUtil;
 
     @Tag(name = "Create Dram", description = "Create new dream")
     @PostMapping("/create")
-    public DreamResponseDto create(@RequestBody DreamRequestDto dreamRequestDto/*,
+    public DreamResponseDto create(@RequestBody DreamRequestDto dreamRequestDto,
+                                   @RequestHeader HttpHeaders headers/*,
                                   @RequestParam("file") MultipartFile file*/) {
-        Dream wish = dreamMapper.toModel(dreamRequestDto);
-        return dreamMapper.toDto(dreamService.create(wish/*, file*/));
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
+        Dream dream = dreamMapper.toModel(dreamRequestDto);
+        dream.setUser(user);
+        return dreamMapper.toDto(dreamService.create(dream/*, file*/));
+    }
+
+    @Tag(name = "Update Dream", description = "Update dream")
+    @PatchMapping("/{id}")
+    public DreamResponseDto update(@PathVariable Long id,
+                                   @RequestBody DreamRequestDto dreamRequestDto,
+                                   @RequestHeader HttpHeaders headers) {
+        Dream dream = dreamMapper.toModel(dreamRequestDto);
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
+        return dreamMapper.toDto(dreamService.update(id, dream, user));
     }
 
     @Tag(name = "Find Dream", description = "Get dream by dreamId")
@@ -64,33 +73,36 @@ public class DreamController {
     }
 
     @Tag(name = "Taken Dreams", description = "Get all dreams that user take to realise")
-    @GetMapping("/handler/{id}")
-    public List<DreamResponseDto> findAllByHandler(@PathVariable Long id) {
-        User user = userService.findById(id);
+    @GetMapping("/handler")
+    public List<DreamResponseDto> findAllByHandler(@RequestHeader HttpHeaders headers) {
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
         return dreamService.findAllByHandler(user)
                 .stream()
                 .map(dreamMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @Tag(name = "Update Dream", description = "Update dream")
-    @PutMapping("/{id}")
-    public DreamResponseDto update(@PathVariable Long id,
-                                   @RequestBody DreamRequestDto dreamRequestDto) {
-        Dream dream = dreamMapper.toModel(dreamRequestDto);
-        return dreamMapper.toDto(dreamService.update(id, dream));
-    }
-
     @Tag(name = "Delete Dream", description = "Delete dream")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        dreamService.delete(id);
+    public void delete(@PathVariable Long id,
+                       @RequestHeader HttpHeaders headers) {
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
+        dreamService.delete(id, user);
     }
 
     @Tag(name = "Take Dream", description = "User take dream to realise")
-    @PutMapping("/take-dream")
-    public DreamResponseDto takeDream(@RequestParam("dreamId") Long dreamId,
-                                     @RequestParam("userId") Long userId) {
-        return dreamMapper.toDto(dreamService.takeDream(dreamId, userId));
+    @PutMapping("/take-dream/{id}")
+    public DreamResponseDto takeDream(@PathVariable Long id,
+                                     @RequestHeader HttpHeaders headers) {
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
+        return dreamMapper.toDto(dreamService.takeDream(id, user));
+    }
+
+    @Tag(name = "Drop Dream", description = "User drop dream")
+    @PutMapping("/drop-dream/{id}")
+    public DreamResponseDto dropDream(@PathVariable Long id,
+                                      @RequestHeader HttpHeaders headers) {
+        User user = userService.findByEmail(tokenUtil.getUserName(headers));
+        return dreamMapper.toDto(dreamService.takeDream(id, user));
     }
 }

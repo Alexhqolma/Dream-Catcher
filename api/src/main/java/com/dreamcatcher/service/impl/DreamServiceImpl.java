@@ -5,31 +5,31 @@ import com.dreamcatcher.exception.DreamCatcherException;
 import com.dreamcatcher.model.Status;
 import com.dreamcatcher.model.User;
 import com.dreamcatcher.model.Dream;
-import com.dreamcatcher.repository.UserRepository;
 import com.dreamcatcher.repository.DreamRepository;
 import com.dreamcatcher.service.DreamService;
+import com.dreamcatcher.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class DreamServiceImpl implements DreamService {
     private final DreamRepository dreamRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final DreamMapper dreamMapper;
     @Value("${upload.path}")
     private String uploadPath;
 
     public DreamServiceImpl(DreamRepository dreamRepository,
-                            UserRepository userRepository,
+                            UserService userService,
                             DreamMapper dreamMapper) {
         this.dreamRepository = dreamRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.dreamMapper = dreamMapper;
     }
 
@@ -55,8 +55,9 @@ public class DreamServiceImpl implements DreamService {
     }
 
     @Override
-    public Dream update(Long id, Dream dream) {
+    public Dream update(Long id, Dream dream, User user) {
         dream.setId(id);
+        checkUser(dream, user);
         return dreamRepository.save(dream);
     }
 
@@ -85,17 +86,46 @@ public class DreamServiceImpl implements DreamService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, User user) {
+        Dream dream = dreamRepository.findById(id)
+                .orElseThrow(() -> new DreamCatcherException("Can't find dream by id " + id));
+        checkUser(dream, user);
         dreamRepository.deleteById(id);
     }
 
     @Override
-    public Dream takeDream(Long dreamId, Long userId) {
+    public Dream takeDream(Long dreamId, User user) {
         Dream dream = dreamRepository.findById(dreamId)
                 .orElseThrow(() -> new DreamCatcherException("Can't find dream by id " + dreamId));
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new DreamCatcherException("Can't find user by id " + userId));
+        checkOwnUser(dream, user);
         dream.setHandler(user);
         return dreamRepository.save(dream);
+    }
+
+    @Override
+    public Dream dropDream(Long dreamId, User user) {
+        Dream dream = dreamRepository.findById(dreamId)
+                .orElseThrow(() -> new DreamCatcherException("Can't find dream by id " + dreamId));
+        checkIfUser(dream, user);
+        dream.setHandler(null);
+        return dreamRepository.save(dream);
+    }
+
+    private void checkUser(Dream dream, User user) {
+        if (!Objects.equals(dream.getUser().getId(), user.getId())) {
+            throw new DreamCatcherException("This dream belongs to another user!");
+        }
+    }
+
+    private void checkOwnUser(Dream dream, User user) {
+        if (Objects.equals(dream.getUser().getId(), user.getId())) {
+            throw new DreamCatcherException("You can't take your dream!");
+        }
+    }
+
+    private void checkIfUser(Dream dream, User user) {
+        if (!Objects.equals(dream.getHandler().getId(), user.getId())) {
+            throw new DreamCatcherException("You are not handler of this dream");
+        }
     }
 }

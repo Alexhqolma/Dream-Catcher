@@ -45,4 +45,10 @@ public class UserServiceImpl implements UserService {
         }
         return user.orElseThrow(() -> new RuntimeException("Can't find user with user email " + userEmail));
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new DreamCatcherException("Can't find user by email: " + email));
+    }
 }

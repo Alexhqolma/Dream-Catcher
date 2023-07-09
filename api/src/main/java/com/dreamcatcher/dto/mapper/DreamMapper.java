@@ -17,7 +17,9 @@ public class DreamMapper {
         wish.setTitle(dto.getTitle());
         wish.setStatus(dto.getStatus());
         wish.setBody(dto.getBody());
-        wish.setUser(userService.findById(dto.getUserId()));
+        if (dto.getUserId() != null) {
+            wish.setUser(userService.findById(dto.getUserId()));
+        }
         if (dto.getHandlerId() != null) {
             wish.setHandler(userService.findById(dto.getHandlerId()));
         }
@@ -32,7 +34,9 @@ public class DreamMapper {
         wish.setTitle(dto.getTitle());
         wish.setStatus(dto.getStatus());
         wish.setBody(dto.getBody());
-        wish.setUser(userService.findById(dto.getUserId()));
+        if (dto.getUserId() != null) {
+            wish.setUser(userService.findById(dto.getUserId()));
+        }
         if (dto.getHandlerId() != null) {
             wish.setHandler(userService.findById(dto.getHandlerId()));
         }
@@ -47,7 +51,9 @@ public class DreamMapper {
         dto.setTitle(wish.getTitle());
         dto.setStatus(wish.getStatus());
         dto.setBody(wish.getBody());
-        dto.setUserId(wish.getUser().getId());
+        if (wish.getUser() != null) {
+            dto.setUserId(wish.getUser().getId());
+        }
         if (wish.getHandler() != null) {
             dto.setHandlerId(wish.getHandler().getId());
         }

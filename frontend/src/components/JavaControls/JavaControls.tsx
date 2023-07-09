@@ -64,6 +64,7 @@ export const JavaControls: React.FC = () => {
     console.log('updateDream');
 
     const dream = {
+        "userId": "1",
       "title": "title new dream version 1",
       "body": "body new dream version 2",
     };
@@ -72,7 +73,7 @@ export const JavaControls: React.FC = () => {
       'http://localhost:6868/dreams/1',
       {
         // mode: 'no-cors',
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`,
@@ -93,7 +94,7 @@ export const JavaControls: React.FC = () => {
     };
     
     const response = await fetch(
-      `http://localhost:6868/dreams/${value}`,
+      `http://localhost:6868/dreams/drop-dream/3`,
       {
         // mode: 'no-cors',
         method: "PUT",
@@ -169,7 +170,7 @@ export const JavaControls: React.FC = () => {
     console.log('getUser');
    
     const response = await fetch(
-      'http://localhost:6868/dreams/user',
+      'http://localhost:6868/dreams/user/1',
       {
         // mode: 'no-cors',
         method: "GET",

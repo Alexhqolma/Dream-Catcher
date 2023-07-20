@@ -8,9 +8,10 @@ import { watchUserSaga as watchUserSagaJava } from './javaServer/user/watchUser.
 export default function* rootSaga(): Generator<any, void, any> {
   const sagas = [
     getMockDataSaga,
-    // getJavaData,
+
     watchUserSagaNode,
     watchDreamSagaNode,
+    
     watchUserSagaJava,
   ];
 

@@ -53,5 +53,3 @@ export function* getUserSaga({ payload }: Props): Generator<unknown, any, Respon
     yield put(setStatus(RequestStatus.IDLE));
   }
 }
-
-

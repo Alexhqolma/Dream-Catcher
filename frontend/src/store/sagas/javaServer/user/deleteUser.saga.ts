@@ -27,13 +27,13 @@ export function* deleteUserSaga({ payload }: Props): Generator<unknown, any, Res
   
   try {
     const response = yield call(authAPI.deleteUser, payload);
+    console.log('deleteUserSaga response', response.success, response.message);
+
     const { success, message } = response;
 
     if (!success) {
       throw response;
     }
-
-    console.log('deleteUserSaga response', response);
 
     yield put(setMessage(message));
     yield put(setRegistrationSuccess(success));

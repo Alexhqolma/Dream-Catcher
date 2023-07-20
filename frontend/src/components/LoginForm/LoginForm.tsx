@@ -12,8 +12,8 @@ import Loader from '../Loader/Loader';
 
 
 const initialValues = {
-  email: '',
-  password: '',
+  email: 'test@all.com',
+  password: '78dsas#@#DAsdqw',
 };
 
 const LoginData = [

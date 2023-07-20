@@ -39,7 +39,7 @@ export const authAPI = {
       RequestCreateUser,
       AxiosResponse<ResponseLoginUser>
     >(
-      javaEndPoints.user.register, 
+      javaEndPoints.user.registration, 
       data,
     );
   },

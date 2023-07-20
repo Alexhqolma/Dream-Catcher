@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RequestCreateUser } from '../../types/User';
 import { CustomForm } from '../UI/CustomForm';
 import { useNavigate } from 'react-router-dom';
-import { registerUserNODE } from '../../store/sagas/actions';
+import { registerUserJAVA, registerUserNODE } from '../../store/sagas/actions';
 import { FormType } from '../UI/CustomForm/validationSchemas';
 import { selectMessage, selectRegistrationSuccess, selectUserStatusLoading } from '../../store/features/user/userSlice';
 import { RequestStatus } from '../../types/RequestStatus';
@@ -45,6 +45,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
       password: values.password,
       fullName: values.fullName,
     }));
+
+    // dispatch(registerUserJAVA({
+    //   email: values.email,
+    //   password: values.password,
+    //   fullName: values.fullName,
+    // }));
   };
 
   useEffect(() => {

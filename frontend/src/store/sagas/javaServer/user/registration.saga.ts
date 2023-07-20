@@ -1,4 +1,6 @@
-import { call, put } from 'redux-saga/effects';
+import { call, delay, put } from 'redux-saga/effects';
+import { AxiosError } from 'axios';
+
 import {
   setError,
   setStatus,
@@ -7,8 +9,6 @@ import {
   setRegistrationSuccess,
 } from '../../../features/user/userSlice';
 import { authAPI } from '../../../../api/Node/users';
-
-import { AxiosError } from 'axios';
 import { Error } from '../../../../types/Error';
 import { RequestStatus } from '../../../../types/RequestStatus';
 import { RequestCreateUser, ResponseCreateUser, ResponseCreateUserWithError } from '../../../../types/User';
@@ -21,7 +21,9 @@ interface Props {
 export function* registrationSaga({ payload }: Props): Generator<unknown, any, ResponseCreateUser> {
   console.log('registrationSaga', payload);
 
+  yield put(resetError());
   yield put(setStatus(RequestStatus.LOADING));
+  yield delay(1000);
   
   try {
     const response = yield call(authAPI.register, payload);
@@ -35,7 +37,6 @@ export function* registrationSaga({ payload }: Props): Generator<unknown, any, R
     
     yield put(setMessage(message));
     yield put(setRegistrationSuccess(success));
-    yield put(resetError());
   } catch (error) {
     console.error('catch registrationSaga', error);
 
@@ -47,3 +48,5 @@ export function* registrationSaga({ payload }: Props): Generator<unknown, any, R
     yield put(setStatus(RequestStatus.IDLE));
   }
 }
+
+

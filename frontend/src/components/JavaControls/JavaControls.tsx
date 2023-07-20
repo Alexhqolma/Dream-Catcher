@@ -5,25 +5,52 @@ import { registerUserNODE, SagaActions } from '../../store/sagas/actions';
 import { CustomButton } from '../UI/CustomButton';
 
 import './JavaControls.scss';
+import { javaEndPoints, baseURL } from '../../api/Java/endPoints';
 
 export const JavaControls: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const [token, setToken] = useState('');
 
+  const user = {
+    "email": "user5@user5.com",
+    "password": "12345",
+  };
+
+  const registrationJava = async () => {
+    console.log('registrationJava');
+
+    console.log(baseURL + javaEndPoints.user.registration)
+
+    const response = await fetch(
+      baseURL + javaEndPoints.user.registration,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    ).then(res => res.json());
+
+    console.log(response.token);
+    setToken(response.token);
+  };
   
   const loginJava = async () => {
     console.log('loginDream');
 
-    const user = {
-      "email": "admin@admin.com",
-      "password": "adminadmin",
-    };
+    // const user = {
+    //   "email": "user1@user1.com",
+    //   "password": "12345",
+    // };
     
+    console.log(baseURL + javaEndPoints.user.login)
+
     const response = await fetch(
+      // baseURL + javaEndPoints.user.login,
       'http://localhost:6868/auth/login',
       {
-        // mode: 'no-cors',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,9 +70,10 @@ export const JavaControls: React.FC = () => {
       "title": "title new dream",
       "body": "body new dream",
     };
-    
+  
     const response = await fetch(
-      'http://localhost:6868/dreams/create',
+      // 'http://localhost:6868/dreams/create',
+      baseURL + javaEndPoints.dreams.create,
       {
         // mode: 'no-cors',
         method: "POST",
@@ -60,7 +88,7 @@ export const JavaControls: React.FC = () => {
     console.log(response);
   };
 
-  const updateDream = async () => {
+  const updateDream = async (value: number) => {
     console.log('updateDream');
 
     const dream = {
@@ -70,7 +98,8 @@ export const JavaControls: React.FC = () => {
     };
     
     const response = await fetch(
-      'http://localhost:6868/dreams/1',
+      // 'http://localhost:6868/dreams/1',
+      baseURL + javaEndPoints.dreams.update + value,
       {
         // mode: 'no-cors',
         method: "PATCH",
@@ -94,9 +123,9 @@ export const JavaControls: React.FC = () => {
     };
     
     const response = await fetch(
-      `http://localhost:6868/dreams/drop-dream/3`,
+      // `http://localhost:6868/dreams/take-dream/${value}`,
+      baseURL + javaEndPoints.dreams.take + value,
       {
-        // mode: 'no-cors',
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -109,11 +138,36 @@ export const JavaControls: React.FC = () => {
     console.log(response);
   };
 
-  const getDreamById = async () => {
+  const dropDream = async (value: number) => {
+    console.log('dropDream');
+
+    const dream = {
+      "title": "title new dream version 1",
+      "body": "body new dream version 2",
+    };
+    
+    const response = await fetch(
+      // `http://localhost:6868/dreams/drop-dream/${value}`,
+      baseURL + javaEndPoints.dreams.drop + value,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getDreamById = async (value: number) => {
     console.log('findDreamBuId');
    
     const response = await fetch(
-      'http://localhost:6868/dreams/1',
+      // 'http://localhost:6868/dreams/1',
+      baseURL + javaEndPoints.dreams.getDreams + value,
       {
         // mode: 'no-cors',
         method: "GET",
@@ -132,7 +186,8 @@ export const JavaControls: React.FC = () => {
     console.log('findDreamBuId');
    
     const response = await fetch(
-      'http://localhost:6868/dreams',
+      // 'http://localhost:6868/dreams',
+      baseURL + javaEndPoints.dreams.getDreams,
       {
         // mode: 'no-cors',
         method: "GET",
@@ -147,11 +202,12 @@ export const JavaControls: React.FC = () => {
     console.log(response);
   };
 
-  const getDreamsPage1Dream5 = async () => {
+  const getDreamsPageSize = async (page: number, size: number) => {
     console.log('getDreamsPage1Dream5');
    
     const response = await fetch(
-      'http://localhost:6868/dreams?page=1&size=5',
+      // 'http://localhost:6868/dreams?page=1&size=5',
+      baseURL + javaEndPoints.dreams.getDreams + `?page=${page}&size=${size}`,
       {
         // mode: 'no-cors',
         method: "GET",
@@ -166,11 +222,50 @@ export const JavaControls: React.FC = () => {
     console.log(response);
   };
 
-  const getUser = async () => {
+  const getDreamsUser = async (value: number) => {
+    console.log('getDreams of Users', value);
+   
+    const response = await fetch(
+      // `http://localhost:6868/dreams/user/${value}`,
+      baseURL + javaEndPoints.dreams.getDreamsUser + value,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getDreamsHandler = async () => {
+    console.log('getDreams of Handler');
+   
+    const response = await fetch(
+      // `http://localhost:6868/dreams/user/${value}`,
+      baseURL + javaEndPoints.dreams.getDreamsHandler,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+        // body: JSON.stringify(dream),
+      }
+    ).then(res => res.json());
+
+    console.log(response);
+  };
+
+  const getUsers = async () => {
     console.log('getUser');
    
     const response = await fetch(
-      'http://localhost:6868/dreams/user/1',
+      // 'http://localhost:6868/users',
+      baseURL + javaEndPoints.user.getAllUsers,
       {
         // mode: 'no-cors',
         method: "GET",
@@ -218,15 +313,20 @@ export const JavaControls: React.FC = () => {
         },
         // body: JSON.stringify(dream),
       }
-    ).then(res => res.json());
-
-    console.log(response);
+    ).then(res => console.log(res));
   };
 
   return (
     <div className='App__buttons_for_Java JavaControls'>
       <p>JAVA</p>
       <div>
+        <CustomButton
+          onClick={() => registrationJava()}
+          tabIndex={0}
+          width={200}
+        >
+          NewUser
+        </CustomButton>
         <CustomButton
           onClick={() => loginJava()}
           tabIndex={0}
@@ -244,7 +344,7 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => updateDream()}
+          onClick={() => updateDream(12)}
           tabIndex={0}
           width={200}
         >
@@ -252,16 +352,24 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => takeDream(1)}
+          onClick={() => takeDream(3)}
           tabIndex={0}
           width={200}
         >
           takeDream
         </CustomButton>
 
+        <CustomButton
+          onClick={() => dropDream(3)}
+          tabIndex={0}
+          width={200}
+        >
+          dropDream
+        </CustomButton>
+
         
         <CustomButton
-          onClick={() => getDreamById()}
+          onClick={() => getDreamById(1)}
           tabIndex={0}
           width={200}
         >
@@ -277,7 +385,7 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => getDreamsPage1Dream5()}
+          onClick={() => getDreamsPageSize(1, 5)}
           tabIndex={0}
           width={200}
         >
@@ -285,11 +393,27 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => getUser()}
+          onClick={() => getDreamsUser(1)}
           tabIndex={0}
           width={200}
         >
-          getUser
+          getDreamsUser
+        </CustomButton>
+
+        <CustomButton
+          onClick={() => getDreamsHandler()}
+          tabIndex={0}
+          width={200}
+        >
+          getDreamsHandler
+        </CustomButton>
+
+        <CustomButton
+          onClick={() => getUsers()}
+          tabIndex={0}
+          width={200}
+        >
+          getUsers
         </CustomButton>
 
         <CustomButton
@@ -301,7 +425,7 @@ export const JavaControls: React.FC = () => {
         </CustomButton>
 
         <CustomButton
-          onClick={() => deleteDream(1)}
+          onClick={() => deleteDream(10)}
           tabIndex={0}
           width={200}
         >

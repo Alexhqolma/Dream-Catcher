@@ -56,8 +56,8 @@ export const App = () => {
 
   return (
     <div className='App'>
-      {<NodeControls />}
-      {<JavaControls />}
+      <NodeControls />
+      <JavaControls />
       <Header />
 
       {/* <h1 className='title'>
